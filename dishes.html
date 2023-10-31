@@ -26,7 +26,6 @@
             <thead>
                 <tr>
                     <th><a href="new-dish.html">New</a></th>
-                    <th></th>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Image</th>
@@ -34,12 +33,12 @@
                     <th>Course</th>
                     <th>Team</th>
                     <th>Year</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><a href="edit-dish.html">Edit</a></td>
-                    <td><a href="" onclick="">Delete</a></td>
+                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
                     <td>1</td>
                     <td>Crispy Calamari Rings</td>
                     <td><a href="">Image</a></td>
@@ -47,10 +46,10 @@
                     <td>2022</td>
                     <td>Flavor Fusion</td>
                     <td>Appetizer</td>
+                    <td><button onclick="deleteDish('id')">Delete</button></td>
                 </tr>
                 <tr>
-                    <td><a href="edit-dish.html">Edit</a></td>
-                    <td><a href="" onclick="">Delete</a></td>
+                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
                     <td>2</td>
                     <td>Honey-Glazed Salmon Fillet</td>
                     <td><a href="">Image</a></td>
@@ -58,10 +57,10 @@
                     <td>2022</td>
                     <td>Culinary Connoisseurs</td>
                     <td>Entree</td>
+                    <td><button onclick="deleteDish('id')">Delete</button></td>
                 </tr>
                 <tr>
-                    <td><a href="edit-dish.html">Edit</a></td>
-                    <td><a href="" onclick="">Delete</a></td>
+                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
                     <td>3</td>
                     <td>Triple Chocolate Mousse</td>
                     <td><a href="">Image</a></td>
@@ -69,10 +68,10 @@
                     <td>2022</td>
                     <td>Bread Heads</td>
                     <td>Dessert</td>
+                    <td><button onclick="deleteDish('id')">Delete</button></td>
                 </tr>
                 <tr>
-                    <td><a href="edit-dish.html">Edit</a></td>
-                    <td><a href="" onclick="">Delete</a></td>
+                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
                     <td>4</td>
                     <td>Stuffed Portobello Caps</td>
                     <td><a href="">Image</a></td>
@@ -80,10 +79,10 @@
                     <td>2022</td>
                     <td>Culinary Connoisseurs</td>
                     <td>Appetizer</td>
+                    <td><button onclick="deleteDish('id')">Delete</button></td>
                 </tr>
                 <tr>
-                    <td><a href="edit-dish.html">Edit</a></td>
-                    <td><a href="" onclick="">Delete</a></td>
+                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
                     <td>5</td>
                     <td>Thyme-Infused Lamb Chops</td>
                     <td><a href="">Image</a></td>
@@ -91,6 +90,7 @@
                     <td>2022</td>
                     <td>Bread Heads</td>
                     <td>Entree</td>
+                    <td><button onclick="deleteDish('id')">Delete</button></td>
                 </tr>
             </tbody>
         </table>

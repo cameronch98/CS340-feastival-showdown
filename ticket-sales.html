@@ -20,5 +20,101 @@
             <li><a href="event-years.html">Event Years</a></li>
         </ul>
     </div>
+    <h3>Browse Ticket Sales</h3>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th><a href="new-ticket-sale.html">New</a></th>
+                    <th>ID</th>
+                    <th>Attendee</th>
+                    <th>Ticket Type</th>
+                    <th>Total</th>
+                    <th>Year</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
+                    <td>1</td>
+                    <td>John Green</td>
+                    <td>Two-Day</td>
+                    <td>16</td>
+                    <td>2022</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
+                    <td>2</td>
+                    <td>Allen Ruiz</td>
+                    <td>Three-Day</td>
+                    <td>24</td>
+                    <td>2022</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
+                    <td>3</td>
+                    <td>John Shugart</td>
+                    <td>Three-Day</td>
+                    <td>24</td>
+                    <td>2022</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
+                    <td>4</td>
+                    <td>Carla Downey</td>
+                    <td>Three-Day</td>
+                    <td>24</td>
+                    <td>2022</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
+                    <td>5</td>
+                    <td>Matthew Walters</td>
+                    <td>One-Day</td>
+                    <td>8</td>
+                    <td>2022</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h3>Ticket Types</h3>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>ID</th>
+                    <th>Ticket Type</th>
+                    <th>List Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a onclick="editTicketType('id')" href="edit-ticket-type.html">Edit</a></td>
+                    <td>1</td>
+                    <td>One-Day</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketType('id')" href="edit-ticket-type.html">Edit</a></td>
+                    <td>2</td>
+                    <td>Two-Day</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketType('id')" href="edit-ticket-type.html">Edit</a></td>
+                    <td>3</td>
+                    <td>Three-Day</td>
+                    <td>30</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
