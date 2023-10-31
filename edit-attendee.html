@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feastival Showdown</title>
+</head>
+<body>
+    <h1>Edit Attendee</h1>
+    <div class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="attendees.html">Attendees</a></li>
+            <li><a href="ticket-sales.html">Ticket Sales</a></li>
+            <li><a href="competitors.html">Competitors</a></li>
+            <li><a href="teams.html">Teams</a></li>
+            <li><a href="competitor-registrations.html">Competitor Registrations</a></li>
+            <li><a href="dishes.html">Dishes</a></li>
+            <li><a href="ratings.html">Ratings</a></li>
+            <li><a href="event-years.html">Event Years</a></li>
+        </ul>
+    </div>
+
+    <form action="/path_to_backend_handler_for_edit" method="post">
+        <!-- Hidden input to hold the ID -->
+        <input type="hidden" name="id" id="id" value="ID_FROM_DATABASE"> 
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="NAME_FROM_DATABASE" maxlength="100" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="EMAIL_FROM_DATABASE" maxlength="255" required><br><br>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" value="PHONE_FROM_DATABASE" required><br><br>
+
+        <input type="submit" value="Update Attendee">
+    </form>
+
+</body>
+</html>
