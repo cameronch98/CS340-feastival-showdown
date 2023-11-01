@@ -93,6 +93,68 @@ event_year_id AS ID,
 year AS Year
 FROM Event_Years;
 
+-- Insert Attendee
+INSERT INTO Attendees (attendee_name, attendee_email, attendee_phone)
+VALUES ( :name, :email, :phone);
+
+-- Insert Ticket Sale
+INSERT INTO Ticket_Sales (attendee_id, ticket_type_id, unit_price, event_year_id)
+VALUES (:id, :ticket-type, :total, :year);
+
+-- Insert Competitor
+INSERT INTO Competitors (competitor_name, competitor_email, competitor_phone)
+VALUES (:name, :email, :phone);
+
+-- Insert Team
+INSERT INTO Teams (team_name)
+VALUES (:name);
+
+-- Insert Competitor Registration
+INSERT INTO Competitor_Registrations (competitor_id, team_id, event_year_id)
+VALUES (:name, :team, :year);
+
+-- Insert Dish
+INSERT INTO Dishes (dish_name, dish_image, dish_description, course_id, team_id, event_year_id)
+VALUES (:dishName, :dishImage, :description, :course, :team, :year);
+
+-- Insert Rating
+INSERT INTO Ratings (dish_id, rating, comments, attendee_id)
+VALUES (:dish, :rating, :comments, :attendee);
+
+-- Insert Event Year
+INSERT INTO Event_Years (year)
+VALUES (:year);
+
+-- Update Attendee
+UPDATE Attendees SET attendee_name = :name, attendee_email = :email, attendee_phone = :phone;
+
+-- Update Ticket Sale
+UPDATE Ticket_Sales SET attendee_id = :id, ticket_type_id = :ticket_type, unit_price = :total, event_year_id = :year;
+
+-- Insert Competitor
+INSERT INTO Competitors (competitor_name, competitor_email, competitor_phone)
+VALUES (:name, :email, :phone);
+
+-- Insert Team
+INSERT INTO Teams (team_name)
+VALUES (:name);
+
+-- Insert Competitor Registration
+INSERT INTO Competitor_Registrations (competitor_id, team_id, event_year_id)
+VALUES (:name, :team, :year);
+
+-- Insert Dish
+INSERT INTO Dishes (dish_name, dish_image, dish_description, course_id, team_id, event_year_id)
+VALUES (:dishName, :dishImage, :description, :course, :team, :year);
+
+-- Insert Rating
+INSERT INTO Ratings (dish_id, rating, comments, attendee_id)
+VALUES (:dish, :rating, :comments, :attendee);
+
+-- Insert Event Year
+INSERT INTO Event_Years (year)
+VALUES (:year);
+
 -- Delete Attendee
 DELETE FROM Attendees WHERE id = :character_ID_selected_from_attendees_page
 
