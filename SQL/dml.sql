@@ -126,55 +126,49 @@ INSERT INTO Event_Years (year)
 VALUES (:year);
 
 -- Update Attendee
-UPDATE Attendees SET attendee_name = :name, attendee_email = :email, attendee_phone = :phone;
+UPDATE Attendees SET attendee_name = :name, attendee_email = :email, attendee_phone = :phone WHERE attendee_id = :id;
 
 -- Update Ticket Sale
-UPDATE Ticket_Sales SET attendee_id = :id, ticket_type_id = :ticket_type, unit_price = :total, event_year_id = :year;
+UPDATE Ticket_Sales SET attendee_id = :id, ticket_type_id = :ticket_type, unit_price = :total, event_year_id = :year WHERE ticket_sale_id = :id;
 
--- Insert Competitor
-INSERT INTO Competitors (competitor_name, competitor_email, competitor_phone)
-VALUES (:name, :email, :phone);
+-- Update Competitor
+UPDATE Competitors SET competitor_name = :name, competitor_email = :email, competitor_phone = :phone WHERE competitor_id = :id;
 
--- Insert Team
-INSERT INTO Teams (team_name)
-VALUES (:name);
+-- Update Team
+UPDATE Teams SET team_name: = :name WHERE team_id = :id;
 
--- Insert Competitor Registration
-INSERT INTO Competitor_Registrations (competitor_id, team_id, event_year_id)
-VALUES (:name, :team, :year);
+-- Update Competitor Registration
+UPDATE Competitor_Registrations SET competitor_id = :name, team_id = :team, event_year_id = :year WHERE competitor_registration_id = :id;
 
--- Insert Dish
-INSERT INTO Dishes (dish_name, dish_image, dish_description, course_id, team_id, event_year_id)
-VALUES (:dishName, :dishImage, :description, :course, :team, :year);
+-- Update Dish
+UPDATE Dishes SET dish_name = :dishName, dish_image = :dishImage, dish_description = :description, course_id = :course, team_id = :team, event_year_id = :year WHERE dish_id = :id;
 
--- Insert Rating
-INSERT INTO Ratings (dish_id, rating, comments, attendee_id)
-VALUES (:dish, :rating, :comments, :attendee);
+-- Update Rating
+UPDATE Ratings SET dish_id = :dish, rating = :rating, comments = :comments, attendee_id = :attendee WHERE rating_id = :id;
 
--- Insert Event Year
-INSERT INTO Event_Years (year)
-VALUES (:year);
+-- Update Event Year
+UPDATE Event_Years SET year = :year WHERE event_year_id = :id;
 
 -- Delete Attendee
-DELETE FROM Attendees WHERE id = :character_ID_selected_from_attendees_page
+DELETE FROM Attendees WHERE attendee_id = :character_ID_selected_from_attendees_page
 
 -- Delete Ticket Sale
-DELETE FROM Ticket_Sales WHERE id = :character_ID_selected_from_ticket_sales_page
+DELETE FROM Ticket_Sales WHERE ticket_sale_id = :character_ID_selected_from_ticket_sales_page
 
 -- Delete Competitor
-DELETE FROM Competitors WHERE id = :character_ID_selected_from_competitors_page
+DELETE FROM Competitors WHERE competitor_id = :character_ID_selected_from_competitors_page
 
 -- Delete Team
-DELETE FROM Teams WHERE id = :character_ID_selected_from_teams_page
+DELETE FROM Teams WHERE team_id = :character_ID_selected_from_teams_page
 
 -- Delete Competitor Registration
-DELETE FROM Competitor_Registrations WHERE id = :character_ID_selected_from_competitor_registrations_page
+DELETE FROM Competitor_Registrations WHERE competitor_registration_id = :character_ID_selected_from_competitor_registrations_page
 
 -- Delete Dish
-DELETE FROM Dishes WHERE id = :character_ID_selected_from_dishes_page
+DELETE FROM Dishes WHERE dish_id = :character_ID_selected_from_dishes_page
 
 -- Delete Rating
-DELETE FROM Ratings WHERE id = :character_ID_selected_from_ratings_page
+DELETE FROM Ratings WHERE rating_id = :character_ID_selected_from_ratings_page
 
 -- Delete Event Year
-DELETE FROM Event_Years WHERE id = :character_ID_selected_from_event_years_page
+DELETE FROM Event_Years WHERE event_year_id = :character_ID_selected_from_event_years_page
