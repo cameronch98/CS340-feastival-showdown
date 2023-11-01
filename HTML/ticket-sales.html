@@ -26,7 +26,6 @@
             <thead>
                 <tr>
                     <th><a href="new-ticket-sale.html">New</a></th>
-                    <th>ID</th>
                     <th>Attendee</th>
                     <th>Ticket Type</th>
                     <th>Total</th>
@@ -37,7 +36,14 @@
             <tbody>
                 <tr>
                     <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>1</td>
+                    <td>Matthew Walters</td>
+                    <td>One-Day</td>
+                    <td>8</td>
+                    <td>2022</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
                     <td>John Green</td>
                     <td>Two-Day</td>
                     <td>16</td>
@@ -46,7 +52,14 @@
                 </tr>
                 <tr>
                     <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>2</td>
+                    <td>Eleanor Toro</td>
+                    <td>Two-Day</td>
+                    <td>16</td>
+                    <td>2022</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
                     <td>Allen Ruiz</td>
                     <td>Three-Day</td>
                     <td>24</td>
@@ -55,16 +68,6 @@
                 </tr>
                 <tr>
                     <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>3</td>
-                    <td>John Shugart</td>
-                    <td>Three-Day</td>
-                    <td>24</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>4</td>
                     <td>Carla Downey</td>
                     <td>Three-Day</td>
                     <td>24</td>
@@ -73,11 +76,66 @@
                 </tr>
                 <tr>
                     <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>5</td>
+                    <td>John Shugart</td>
+                    <td>Three-Day</td>
+                    <td>24</td>
+                    <td>2022</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
+                    <td>Erna Stanto</td>
+                    <td>One-Day</td>
+                    <td>10</td>
+                    <td>2023</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
                     <td>Matthew Walters</td>
                     <td>One-Day</td>
-                    <td>8</td>
-                    <td>2022</td>
+                    <td>10</td>
+                    <td>2023</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
+                    <td>Immanuel Rober</td>
+                    <td>Two-Day</td>
+                    <td>20</td>
+                    <td>2023</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
+                    <td>Charles Schiffer</td>
+                    <td>Two-Day</td>
+                    <td>20</td>
+                    <td>2023</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
+                    <td>John Green</td>
+                    <td>Three-Day</td>
+                    <td>30</td>
+                    <td>2023</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
+                    <td>Eleanor Toro</td>
+                    <td>Three-Day</td>
+                    <td>30</td>
+                    <td>2023</td>
+                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
+                    <td>Joseph Beavers</td>
+                    <td>Three-Day</td>
+                    <td>30</td>
+                    <td>2023</td>
                     <td><button onclick="deleteTicketSale('id')">Delete</button></td>
                 </tr>
             </tbody>
@@ -89,7 +147,6 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>ID</th>
                     <th>Ticket Type</th>
                     <th>List Price</th>
                 </tr>
@@ -97,19 +154,16 @@
             <tbody>
                 <tr>
                     <td><a onclick="editTicketType('id')" href="edit-ticket-type.html">Edit</a></td>
-                    <td>1</td>
                     <td>One-Day</td>
                     <td>10</td>
                 </tr>
                 <tr>
                     <td><a onclick="editTicketType('id')" href="edit-ticket-type.html">Edit</a></td>
-                    <td>2</td>
                     <td>Two-Day</td>
                     <td>20</td>
                 </tr>
                 <tr>
                     <td><a onclick="editTicketType('id')" href="edit-ticket-type.html">Edit</a></td>
-                    <td>3</td>
                     <td>Three-Day</td>
                     <td>30</td>
                 </tr>

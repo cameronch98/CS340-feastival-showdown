@@ -510,7 +510,7 @@ VALUES
     'link', 
     'A refreshing mango sorbet made from ripe mangoes and a hint of lime.',
     2, 
-    2, 
+    1, 
     3
 ),
 (
@@ -526,7 +526,7 @@ VALUES
     'link', 
     'A flaky tart filled with sautéed spinach and creamy feta cheese.', 
     2, 
-    1, 
+    2, 
     1
 ),
 (
@@ -630,6 +630,12 @@ SELECT * FROM Competitors;
 SELECT * FROM Competitor_Registrations;
 SELECT * FROM Dishes;
 SELECT * FROM Ratings;
+SELECT
+competitor_id AS ID,
+competitor_name AS Name,
+competitor_email AS Email,
+competitor_phone AS Phone 
+FROM Competitors;
 
 -- Update config
 SET FOREIGN_KEY_CHECKS=1;
