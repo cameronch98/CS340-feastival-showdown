@@ -92,3 +92,27 @@ SELECT
 event_year_id AS ID,
 year AS Year
 FROM Event_Years;
+
+-- Delete Attendee
+DELETE FROM Attendees WHERE id = :character_ID_selected_from_attendees_page
+
+-- Delete Ticket Sale
+DELETE FROM Ticket_Sales WHERE id = :character_ID_selected_from_ticket_sales_page
+
+-- Delete Competitor
+DELETE FROM Competitors WHERE id = :character_ID_selected_from_competitors_page
+
+-- Delete Team
+DELETE FROM Teams WHERE id = :character_ID_selected_from_teams_page
+
+-- Delete Competitor Registration
+DELETE FROM Competitor_Registrations WHERE id = :character_ID_selected_from_competitor_registrations_page
+
+-- Delete Dish
+DELETE FROM Dishes WHERE id = :character_ID_selected_from_dishes_page
+
+-- Delete Rating
+DELETE FROM Ratings WHERE id = :character_ID_selected_from_ratings_page
+
+-- Delete Event Year
+DELETE FROM Event_Years WHERE id = :character_ID_selected_from_event_years_page
