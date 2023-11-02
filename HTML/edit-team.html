@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
     <title>Feastival Showdown</title>
 </head>
 <body>
-    <h1>Edit Team</h1>
+    <h1>Feastival Showdown DB</h1>
     <div class="navbar">
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -20,16 +21,17 @@
             <li><a href="event-years.html">Event Years</a></li>
         </ul>
     </div>
-
-    <form action="/path_to_backend_handler_for_edit" method="post">
-        <!-- Hidden input to hold the ID -->
-        <input type="hidden" name="id" id="id" value="ID_FROM_DATABASE"> 
-
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="NAME_FROM_DATABASE" maxlength="100" required><br><br>
-
-        <input type="submit" value="Update Team">
-    </form>
-
+    <fieldset>
+        <legend>Edit Team:</legend>
+        <form action="/path_to_backend_handler_for_edit" method="post">
+            <!-- Hidden input to hold the ID -->
+            <input type="hidden" name="id" id="id" value="ID_FROM_DATABASE"> 
+    
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="NAME_FROM_DATABASE" maxlength="100" required><br><br>
+    
+            <input type="submit" value="Update Team">
+        </form>
+    </fieldset>
 </body>
 </html>

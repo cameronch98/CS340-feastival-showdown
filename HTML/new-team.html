@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
     <title>Feastival Showdown</title>
 </head>
 <body>
-    <h1>Add New Team</h1>
+    <h1>Feastival Showdown DB</h1>
     <div class="navbar">
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -20,13 +21,14 @@
             <li><a href="event-years.html">Event Years</a></li>
         </ul>
     </div>
-
-    <form action="/path_to_backend_handler" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" maxlength="100" required><br><br>
-
-        <input type="submit" value="Add Team">
-    </form>
-
+    <fieldset>
+        <legend>Add New Team:</legend>
+        <form action="/path_to_backend_handler" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" maxlength="100" required><br><br>
+    
+            <input type="submit" value="Add Team">
+        </form>
+    </fieldset>
 </body>
 </html>

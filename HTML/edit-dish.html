@@ -2,56 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Dish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <title>Feastival Showdown</title>
 </head>
 <body>
-    <h1>Edit Dish</h1>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="attendees.html">Attendees</a></li>
-        <li><a href="ticket-sales.html">Ticket Sales</a></li>
-        <li><a href="competitors.html">Competitors</a></li>
-        <li><a href="teams.html">Teams</a></li>
-        <li><a href="competitor-registrations.html">Competitor Registrations</a></li>
-        <li><a href="dishes.html">Dishes</a></li>
-        <li><a href="ratings.html">Ratings</a></li>
-        <li><a href="event-years.html">Event Years</a></li>
-    </ul>
-    <form action="path_to_backend_script_for_update" method="post">
-        <!-- Hidden input to hold the ID -->
-        <input type="hidden" name="dishId" value="hardcoded_dish_id_for_now">
-
-        <label for="dishName">Name:</label>
-        <input type="text" id="dishName" name="dishName" value="hardcoded_dish_name" maxlength="100" required><br><br>
-
-        <label for="dishImage">Image:</label>
-        <input type="file" id="dishImage" name="dishImage" value="hardcoded_image_link"><br><br>
-
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" maxlength="255" required>hardcoded_description</textarea><br><br>
-
-        <!-- Prepopulated with courses -->
-        <label for="course">Course:</label>
-        <select id="course" name="course">
-            <option value="1">Appetizer</option>
-            <option value="2" selected>Entree</option>
-            <option value="3">Dessert</option>
-        </select><br><br>
-
-        <!-- Prepopulated with valid teams to reduce errors -->
-        <label for="team">Team:</label>
-        <select id="team" name="team">
-            <option value="1">Flavor Fusion</option>
-            <option value="2">Culinary Connoisseurs</option>
-            <option value="3">Bread Heads</option>
-            <option value="4">Tasty Titans</option>
-        </select><br><br>
-
-        <!-- Will be validated manually -->
-        <label for="year">Year:</label>
-        <input type="number" id="year" name="year" min="1900" max="2099" value="2023" required ><br><br>
-
-        <button type="submit">Update Dish</button>
-    </form>
+    <h1>Feastival Showdown DB</h1>
+    <div class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="attendees.html">Attendees</a></li>
+            <li><a href="ticket-sales.html">Ticket Sales</a></li>
+            <li><a href="competitors.html">Competitors</a></li>
+            <li><a href="teams.html">Teams</a></li>
+            <li><a href="competitor-registrations.html">Competitor Registrations</a></li>
+            <li><a href="dishes.html">Dishes</a></li>
+            <li><a href="ratings.html">Ratings</a></li>
+            <li><a href="event-years.html">Event Years</a></li>
+        </ul>
+    </div>
+    <fieldset>
+        <legend>Edit Dish:</legend>
+        <form action="path_to_backend_script_for_update" method="post">
+            <!-- Hidden input to hold the ID -->
+            <input type="hidden" name="dishId" value="hardcoded_dish_id_for_now">
+    
+            <label for="dishName">Name:</label>
+            <input type="text" id="dishName" name="dishName" value="hardcoded_dish_name" maxlength="100" required><br><br>
+    
+            <label for="dishImage">Image:</label>
+            <input type="file" id="dishImage" name="dishImage" value="hardcoded_image_link"><br><br>
+    
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" maxlength="255" required>hardcoded_description</textarea><br><br>
+    
+            <!-- Prepopulated with courses -->
+            <label for="course">Course:</label>
+            <select id="course" name="course">
+                <option value="1">Appetizer</option>
+                <option value="2" selected>Entree</option>
+                <option value="3">Dessert</option>
+            </select><br><br>
+    
+            <!-- Prepopulated with valid teams to reduce errors -->
+            <label for="team">Team:</label>
+            <select id="team" name="team">
+                <option value="1">Flavor Fusion</option>
+                <option value="2">Culinary Connoisseurs</option>
+                <option value="3">Bread Heads</option>
+                <option value="4">Tasty Titans</option>
+            </select><br><br>
+    
+            <!-- Will be validated manually -->
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" min="1900" max="2099" value="2023" required ><br><br>
+    
+            <button type="submit">Update Dish</button>
+        </form>
+    </fieldset>
 </body>
 </html>
