@@ -17,13 +17,14 @@
             <li><a href="teams.html">Teams</a></li>
             <li><a href="competitor-registrations.html">Competitor Registrations</a></li>
             <li><a href="dishes.html">Dishes</a></li>
-            <li><a href="ratings.html">Ratings</a></li>
+            <li><a href="ratings.html" class="active">Ratings</a></li>
             <li><a href="event-years.html">Event Years</a></li>
         </ul>
     </div>
+    <h3>Add Rating:</h3>
     <fieldset>
-        <legend>Add New Rating:</legend>
-        <form action="path_to_backend_script" method="post">
+    <form action="path_to_backend_script" method="post">
+        <fieldset>
             <!-- Prepopulated with dishes to reduce errors -->
             <label for="dish">Dish:</label>
             <select id="dish" name="dish">
@@ -61,7 +62,7 @@
             </select><br><br>
     
             <button type="submit">Submit Rating</button>
-        </form>
-    </fieldset>
+        </fieldset>
+    </form>
 </body>
 </html>

@@ -11,7 +11,7 @@
     <div class="navbar">
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="attendees.html">Attendees</a></li>
+            <li><a href="attendees.html" class="active">Attendees</a></li>
             <li><a href="ticket-sales.html">Ticket Sales</a></li>
             <li><a href="competitors.html">Competitors</a></li>
             <li><a href="teams.html">Teams</a></li>
@@ -21,9 +21,9 @@
             <li><a href="event-years.html">Event Years</a></li>
         </ul>
     </div>
-    <fieldset>
-        <legend>Add New Attendee:</legend>
-        <form action="/path_to_backend_handler" method="post">
+    <h3>Add Attendee:</h3>
+    <form action="/path_to_backend_handler" method="post">
+        <fieldset>
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" maxlength="100" required><br><br>
     
@@ -33,8 +33,8 @@
             <label for="phone">Phone:</label>
             <input type="tel" id="phone" name="phone" required><br><br>
     
-            <input type="submit" value="Add Attendee">
-        </form>
-    </fieldset>
+            <button type="submit">Add Attendee</button>
+        </fieldset>
+    </form>
 </body>
 </html>

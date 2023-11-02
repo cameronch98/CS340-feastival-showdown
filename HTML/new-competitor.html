@@ -13,7 +13,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="attendees.html">Attendees</a></li>
             <li><a href="ticket-sales.html">Ticket Sales</a></li>
-            <li><a href="competitors.html">Competitors</a></li>
+            <li><a href="competitors.html" class="active">Competitors</a></li>
             <li><a href="teams.html">Teams</a></li>
             <li><a href="competitor-registrations.html">Competitor Registrations</a></li>
             <li><a href="dishes.html">Dishes</a></li>
@@ -21,9 +21,9 @@
             <li><a href="event-years.html">Event Years</a></li>
         </ul>
     </div>
-    <fieldset>
-        <legend>Add New Competitor:</legend>
-        <form action="/path_to_backend_handler_for_add_competitor" method="post">
+    <h3>Add Competitor:</h3>
+    <form action="/path_to_backend_handler_for_add_competitor" method="post">
+        <fieldset>
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" maxlength="100" required><br><br>
     
@@ -33,8 +33,8 @@
             <label for="phone">Phone:</label>
             <input type="tel" id="phone" name="phone" required><br><br>
     
-            <input type="submit" value="Add Competitor">
-        </form>
-    </fieldset>
+            <button type="submit">Add Competitor</button>
+        </fieldset>
+    </form>
 </body>
 </html>

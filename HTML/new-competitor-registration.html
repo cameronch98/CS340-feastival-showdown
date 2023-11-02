@@ -15,15 +15,15 @@
             <li><a href="ticket-sales.html">Ticket Sales</a></li>
             <li><a href="competitors.html">Competitors</a></li>
             <li><a href="teams.html">Teams</a></li>
-            <li><a href="competitor-registrations.html">Competitor Registrations</a></li>
+            <li><a href="competitor-registrations.html" class="active">Competitor Registrations</a></li>
             <li><a href="dishes.html">Dishes</a></li>
             <li><a href="ratings.html">Ratings</a></li>
             <li><a href="event-years.html">Event Years</a></li>
         </ul>
     </div>
-    <fieldset>
-        <legend>Add New Competitor Registration:</legend>
-        <form action="/path_to_backend_handler" method="post">
+    <h3>Add Competitor Registration:</h3>
+    <form action="/path_to_backend_handler" method="post">
+        <fieldset>
             <!-- Prepopulated with valid competitors to reduce errors -->
             <label for="competitor">Competitor:</label>
             <select id="competitor" name="competitor">
@@ -52,8 +52,8 @@
             <label for="year">Year:</label>
             <input type="number" id="year" name="year" min="1900" max="2099" value="2023" required ><br><br>
     
-            <input type="submit" value="Add Competitor Registration">
-        </form>
-    </fieldset>
+            <button type="submit">Add Competitor Registration</button>
+        </fieldset>
+    </form>
 </body>
 </html>

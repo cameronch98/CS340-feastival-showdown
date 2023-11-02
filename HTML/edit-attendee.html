@@ -11,7 +11,7 @@
     <div class="navbar">
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="attendees.html">Attendees</a></li>
+            <li><a href="attendees.html" class="active">Attendees</a></li>
             <li><a href="ticket-sales.html">Ticket Sales</a></li>
             <li><a href="competitors.html">Competitors</a></li>
             <li><a href="teams.html">Teams</a></li>
@@ -21,23 +21,23 @@
             <li><a href="event-years.html">Event Years</a></li>
         </ul>
     </div>
-    <fieldset>
-        <legend>Edit Attendee:</legend>
-        <form action="/path_to_backend_handler_for_edit" method="post">
+    <h3>Edit Attendee</h3>
+    <form action="/path_to_backend_handler_for_edit" method="post">
+        <fieldset>
             <!-- Hidden input to hold the ID -->
             <input type="hidden" name="id" id="id" value="ID_FROM_DATABASE"> 
-    
+
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" value="NAME_FROM_DATABASE" maxlength="100" required><br><br>
-    
+
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" value="EMAIL_FROM_DATABASE" maxlength="255" required><br><br>
-    
+
             <label for="phone">Phone:</label>
             <input type="tel" id="phone" name="phone" value="PHONE_FROM_DATABASE" required><br><br>
-    
-            <input type="submit" value="Update Attendee">
-        </form>
-    </fieldset>
+
+            <button type="submit">Update Attendee</button>
+        </fieldset>
+    </form>
 </body>
 </html>

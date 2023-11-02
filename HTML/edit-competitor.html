@@ -13,7 +13,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="attendees.html">Attendees</a></li>
             <li><a href="ticket-sales.html">Ticket Sales</a></li>
-            <li><a href="competitors.html">Competitors</a></li>
+            <li><a href="competitors.html" class="active">Competitors</a></li>
             <li><a href="teams.html">Teams</a></li>
             <li><a href="competitor-registrations.html">Competitor Registrations</a></li>
             <li><a href="dishes.html">Dishes</a></li>
@@ -21,22 +21,22 @@
             <li><a href="event-years.html">Event Years</a></li>
         </ul>
     </div>
-    <fieldset>
-        <legend>Edit Competitor</legend>
-        <form action="/path_to_backend_handler_for_edit_competitor" method="post">
+    <h3>Edit Competitor</h3>
+    <form action="/path_to_backend_handler_for_edit_competitor" method="post">
+        <fieldset>
             <input type="hidden" name="id" id="id" value="ID_FROM_DATABASE"> <!-- Hidden input to hold the ID -->
-    
+
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" value="NAME_FROM_DATABASE" maxlength="100" required><br><br>
-    
+
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" value="EMAIL_FROM_DATABASE" maxlength="255" required><br><br>
-    
+
             <label for="phone">Phone:</label>
             <input type="tel" id="phone" name="phone" value="PHONE_FROM_DATABASE" required><br><br>
-    
+
             <input type="submit" value="Update Competitor">
-        </form>
-    </fieldset>
+        </fieldset>
+    </form>
 </body>
 </html>
