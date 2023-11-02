@@ -24,45 +24,43 @@
     <h3>Add Rating:</h3>
     <fieldset>
     <form action="path_to_backend_script" method="post">
-        <fieldset>
-            <!-- Prepopulated with dishes to reduce errors -->
-            <label for="dish">Dish:</label>
-            <select id="dish" name="dish">
-                <option value="1">Crispy Calamari Rings</option>
-                <option value="2">Honey-Glazed Salmon Fillet</option>
-                <option value="3">Triple Chocolate Mousse</option>
-                <option value="4">Stuffed Portobello Caps</option>
-                <option value="5">Thyme-Infused Lamb Chops</option>
-                <option value="6">Roasted Beetroot Salad</option>
-                <option value="7">Mango Sorbet</option>
-                <option value="8">Ginger Chicken Stir-Fry</option>
-                <option value="9">Spinach and Feta Tart</option>
-                <option value="10">Mocha Cheesecake</option>
-            </select><br><br>
-    
-            <label for="rating">Rating:</label>
-            <input type="number" id="rating" name="rating" min="1" max="10" required><br><br>
-    
-            <label for="comments">Comments:</label>
-            <textarea id="comments" name="comments" maxlength="255" required></textarea><br><br>
-    
-            <!-- Prepopulated with valid attendees to reduce errors -->
-            <label for="attendee">Attendee:</label>
-            <select id="attendee" name="attendee">
-                <option value="1">Carla Downey</option>
-                <option value="2">Matthew Walters</option>
-                <option value="3">Allen Ruiz</option>
-                <option value="4">John Green</option>
-                <option value="5">Eleanor Toro</option>
-                <option value="6">John Shugart</option>
-                <option value="7">Charles Schiffer</option>
-                <option value="8">Immanuel Rober</option>
-                <option value="9">Erna Stanto</option>
-                <option value="10">Joseph Beavers</option>
-            </select><br><br>
-    
-            <button type="submit">Submit Rating</button>
-        </fieldset>
+        <!-- Prepopulated with dishes to reduce errors -->
+        <label for="dish">Dish:</label>
+        <select id="dish" name="dish">
+            <option value="1">Crispy Calamari Rings</option>
+            <option value="2">Honey-Glazed Salmon Fillet</option>
+            <option value="3">Triple Chocolate Mousse</option>
+            <option value="4">Stuffed Portobello Caps</option>
+            <option value="5">Thyme-Infused Lamb Chops</option>
+            <option value="6">Roasted Beetroot Salad</option>
+            <option value="7">Mango Sorbet</option>
+            <option value="8">Ginger Chicken Stir-Fry</option>
+            <option value="9">Spinach and Feta Tart</option>
+            <option value="10">Mocha Cheesecake</option>
+        </select><br><br>
+
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" name="rating" min="1" max="10" required><br><br>
+
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" maxlength="255" required></textarea><br><br>
+
+        <!-- Prepopulated with valid attendees to reduce errors -->
+        <label for="attendee">Attendee:</label>
+        <select id="attendee" name="attendee">
+            <option value="1">Carla Downey</option>
+            <option value="2">Matthew Walters</option>
+            <option value="3">Allen Ruiz</option>
+            <option value="4">John Green</option>
+            <option value="5">Eleanor Toro</option>
+            <option value="6">John Shugart</option>
+            <option value="7">Charles Schiffer</option>
+            <option value="8">Immanuel Rober</option>
+            <option value="9">Erna Stanto</option>
+            <option value="10">Joseph Beavers</option>
+        </select><br><br>
+
+        <button type="submit">Submit Rating</button>
     </form>
 </body>
 </html>

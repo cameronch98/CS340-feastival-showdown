@@ -23,20 +23,18 @@
     </div>
     <h3>Edit Competitor</h3>
     <form action="/path_to_backend_handler_for_edit_competitor" method="post">
-        <fieldset>
-            <input type="hidden" name="id" id="id" value="ID_FROM_DATABASE"> <!-- Hidden input to hold the ID -->
+        <input type="hidden" name="id" id="id" value="ID_FROM_DATABASE"> <!-- Hidden input to hold the ID -->
 
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="NAME_FROM_DATABASE" maxlength="100" required><br><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="NAME_FROM_DATABASE" maxlength="100" required><br><br>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="EMAIL_FROM_DATABASE" maxlength="255" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="EMAIL_FROM_DATABASE" maxlength="255" required><br><br>
 
-            <label for="phone">Phone:</label>
-            <input type="tel" id="phone" name="phone" value="PHONE_FROM_DATABASE" required><br><br>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" value="PHONE_FROM_DATABASE" required><br><br>
 
-            <input type="submit" value="Update Competitor">
-        </fieldset>
+        <input type="submit" value="Update Competitor">
     </form>
 </body>
 </html>
