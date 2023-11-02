@@ -99,7 +99,7 @@ VALUES ( :name, :email, :phone);
 
 -- Insert Ticket Sale
 INSERT INTO Ticket_Sales (attendee_id, ticket_type_id, unit_price, event_year_id)
-VALUES (:id, :ticket-type, :total, :year);
+VALUES (:attendee, :ticket-type, :total, :year);
 
 -- Insert Competitor
 INSERT INTO Competitors (competitor_name, competitor_email, competitor_phone)
@@ -111,7 +111,7 @@ VALUES (:name);
 
 -- Insert Competitor Registration
 INSERT INTO Competitor_Registrations (competitor_id, team_id, event_year_id)
-VALUES (:name, :team, :year);
+VALUES (:competitor, :team, :year);
 
 -- Insert Dish
 INSERT INTO Dishes (dish_name, dish_image, dish_description, course_id, team_id, event_year_id)
@@ -129,7 +129,7 @@ VALUES (:year);
 UPDATE Attendees SET attendee_name = :name, attendee_email = :email, attendee_phone = :phone WHERE attendee_id = :id;
 
 -- Update Ticket Sale
-UPDATE Ticket_Sales SET attendee_id = :id, ticket_type_id = :ticket_type, unit_price = :total, event_year_id = :year WHERE ticket_sale_id = :id;
+UPDATE Ticket_Sales SET attendee_id = :attendee, ticket_type_id = :ticket-type, unit_price = :total, event_year_id = :year WHERE ticket_sale_id = :id;
 
 -- Update Competitor
 UPDATE Competitors SET competitor_name = :name, competitor_email = :email, competitor_phone = :phone WHERE competitor_id = :id;
@@ -138,7 +138,7 @@ UPDATE Competitors SET competitor_name = :name, competitor_email = :email, compe
 UPDATE Teams SET team_name: = :name WHERE team_id = :id;
 
 -- Update Competitor Registration
-UPDATE Competitor_Registrations SET competitor_id = :name, team_id = :team, event_year_id = :year WHERE competitor_registration_id = :id;
+UPDATE Competitor_Registrations SET competitor_id = :competitor, team_id = :team, event_year_id = :year WHERE competitor_registration_id = :id;
 
 -- Update Dish
 UPDATE Dishes SET dish_name = :dishName, dish_image = :dishImage, dish_description = :description, course_id = :course, team_id = :team, event_year_id = :year WHERE dish_id = :id;
