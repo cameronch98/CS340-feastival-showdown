@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feastival Showdown</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Feastival Showdown DB</h1>
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/attendees" class="active">Attendees</a></li>
+            <li><a href="/ticket-sales">Ticket Sales</a></li>
+            <li><a href="/competitors">Competitors</a></li>
+            <li class="active"><a href="/teams">Teams</a></li>
+            <li><a href="/competitor-registrations">Competitor Registrations</a></li>
+            <li><a href="/dishes">Dishes</a></li>
+            <li><a href="/ratings">Ratings</a></li>
+            <li><a href="/event-years">Event Years</a></li>
+        </ul>
+    </div>
+    <br>
+    <h3>Browse Teams</h3>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th><a href="new-team.html">New</a></th>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a onclick="editTeam('id')" href="edit-team.html">Edit</a></td>
+                    <td>Flavor Fusion</td>
+                    <td><button onclick="deleteTeam('id')">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><a onclick="editTeam('id')" href="edit-team.html">Edit</a></td>
+                    <td>Culinary Connoisseurs</td>
+                    <td><button onclick="deleteTeam('id')">Delete</button></td>                </tr>
+                <tr>
+                    <td><a onclick="editTeam('id')" href="edit-team.html">Edit</a></td>
+                    <td>Bread Heads</td>
+                    <td><button onclick="deleteTeam('id')">Delete</button></td>                </tr>
+                <tr>
+                    <td><a onclick="editTeam('id')" href="edit-team.html">Edit</a></td>
+                    <td>Tasty Titans</td>
+                    <td><button onclick="deleteTeam('id')">Delete</button></td>                </tr>
+            </tbody>
+        </table>
+</body>
+</html>
