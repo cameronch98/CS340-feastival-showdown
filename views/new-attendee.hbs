@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feastival Showdown</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Feastival Showdown DB</h1>
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/attendees">Attendees</a></li>
+            <li><a href="/ticket-sales">Ticket Sales</a></li>
+            <li><a href="/competitors">Competitors</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a href="/competitor-registrations">Competitor Registrations</a></li>
+            <li><a href="/dishes">Dishes</a></li>
+            <li><a href="/ratings">Ratings</a></li>
+            <li><a href="/event-years">Event Years</a></li>
+        </ul>
+    </div>
+    <br>
+    <h3>Add Attendee:</h3>
+    <form id="new-attendee-form-ajax">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" maxlength="100" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" maxlength="255" required><br><br>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required><br><br>
+
+        <button type="submit">Add Attendee</button>
+    </form>
+</body>
+</html>
+
+<script src="/public_html/project-branch/CS340-feastival-showdown/public/js/new-attendee.js">

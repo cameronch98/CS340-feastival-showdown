@@ -7,7 +7,11 @@
 // Express
 var express = require('express');
 var app     = express();
-PORT        = 8991;
+PORT        = 9022;
+
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use(express.static('publc'))
 
 // Path
 var path = require('path');
@@ -47,6 +51,12 @@ app.get('/attendees', function(req, res)
             res.render('attendees', {attendee: rows});
         })
     });
+
+app.get('/new-attendee', function(req, res)
+{   // link to add new attendee
+    res.render('new-attendee')
+
+});
 
 app.get('/competitor-registrations', function(req, res)
 {   // Run the select competitor registrations query
@@ -130,6 +140,31 @@ app.get('/ticket-sales', function(req, res)
         })
     })
 });
+
+// POSTs
+
+app.post('/add-attendee-ajax', function(req, res) {
+    let data = req.body;
+    let query = `INSERT INTO Attendees (attendee_name, attendee_email, attendee_phone) VALUES (?, ?, ?)`;
+    let queryParams = [data.name, data.email, data.phone];
+
+    db.pool.query(query, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let newAttendee = {
+                id: result.insertId,
+                name: data.name,
+                email: data.email,
+                phone: data.phone
+            };
+            res.status(200).json({ message: 'Attendee added successfully', newAttendee: newAttendee });
+        }
+    });
+});
+
 
 /*
     LISTENER
