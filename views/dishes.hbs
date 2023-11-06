@@ -10,7 +10,7 @@
     <div class="navbar">
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/attendees" class="active">Attendees</a></li>
+            <li><a href="/attendees">Attendees</a></li>
             <li><a href="/ticket-sales">Ticket Sales</a></li>
             <li><a href="/competitors">Competitors</a></li>
             <li><a href="/teams">Teams</a></li>
@@ -26,7 +26,7 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href="new-dish.html">New</a></th>
+                    <th><a href="/new-dish">New</a></th>
                     <th>Name</th>
                     <th>Image</th>
                     <th>Description</th>
@@ -36,107 +36,22 @@
                     <th></th>
                 </tr>
             </thead>
+{{!-- Body section --}}
             <tbody>
+
+                {{!-- For each row, print the Name, Email, Phone in order --}}
+                {{#each dish}}
                 <tr>
-                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
-                    <td>Triple Chocolate Mousse</td>
-                    <td><a href="">Image</a></td>
-                    <td>Velvety layers of dark, milk, and white chocolate mousse, topped with a dusting of cocoa powder.</td>
-                    <td>Dessert</td>
-                    <td>Bread Heads</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteDish('id')">Delete</button></td>
+                    <td><a onclick="editDish({{this.ID}})" href="/edit-dish">Edit</a></td>
+                    <td>{{this.Name}}</td>
+                    <td>{{this.Image}}</td>
+                    <td>{{this.Description}}</td>
+                    <td>{{this.Course}}</td>
+                    <td>{{this.Team}}</td>
+                    <td>{{this.Year}}</td>
+                    <td><button onclick="deleteDish({{this.ID}})">Delete</button></td>
                 </tr>
-                <tr>
-                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
-                    <td>Thyme-Infused Lamb Chops</td>
-                    <td><a href="">Image</a></td>
-                    <td>Juicy lamb chops seasoned with fresh thyme and rosemary, seared to desired doneness, paired with roasted root vegetables.</td>
-                    <td>Entree</td>
-                    <td>Bread Heads</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteDish('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
-                    <td>Stuffed Portobello Caps</td>
-                    <td><a href="">Image</a></td>
-                    <td>Meaty mushrooms filled with herbed goat cheese, spinach, and roasted red peppers, drizzled with balsamic glaze.</td>
-                    <td>Appetizer</td>
-                    <td>Culinary Connoisseurs</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteDish('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
-                    <td>Honey-Glazed Salmon Fillet</td>
-                    <td><a href="">Image</a></td>
-                    <td>Fresh salmon glazed with a blend of honey, garlic, and soy, grilled to perfection, accompanied by asparagus spears.</td>
-                    <td>Entree</td>
-                    <td>Culinary Connoisseurs</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteDish('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
-                    <td>Crispy Calamari Rings</td>
-                    <td><a href="">Image</a></td>
-                    <td>Lightly battered squid rings, deep-fried until golden, served with a tangy lemon aioli.</td>
-                    <td>Appetizer</td>
-                    <td>Flavor Fusion</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteDish('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
-                    <td>Ginger Chicken Stir-Fry</td>
-                    <td><a href="">Image</a></td>
-                    <td>Aromatic ginger-infused chicken stir-fried with crisp vegetables in a light soy sauce.</td>
-                    <td>Entree</td>
-                    <td>Bread Heads</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteDish('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
-                    <td>Spinach and Feta Tart</td>
-                    <td><a href="">Image</a></td>
-                    <td>A flaky tart filled with sautéed spinach and creamy feta cheese.</td>
-                    <td>Appetizer</td>
-                    <td>Culinary Connoisseurs</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteDish('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
-                    <td>Mocha Cheesecake</td>
-                    <td><a href="">Image</a></td>
-                    <td>Creamy cheesecake with a hint of coffee and chocolate. </td>
-                    <td>Dessert</td>
-                    <td>Culinary Connoisseurs</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteDish('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
-                    <td>Roasted Beetroot Salad</td>
-                    <td><a href="">Image</a></td>
-                    <td>Freshly roasted beetroots combined with feta cheese, walnuts, and a honey dressing.</td>
-                    <td>Appetizer</td>
-                    <td>Flavor Fusion</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteDish('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editDish('id')" href="edit-dish.html">Edit</a></td>
-                    <td>Mango Sorbet</td>
-                    <td><a href="">Image</a></td>
-                    <td>A refreshing mango sorbet made from ripe mangoes and a hint of lime.</td>
-                    <td>Dessert</td>
-                    <td>Flavor Fusion</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteDish('id')">Delete</button></td>
-                </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>
@@ -149,16 +64,13 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each course}}
                 <tr>
-                    <td>Appetizer</td>
+                    <td>{{this.Course}}</td>
                 </tr>
-                <tr>
-                    <td>Entree</td>
-                </tr>
-                <tr>
-                    <td>Dessert</td>
-                </tr>
+                {{/each}}
             </tbody>
         </table>
+    </div>
 </body>
 </html>

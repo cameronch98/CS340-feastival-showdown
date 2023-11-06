@@ -26,112 +26,26 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href="new-competitor-registration.html">New</a></th>
+                    <th><a href="/new-competitor-registration">New</a></th>
                     <th>Competitor</th>
                     <th>Team</th>
                     <th>Year</th>
                     <th></th>
                 </tr>
             </thead>
+            {{!-- Body section --}}
             <tbody>
+
+                {{!-- For each row, print the Name, Email, Phone in order --}}
+                {{#each competitorReg}}
                 <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Thomas Miller</td>
-                    <td>Bread Heads</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
+                    <td><a onclick="editCompetitorReg({{this.ID}})" href="/edit-competitor-registration">Edit</a></td>
+                    <td>{{this.Competitor}}</td>
+                    <td>{{this.Team}}</td>
+                    <td>{{this.Year}}</td>
+                    <td><button onclick="deleteCompetitorReg({{this.ID}})">Delete</button></td>
                 </tr>
-                <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Bob Nelson</td>
-                    <td>Bread Heads</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Ronnie Kay</td>
-                    <td>Culinary Connoisseurs</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Vincent Smith</td>
-                    <td>Culinary Connoisseurs</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Hui Taylor</td>
-                    <td>Flavor Fusion</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Ronald Fillmore</td>
-                    <td>Flavor Fusion</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Bob Nelson</td>
-                    <td>Bread Heads</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Allen Salcedo</td>
-                    <td>Bread Heads</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Isabella Wang</td>
-                    <td>Culinary Connoisseurs</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Ronnie Kay</td>
-                    <td>Culinary Connoisseurs</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Hui Taylor</td>
-                    <td>Flavor Fusion</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Carmen Cevallos</td>
-                    <td>Flavor Fusion</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Ylva Ahmad</td>
-                    <td>Tasty Titans</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editCompReg('id')" href="edit-competitor-registration.html">Edit</a></td>
-                    <td>Thomas Miller</td>
-                    <td>Tasty Titans</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteCompReg('id')">Delete</button></td>
-                </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>

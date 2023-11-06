@@ -10,7 +10,7 @@
     <div class="navbar">
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/attendees" class="active">Attendees</a></li>
+            <li><a href="/attendees">Attendees</a></li>
             <li><a href="/ticket-sales">Ticket Sales</a></li>
             <li><a href="/competitors">Competitors</a></li>
             <li class="active"><a href="/teams">Teams</a></li>
@@ -26,29 +26,19 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href="new-team.html">New</a></th>
+                    <th><a href="/new-team">New</a></th>
                     <th>Name</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
+                {{#each team}}
                 <tr>
-                    <td><a onclick="editTeam('id')" href="edit-team.html">Edit</a></td>
-                    <td>Flavor Fusion</td>
-                    <td><button onclick="deleteTeam('id')">Delete</button></td>
+                    <td><a onclick="editTeam({{this.ID}})" href="/edit-team">Edit</a></td>
+                    <td>{{this.Team}}</td>
+                    <td><button onclick="deleteTeam({{this.ID}})">Delete</button></td>
                 </tr>
-                <tr>
-                    <td><a onclick="editTeam('id')" href="edit-team.html">Edit</a></td>
-                    <td>Culinary Connoisseurs</td>
-                    <td><button onclick="deleteTeam('id')">Delete</button></td>                </tr>
-                <tr>
-                    <td><a onclick="editTeam('id')" href="edit-team.html">Edit</a></td>
-                    <td>Bread Heads</td>
-                    <td><button onclick="deleteTeam('id')">Delete</button></td>                </tr>
-                <tr>
-                    <td><a onclick="editTeam('id')" href="edit-team.html">Edit</a></td>
-                    <td>Tasty Titans</td>
-                    <td><button onclick="deleteTeam('id')">Delete</button></td>                </tr>
+                {{/each}}
             </tbody>
         </table>
 </body>

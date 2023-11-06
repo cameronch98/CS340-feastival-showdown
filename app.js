@@ -21,6 +21,8 @@ var exphbs = require('express-handlebars');     // Import express-handlebars
 app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs');                 // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
 
+// Queries
+const { queries } = require('./queries.js');
 
 /*
     ROUTES
@@ -32,74 +34,102 @@ app.use(express.static(path.join(__dirname, '/public')));
 // Render index.hbs
 app.get('/', function(req, res)
     {
-        res.render('index', {
-            pageName: 'index'
-        });
+        res.render('index');
     });
 
-// Render attendees.hbs
+// app.js
+
 app.get('/attendees', function(req, res)
-    {
-        res.render('attendees', {
-            pageName: 'attendees'
-        });
+    {   // Run the select attendees query
+        db.pool.query(queries.selectAttendees, function(error, rows, fields){
+
+            // Render attendee page and tables
+            res.render('attendees', {attendee: rows});
+        })
     });
 
-// Render index.hbs
 app.get('/competitor-registrations', function(req, res)
-    {
-        res.render('competitor-registrations', {
-            pageName: 'competitor-registrations'
-        });
-    });
+{   // Run the select competitor registrations query
+    db.pool.query(queries.selectCompetitorRegs, function(error, rows, fields){
 
-// Render index.hbs
+        // Render competitor registrations page and tables
+        res.render('competitor-registrations', {competitorReg: rows});
+    })
+});
+
 app.get('/competitors', function(req, res)
-    {
-        res.render('competitors', {
-            pageName: 'competitors'
-        });
-    });
+{   // Run the select competitors query
+    db.pool.query(queries.selectCompetitors, function(error, rows, fields){
 
-// Render index.hbs
+        // Render competitors page and tables
+        res.render('competitors', {competitor: rows});
+    })
+});
+
 app.get('/dishes', function(req, res)
-    {
-        res.render('dishes', {
-            pageName: 'dishes'
-        });
-    });
+{   // Run the select attendees query
+    db.pool.query(queries.selectDishes, function(error, rows, fields){
 
-// Render index.hbs
+        // Add dishes to results
+        let results = {dish: rows};
+
+        // Run courses query
+        db.pool.query(queries.selectCourses, function(error, rows, fields){
+
+            // Add courses to results
+            results.course = rows;
+
+            // Render dishes page and dishes/courses tables
+            res.render('dishes', results);
+        })
+    })
+});
+
 app.get('/event-years', function(req, res)
-    {
-        res.render('event-years', {
-            pageName: 'event-years'
-        });
-    });
+{   // Run the select event years query
+    db.pool.query(queries.selectEventYears, function(error, rows, fields){
 
-// Render index.hbs
+        // Render event years page and tables
+        res.render('event-years', {eventYear: rows});
+    })
+});
+
 app.get('/ratings', function(req, res)
-    {
-        res.render('ratings', {
-            pageName: 'ratings'
-        });
-    });
+{   // Run the select ratings query
+    db.pool.query(queries.selectRatings, function(error, rows, fields){
 
-// Render index.hbs
+        // Render ratings page and tables
+        res.render('ratings', {rating: rows});
+    })
+});
+
 app.get('/teams', function(req, res)
-    {
-        res.render('teams', {
-            pageName: 'teams'
-        });
-    });
+{   // Run the select teams query
+    db.pool.query(queries.selectTeams, function(error, rows, fields){
 
-// Render index.hbs
+        // Render teams page and tables
+        res.render('teams', {team: rows});
+    })
+});
+
 app.get('/ticket-sales', function(req, res)
-    {
-        res.render('ticket-sales', {
-            pageName: 'ticket-sales'
-        });
-    });
+{   // Run the select ticket sales query
+    db.pool.query(queries.selectTicketSales, function(error, rows, fields){
+
+        // Add ticket sales to results
+        let results = {ticketSale: rows};
+
+        // Run the select ticket types query
+        db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
+
+            // Add ticket types to results
+            results.ticketType = rows;
+
+            // Render attendee page and tables
+            res.render('ticket-sales', results);
+        })
+    })
+});
 
 /*
     LISTENER

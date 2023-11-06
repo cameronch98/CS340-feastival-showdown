@@ -10,7 +10,7 @@
     <div class="navbar">
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/attendees" class="active">Attendees</a></li>
+            <li><a href="/attendees">Attendees</a></li>
             <li class="active"><a href="/ticket-sales">Ticket Sales</a></li>
             <li><a href="/competitors">Competitors</a></li>
             <li><a href="/teams">Teams</a></li>
@@ -26,119 +26,27 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href="new-ticket-sale.html">New</a></th>
+                    <th><a href="/new-ticket-sale">New</a></th>
                     <th>Attendee</th>
-                    <th>Ticket Type</th>
+                    <th>Ticket</th>
                     <th>Total</th>
                     <th>Year</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
+
+                {{!-- For each row, print the Name, Email, Phone in order --}}
+                {{#each ticketSale}}
                 <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>Matthew Walters</td>
-                    <td>One-Day</td>
-                    <td>8</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
+                    <td><a onclick="editTicketSale({{this.ID}})" href="/edit-ticket-sale">Edit</a></td>
+                    <td>{{this.Attendee}}</td>
+                    <td>{{this.Ticket}}</td>
+                    <td>{{this.Total}}</td>
+                    <td>{{this.Year}}</td>
+                    <td><button onclick="deleteTicketSale({{this.ID}})">Delete</button></td>
                 </tr>
-                <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>John Green</td>
-                    <td>Two-Day</td>
-                    <td>16</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>Eleanor Toro</td>
-                    <td>Two-Day</td>
-                    <td>16</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>Allen Ruiz</td>
-                    <td>Three-Day</td>
-                    <td>24</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>Carla Downey</td>
-                    <td>Three-Day</td>
-                    <td>24</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>John Shugart</td>
-                    <td>Three-Day</td>
-                    <td>24</td>
-                    <td>2022</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>Erna Stanto</td>
-                    <td>One-Day</td>
-                    <td>10</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>Matthew Walters</td>
-                    <td>One-Day</td>
-                    <td>10</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>Immanuel Rober</td>
-                    <td>Two-Day</td>
-                    <td>20</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>Charles Schiffer</td>
-                    <td>Two-Day</td>
-                    <td>20</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>John Green</td>
-                    <td>Three-Day</td>
-                    <td>30</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>Eleanor Toro</td>
-                    <td>Three-Day</td>
-                    <td>30</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editTicketSale('id')" href="edit-ticket-sale.html">Edit</a></td>
-                    <td>Joseph Beavers</td>
-                    <td>Three-Day</td>
-                    <td>30</td>
-                    <td>2023</td>
-                    <td><button onclick="deleteTicketSale('id')">Delete</button></td>
-                </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>
@@ -153,21 +61,13 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each ticketType}}
                 <tr>
-                    <td><a onclick="editTicketType('id')" href="edit-ticket-type.html">Edit</a></td>
-                    <td>One-Day</td>
-                    <td>10</td>
+                    <td><a onclick="editTicketType({{this.ID}})" href="/edit-ticket-type">Edit</a></td>
+                    <td>{{this.Ticket}}</td>
+                    <td>{{this.Price}}</td>
                 </tr>
-                <tr>
-                    <td><a onclick="editTicketType('id')" href="edit-ticket-type.html">Edit</a></td>
-                    <td>Two-Day</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td><a onclick="editTicketType('id')" href="edit-ticket-type.html">Edit</a></td>
-                    <td>Three-Day</td>
-                    <td>30</td>
-                </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>

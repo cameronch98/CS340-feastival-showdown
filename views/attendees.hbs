@@ -23,87 +23,32 @@
     <br>
     <h3>Browse Attendees</h3>
     <div>
+        {{!-- Create a table --}}
         <table>
+            {{!-- Header section --}}
             <thead>
                 <tr>
-                    <th><a href="new-attendee.html">New</a></th>
+                    <th><a href="/new-attendee">New</a></th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th></th>
                 </tr>
             </thead>
+
+            {{!-- Body section --}}
             <tbody>
+
+                {{!-- For each row, print the Name, Email, Phone in order --}}
+                {{#each attendee}}
                 <tr>
-                    <td><a onclick="editAttendee('id')" href="edit-attendee.html">Edit</a></td>
-                    <td>Carla Downey</td>
-                    <td>CarlaHDowney@gmail.com</td>
-                    <td>973-770-8215</td>
-                    <td><button onclick="deleteAttendee('id')">Delete</button></td>
+                    <td><a onclick="editAttendee({{this.ID}})" href="/edit-attendee">Edit</a></td>
+                    <td>{{this.Name}}</td>
+                    <td>{{this.Email}}</td>
+                    <td>{{this.Phone}}</td>
+                    <td><button onclick="deleteAttendee({{this.ID}})">Delete</button></td>
                 </tr>
-                <tr>
-                    <td><a onclick="editAttendee('id')" href="edit-attendee.html">Edit</a></td>
-                    <td>Matthew Walters</td>
-                    <td>MatthewNWalters@gmail.com</td>
-                    <td>818-761-5490</td>
-                    <td><button onclick="deleteAttendee('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editAttendee('id')" href="edit-attendee.html">Edit</a></td>
-                    <td>Allen Ruiz</td>
-                    <td>AllenTRuiz@yahoo.com</td>
-                    <td>209-230-4361</td>
-                    <td><button onclick="deleteAttendee('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editAttendee('id')" href="edit-attendee.html">Edit</a></td>
-                    <td>John Green</td>
-                    <td>JohnGGreen@gmail.com</td>
-                    <td>321-720-2155</td>
-                    <td><button onclick="deleteAttendee('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editAttendee('id')" href="edit-attendee.html">Edit</a></td>
-                    <td>Eleanor Toro</td>
-                    <td>EleanorMToro@icloud.com</td>
-                    <td>603-516-3781</td>
-                    <td><button onclick="deleteAttendee('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editAttendee('id')" href="edit-attendee.html">Edit</a></td>
-                    <td>John Shugart</td>
-                    <td>JohnKShugart@outlook.com</td>
-                    <td>636-696-6776</td>
-                    <td><button onclick="deleteAttendee('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editAttendee('id')" href="edit-attendee.html">Edit</a></td>
-                    <td>Charles Schiffer</td>
-                    <td>solon1971@gmail.com</td>
-                    <td>917-675-9886</td>
-                    <td><button onclick="deleteAttendee('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editAttendee('id')" href="edit-attendee.html">Edit</a></td>
-                    <td>Immanuel Rober</td>
-                    <td>immanuel.rober@yahoo.com</td>
-                    <td>916-361-4436</td>
-                    <td><button onclick="deleteAttendee('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editAttendee('id')" href="edit-attendee.html">Edit</a></td>
-                    <td>Erna Stanto</td>
-                    <td>erna_stanto@yahoo.com</td>
-                    <td>610-207-9000</td>
-                    <td><button onclick="deleteAttendee('id')">Delete</button></td>
-                </tr>
-                <tr>
-                    <td><a onclick="editAttendee('id')" href="edit-attendee.html">Edit</a></td>
-                    <td>Joseph Beavers</td>
-                    <td>flavie1986@gmail.com</td>
-                    <td>213-366-5774</td>
-                    <td><button onclick="deleteAttendee('id')">Delete</button></td>
-                </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>
