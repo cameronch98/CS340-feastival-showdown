@@ -201,6 +201,11 @@ app.get('/teams', function(req, res)
     })
 });
 
+app.get('/new-team', function(req, res)
+{
+    res.render('new-team')
+});
+
 app.get('/ticket-sales', function(req, res)
 {   // Run the select ticket sales query
     db.pool.query(queries.selectTicketSales, function(error, rows, fields){
@@ -216,6 +221,33 @@ app.get('/ticket-sales', function(req, res)
 
             // Render attendee page and tables
             res.render('ticket-sales', results);
+        })
+    })
+});
+
+app.get('/new-ticket-sale', function(req, res)
+{   
+    // Run the attendees query to prepopulate drop down
+    db.pool.query(queries.selectAttendees, function(error, rows, fields){
+
+        // Add competitors to results
+        let results = {attendee:rows};
+
+        // Run the teams query to prepopulate drop down
+        db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
+
+            // Add teams to results
+            results.ticketType = rows;
+
+            // Run the event years query to prepopulate drop down
+            db.pool.query(queries.selectEventYears, function(error, rows, fields){
+
+                // Add min max years to results
+                results.year = rows;
+
+                // Render page
+                res.render('new-ticket-sale', results);
+            })
         })
     })
 });
@@ -363,6 +395,48 @@ app.post('/add-rating-ajax', function(req, res) {
     });
 });
 
+app.post('/add-team-ajax', function(req, res) {
+    let data = req.body;
+    let queryParams = [data.name];
+    console.log(queryParams);
+
+    db.pool.query(queries.insertTeam, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let newTeam = {
+                id: result.insertId,
+                name: data.name
+            };
+            res.status(200).json({ message: 'Team added successfully', newTeam: newTeam });
+        }
+    });
+});
+
+app.post('/add-ticket-sale-ajax', function(req, res) {
+    let data = req.body;
+    let queryParams = [data.attendee, data.ticketType, data.total, data.year];
+    console.log(queryParams);
+
+    db.pool.query(queries.insertTicketSale, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let newTicketSale = {
+                id: result.insertId,
+                attendee: data.attendee,
+                ticketType: data.ticketType,
+                total: data.total,
+                year: data.year
+            };
+            res.status(200).json({ message: 'Ticket sale added successfully', newTicketSale: newTicketSale });
+        }
+    });
+});
 /*
     LISTENER
 */

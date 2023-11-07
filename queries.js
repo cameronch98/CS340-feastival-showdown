@@ -21,6 +21,8 @@ let insertCompetitor = "INSERT INTO Competitors (competitor_name, competitor_ema
 let insertEventYear = "INSERT INTO Event_Years (year) VALUES (?);";
 let insertRating = "INSERT INTO Ratings (dish_id, rating, comments, attendee_id) VALUES (?, ?, ?, ?);";
 let insertDish = "INSERT INTO Dishes (dish_name, dish_image, dish_description, course_id, team_id, event_year_id) VALUES (?, ?, ?, ?, ?, ?);";
+let insertTeam = "INSERT INTO Teams (team_name) VALUES (?);";
+let insertTicketSale = "INSERT INTO Ticket_Sales (attendee_id, ticket_type_id, unit_price, event_year_id) VALUES (?, ?, ?, ?);";
 
 /**
  * Define export object
@@ -41,7 +43,9 @@ let queries = {
     'insertCompetitor': insertCompetitor,
     'insertEventYear': insertEventYear,
     'insertRating': insertRating,
-    'insertDish': insertDish
+    'insertDish': insertDish,
+    'insertTeam': insertTeam,
+    'insertTicketSale': insertTicketSale
 };
 
 exports.queries = queries;

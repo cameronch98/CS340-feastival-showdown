@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feastival Showdown</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script type="text/javascript" src="/js/new-ticket-sale.js"></script>
+</head>
+<body>
+    <h1>Feastival Showdown DB</h1>
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/attendees">Attendees</a></li>
+            <li><a href="/ticket-sales" class="active">Ticket Sales</a></li>
+            <li><a href="/competitors">Competitors</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a href="/competitor-registrations">Competitor Registrations</a></li>
+            <li><a href="/dishes">Dishes</a></li>
+            <li><a href="/ratings">Ratings</a></li>
+            <li><a href="/event-years">Event Years</a></li>
+        </ul>
+    </div>
+    <h3>Add New Ticket Sale</h3>
+    <form id="new-ticket-sale-form-ajax">
+        <!-- Prepopulated with valid attendees to reduce errors -->
+        <label for="attendee">Attendee:</label>
+        <select id="attendee" name="attendee">
+            {{#each attendee}}
+            <option value="{{this.ID}}">{{this.Name}}</option>
+            {{/each}}
+        </select><br><br>
+
+        <!-- Prepopulated with ticket types -->
+        <label for="ticket-type">Ticket Type:</label>
+        <select id="ticket-type" name="ticket-type">
+            {{#each ticketType}}
+            <option value="{{this.ID}}">{{this.Ticket}}</option>
+            {{/each}}
+        </select><br><br>
+
+        <!-- May be updated to automatically fill corresponding list price -->
+        <label for="total">Total:</label>
+        <input type="number" id="total" name="total" min="0" step="0.01" placeholder="0.00" required><br><br>
+
+        <!-- Prepopulated with valid years to reduce errors -->
+        <label for="year">Year:</label>
+        <select id="year" name="year">
+            {{#each year}}
+            <option value="{{this.ID}}">{{this.Year}}</option>
+            {{/each}}
+        </select><br><br>
+
+        <button type="submit">Add Ticket Sale</button>
+    </form>
+</body>
+</html>
