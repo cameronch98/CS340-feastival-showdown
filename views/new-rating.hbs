@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feastival Showdown</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script type="text/javascript" src="/js/new-rating.js"></script>
+</head>
+<body>
+    <h1>Feastival Showdown DB</h1>
+    <div class="navbar">
+        <ul>
+            <li><a href="/index">Home</a></li>
+            <li><a href="/attendees">Attendees</a></li>
+            <li><a href="/ticket-sales">Ticket Sales</a></li>
+            <li><a href="/competitors">Competitors</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a href="/competitor-registrations">Competitor Registrations</a></li>
+            <li><a href="/dishes">Dishes</a></li>
+            <li class="active"><a href="/ratings">Ratings</a></li>
+            <li><a href="/event-years">Event Years</a></li>
+        </ul>
+    </div>
+    <h3>Add Rating:</h3>
+    <form id="new-rating-form-ajax">
+        <!-- Prepopulated with dishes to reduce errors -->
+        <label for="dish">Dish:</label>
+        <select id="dish" name="dish">
+            {{#each dish}}
+            <option value="{{this.ID}}">{{this.Name}}</option>
+            {{/each}}
+        </select><br><br>
+
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" name="rating" min="1" max="10" required><br><br>
+
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" maxlength="255"></textarea><br><br>
+
+        <!-- Prepopulated with valid attendees to reduce errors -->
+        <label for="attendee">Attendee:</label>
+        <select id="attendee" name="attendee">
+            {{#each attendee}}
+            <option value="{{this.ID}}">{{this.Name}}</option>
+            {{/each}}
+        </select><br><br>
+
+        <button type="submit">Submit Rating</button>
+    </form>
+</body>
+</html>

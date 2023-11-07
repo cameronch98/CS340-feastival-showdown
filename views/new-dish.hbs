@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Feastival Showdown</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <script type="text/javascript" src="/js/new-competitor-registration.js"></script>
+        <link rel="stylesheet" href="/css/styles.css">
+    <script type="text/javascript" src="/js/new-dish.js"></script>
 </head>
 <body>
     <h1>Feastival Showdown DB</h1>
@@ -15,19 +15,28 @@
             <li><a href="/ticket-sales">Ticket Sales</a></li>
             <li><a href="/competitors">Competitors</a></li>
             <li><a href="/teams">Teams</a></li>
-            <li class="active"><a href="/competitor-registrations">Competitor Registrations</a></li>
-            <li><a href="/dishes">Dishes</a></li>
+            <li><a href="/competitor-registrations">Competitor Registrations</a></li>
+            <li class="active"><a href="/dishes">Dishes</a></li>
             <li><a href="/ratings">Ratings</a></li>
             <li><a href="/event-years">Event Years</a></li>
         </ul>
     </div>
-    <h3>Add Competitor Registration:</h3>
-    <form id="new-competitor-registration-form-ajax">
-        <!-- Prepopulated with valid competitors to reduce errors -->
-        <label for="competitor">Competitor:</label>
-        <select id="competitor" name="competitor">
-            {{#each competitor}}
-            <option value="{{this.ID}}">{{this.Name}}</option>
+    <h3>Add Dish:</h3>
+    <form id="new-dish-form-ajax">
+        <label for="dishName">Name:</label>
+        <input type="text" id="dishName" name="dishName" maxlength="100" required><br><br>
+
+        <label for="dishImage">Image:</label>
+        <input type="file" id="dishImage" name="dishImage"><br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" maxlength="255" required></textarea><br><br>
+
+        <!-- Prepopulated with courses -->
+        <label for="course">Course:</label>
+        <select id="course" name="course">
+            {{#each course}}
+            <option value="{{this.ID}}">{{this.Course}}</option>
             {{/each}}
         </select><br><br>
 
@@ -47,7 +56,7 @@
             {{/each}}
         </select><br><br>
 
-        <button type="submit">Add Competitor Registration</button>
+        <button type="submit">Add Dish</button>
     </form>
 </body>
 </html>

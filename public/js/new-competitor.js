@@ -1,10 +1,10 @@
 // Get the objects we need to modify
 document.addEventListener("DOMContentLoaded", () => {
-    let addAttendeeForm = document.getElementById('new-attendee-form-ajax');
-    console.log(addAttendeeForm);
+    let addCompetitorForm = document.getElementById('new-competitor-form-ajax');
+    console.log(addCompetitorForm);
 
     // Modify the objects we need
-    addAttendeeForm.addEventListener("submit", function (e) {
+    addCompetitorForm.addEventListener("submit", function (e) {
         console.log("submit was pressed")
         
         // Prevent the form from submitting
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Setup our AJAX request
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/add-attendee-ajax", true);
+        xhttp.open("POST", "/add-competitor-ajax", true);
         xhttp.setRequestHeader("Content-type", "application/json");
 
         // Tell our AJAX request how to resolve

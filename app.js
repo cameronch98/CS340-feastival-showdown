@@ -9,12 +9,12 @@ var express = require('express');
 var app     = express();
 PORT        = 9022;
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
-app.use(express.static('publc'))
-
 // Path
 var path = require('path');
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, '/public')));
 
 // Database
 var db = require('./database/db-connector');
@@ -32,16 +32,12 @@ const { queries } = require('./queries.js');
     ROUTES
 */
 
-// Load static files
-app.use(express.static(path.join(__dirname, '/public')));
+// GETs
 
-// Render index.hbs
 app.get('/', function(req, res)
     {
         res.render('index');
     });
-
-// app.js
 
 app.get('/attendees', function(req, res)
     {   // Run the select attendees query
@@ -55,7 +51,6 @@ app.get('/attendees', function(req, res)
 app.get('/new-attendee', function(req, res)
 {   // link to add new attendee
     res.render('new-attendee')
-
 });
 
 app.get('/competitor-registrations', function(req, res)
@@ -67,6 +62,33 @@ app.get('/competitor-registrations', function(req, res)
     })
 });
 
+app.get('/new-competitor-registration', function(req, res)
+{   
+    // Run the competitors query to prepopulate drop down
+    db.pool.query(queries.selectCompetitors, function(error, rows, fields){
+
+        // Add competitors to results
+        let results = {competitor:rows};
+
+        // Run the teams query to prepopulate drop down
+        db.pool.query(queries.selectTeams, function(error, rows, fields){
+
+            // Add teams to results
+            results.team = rows;
+
+            // Run the event years query to prepopulate drop down
+            db.pool.query(queries.selectEventYears, function(error, rows, fields){
+
+                // Add min max years to results
+                results.year = rows;
+
+                // Render page
+                res.render('new-competitor-registration', results);
+            })
+        })
+    })
+});
+
 app.get('/competitors', function(req, res)
 {   // Run the select competitors query
     db.pool.query(queries.selectCompetitors, function(error, rows, fields){
@@ -74,6 +96,11 @@ app.get('/competitors', function(req, res)
         // Render competitors page and tables
         res.render('competitors', {competitor: rows});
     })
+});
+
+app.get('/new-competitor', function(req, res)
+{
+    res.render('new-competitor')
 });
 
 app.get('/dishes', function(req, res)
@@ -95,6 +122,33 @@ app.get('/dishes', function(req, res)
     })
 });
 
+app.get('/new-dish', function(req, res)
+{   
+    // Run the courses query to prepopulate drop down
+    db.pool.query(queries.selectCourses, function(error, rows, fields){
+
+        // Add competitors to results
+        let results = {course:rows};
+
+        // Run the teams query to prepopulate drop down
+        db.pool.query(queries.selectTeams, function(error, rows, fields){
+
+            // Add teams to results
+            results.team = rows;
+
+            // Run the event years query to prepopulate drop down
+            db.pool.query(queries.selectEventYears, function(error, rows, fields){
+
+                // Add min max years to results
+                results.year = rows;
+
+                // Render page
+                res.render('new-dish', results);
+            })
+        })
+    })
+});
+
 app.get('/event-years', function(req, res)
 {   // Run the select event years query
     db.pool.query(queries.selectEventYears, function(error, rows, fields){
@@ -104,12 +158,37 @@ app.get('/event-years', function(req, res)
     })
 });
 
+app.get('/new-event-year', function(req, res)
+{
+    res.render('new-event-year')
+});
+
 app.get('/ratings', function(req, res)
 {   // Run the select ratings query
     db.pool.query(queries.selectRatings, function(error, rows, fields){
 
         // Render ratings page and tables
         res.render('ratings', {rating: rows});
+    })
+});
+
+app.get('/new-rating', function(req, res)
+{   
+    // Run the dishes query to prepopulate drop down
+    db.pool.query(queries.selectDishes, function(error, rows, fields){
+
+        // Add competitors to results
+        let results = {dish:rows};
+
+        // Run the attendees query to prepopulate drop down
+        db.pool.query(queries.selectAttendees, function(error, rows, fields){
+
+            // Add teams to results
+            results.attendee = rows;
+
+            // Render page
+            res.render('new-rating', results);
+        })
     })
 });
 
@@ -145,10 +224,10 @@ app.get('/ticket-sales', function(req, res)
 
 app.post('/add-attendee-ajax', function(req, res) {
     let data = req.body;
-    let query = `INSERT INTO Attendees (attendee_name, attendee_email, attendee_phone) VALUES (?, ?, ?)`;
     let queryParams = [data.name, data.email, data.phone];
+    console.log(queryParams);
 
-    db.pool.query(query, queryParams, function(error, result) {
+    db.pool.query(queries.insertAttendee, queryParams, function(error, result) {
         if (error) {
             console.log(error);
             res.sendStatus(400);
@@ -165,6 +244,124 @@ app.post('/add-attendee-ajax', function(req, res) {
     });
 });
 
+app.post('/add-competitor-registration-ajax', function(req, res) {
+    let data = req.body;
+    let queryParams = [data.competitor, data.team, data.year];
+    console.log(queryParams);
+
+    db.pool.query(queries.insertCompetitorReg, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let newCompetitorReg = {
+                id: result.insertId,
+                competitor: data.competitor,
+                team: data.team,
+                year: data.year
+            };
+            res.status(200).json({ message: 'Competitor registration added successfully', newCompetitorReg: newCompetitorReg });
+        }
+    });
+});
+
+app.post('/add-competitor-ajax', function(req, res) {
+    let data = req.body;
+    let queryParams = [data.name, data.email, data.phone];
+    console.log(queryParams);
+
+    db.pool.query(queries.insertCompetitor, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let newCompetitor = {
+                id: result.insertId,
+                name: data.name,
+                email: data.email,
+                phone: data.phone
+            };
+            res.status(200).json({ message: 'Competitor added successfully', newCompetitor: newCompetitor });
+        }
+    });
+});
+
+app.post('/add-dish-ajax', function(req, res) {
+    let data = req.body;
+    let queryParams = [
+        data.dishName,
+        data.dishImage,
+        data.description, 
+        data.course,
+        data.team,
+        data.year
+    ];
+    console.log(queryParams);
+
+    db.pool.query(queries.insertDish, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let newDish = {
+                id: result.insertId,
+                dishName: data.dishName,
+                dishImage: data.dishImage,
+                description: data.description,
+                course: data.course,
+                team: data.team,
+                year: data.year
+            };
+            res.status(200).json({ message: 'Dish added successfully', newDish: newDish });
+        }
+    });
+});
+
+app.post('/add-event-year-ajax', function(req, res) {
+    let data = req.body;
+    let queryParams = [data.year];
+    console.log(queryParams);
+
+    db.pool.query(queries.insertEventYear, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let newEventYear = {
+                id: result.insertId,
+                year: data.year
+            };
+            res.status(200).json({ message: 'Event year added successfully', newEventYear: newEventYear });
+        }
+    });
+});
+
+app.post('/add-rating-ajax', function(req, res) {
+    let data = req.body;
+    let queryParams = [data.dish, data.rating, data.comments, data.attendee];
+    console.log(queryParams);
+
+    db.pool.query(queries.insertRating, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let newRating = {
+                id: result.insertId,
+                dish: data.dish,
+                rating: data.rating,
+                comments: data.comments,
+                attendee: data.attendee
+            };
+            res.status(200).json({ message: 'Rating added successfully', newRating: newRating });
+        }
+    });
+});
 
 /*
     LISTENER
