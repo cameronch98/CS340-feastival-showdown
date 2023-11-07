@@ -118,6 +118,21 @@ app.get('/new-competitor', function(req, res)
     res.render('new-competitor')
 });
 
+app.get('/edit-competitor', function(req, res)
+{   
+    const competitorID = req.query.id
+    console.log("competitorID:", competitorID)
+    db.pool.query(queries.selectEditCompetitor, [competitorID], function(err, results){
+        if (err){
+            console.error('Error fetching attendee: ', err);
+            res.status(500).send('Error fetching attendee');
+        } else {
+            console.log("results: ", results[0])
+            res.render('edit-competitor', {competitor: results[0]});
+        }
+    })
+});
+
 app.get('/dishes', function(req, res)
 {   // Run the select attendees query
     db.pool.query(queries.selectDishes, function(error, rows, fields){
@@ -459,8 +474,7 @@ app.put('/edit-attendee-ajax', function(req, res){
     let data = req.body
     let queryParams = [data.name, data.email, data.phone, data.id]
     console.log(queryParams);
-    query = 'UPDATE Attendees SET attendee_name = ?, attendee_email = ?, attendee_phone = ? WHERE attendee_id = ?;'
-    db.pool.query(query, queryParams, function(error, result) {
+    db.pool.query(queries.updateAttendee, queryParams, function(error, result) {
         if (error) {
             console.log(error);
             res.sendStatus(400);
@@ -478,6 +492,28 @@ app.put('/edit-attendee-ajax', function(req, res){
     });
 });
 
+
+app.put('/edit-competitor-ajax', function(req, res){
+    let data = req.body
+    let queryParams = [data.name, data.email, data.phone, data.id]
+    console.log(queryParams);
+    db.pool.query(queries.updateCompetitor, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let updatedCompetitor = {
+                id: result.id,
+                name: data.name,
+                email: data.email,
+                phone: data.phone
+               
+            };
+            res.status(200).json({ message: 'Competitor updated successfully', updatedCompetitor: updatedCompetitor });
+        }
+    });
+});
 
 /*
     LISTENER

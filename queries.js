@@ -15,6 +15,7 @@ let selectEventYears = "SELECT event_year_id AS ID, year AS Year FROM Event_Year
  * Define Special Select Queries for Edit
  */
 let selectEditAttendee = 'SELECT * FROM Attendees WHERE attendee_id= ?'
+let selectEditCompetitor = 'SELECT * FROM Competitors WHERE competitor_id= ?'
 
 /**
  * Define insert queries
@@ -27,6 +28,12 @@ let insertRating = "INSERT INTO Ratings (dish_id, rating, comments, attendee_id)
 let insertDish = "INSERT INTO Dishes (dish_name, dish_image, dish_description, course_id, team_id, event_year_id) VALUES (?, ?, ?, ?, ?, ?);";
 let insertTeam = "INSERT INTO Teams (team_name) VALUES (?);";
 let insertTicketSale = "INSERT INTO Ticket_Sales (attendee_id, ticket_type_id, unit_price, event_year_id) VALUES (?, ?, ?, ?);";
+
+/**
+ * Define update queries
+ */
+let updateAttendee = 'UPDATE Attendees SET attendee_name = ?, attendee_email = ?, attendee_phone = ? WHERE attendee_id = ?;';
+let updateCompetitor = 'UPDATE Competitors SET competitor_name = ?, competitor_email = ?, competitor_phone = ? WHERE competitor_id = ?;'
 
 /**
  * Define export object
@@ -43,6 +50,7 @@ let queries = {
     'selectRatings': selectRatings,
     'selectEventYears': selectEventYears,
     'selectEditAttendee':selectEditAttendee,
+    'selectEditCompetitor':selectEditCompetitor,
     'insertAttendee': insertAttendee,
     'insertCompetitorReg': insertCompetitorReg,
     'insertCompetitor': insertCompetitor,
@@ -50,7 +58,9 @@ let queries = {
     'insertRating': insertRating,
     'insertDish': insertDish,
     'insertTeam': insertTeam,
-    'insertTicketSale': insertTicketSale
+    'insertTicketSale': insertTicketSale,
+    'updateAttendee': updateAttendee,
+    'updateCompetitor':updateCompetitor
 };
 
 exports.queries = queries;
