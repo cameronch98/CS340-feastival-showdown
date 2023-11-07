@@ -34,7 +34,7 @@
             <tbody>
                 {{#each eventYear}}
                 <tr>
-                    <td><a onclick="editYear({{this.ID}})" href="/edit-event-year">Edit</a></td>
+                    <td><a onclick="editYear({{this.ID}})" href="/edit-event-year?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Year}}</td>
                     <td><button onclick="deleteYear({{this.ID}})">Delete</button></td>
                 </tr>

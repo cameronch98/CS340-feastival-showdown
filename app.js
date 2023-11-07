@@ -193,6 +193,22 @@ app.get('/new-event-year', function(req, res)
     res.render('new-event-year')
 });
 
+app.get('/edit-event-year', function(req, res)
+{   
+    const eventYearID = req.query.id
+    console.log("eventYearID:", eventYearID)
+    db.pool.query(queries.selectEditEventYear, [eventYearID], function(err, results){
+        if (err){
+            console.error('Error fetching attendee: ', err);
+            res.status(500).send('Error fetching attendee');
+        } else {
+            console.log("results: ", results[0])
+            res.render('edit-event-year', {eventYear: results[0]});
+        }
+    })
+});
+
+
 app.get('/ratings', function(req, res)
 {   // Run the select ratings query
     db.pool.query(queries.selectRatings, function(error, rows, fields){
@@ -547,6 +563,26 @@ app.put('/edit-team-ajax', function(req, res){
                
             };
             res.status(200).json({ message: 'Team updated successfully', updatedTeam: updatedTeam });
+        }
+    });
+});
+
+app.put('/edit-event-year-ajax', function(req, res){
+    let data = req.body
+    let queryParams = [data.year, data.id]
+    console.log(queryParams);
+    db.pool.query(queries.updateEventYear, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let updatedEventYear = {
+                id: result.id,
+                year: data.year,
+               
+            };
+            res.status(200).json({ message: 'Event Year updated successfully', updatedEventYear: updatedEventYear });
         }
     });
 });
