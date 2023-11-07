@@ -46,6 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 newComments.value = '';
                 newAttendee.value = '';
 
+                // Redirect to the ratings page
+                window.location.href ='/ratings';  
+
             }
             else if (xhttp.readyState == 4 && xhttp.status != 200) {
                 console.log("There was an error with the input.")

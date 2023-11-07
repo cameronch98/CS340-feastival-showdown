@@ -11,6 +11,10 @@ let selectDishes = "SELECT dish_id AS ID, dish_name AS Name, dish_image AS Image
 let selectCourses = "SELECT course_id AS ID, course_name AS Course FROM Courses;";
 let selectRatings = "SELECT rating_id AS ID, Dishes.dish_name AS Dish, rating AS Rating, comments AS Comments, Attendees.attendee_name AS Attendee, Event_Years.year AS Year FROM Ratings JOIN Dishes ON Ratings.dish_id = Dishes.dish_id JOIN Attendees ON Ratings.attendee_id = Attendees.attendee_id JOIN Event_Years ON Dishes.event_year_id = Event_Years.event_year_id ORDER BY Year, Dish, Attendee ASC;";
 let selectEventYears = "SELECT event_year_id AS ID, year AS Year FROM Event_Years;";
+/**
+ * Define Special Select Queries for Edit
+ */
+let selectEditAttendee = 'SELECT * FROM Attendees WHERE attendee_id= ?'
 
 /**
  * Define insert queries
@@ -38,6 +42,7 @@ let queries = {
     'selectCourses': selectCourses,
     'selectRatings': selectRatings,
     'selectEventYears': selectEventYears,
+    'selectEditAttendee':selectEditAttendee,
     'insertAttendee': insertAttendee,
     'insertCompetitorReg': insertCompetitorReg,
     'insertCompetitor': insertCompetitor,

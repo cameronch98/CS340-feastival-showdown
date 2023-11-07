@@ -1,36 +1,39 @@
 // Get the objects we need to modify
 document.addEventListener("DOMContentLoaded", () => {
-    let addCompetitorRegForm = document.getElementById('new-competitor-registration-form-ajax');
-    console.log(addCompetitorRegForm);
+    let editAttendeeForm = document.getElementById('edit-attendee-form-ajax');
+    console.log(editAttendeeForm);
 
     // Modify the objects we need
-    addCompetitorRegForm.addEventListener("submit", function (e) {
+    editAttendeeForm.addEventListener("submit", function (e) {
         console.log("submit was pressed")
         
         // Prevent the form from submitting
         e.preventDefault();
 
         // Get form fields we need to get data from
-        let newCompetitor = document.getElementById("competitor");
-        let newTeam = document.getElementById("team");
-        let newYear = document.getElementById("year");
+        let attendeeId = document.getElementById('id')
+        let newName = document.getElementById("name");
+        let newEmail = document.getElementById("email");
+        let newPhone = document.getElementById("phone");
 
         // Get the values from the form fields
-        let competitorValue = newCompetitor.value;
-        let teamValue = newTeam.value;
-        let yearValue = newYear.value;
+        let updatedId = attendeeId.value
+        let nameValue = newName.value;
+        let emailValue = newEmail.value;
+        let phoneValue = newPhone.value;
 
         // Put our data we want to send in a javascript object
         let data = {
-            competitor: competitorValue,
-            team: teamValue,
-            year: yearValue
+            id: updatedId,
+            name: nameValue,
+            email: emailValue,
+            phone: phoneValue
         }
         console.log("this is data:", data)
         
         // Setup our AJAX request
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/add-competitor-registration-ajax", true);
+        xhttp.open("PUT", "/edit-attendee-ajax", true);
         xhttp.setRequestHeader("Content-type", "application/json");
 
         // Tell our AJAX request how to resolve
@@ -38,12 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
 
                 // Clear the input fields for another transaction
-                newCompetitor.value = '';
-                newTeam.value = '';
-                newYear.value = '';
-
-                // Redirect to the competitor-registration page
-                window.location.href ='/competitor-registrations';  
+                // newName.value = '';
+                // newEmail.value = '';
+                // newPhone.value = '';
+                
+                // Redirect to the attendees page
+                window.location.href ='/attendees';  
 
             }
             else if (xhttp.readyState == 4 && xhttp.status != 200) {

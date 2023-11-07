@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 newName.value = '';
                 newEmail.value = '';
                 newPhone.value = '';
+                
+                // Redirect to the competitor page
+                window.location.href ='/competitors';  
 
             }
             else if (xhttp.readyState == 4 && xhttp.status != 200) {

@@ -53,6 +53,21 @@ app.get('/new-attendee', function(req, res)
     res.render('new-attendee')
 });
 
+app.get('/edit-attendee', function(req, res)
+{   
+    const attendeeID = req.query.id
+    console.log("attendeID:", attendeeID)
+    db.pool.query(queries.selectEditAttendee, [attendeeID], function(err, results){
+        if (err){
+            console.error('Error fetching attendee: ', err);
+            res.status(500).send('Error fetching attendee');
+        } else {
+            console.log("results: ", results[0])
+            res.render('edit-attendee', {attendee: results[0]});
+        }
+    })
+});
+
 app.get('/competitor-registrations', function(req, res)
 {   // Run the select competitor registrations query
     db.pool.query(queries.selectCompetitorRegs, function(error, rows, fields){
@@ -437,6 +452,33 @@ app.post('/add-ticket-sale-ajax', function(req, res) {
         }
     });
 });
+
+// PUTs
+
+app.put('/edit-attendee-ajax', function(req, res){
+    let data = req.body
+    let queryParams = [data.name, data.email, data.phone, data.id]
+    console.log(queryParams);
+    query = 'UPDATE Attendees SET attendee_name = ?, attendee_email = ?, attendee_phone = ? WHERE attendee_id = ?;'
+    db.pool.query(query, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let updatedAttendee = {
+                id: result.id,
+                name: data.name,
+                email: data.email,
+                phone: data.phone
+               
+            };
+            res.status(200).json({ message: 'Attendee updated successfully', updatedAttendee: updatedAttendee });
+        }
+    });
+});
+
+
 /*
     LISTENER
 */
