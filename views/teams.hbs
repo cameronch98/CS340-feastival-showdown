@@ -34,7 +34,7 @@
             <tbody>
                 {{#each team}}
                 <tr>
-                    <td><a onclick="editTeam({{this.ID}})" href="/edit-team">Edit</a></td>
+                    <td><a onclick="editTeam({{this.ID}})" href="/edit-team?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Team}}</td>
                     <td><button onclick="deleteTeam({{this.ID}})">Delete</button></td>
                 </tr>

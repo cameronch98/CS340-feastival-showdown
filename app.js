@@ -7,7 +7,7 @@
 // Express
 var express = require('express');
 var app     = express();
-PORT        = 9022;
+PORT        = 9023;
 
 // Path
 var path = require('path');
@@ -235,6 +235,22 @@ app.get('/new-team', function(req, res)
 {
     res.render('new-team')
 });
+
+app.get('/edit-team', function(req, res)
+{   
+    const teamID = req.query.id
+    console.log("teamID:", teamID)
+    db.pool.query(queries.selectEditTeam, [teamID], function(err, results){
+        if (err){
+            console.error('Error fetching attendee: ', err);
+            res.status(500).send('Error fetching attendee');
+        } else {
+            console.log("results: ", results[0])
+            res.render('edit-team', {team: results[0]});
+        }
+    })
+});
+
 
 app.get('/ticket-sales', function(req, res)
 {   // Run the select ticket sales query
@@ -514,6 +530,27 @@ app.put('/edit-competitor-ajax', function(req, res){
         }
     });
 });
+
+app.put('/edit-team-ajax', function(req, res){
+    let data = req.body
+    let queryParams = [data.name, data.id]
+    console.log(queryParams);
+    db.pool.query(queries.updateTeam, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let updatedTeam = {
+                id: result.id,
+                name: data.name,
+               
+            };
+            res.status(200).json({ message: 'Team updated successfully', updatedTeam: updatedTeam });
+        }
+    });
+});
+
 
 /*
     LISTENER
