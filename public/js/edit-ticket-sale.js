@@ -1,10 +1,10 @@
 // Get the objects we need to modify
 document.addEventListener("DOMContentLoaded", () => {
-    let addTicketSale = document.getElementById('new-ticket-sale-form-ajax');
-    console.log(addTicketSale);
+    let editTicketSale = document.getElementById('edit-ticket-sale-form-ajax');
+    console.log(editTicketSale);
 
     // Modify the objects we need
-    addTicketSale.addEventListener("submit", function (e) {
+    editTicketSale.addEventListener("submit", function (e) {
         console.log("submit was pressed")
         
         // Prevent the form from submitting
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Setup our AJAX request
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/add-ticket-sale-ajax", true);
+        xhttp.open("PUT", "/edit-ticket-sale-ajax", true);
         xhttp.setRequestHeader("Content-type", "application/json");
 
         // Tell our AJAX request how to resolve
@@ -41,10 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
 
                 // Clear the input fields for another transaction
-                newAttendee.value = '';
-                newTicketType.value = '';
-                newTotal.value = '';
-                newYear.value = '';
+                // newAttendee.value = '';
+                // newTicketType.value = '';
+                // newTotal.value = '';
+                // newYear.value = '';
 
                 // Redirect to the attendees page
                 window.location.href ='/ticket-sales';  

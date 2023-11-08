@@ -39,7 +39,7 @@
                 {{!-- For each row, print the Name, Email, Phone in order --}}
                 {{#each ticketSale}}
                 <tr>
-                    <td><a onclick="editTicketSale({{this.ID}})" href="/edit-ticket-sale">Edit</a></td>
+                    <td><a onclick="editTicketSale({{this.ID}})" href="/edit-ticket-sale?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Attendee}}</td>
                     <td>{{this.Ticket}}</td>
                     <td>{{this.Total}}</td>

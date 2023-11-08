@@ -314,6 +314,64 @@ app.get('/new-ticket-sale', function(req, res)
     })
 });
 
+app.get('/edit-ticket-sale', function(req, res)
+{   
+    const ticketSaleID = req.query.id
+    console.log("ticketSaleID:", ticketSaleID)
+
+    // retrieve the current ticket id object
+    db.pool.query('SELECT * from Ticket_Sales WHERE ticket_sale_id = ?;',[ticketSaleID], function(err, results){
+        if (err){
+            console.error('Error fetching ticket_sale: ', err);
+            res.status(500).send('Error fetching ticket_sale');
+        } else {
+            // use it as a base
+            let selectedTicket = results[0];
+            
+            db.pool.query(queries.selectAttendees, function(error, rows, fields){
+
+                // add a new "selected" key to identify it
+                rows.forEach(attendee =>{
+                    attendee.selected = (attendee.ID == selectedTicket.attendee_id) ? "selected" : ""
+                })
+                // create results object to send 
+                let resultsNew = {
+                    selectedTicket: selectedTicket,
+                    attendee:rows
+                }
+
+                
+                // ticket types query
+                db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
+
+                    rows.forEach(ticketType =>{
+                        ticketType.selected = (ticketType.ID == selectedTicket.ticket_type_id) ? "selected" : ""
+                    })
+        
+                    
+                    resultsNew.ticketType = rows;
+        
+                    // Event years
+                    db.pool.query(queries.selectEventYears, function(error, rows, fields){
+        
+
+                        rows.forEach(eventYear =>{
+                            eventYear.selected = (eventYear.ID == selectedTicket.event_year_id) ? "selected" : ""
+                        })
+                        
+                        resultsNew.year = rows;
+                        
+                        console.log("final object: ", resultsNew)
+                        // Render page
+                        res.render('edit-ticket-sale', resultsNew);
+                    })
+                })
+            })
+            
+        }
+    })
+});
+
 // POSTs
 
 app.post('/add-attendee-ajax', function(req, res) {
