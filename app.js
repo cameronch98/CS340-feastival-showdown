@@ -7,7 +7,7 @@
 // Express
 var express = require('express');
 var app     = express();
-PORT        = 9023;
+PORT        = 9022;
 
 // Path
 var path = require('path');
@@ -235,6 +235,52 @@ app.get('/new-rating', function(req, res)
             // Render page
             res.render('new-rating', results);
         })
+    })
+});
+
+app.get('/edit-rating', function(req, res)
+{   
+    const ratingID = req.query.id;
+    console.log("ratingID from Get: ", ratingID)
+
+    // retrieve the current rating
+    db.pool.query('SELECT * from Ratings WHERE rating_id = ?;', [ratingID], function(err, results){
+        if (err){
+            console.error('Error fetching rating:', err);
+            res.status(500).send('Error fetching rating');
+        } else {
+            // use it as a base
+            let selectedRating = results[0];
+
+            // Run the dishes query to prepopulate drop down
+            db.pool.query(queries.selectDishes, function(error, rows, fields){
+
+                rows.forEach(dish=>{
+                    dish.selected = (dish.ID == selectedRating.rating_id) ? "selected" : ""
+                })
+
+                let resultsNew = {
+                    selectedRating: selectedRating,
+                    dish:rows
+                }
+
+                // Run the attendees query to prepopulate drop down
+                db.pool.query(queries.selectAttendees, function(error, rows, fields){
+                    
+                    rows.forEach(attendee=>{
+                        attendee.selected = (attendee.ID == selectedRating.attendee_id) ? "selected" : ""
+                    })
+
+                    // Add attendee to results
+                    resultsNew.attendee = rows;
+                    
+                    console.log("final object: ", resultsNew)
+                    // Render page
+                    res.render('new-rating', resultsNew);
+                })
+            })
+
+        }
     })
 });
 
@@ -645,6 +691,28 @@ app.put('/edit-event-year-ajax', function(req, res){
     });
 });
 
+app.put('/edit-ticket-sale-ajax', function(req, res){
+    let data = req.body
+    console.log("data:", data)
+    let queryParams = [data.attendee, data.ticketType, data.total, data.year, data.id]
+    //console.log(queryParams);
+    db.pool.query(queries.updateTicketSales, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let updatedTicketSale = {
+                id: result.id,
+                ticketType: result.ticketType,
+                attendee: result.attendee,
+                total: result.total,
+                year: data.year
+            };
+            res.status(200).json({ message: 'Event Year updated successfully', updatedTicketSale: updatedTicketSale });
+        }
+    });
+});
 
 /*
     LISTENER
