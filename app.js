@@ -7,7 +7,7 @@
 // Express
 var express = require('express');
 var app     = express();
-PORT        = 9022;
+PORT        = 9023;
 
 // Path
 var path = require('path');
@@ -276,7 +276,7 @@ app.get('/edit-rating', function(req, res)
                     
                     console.log("final object: ", resultsNew)
                     // Render page
-                    res.render('new-rating', resultsNew);
+                    res.render('edit-rating', resultsNew);
                 })
             })
 
@@ -697,6 +697,29 @@ app.put('/edit-ticket-sale-ajax', function(req, res){
     let queryParams = [data.attendee, data.ticketType, data.total, data.year, data.id]
     //console.log(queryParams);
     db.pool.query(queries.updateTicketSales, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let updatedTicketSale = {
+                id: result.id,
+                ticketType: result.ticketType,
+                attendee: result.attendee,
+                total: result.total,
+                year: data.year
+            };
+            res.status(200).json({ message: 'Event Year updated successfully', updatedTicketSale: updatedTicketSale });
+        }
+    });
+});
+
+app.put('/edit-rating-ajax', function(req, res){
+    let data = req.body
+    console.log("data:", data)
+    let queryParams = [data.dish, data.rating, data.comments, data.attendee, data.id]
+    console.log(queryParams);
+    db.pool.query(queries.updateRating, queryParams, function(error, result) {
         if (error) {
             console.log(error);
             res.sendStatus(400);
