@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let newYear = document.getElementById("year");
 
         // Get the values from the form fields
+        let dishID = updateDishID.value;
         let dishNameValue = newDishName.value;
         let dishImageValue = newDishImage.value;
         let descriptionValue = newDescription.value;
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Put our data we want to send in a javascript object
         let data = {
+            id: dishID,
             dishName: dishNameValue,
             dishImage: dishImageValue,
             description: descriptionValue,
@@ -39,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Setup our AJAX request
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/add-dish-ajax", true);
+        xhttp.open("PUT", "/edit-dish-ajax", true);
         xhttp.setRequestHeader("Content-type", "application/json");
 
         // Tell our AJAX request how to resolve
@@ -47,12 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
 
                 // Clear the input fields for another transaction
-                newDishName.value = '';
-                newDishImage.value = '';
-                newDescription.value = '';
-                newCourse.value = '';
-                newTeam.value = '';
-                newYear.value = '';
+                // newDishName.value = '';
+                // newDishImage.value = '';
+                // newDescription.value = '';
+                // newCourse.value = '';
+                // newTeam.value = '';
+                // newYear.value = '';
 
                 // Redirect to the dishes page
                 window.location.href ='/dishes';  

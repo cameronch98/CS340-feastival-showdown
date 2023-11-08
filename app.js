@@ -179,6 +179,67 @@ app.get('/new-dish', function(req, res)
     })
 });
 
+app.get('/edit-dish', function(req, res)
+{   
+    const dishID = req.query.id;
+    console.log("dishID: ", dishID);
+    db.pool.query(queries.selectEditDish, [dishID], function(err, results){
+        
+        if(err){
+        
+            console.error('Error fetching dish', err);
+            res.status(500).send('Error fetchig dish');
+        
+        } else {
+
+            let selectedDish = results[0];
+            // Run the courses query to prepopulate drop down
+            db.pool.query(queries.selectCourses, function(error, rows, fields){
+                
+                rows.forEach(course=>{
+                    course.selected = (course.ID == selectedDish.dish_id) ? "selected" : "";
+                })
+
+                // Add competitors to results
+                let resultsNew = {
+                    selectedDish: selectedDish,
+                    course: rows,
+                
+                };
+
+                // Run the teams query to prepopulate drop down
+                db.pool.query(queries.selectTeams, function(error, rows, fields){
+
+                    forEach(team=>{
+                        team.selected = (team.ID == selectedDish.team_id) ? "selected" : "";
+                    })
+
+                    // Add teams to results
+                    resultsNew.team = rows;
+
+                    // Run the event years query to prepopulate drop down
+                     db.pool.query(queries.selectEventYears, function(error, rows, fields){
+
+                        forEach(eventYear=>{
+                            eventYear.selected = (eventYear.ID == selectedDish.event_year_id) ? "selected" : "";
+                        })
+                        // Add min max years to results
+                        resultsNew.year = rows;
+
+                        console.log('final object: ', resultsNew)
+                        // Render page
+                        res.render('edit-dish', resultsNew);
+            })
+        })
+    })
+
+        }
+    })
+    
+});
+
+
+
 app.get('/event-years', function(req, res)
 {   // Run the select event years query
     db.pool.query(queries.selectEventYears, function(error, rows, fields){
@@ -199,8 +260,8 @@ app.get('/edit-event-year', function(req, res)
     console.log("eventYearID:", eventYearID)
     db.pool.query(queries.selectEditEventYear, [eventYearID], function(err, results){
         if (err){
-            console.error('Error fetching attendee: ', err);
-            res.status(500).send('Error fetching attendee');
+            console.error('Error fetching event year: ', err);
+            res.status(500).send('Error fetching event year');
         } else {
             console.log("results: ", results[0])
             res.render('edit-event-year', {eventYear: results[0]});
@@ -733,6 +794,30 @@ app.put('/edit-rating-ajax', function(req, res){
                 year: data.year
             };
             res.status(200).json({ message: 'Event Year updated successfully', updatedTicketSale: updatedTicketSale });
+        }
+    });
+});
+
+app.put('/edit-dish-ajax', function(req, res){
+    let data = req.body
+    console.log("data:", data)
+    let queryParams = [data.dishName, data.dishImage, data.description, data.course, data.team, data.year, data.dishId]
+    console.log(queryParams);
+    db.pool.query(queries.updateDish, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let updatedDish = {
+                id: result.dishId,
+                name: result.dishName,
+                description: result.description,
+                course: result.course,
+                team: result.team,
+                year: result.year
+            };
+            res.status(200).json({ message: 'dish updated successfully', updatedDish: updatedDish });
         }
     });
 });

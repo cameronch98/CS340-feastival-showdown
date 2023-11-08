@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feastival Showdown</title>
+        <link rel="stylesheet" href="/css/styles.css">
+    <script type="text/javascript" src="/js/edit-dish.js"></script>
+</head>
+<body>
+    <h1>Feastival Showdown DB</h1>
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/attendees">Attendees</a></li>
+            <li><a href="/ticket-sales">Ticket Sales</a></li>
+            <li><a href="/competitors">Competitors</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a href="/competitor-registrations">Competitor Registrations</a></li>
+            <li class="active"><a href="/dishes">Dishes</a></li>
+            <li><a href="/ratings">Ratings</a></li>
+            <li><a href="/event-years">Event Years</a></li>
+        </ul>
+    </div>
+    <h3>Edit Dish:</h3>
+    <form id="edit-dish-form-ajax">
+        <!-- Hidden input to hold the ID -->
+        <input type="hidden" id="dishID" name="dishId" value="{{selectedDish.dish_id}}">
+
+        <label for="dishName">Name:</label>
+        <input type="text" id="dishName" name="dishName" maxlength="100" value="{{selectedDish.dish_name}}" required><br><br>
+
+        <label for="dishImage">Image:</label>
+        <input type="file" id="dishImage" name="dishImage"><br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" maxlength="255" required>{{selecedDish.dish_description}}</textarea><br><br>
+
+        <!-- Prepopulated with courses -->
+        <label for="course">Course:</label>
+        <select id="course" name="course">
+            {{#each course}}
+            <option value="{{this.ID}}"{{this.selected}}>{{this.Course}}</option>
+            {{/each}}
+        </select><br><br>
+
+        <!-- Prepopulated with valid teams to reduce errors -->
+        <label for="team">Team:</label>
+        <select id="team" name="team">
+            {{#each team}}
+            <option value="{{this.ID}}"{{this.selected}}>{{this.Team}}</option>
+            {{/each}}
+        </select><br><br>
+
+        <!-- Prepopulated with valid years to reduce errors -->
+        <label for="year">Year:</label>
+        <select id="year" name="year">
+            {{#each year}}
+            <option value="{{this.ID}}"{{this.selected}}>{{this.Year}}</option>
+            {{/each}}
+        </select><br><br>
+
+        <button type="submit">Add Dish</button>
+    </form>
+</body>
+</html>
