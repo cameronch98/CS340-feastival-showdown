@@ -770,7 +770,11 @@ app.post('/add-team-ajax', function(req, res) {
 
 app.post('/add-ticket-sale-ajax', function(req, res) {
     let data = req.body;
+    if (data.discount === "") {
+        data.discount = NULL;
+    };
     let queryParams = [data.attendee, data.ticket, data.discount];
+
     console.log(queryParams);
 
     db.pool.query(queries.insertTicketSale, queryParams, function(error, result) {

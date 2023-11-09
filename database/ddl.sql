@@ -59,7 +59,7 @@ CREATE OR REPLACE TABLE Ticket_Sales (
     ticket_sale_id int AUTO_INCREMENT PRIMARY KEY,
     attendee_id int NOT NULL,
     ticket_id int NOT NULL,
-    discount_id int,
+    discount_id int DEFAULT NULL,
     FOREIGN KEY (attendee_id) REFERENCES Attendees(attendee_id)
     ON DELETE CASCADE,
     FOREIGN KEY (ticket_id) REFERENCES Tickets(ticket_id)

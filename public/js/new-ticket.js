@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 newTicketType.value = '';
                 newYear.value = '';
 
-                // Redirect to the competitor-registration page
+                // Redirect to the tickets page
                 window.location.href ='/tickets';  
 
             }

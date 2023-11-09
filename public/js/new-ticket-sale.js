@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 newTicket.value = '';
                 newDiscount.value = '';
 
-                // Redirect to the attendees page
+                // Redirect to the ticket sales page
                 window.location.href ='/ticket-sales';  
 
             }

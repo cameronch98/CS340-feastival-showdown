@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 newDiscount.value = '';
                 newPercent.value = '';
                 
-                // Redirect to the competitor page
+                // Redirect to the discounts page
                 window.location.href ='/discounts';  
 
             }

@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Clear the input fields for another transaction
                 newCourse.value = '';
 
-                // Redirect to the teams page
+                // Redirect to the courses page
                 window.location.href ='/courses';  
 
             }

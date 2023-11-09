@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Clear the input fields for another transaction
                 newTicketType.value = '';
 
-                // Redirect to the teams page
+                // Redirect to the ticket types page
                 window.location.href ='/ticket-types';  
 
             }

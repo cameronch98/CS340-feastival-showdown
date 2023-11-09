@@ -46,7 +46,7 @@
         <!-- Prepopulated with discounts -->
         <label for="discount">Discount:</label>
         <select id="discount" name="discount">
-            <option value="NULL" selected></option>
+            <option value="" selected>None</option>
             {{#each discount}}
             <option value="{{this.ID}}">{{this.Discount}}</option>
             {{/each}}
