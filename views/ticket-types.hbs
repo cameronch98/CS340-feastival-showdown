@@ -30,8 +30,9 @@
         <table>
             <thead>
                 <tr>
-                    <th></th>
+                    <th><a href="/new-ticket-type">New</a></th>
                     <th>Ticket Type</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +40,7 @@
                 <tr>
                     <td><a onclick="editTicketType({{this.ID}})" href="/edit-ticket-type">Edit</a></td>
                     <td>{{this.Ticket}}</td>
+                    <td><button onclick="deleteTicketType({{this.ID}})">Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>

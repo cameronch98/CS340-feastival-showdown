@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feastival Showdown</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script type="text/javascript" src="/js/new-ticket-type.js"></script>
+</head>
+<body>
+    <h1>Feastival Showdown DB</h1>
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/attendees">Attendees</a></li>
+            <li><a href="/tickets">Tickets</a></li>
+            <li class="active"><a href="/ticket-types">Ticket Types</a></li>
+            <li><a href="/discounts">Discounts</a></li>
+            <li><a href="/ticket-sales">Ticket Sales</a></li>
+            <li><a href="/competitors">Competitors</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a href="/competitor-registrations">Competitor Registrations</a></li>
+            <li><a href="/dishes">Dishes</a></li>
+            <li><a href="/courses">Courses</a></li>
+            <li><a href="/ratings">Ratings</a></li>
+            <li><a href="/event-years">Event Years</a></li>
+        </ul>
+    </div>
+    <h3>Add Ticket Type:</h3>
+    <form id="new-ticket-type-form-ajax">
+        <label for="ticket-type">Ticket Type:</label>
+        <input type="text" id="ticket-type" name="ticket-type" maxlength="50" required><br><br>
+
+        <button type="submit">Add Ticket Type</button>
+    </form>
+</body>
+</html>

@@ -26,6 +26,7 @@ CREATE OR REPLACE TABLE Tickets (
     list_price decimal(5, 2) NOT NULL,
     ticket_type_id int NOT NULL,
     event_year_id int NOT NULL,
+    CONSTRAINT type_year UNIQUE(ticket_type_id, event_year_id),
     FOREIGN KEY (ticket_type_id) REFERENCES Ticket_Types(ticket_type_id)
     ON DELETE CASCADE,
     FOREIGN KEY (event_year_id) REFERENCES Event_Years(event_year_id)
@@ -113,6 +114,7 @@ CREATE OR REPLACE TABLE Ratings (
     comments text NOT NULL,
     attendee_id int NOT NULL,
     dish_id int NOT NULL,
+    CONSTRAINT attendee_dish UNIQUE (attendee_id, dish_id),
     FOREIGN KEY (attendee_id) REFERENCES Attendees(attendee_id)
     ON DELETE CASCADE,
     FOREIGN KEY (dish_id) REFERENCES Dishes(dish_id)

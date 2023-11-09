@@ -272,14 +272,33 @@ app.get('/edit-dish', function(req, res) {
     
 });
 
+app.get('/discounts', function(req, res) {
+    // Run discounts query
+    db.pool.query(queries.selectDiscounts, function(error, rows, fields){
+
+        // Render discounts page and table
+        res.render('discounts', {discount: rows});
+    })
+});
+
+app.get('/new-discount', function(req, res) {
+    // Render edit page for discounts
+    res.render('new-discount')
+})
+
 app.get('/courses', function(req, res) {
     // Run courses query
     db.pool.query(queries.selectCourses, function(error, rows, fields){
 
-        // Render dishes page and dishes/courses tables
+        // Render course page and table
         res.render('courses', {course: rows});
     })
 });
+
+app.get('/new-course', function(req, res) {
+    // Render edit page for courses
+    res.render('new-course')
+})
 
 app.get('/event-years', function(req, res) {   
     // Run the select event years query
@@ -426,17 +445,17 @@ app.get('/new-ticket-sale', function(req, res) {
         // Add competitors to results
         let results = {attendee:rows};
 
-        // Run the teams query to prepopulate drop down
-        db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
+        // Run the tickets query to prepopulate drop down
+        db.pool.query(queries.selectTickets, function(error, rows, fields){
 
             // Add teams to results
-            results.ticketType = rows;
+            results.ticket = rows;
 
-            // Run the event years query to prepopulate drop down
-            db.pool.query(queries.selectEventYears, function(error, rows, fields){
+            // Run the discounts query to prepopulate drop down
+            db.pool.query(queries.selectDiscounts, function(error, rows, fields){
 
                 // Add min max years to results
-                results.year = rows;
+                results.discount = rows;
 
                 // Render page
                 res.render('new-ticket-sale', results);
@@ -503,14 +522,47 @@ app.get('/edit-ticket-sale', function(req, res) {
     })
 });
 
+app.get('/tickets', function(req, res){
+    // Run the select tickets query
+    db.pool.query(queries.selectTickets, function(error, rows, fields){
+
+        // Render tickets page and tables
+        res.render('tickets', {ticket: rows});
+    })
+});
+
+app.get('/new-ticket', function(req, res){
+    // Run the ticket types query to prepopulate drop down
+    db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
+
+        // Add ticket types to results
+        let results = {ticketType: rows};
+
+        // Run the years query to prepopulate drop down
+        db.pool.query(queries.selectEventYears, function(error, rows, fields){
+
+            // Add event years to results
+            results.year = rows;
+
+            // Render new ticket page
+            res.render('new-ticket', results);
+        })
+    })
+});
+
 app.get('/ticket-types', function(req, res){
     // Run the select ticket types query
     db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
 
-        // Render attendee page and tables
+        // Render ticket types page and tables
         res.render('ticket-types', {ticketType: rows});
     })
 });
+
+app.get('/new-ticket-type', function(req, res) {
+    // Render edit page for ticket types
+    res.render('new-ticket-type')
+})
 
 // POSTs
 
@@ -612,6 +664,47 @@ app.post('/add-dish-ajax', function(req, res) {
     });
 });
 
+app.post('/add-discount-ajax', function(req, res) {
+    let data = req.body;
+    let queryParams = [data.discount, data.percent];
+    console.log(queryParams);
+
+    db.pool.query(queries.insertDiscount, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let newDiscount = {
+                id: result.insertId,
+                discount: data.discount,
+                percent: data.percent
+            };
+            res.status(200).json({ message: 'Discount added successfully', newDiscount: newDiscount });
+        }
+    });
+});
+
+app.post('/add-course-ajax', function(req, res) {
+    let data = req.body;
+    let queryParams = [data.course];
+    console.log(queryParams);
+
+    db.pool.query(queries.insertCourse, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let newCourse = {
+                id: result.insertId,
+                course: data.course,
+            };
+            res.status(200).json({ message: 'Course added successfully', newCourse: newCourse });
+        }
+    });
+});
+
 app.post('/add-event-year-ajax', function(req, res) {
     let data = req.body;
     let queryParams = [data.year];
@@ -677,7 +770,7 @@ app.post('/add-team-ajax', function(req, res) {
 
 app.post('/add-ticket-sale-ajax', function(req, res) {
     let data = req.body;
-    let queryParams = [data.attendee, data.ticketType, data.total, data.year];
+    let queryParams = [data.attendee, data.ticket, data.discount];
     console.log(queryParams);
 
     db.pool.query(queries.insertTicketSale, queryParams, function(error, result) {
@@ -689,11 +782,52 @@ app.post('/add-ticket-sale-ajax', function(req, res) {
             let newTicketSale = {
                 id: result.insertId,
                 attendee: data.attendee,
-                ticketType: data.ticketType,
-                total: data.total,
-                year: data.year
+                ticket: data.ticket,
+                discount: data.discount,
             };
             res.status(200).json({ message: 'Ticket sale added successfully', newTicketSale: newTicketSale });
+        }
+    });
+});
+
+app.post('/add-ticket-ajax', function(req, res) {
+    let data = req.body;
+    let queryParams = [data.price, data.ticketType, data.year];
+    console.log(queryParams);
+
+    db.pool.query(queries.insertTicket, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let newTicket = {
+                id: result.insertId,
+                price: data.price,
+                ticketType: data.ticketType,
+                year: data.year
+            };
+            res.status(200).json({ message: 'Ticket added successfully', newTicket: newTicket });
+        }
+    });
+});
+
+app.post('/add-ticket-type-ajax', function(req, res) {
+    let data = req.body;
+    let queryParams = [data.ticketType];
+    console.log(queryParams);
+
+    db.pool.query(queries.insertTicketType, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let newTicketType = {
+                id: result.insertId,
+                ticketType: data.ticketType
+            };
+            res.status(200).json({ message: 'Ticket type added successfully', newTicketType: newTicketType });
         }
     });
 });

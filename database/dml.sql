@@ -33,7 +33,19 @@ ORDER BY Year, Total ASC;
 SELECT
 ticket_type_id AS ID,
 ticket_type AS Ticket
-FROM Ticket_Types;
+FROM Ticket_Types
+ORDER BY ID ASC;
+
+-- Select Tickets
+SELECT
+ticket_id AS ID,
+list_price AS Price,
+Ticket_Types.ticket_type AS Ticket,
+Event_Years.year AS Year
+FROM Tickets
+JOIN Ticket_Types ON Tickets.ticket_type_id = Ticket_Types.ticket_type_id
+JOIN Event_Years ON Tickets.event_year_id = Event_Years.event_year_id
+ORDER BY Year, Price ASC;
 
 -- Select Competitors
 SELECT
@@ -110,6 +122,9 @@ VALUES ( :name, :email, :phone);
 INSERT INTO Discounts (discount_name, discount_percent)
 VALUES (:discount, :percent);
 
+-- Insert Course
+INSERT INTO Courses (course_name) VALUES (:course);
+
 -- Insert Ticket Sale
 INSERT INTO Ticket_Sales (attendee_id, ticket_id, discount_id)
 VALUES (:attendee, :ticket, :discount);
@@ -117,6 +132,10 @@ VALUES (:attendee, :ticket, :discount);
 -- Insert Ticket Type
 INSERT INTO Ticket_Types (ticket_type)
 VALUES (:ticket-type);
+
+-- Insert Ticket
+INSERT INTO Tickets (list_price, ticket_type_id, event_year_id)
+VALUES (:price, :ticket-type, :year);
 
 -- Insert Competitor
 INSERT INTO Competitors (competitor_name, competitor_email, competitor_phone)

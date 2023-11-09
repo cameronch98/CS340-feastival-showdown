@@ -1,36 +1,30 @@
 // Get the objects we need to modify
 document.addEventListener("DOMContentLoaded", () => {
-    let addTicketSale = document.getElementById('new-ticket-sale-form-ajax');
-    console.log(addTicketSale);
+    let addTicketTypeForm = document.getElementById('new-ticket-type-form-ajax');
+    console.log(addTicketTypeForm);
 
     // Modify the objects we need
-    addTicketSale.addEventListener("submit", function (e) {
+    addTicketTypeForm.addEventListener("submit", function (e) {
         console.log("submit was pressed")
         
         // Prevent the form from submitting
         e.preventDefault();
 
         // Get form fields we need to get data from
-        let newAttendee = document.getElementById("attendee");
-        let newTicket = document.getElementById("ticket");
-        let newDiscount = document.getElementById("discount");
+        let newTicketType = document.getElementById("ticket-type");
 
         // Get the values from the form fields
-        let attendeeValue = newAttendee.value;
-        let ticketValue = newTicket.value;
-        let discountValue = newDiscount.value;
+        let ticketTypeValue = newTicketType.value;
 
         // Put our data we want to send in a javascript object
         let data = {
-            attendee: attendeeValue,
-            ticket: ticketValue,
-            discount: discountValue
+            ticketType: ticketTypeValue
         }
         console.log("this is data:", data)
         
         // Setup our AJAX request
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/add-ticket-sale-ajax", true);
+        xhttp.open("POST", "/add-ticket-type-ajax", true);
         xhttp.setRequestHeader("Content-type", "application/json");
 
         // Tell our AJAX request how to resolve
@@ -38,12 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
 
                 // Clear the input fields for another transaction
-                newAttendee.value = '';
-                newTicket.value = '';
-                newDiscount.value = '';
+                newTicketType.value = '';
 
-                // Redirect to the attendees page
-                window.location.href ='/ticket-sales';  
+                // Redirect to the teams page
+                window.location.href ='/ticket-types';  
 
             }
             else if (xhttp.readyState == 4 && xhttp.status != 200) {

@@ -30,13 +30,17 @@
         <table>
             <thead>
                 <tr>
+                    <th><a href="/new-course">New</a></th>
                     <th>Name</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 {{#each course}}
                 <tr>
+                    <td><a onclick="editCourse({{this.ID}})" href="/edit-course?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Course}}</td>
+                    <td><button onclick="deleteCourse({{this.ID}})">Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>

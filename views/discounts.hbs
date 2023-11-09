@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feastival Showdown</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Feastival Showdown DB</h1>
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/attendees">Attendees</a></li>
+            <li><a href="/tickets">Tickets</a></li>
+            <li><a href="/ticket-types">Ticket Types</a></li>
+            <li class="active"><a href="/discounts">Discounts</a></li>
+            <li><a href="/ticket-sales">Ticket Sales</a></li>
+            <li><a href="/competitors">Competitors</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a href="/competitor-registrations">Competitor Registrations</a></li>
+            <li><a href="/dishes">Dishes</a></li>
+            <li><a href="/courses">Courses</a></li>
+            <li><a href="/ratings">Ratings</a></li>
+            <li><a href="/event-years">Event Years</a></li>
+        </ul>
+    </div>
+    <br>
+    <h3>Browse Courses</h3>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th><a href ="/new-discount">New</a></th>
+                    <th>Discount</th>
+                    <th>Percent</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each discount}}
+                <tr>
+                    <td><a onclick="editDiscount({{this.ID}})" href="/edit-discount?id={{this.ID}}">Edit</a></td>
+                    <td>{{this.Discount}}</td>
+                    <td>{{this.Percent}}</td>
+                    <td><button onclick="deleteDiscount({{this.ID}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
