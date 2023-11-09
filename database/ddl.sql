@@ -17,7 +17,7 @@ CREATE OR REPLACE TABLE Courses(
 -- Create the Ticket_Types table
 CREATE OR REPLACE TABLE Ticket_Types (
     ticket_type_id int AUTO_INCREMENT PRIMARY KEY,
-    ticket_type varchar(50) NOT NULL UNIQUE,
+    ticket_type varchar(50) NOT NULL UNIQUE
 );
 
 -- Create the Tickets table
@@ -25,7 +25,7 @@ CREATE OR REPLACE TABLE Tickets (
     ticket_id int AUTO_INCREMENT PRIMARY KEY,
     list_price decimal(5, 2) NOT NULL,
     ticket_type_id int NOT NULL,
-    event_year_id int NOT NULL
+    event_year_id int NOT NULL,
     FOREIGN KEY (ticket_type_id) REFERENCES Ticket_Types(ticket_type_id)
     ON DELETE CASCADE,
     FOREIGN KEY (event_year_id) REFERENCES Event_Years(event_year_id)
@@ -148,18 +148,17 @@ VALUES
 
 -- Insert sample data into Ticket_Types
 INSERT INTO Ticket_Types (
-    ticket_type,
-    list_price
+    ticket_type
 )
 VALUES
 (
-    'One-Day',
+    'One-Day'
 ),
 (
-    'Two-Day',
+    'Two-Day'
 ),
 (
-    'Three-Day',
+    'Three-Day'
 );
 
 -- Insert into Tickets
@@ -679,6 +678,8 @@ DESCRIBE Ratings;
 SELECT * FROM Event_Years;
 SELECT * FROM Courses;
 SELECT * FROM Ticket_Types;
+SELECT * FROM Discounts;
+SELECT * FROM Tickets;
 SELECT * FROM Teams;
 SELECT * FROM Attendees;
 SELECT * FROM Ticket_Sales;

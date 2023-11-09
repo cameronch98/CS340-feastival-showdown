@@ -19,12 +19,12 @@ ticket_sale_id AS ID,
 Attendees.attendee_name AS Attendee,
 Ticket_Types.ticket_type AS Ticket,
 Discounts.discount_name AS Discount,
-Tickets.list_price AS Total,
+IFNULL(Tickets.list_price - (Tickets.list_price * Discounts.discount_percent / 100), Tickets.list_price) AS Total,
 Event_Years.year AS Year
-CASE discount_id WHEN NOT NULL THEN Total - (Total * Discounts.discount_percent / 100)
 FROM Ticket_Sales
 JOIN Attendees ON Ticket_Sales.attendee_id = Attendees.attendee_id
 JOIN Tickets ON Ticket_Sales.ticket_id = Tickets.ticket_id
+LEFT JOIN Discounts ON Ticket_Sales.discount_id = Discounts.discount_id
 JOIN Ticket_Types ON Tickets.ticket_type_id = Ticket_Types.ticket_type_id
 JOIN Event_Years ON Tickets.event_year_id = Event_Years.event_year_id
 ORDER BY Year, Total ASC;
@@ -32,7 +32,7 @@ ORDER BY Year, Total ASC;
 -- Select Ticket_Types
 SELECT
 ticket_type_id AS ID,
-ticket_type AS Ticket,
+ticket_type AS Ticket
 FROM Ticket_Types;
 
 -- Select Competitors
@@ -106,9 +106,17 @@ FROM Event_Years;
 INSERT INTO Attendees (attendee_name, attendee_email, attendee_phone)
 VALUES ( :name, :email, :phone);
 
+-- Insert Discount
+INSERT INTO Discounts (discount_name, discount_percent)
+VALUES (:discount, :percent);
+
 -- Insert Ticket Sale
-INSERT INTO Ticket_Sales (attendee_id, ticket_type_id, unit_price, event_year_id)
-VALUES (:attendee, :ticket-type, :total, :year);
+INSERT INTO Ticket_Sales (attendee_id, ticket_id, discount_id)
+VALUES (:attendee, :ticket, :discount);
+
+-- Insert Ticket Type
+INSERT INTO Ticket_Types (ticket_type)
+VALUES (:ticket-type);
 
 -- Insert Competitor
 INSERT INTO Competitors (competitor_name, competitor_email, competitor_phone)
@@ -137,8 +145,14 @@ VALUES (:year);
 -- Update Attendee
 UPDATE Attendees SET attendee_name = :name, attendee_email = :email, attendee_phone = :phone WHERE attendee_id = :id;
 
+-- Update Discount
+UPDATE Discounts SET discount_name = :discount, discount_percent = :percent WHERE discount_id = :id;
+
 -- Update Ticket Sale
-UPDATE Ticket_Sales SET attendee_id = :attendee, ticket_type_id = :ticket-type, unit_price = :total, event_year_id = :year WHERE ticket_sale_id = :id;
+UPDATE Ticket_Sales SET attendee_id = :attendee, ticket_id = :ticket, discount_id = :discount WHERE ticket_sale_id = :id;
+
+-- Update Ticket Type
+UPDATE Ticket_Types SET ticket_type = :ticket_type WHERE ticket_type_id = :id;
 
 -- Update Competitor
 UPDATE Competitors SET competitor_name = :name, competitor_email = :email, competitor_phone = :phone WHERE competitor_id = :id;
@@ -159,25 +173,31 @@ UPDATE Ratings SET dish_id = :dish, rating = :rating, comments = :comments, atte
 UPDATE Event_Years SET year = :year WHERE event_year_id = :id;
 
 -- Delete Attendee
-DELETE FROM Attendees WHERE attendee_id = :character_ID_selected_from_attendees_page
+DELETE FROM Attendees WHERE attendee_id = :character_ID_selected_from_attendees_page;
+
+-- Delete Discount
+DELETE FROM Discounts WHERE discount_id = :character_ID_selected_from_discounts_page;
 
 -- Delete Ticket Sale
-DELETE FROM Ticket_Sales WHERE ticket_sale_id = :character_ID_selected_from_ticket_sales_page
+DELETE FROM Ticket_Sales WHERE ticket_sale_id = :character_ID_selected_from_ticket_sales_page;
+
+-- Delete Ticket Type
+DELETE FROM Ticket_Types WHERE ticket_type_id = :character_ID_selected_from_ticket_types_page;
 
 -- Delete Competitor
-DELETE FROM Competitors WHERE competitor_id = :character_ID_selected_from_competitors_page
+DELETE FROM Competitors WHERE competitor_id = :character_ID_selected_from_competitors_page;
 
 -- Delete Team
-DELETE FROM Teams WHERE team_id = :character_ID_selected_from_teams_page
+DELETE FROM Teams WHERE team_id = :character_ID_selected_from_teams_page;
 
 -- Delete Competitor Registration
-DELETE FROM Competitor_Registrations WHERE competitor_registration_id = :character_ID_selected_from_competitor_registrations_page
+DELETE FROM Competitor_Registrations WHERE competitor_registration_id = :character_ID_selected_from_competitor_registrations_page;
 
 -- Delete Dish
-DELETE FROM Dishes WHERE dish_id = :character_ID_selected_from_dishes_page
+DELETE FROM Dishes WHERE dish_id = :character_ID_selected_from_dishes_page;
 
 -- Delete Rating
-DELETE FROM Ratings WHERE rating_id = :character_ID_selected_from_ratings_page
+DELETE FROM Ratings WHERE rating_id = :character_ID_selected_from_ratings_page;
 
 -- Delete Event Year
-DELETE FROM Event_Years WHERE event_year_id = :character_ID_selected_from_event_years_page
+DELETE FROM Event_Years WHERE event_year_id = :character_ID_selected_from_event_years_page;

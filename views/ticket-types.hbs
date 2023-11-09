@@ -12,9 +12,9 @@
             <li><a href="/">Home</a></li>
             <li><a href="/attendees">Attendees</a></li>
             <li><a href="/tickets">Tickets</a></li>
-            <li><a href="/ticket-types">Ticket Types</a></li>
+            <li class="active"><a href="/ticket-types">Ticket Types</a></li>
             <li><a href="/discounts">Discounts</a></li>
-            <li class="active"><a href="/ticket-sales">Ticket Sales</a></li>
+            <li><a href="/ticket-sales">Ticket Sales</a></li>
             <li><a href="/competitors">Competitors</a></li>
             <li><a href="/teams">Teams</a></li>
             <li><a href="/competitor-registrations">Competitor Registrations</a></li>
@@ -25,32 +25,20 @@
         </ul>
     </div>
     <br>
-    <h3>Browse Ticket Sales</h3>
+    <h3>Browse Ticket Types</h3>
     <div>
         <table>
             <thead>
                 <tr>
-                    <th><a href="/new-ticket-sale">New</a></th>
-                    <th>Attendee</th>
-                    <th>Ticket</th>
-                    <th>Discount</th>
-                    <th>Total</th>
-                    <th>Year</th>
                     <th></th>
+                    <th>Ticket Type</th>
                 </tr>
             </thead>
             <tbody>
-
-                {{!-- For each row, print the Name, Email, Phone in order --}}
-                {{#each ticketSale}}
+                {{#each ticketType}}
                 <tr>
-                    <td><a onclick="editTicketSale({{this.ID}})" href="/edit-ticket-sale?id={{this.ID}}">Edit</a></td>
-                    <td>{{this.Attendee}}</td>
+                    <td><a onclick="editTicketType({{this.ID}})" href="/edit-ticket-type">Edit</a></td>
                     <td>{{this.Ticket}}</td>
-                    <td>{{this.Discount}}</td>
-                    <td>{{this.Total}}</td>
-                    <td>{{this.Year}}</td>
-                    <td><button onclick="deleteTicketSale({{this.ID}})">Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>

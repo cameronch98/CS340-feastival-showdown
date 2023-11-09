@@ -34,27 +34,24 @@ const { queries } = require('./queries.js');
 
 // GETs
 
-app.get('/', function(req, res)
-    {
-        res.render('index');
-    });
+app.get('/', function(req, res) {
+    res.render('index');
+});
 
-app.get('/attendees', function(req, res)
-    {   // Run the select attendees query
-        db.pool.query(queries.selectAttendees, function(error, rows, fields){
+app.get('/attendees', function(req, res) {   
+    // Run the select attendees query
+    db.pool.query(queries.selectAttendees, function(error, rows, fields){
 
-            // Render attendee page and tables
-            res.render('attendees', {attendee: rows});
-        })
-    });
+        // Render attendee page and tables
+        res.render('attendees', {attendee: rows});
+    })
+});
 
-app.get('/new-attendee', function(req, res)
-{   // link to add new attendee
+app.get('/new-attendee', function(req, res) {   // link to add new attendee
     res.render('new-attendee')
 });
 
-app.get('/edit-attendee', function(req, res)
-{   
+app.get('/edit-attendee', function(req, res) {   
     const attendeeID = req.query.id
     console.log("attendeID:", attendeeID)
     db.pool.query(queries.selectEditAttendee, [attendeeID], function(err, results){
@@ -68,8 +65,7 @@ app.get('/edit-attendee', function(req, res)
     })
 });
 
-app.get('/competitor-registrations', function(req, res)
-{   // Run the select competitor registrations query
+app.get('/competitor-registrations', function(req, res) {   // Run the select competitor registrations query
     db.pool.query(queries.selectCompetitorRegs, function(error, rows, fields){
 
         // Render competitor registrations page and tables
@@ -77,8 +73,7 @@ app.get('/competitor-registrations', function(req, res)
     })
 });
 
-app.get('/new-competitor-registration', function(req, res)
-{   
+app.get('/new-competitor-registration', function(req, res) {   
     // Run the competitors query to prepopulate drop down
     db.pool.query(queries.selectCompetitors, function(error, rows, fields){
 
@@ -104,8 +99,7 @@ app.get('/new-competitor-registration', function(req, res)
     })
 });
 
-app.get('/edit-competitor-registration', function(req, res)
-{   
+app.get('/edit-competitor-registration', function(req, res) {   
     let regID = req.query.id
     console.log("regID", regID)
     db.pool.query(queries.selectEditReg,[regID], function(err, results){
@@ -160,8 +154,7 @@ app.get('/edit-competitor-registration', function(req, res)
 
 });
 
-app.get('/competitors', function(req, res)
-{   // Run the select competitors query
+app.get('/competitors', function(req, res) {   // Run the select competitors query
     db.pool.query(queries.selectCompetitors, function(error, rows, fields){
 
         // Render competitors page and tables
@@ -169,13 +162,11 @@ app.get('/competitors', function(req, res)
     })
 });
 
-app.get('/new-competitor', function(req, res)
-{
+app.get('/new-competitor', function(req, res) {
     res.render('new-competitor')
 });
 
-app.get('/edit-competitor', function(req, res)
-{   
+app.get('/edit-competitor', function(req, res) {   
     const competitorID = req.query.id
     console.log("competitorID:", competitorID)
     db.pool.query(queries.selectEditCompetitor, [competitorID], function(err, results){
@@ -189,27 +180,15 @@ app.get('/edit-competitor', function(req, res)
     })
 });
 
-app.get('/dishes', function(req, res)
-{   // Run the select attendees query
+app.get('/dishes', function(req, res) {   // Run the select dishes query
     db.pool.query(queries.selectDishes, function(error, rows, fields){
 
-        // Add dishes to results
-        let results = {dish: rows};
-
-        // Run courses query
-        db.pool.query(queries.selectCourses, function(error, rows, fields){
-
-            // Add courses to results
-            results.course = rows;
-
-            // Render dishes page and dishes/courses tables
-            res.render('dishes', results);
-        })
+        // Render dishes page and dishes/courses tables
+        res.render('dishes', {dish:rows});
     })
 });
 
-app.get('/new-dish', function(req, res)
-{   
+app.get('/new-dish', function(req, res) {   
     // Run the courses query to prepopulate drop down
     db.pool.query(queries.selectCourses, function(error, rows, fields){
 
@@ -235,8 +214,7 @@ app.get('/new-dish', function(req, res)
     })
 });
 
-app.get('/edit-dish', function(req, res)
-{   
+app.get('/edit-dish', function(req, res) {   
     const dishID = req.query.id;
     console.log("dishID: ", dishID);
     db.pool.query(queries.selectEditDish, [dishID], function(err, results){
@@ -294,10 +272,17 @@ app.get('/edit-dish', function(req, res)
     
 });
 
+app.get('/courses', function(req, res) {
+    // Run courses query
+    db.pool.query(queries.selectCourses, function(error, rows, fields){
 
+        // Render dishes page and dishes/courses tables
+        res.render('courses', {course: rows});
+    })
+});
 
-app.get('/event-years', function(req, res)
-{   // Run the select event years query
+app.get('/event-years', function(req, res) {   
+    // Run the select event years query
     db.pool.query(queries.selectEventYears, function(error, rows, fields){
 
         // Render event years page and tables
@@ -305,13 +290,11 @@ app.get('/event-years', function(req, res)
     })
 });
 
-app.get('/new-event-year', function(req, res)
-{
+app.get('/new-event-year', function(req, res) {
     res.render('new-event-year')
 });
 
-app.get('/edit-event-year', function(req, res)
-{   
+app.get('/edit-event-year', function(req, res) {   
     const eventYearID = req.query.id
     console.log("eventYearID:", eventYearID)
     db.pool.query(queries.selectEditEventYear, [eventYearID], function(err, results){
@@ -326,8 +309,8 @@ app.get('/edit-event-year', function(req, res)
 });
 
 
-app.get('/ratings', function(req, res)
-{   // Run the select ratings query
+app.get('/ratings', function(req, res) { 
+    // Run the select ratings query
     db.pool.query(queries.selectRatings, function(error, rows, fields){
 
         // Render ratings page and tables
@@ -335,8 +318,7 @@ app.get('/ratings', function(req, res)
     })
 });
 
-app.get('/new-rating', function(req, res)
-{   
+app.get('/new-rating', function(req, res) {   
     // Run the dishes query to prepopulate drop down
     db.pool.query(queries.selectDishes, function(error, rows, fields){
 
@@ -355,8 +337,7 @@ app.get('/new-rating', function(req, res)
     })
 });
 
-app.get('/edit-rating', function(req, res)
-{   
+app.get('/edit-rating', function(req, res) {   
     const ratingID = req.query.id;
     console.log("ratingID from Get: ", ratingID)
 
@@ -401,8 +382,8 @@ app.get('/edit-rating', function(req, res)
     })
 });
 
-app.get('/teams', function(req, res)
-{   // Run the select teams query
+app.get('/teams', function(req, res) {   
+    // Run the select teams query
     db.pool.query(queries.selectTeams, function(error, rows, fields){
 
         // Render teams page and tables
@@ -410,13 +391,11 @@ app.get('/teams', function(req, res)
     })
 });
 
-app.get('/new-team', function(req, res)
-{
+app.get('/new-team', function(req, res) {
     res.render('new-team')
 });
 
-app.get('/edit-team', function(req, res)
-{   
+app.get('/edit-team', function(req, res) {   
     const teamID = req.query.id
     console.log("teamID:", teamID)
     db.pool.query(queries.selectEditTeam, [teamID], function(err, results){
@@ -431,27 +410,16 @@ app.get('/edit-team', function(req, res)
 });
 
 
-app.get('/ticket-sales', function(req, res)
-{   // Run the select ticket sales query
+app.get('/ticket-sales', function(req, res) {
+    // Run the select ticket sales query
     db.pool.query(queries.selectTicketSales, function(error, rows, fields){
 
-        // Add ticket sales to results
-        let results = {ticketSale: rows};
-
-        // Run the select ticket types query
-        db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
-
-            // Add ticket types to results
-            results.ticketType = rows;
-
-            // Render attendee page and tables
-            res.render('ticket-sales', results);
-        })
+        // Render results on page
+        res.render('ticket-sales', {ticketSale: rows});
     })
 });
 
-app.get('/new-ticket-sale', function(req, res)
-{   
+app.get('/new-ticket-sale', function(req, res) {
     // Run the attendees query to prepopulate drop down
     db.pool.query(queries.selectAttendees, function(error, rows, fields){
 
@@ -477,8 +445,8 @@ app.get('/new-ticket-sale', function(req, res)
     })
 });
 
-app.get('/edit-ticket-sale', function(req, res)
-{   
+app.get('/edit-ticket-sale', function(req, res) {
+
     const ticketSaleID = req.query.id
     console.log("ticketSaleID:", ticketSaleID)
 
@@ -532,6 +500,15 @@ app.get('/edit-ticket-sale', function(req, res)
             })
             
         }
+    })
+});
+
+app.get('/ticket-types', function(req, res){
+    // Run the select ticket types query
+    db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
+
+        // Render attendee page and tables
+        res.render('ticket-types', {ticketType: rows});
     })
 });
 
