@@ -104,6 +104,62 @@ app.get('/new-competitor-registration', function(req, res)
     })
 });
 
+app.get('/edit-competitor-registration', function(req, res)
+{   
+    let regID = req.query.id
+    console.log("regID", regID)
+    db.pool.query(queries.selectEditReg,[regID], function(err, results){
+        if (err){
+            console.error('Error fetching competitor registration', err);
+            res.status(500).send('Error fetching competitor registration')
+        } else {
+            let selectedReg = results[0];
+
+            // Run the competitors query to prepopulate drop down
+            db.pool.query(queries.selectCompetitors, function(error, rows, fields){
+
+                rows.forEach(competitor=>{
+                    competitor.selected = (competitor.ID == selectedReg.competitor_id) ? "selected" : "";
+                })
+                
+                // Add competitors to results
+                let resultsNew = {
+                    selectedReg: selectedReg,
+                    competitor:rows
+                };
+
+                // Run the teams query to prepopulate drop down
+                db.pool.query(queries.selectTeams, function(error, rows, fields){
+
+                    rows.forEach(team=>{
+                        team.selected = (team.ID == selectedReg.team_id) ? "selected" : "";
+                    })
+                    // Add teams to results
+                    resultsNew.team = rows;
+
+                    // Run the event years query to prepopulate drop down
+                    db.pool.query(queries.selectEventYears, function(error, rows, fields){
+                        
+                        rows.forEach(year=>{
+                            year.selected = (year.ID == selectedReg.even_year_id) ? "selected" : "";
+                        })
+                        // Add min max years to results
+                        resultsNew.year = rows;
+
+                        console.log("final object: ", resultsNew)
+                        // Render page
+                        res.render('edit-competitor-registration', resultsNew);
+            })
+        })
+    })
+
+
+        }
+    })
+
+
+});
+
 app.get('/competitors', function(req, res)
 {   // Run the select competitors query
     db.pool.query(queries.selectCompetitors, function(error, rows, fields){
@@ -818,6 +874,29 @@ app.put('/edit-dish-ajax', function(req, res){
                 year: result.year
             };
             res.status(200).json({ message: 'dish updated successfully', updatedDish: updatedDish });
+        }
+    });
+});
+
+app.put('/edit-competitor-registration-ajax', function(req, res){
+    let data = req.body
+    console.log("data:", data)
+    let queryParams = [data.competitor, data.team, data.year, data.id]
+    console.log(queryParams);
+    db.pool.query(queries.updateReg, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let updatedRed = {
+                id: result.id,
+                competitor: result.competitor,
+                team: result.team,
+                year: result.year,
+
+            };
+            res.status(200).json({ message: 'dish updated successfully', updatedRed: updatedRed });
         }
     });
 });

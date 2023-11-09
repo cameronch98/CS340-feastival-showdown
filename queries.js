@@ -19,6 +19,7 @@ let selectEditCompetitor = 'SELECT * FROM Competitors WHERE competitor_id= ?;'
 let selectEditTeam = 'SELECT * FROM Teams WHERE team_id= ?;'
 let selectEditEventYear = 'SELECT * FROM Event_Years WHERE event_year_id= ?;'
 let selectEditDish = 'SELECT * FROM Dishes WHERE dish_id = ?;'
+let selectEditReg = 'SELECT * FROM Competitor_Registrations WHERE competitor_registration_id = ?;'
 
 /**
  * Define insert queries
@@ -42,7 +43,7 @@ let updateEventYear = 'UPDATE Event_Years SET year = ? WHERE event_year_id = ?;'
 let updateTicketSales = 'UPDATE Ticket_Sales SET attendee_id = ?, ticket_type_id = ?, unit_price = ?, event_year_id = ? WHERE ticket_sale_id = ?;'
 let updateRating = 'UPDATE Ratings SET dish_id = ?, rating = ?, comments = ?, attendee_id = ? WHERE rating_id = ?;'
 let updateDish = 'UPDATE Dishes SET dish_name = ?, dish_image = ?, dish_description = ?, course_id = ?, team_id = ?, event_year_id = ? WHERE dish_id = ?;'
-
+let updateReg = 'UPDATE Competitor_Registrations SET competitor_id = ?, team_id = ?, event_year_id = ? WHERE competitor_registration_id = ?;'
 /**
  * Define export object
  */
@@ -62,6 +63,7 @@ let queries = {
     'selectEditTeam':selectEditTeam,
     'selectEditEventYear':selectEditEventYear,
     'selectEditDish':selectEditDish,
+    'selectEditReg':selectEditReg,
     'insertAttendee': insertAttendee,
     'insertCompetitorReg': insertCompetitorReg,
     'insertCompetitor': insertCompetitor,
@@ -76,7 +78,8 @@ let queries = {
     'updateEventYear':updateEventYear,
     'updateTicketSales':updateTicketSales,
     'updateRating':updateRating,
-    'updateDish':updateDish
+    'updateDish':updateDish,
+    'updateReg':updateReg
 };
 
 exports.queries = queries;
