@@ -7,7 +7,7 @@
 // Express
 var express = require('express');
 var app     = express();
-PORT        = 9023;
+PORT        = 9024;
 
 // Path
 var path = require('path');
@@ -770,8 +770,9 @@ app.post('/add-team-ajax', function(req, res) {
 
 app.post('/add-ticket-sale-ajax', function(req, res) {
     let data = req.body;
+    
     if (data.discount === "") {
-        data.discount = NULL;
+        data.discount = null;
     };
     let queryParams = [data.attendee, data.ticket, data.discount];
 
