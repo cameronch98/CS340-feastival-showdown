@@ -33,7 +33,7 @@ div.navbar li a:hover {
 }
 
 .active {
-    background-color: #4caf50;
+    background-color: #366373;
 }
 
 table {
@@ -73,11 +73,11 @@ table button {
 
 form button:hover {
     color: #f5f5f5;
-    background-color: #4caf50;
+    background-color: #437C90;
 }
 
 thead tr {
-    background-color: #4caf50;
+    background-color: #383838;
     color: white;
     text-align: left;
 }
@@ -114,4 +114,27 @@ thead a {
 
 tbody a {
     color: #333333;
+}
+
+.floating-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #437C90; 
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0px 8px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.floating-button:hover {
+    background-color: #bc836f;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    transform: translateY(4px);
+}
+
+.floating-button:active {
+    background-color: #004085;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+    transform: translateY(6px);
 }
