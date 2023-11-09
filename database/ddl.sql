@@ -18,7 +18,25 @@ CREATE OR REPLACE TABLE Courses(
 CREATE OR REPLACE TABLE Ticket_Types (
     ticket_type_id int AUTO_INCREMENT PRIMARY KEY,
     ticket_type varchar(50) NOT NULL UNIQUE,
-    list_price decimal(5,2) NOT NULL
+);
+
+-- Create the Tickets table
+CREATE OR REPLACE TABLE Tickets (
+    ticket_id int AUTO_INCREMENT PRIMARY KEY,
+    list_price decimal(5, 2) NOT NULL,
+    ticket_type_id int NOT NULL,
+    event_year_id int NOT NULL
+    FOREIGN KEY (ticket_type_id) REFERENCES Ticket_Types(ticket_type_id)
+    ON DELETE CASCADE,
+    FOREIGN KEY (event_year_id) REFERENCES Event_Years(event_year_id)
+    ON DELETE CASCADE
+);
+
+-- Create the Discounts table
+CREATE OR REPLACE TABLE Discounts (
+    discount_id int AUTO_INCREMENT PRIMARY KEY,
+    discount_name varchar(50) NOT NULL UNIQUE,
+    discount_percent decimal(5, 2) NOT NULL
 );
 
 -- Create the Teams table
@@ -38,15 +56,14 @@ CREATE OR REPLACE TABLE Attendees (
 -- Create the Ticket_Sales table
 CREATE OR REPLACE TABLE Ticket_Sales (
     ticket_sale_id int AUTO_INCREMENT PRIMARY KEY,
-    unit_price decimal(5,2) NOT NULL,
     attendee_id int NOT NULL,
-    ticket_type_id int NOT NULL,
-    event_year_id int NOT NULL,
+    ticket_id int NOT NULL,
+    discount_id int,
     FOREIGN KEY (attendee_id) REFERENCES Attendees(attendee_id)
     ON DELETE CASCADE,
-    FOREIGN KEY (ticket_type_id) REFERENCES Ticket_Types(ticket_type_id)
+    FOREIGN KEY (ticket_id) REFERENCES Tickets(ticket_id)
     ON DELETE CASCADE,
-    FOREIGN KEY (event_year_id) REFERENCES Event_Years(event_year_id)
+    FOREIGN KEY (discount_id) REFERENCES Discounts(discount_id)
     ON DELETE CASCADE
 );
 
@@ -137,15 +154,68 @@ INSERT INTO Ticket_Types (
 VALUES
 (
     'One-Day',
-    10
 ),
 (
     'Two-Day',
-    20
 ),
 (
     'Three-Day',
-    30
+);
+
+-- Insert into Tickets
+INSERT INTO Tickets (
+    list_price,
+    ticket_type_id,
+    event_year_id
+)
+VALUES
+(
+    8,
+    1,
+    1
+),
+(
+    16,
+    2,
+    1
+),
+(
+    24,
+    3,
+    1
+),
+(
+    10,
+    1,
+    2
+),
+(
+    20,
+    2,
+    2
+),
+(
+    30,
+    3,
+    2
+);
+
+INSERT INTO Discounts (
+    discount_name,
+    discount_percent
+)
+VALUES
+(
+    "Early Bird",
+    20
+),
+(
+    "Flash Sale",
+    10
+),
+(
+    "Student",
+    15
 );
 
 -- Insert sample data into Teams
@@ -226,88 +296,74 @@ VALUES
 
 -- Insert sample data into Ticket_Sales
 INSERT INTO Ticket_Sales (
-    unit_price,
-    event_year_id,
     attendee_id,
-    ticket_type_id
+    ticket_id,
+    discount_id
 )
 VALUES
 (
-    16,
-    1,
     4,
+    2,
+    NULL
+),
+(
+    3,
+    3,
     2
 ),
 (
-    24,
+    6,
+    3,
+    NULL
+),
+(
     1,
     3,
     3
 ),
 (
-    24,
+    2,
     1,
-    6,
-    3
+    NULL
 ),
 (
-    24,
-    1,
-    1,
-    3
-),
-(
-    8,
-    1,
+    5,
     2,
     1
 ),
 (
-    16,
-    1,
+    4,
+    6,
+    NULL
+),
+(
+    10,
+    6,
+    NULL
+),
+(
+    7,
     5,
     2
 ),
 (
-    30,
+    8,
+    5,
+    NULL
+),
+(
+    5,
+    6,
+    1
+),
+(
+    9,
+    4,
+    1
+),
+(
     2,
     4,
-    3
-),
-(
-    30,
-    2,
-    10,
-    3
-),
-(
-    20,
-    2,
-    7,
-    2
-),
-(
-    20,
-    2,
-    8,
-    2
-),
-(
-    30,
-    2,
-    5,
-    3
-),
-(
-    10,
-    2,
-    9,
-    1
-),
-(
-    10,
-    2,
-    2,
     1
 );
 

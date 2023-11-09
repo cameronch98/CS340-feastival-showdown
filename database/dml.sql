@@ -6,24 +6,33 @@ attendee_email AS Email,
 attendee_phone AS Phone 
 FROM Attendees;
 
+-- Select Discounts
+SELECT
+discount_id AS ID,
+discount_name AS Discount,
+discount_percent AS Percent
+FROM Discounts;
+
 -- Select Ticket_Sales (Ordered by Year, Total ASC)
 SELECT
 ticket_sale_id AS ID,
 Attendees.attendee_name AS Attendee,
 Ticket_Types.ticket_type AS Ticket,
-unit_price AS Total,
+Discounts.discount_name AS Discount,
+Tickets.list_price AS Total,
 Event_Years.year AS Year
+CASE discount_id WHEN NOT NULL THEN Total - (Total * Discounts.discount_percent / 100)
 FROM Ticket_Sales
 JOIN Attendees ON Ticket_Sales.attendee_id = Attendees.attendee_id
-JOIN Ticket_Types ON Ticket_Sales.ticket_type_id = Ticket_Types.ticket_type_id
-JOIN Event_Years ON Ticket_Sales.event_year_id = Event_Years.event_year_id
+JOIN Tickets ON Ticket_Sales.ticket_id = Tickets.ticket_id
+JOIN Ticket_Types ON Tickets.ticket_type_id = Ticket_Types.ticket_type_id
+JOIN Event_Years ON Tickets.event_year_id = Event_Years.event_year_id
 ORDER BY Year, Total ASC;
 
 -- Select Ticket_Types
 SELECT
 ticket_type_id AS ID,
 ticket_type AS Ticket,
-list_price AS Price
 FROM Ticket_Types;
 
 -- Select Competitors
