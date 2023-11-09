@@ -253,7 +253,7 @@ app.get('/edit-dish', function(req, res)
             db.pool.query(queries.selectCourses, function(error, rows, fields){
                 
                 rows.forEach(course=>{
-                    course.selected = (course.ID == selectedDish.dish_id) ? "selected" : "";
+                    course.selected = (course.ID == selectedDish.course_id) ? "selected" : "";
                 })
 
                 // Add competitors to results
@@ -266,7 +266,7 @@ app.get('/edit-dish', function(req, res)
                 // Run the teams query to prepopulate drop down
                 db.pool.query(queries.selectTeams, function(error, rows, fields){
 
-                    forEach(team=>{
+                    rows.forEach(team=>{
                         team.selected = (team.ID == selectedDish.team_id) ? "selected" : "";
                     })
 
@@ -276,7 +276,7 @@ app.get('/edit-dish', function(req, res)
                     // Run the event years query to prepopulate drop down
                      db.pool.query(queries.selectEventYears, function(error, rows, fields){
 
-                        forEach(eventYear=>{
+                        rows.forEach(eventYear=>{
                             eventYear.selected = (eventYear.ID == selectedDish.event_year_id) ? "selected" : "";
                         })
                         // Add min max years to results

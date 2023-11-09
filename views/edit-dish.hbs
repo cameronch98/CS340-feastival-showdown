@@ -33,7 +33,7 @@
         <input type="file" id="dishImage" name="dishImage"><br><br>
 
         <label for="description">Description:</label>
-        <textarea id="description" name="description" maxlength="255" required>{{selecedDish.dish_description}}</textarea><br><br>
+        <textarea id="description" name="description" maxlength="255" required>{{selectedDish.dish_description}}</textarea><br><br>
 
         <!-- Prepopulated with courses -->
         <label for="course">Course:</label>
@@ -59,7 +59,7 @@
             {{/each}}
         </select><br><br>
 
-        <button type="submit">Add Dish</button>
+        <button type="submit">Edit Dish</button>
     </form>
 </body>
 </html>

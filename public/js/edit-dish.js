@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
 
         // Get form fields we need to get data from
-        let updateDishID = document.getElementById('id')
+        let updateDishID = document.getElementById('dishId')
         let newDishName = document.getElementById("dishName");
         let newDishImage = document.getElementById("dishImage");
         let newDescription = document.getElementById("description");

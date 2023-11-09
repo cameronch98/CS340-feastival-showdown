@@ -17,12 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
         let newYear = document.getElementById("year");
 
         // Get the values from the form fields
+        let regID = updateID.value
         let competitorValue = newCompetitor.value;
         let teamValue = newTeam.value;
         let yearValue = newYear.value;
 
         // Put our data we want to send in a javascript object
         let data = {
+            id: regID,
             competitor: competitorValue,
             team: teamValue,
             year: yearValue
