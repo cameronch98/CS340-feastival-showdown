@@ -57,11 +57,11 @@ CREATE OR REPLACE TABLE Attendees (
 -- Create the Ticket_Sales table
 CREATE OR REPLACE TABLE Ticket_Sales (
     ticket_sale_id int AUTO_INCREMENT PRIMARY KEY,
-    attendee_id int NOT NULL,
+    attendee_id int,
     ticket_id int NOT NULL,
     discount_id int DEFAULT NULL,
     FOREIGN KEY (attendee_id) REFERENCES Attendees(attendee_id)
-    ON DELETE CASCADE,
+    ON DELETE SET NULL,
     FOREIGN KEY (ticket_id) REFERENCES Tickets(ticket_id)
     ON DELETE CASCADE,
     FOREIGN KEY (discount_id) REFERENCES Discounts(discount_id)
@@ -112,11 +112,11 @@ CREATE OR REPLACE TABLE Ratings (
     rating_id int AUTO_INCREMENT PRIMARY KEY,
     rating int NOT NULL,
     comments text NOT NULL,
-    attendee_id int NOT NULL,
+    attendee_id int,
     dish_id int NOT NULL,
     CONSTRAINT attendee_dish UNIQUE (attendee_id, dish_id),
     FOREIGN KEY (attendee_id) REFERENCES Attendees(attendee_id)
-    ON DELETE CASCADE,
+    ON DELETE SET NULL,
     FOREIGN KEY (dish_id) REFERENCES Dishes(dish_id)
     ON DELETE CASCADE
 );
@@ -689,12 +689,6 @@ SELECT * FROM Competitors;
 SELECT * FROM Competitor_Registrations;
 SELECT * FROM Dishes;
 SELECT * FROM Ratings;
-SELECT
-competitor_id AS ID,
-competitor_name AS Name,
-competitor_email AS Email,
-competitor_phone AS Phone 
-FROM Competitors;
 
 -- Update config
 SET FOREIGN_KEY_CHECKS=1;
