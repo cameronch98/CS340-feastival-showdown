@@ -41,8 +41,8 @@
         <!-- Dropdown for Ticket Type -->
         <label for="ticket">Ticket:</label>
         <select id="ticket" name="ticket">
-            {{#each ticketType}}
-            <option value="{{this.ID}}" {{this.selected}}>{{this.Ticket}} </option>
+            {{#each ticket}}
+            <option value="{{this.ID}}" {{this.selected}}>{{this.Ticket}} {{this.Year}}</option>
             {{/each}}
         </select><br><br>
 

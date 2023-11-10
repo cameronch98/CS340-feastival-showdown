@@ -530,7 +530,7 @@ app.get('/edit-ticket-sale', function(req, res) {
                 // ticket types query
                 db.pool.query(queries.selectTickets, function(error, rows, fields){
 
-                    rows.forEach(ticketType =>{
+                    rows.forEach(ticket =>{
                         ticket.selected = (ticket.ID == selectedTicket.ticket_id) ? "selected" : ""
                     })
     
