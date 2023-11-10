@@ -138,3 +138,13 @@ tbody a {
     box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
     transform: translateY(6px);
 }
+
+.descriptions {
+    box-shadow: 0 0 10px #333333;
+    border-color: #333333;
+    background-color: #366373;
+    width: 42%;
+    color: whitesmoke;
+    border-radius: 12px;
+    padding: 20px;
+}
