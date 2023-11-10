@@ -114,6 +114,37 @@ event_year_id AS ID,
 year AS Year
 FROM Event_Years;
 
+-- Special Select Queries for Edit Matching
+-- Select Current Attendee
+SELECT * 
+FROM Attendees 
+WHERE attendee_id= ?;
+
+-- Select Current Competitor
+SELECT * 
+FROM Competitors 
+WHERE competitor_id= ?;
+
+-- Select Current Team
+SELECT * 
+FROM Teams 
+WHERE team_id= ?;
+
+-- Select Current Event_Year
+SELECT * 
+FROM Event_Years 
+WHERE event_year_id= ?;
+
+-- Select Current Dish
+SELECT * 
+FROM Dishes 
+WHERE dish_id = ?;
+
+-- Select Current Competitor_Registration
+SELECT * 
+FROM Competitor_Registrations 
+WHERE competitor_registration_id = ?;
+
 -- Insert Attendee
 INSERT INTO Attendees (attendee_name, attendee_email, attendee_phone)
 VALUES ( :name, :email, :phone);

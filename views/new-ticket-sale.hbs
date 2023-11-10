@@ -52,6 +52,15 @@
             {{/each}}
         </select><br><br>
 
+        <!-- Prepopulated with event years -->
+        <label for="year">Year:</label>
+        <select id="year" name="year">
+            <option value="" selected>None</option>
+            {{#each year}}
+            <option value="{{this.ID}}">{{this.Year}}</option>
+            {{/each}}
+        </select><br><br>
+
         <button type="submit">Add Ticket Sale</button>
     </form>
 </body>

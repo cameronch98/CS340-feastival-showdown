@@ -286,6 +286,20 @@ app.get('/new-discount', function(req, res) {
     res.render('new-discount')
 })
 
+app.get('/edit-discount', function(req, res) {
+    const discountID = req.query.id
+    console.log("discountID:", discountID)
+    db.pool.query(queries.selectDiscount, [discountID], function(err, results){
+        if (err){
+            console.error('Error fetching event year: ', err);
+            res.status(500).send('Error fetching event year');
+        } else {
+            console.log("results: ", results[0])
+            res.render('edit-discount', {discount: results[0]});
+        }
+    })
+});
+
 app.get('/courses', function(req, res) {
     // Run courses query
     db.pool.query(queries.selectCourses, function(error, rows, fields){
@@ -299,6 +313,18 @@ app.get('/new-course', function(req, res) {
     // Render edit page for courses
     res.render('new-course')
 })
+
+app.get('/edit-course', function(req, res) {
+    // Run courses query
+    let courseID = req.query.id
+
+    db.pool.query(queries.selectCourse,[courseID], function(error, rows, fields){
+
+        console.log("final object:", rows[0])
+        // Render course page and table
+        res.render('edit-course', {selectedCourse: rows[0]});
+    })
+});
 
 app.get('/event-years', function(req, res) {   
     // Run the select event years query
@@ -434,6 +460,7 @@ app.get('/ticket-sales', function(req, res) {
     db.pool.query(queries.selectTicketSales, function(error, rows, fields){
 
         // Render results on page
+        console.log("ticket-sales object:", rows)
         res.render('ticket-sales', {ticketSale: rows});
     })
 });
@@ -454,11 +481,20 @@ app.get('/new-ticket-sale', function(req, res) {
             // Run the discounts query to prepopulate drop down
             db.pool.query(queries.selectDiscounts, function(error, rows, fields){
 
-                // Add min max years to results
+                // Add discount to results
                 results.discount = rows;
 
-                // Render page
-                res.render('new-ticket-sale', results);
+                // Run the event year query to prepopulate drop down
+                db.pool.query(queries.selectEventYears, function(error, rows, fields){
+
+                    // Add event year to results
+                    results.year = rows;
+                    
+                    // Render page
+                    res.render('new-ticket-sale', results);
+
+                })
+                
             })
         })
     })
@@ -497,20 +533,18 @@ app.get('/edit-ticket-sale', function(req, res) {
                     rows.forEach(ticketType =>{
                         ticketType.selected = (ticketType.ID == selectedTicket.ticket_type_id) ? "selected" : ""
                     })
-        
-                    
+    
                     resultsNew.ticketType = rows;
-        
-                    // Event years
-                    db.pool.query(queries.selectEventYears, function(error, rows, fields){
-        
-
-                        rows.forEach(eventYear =>{
-                            eventYear.selected = (eventYear.ID == selectedTicket.event_year_id) ? "selected" : ""
+                    
+                    // discount query
+                    db.pool.query(queries.selectDiscounts, function(error, rows, fields){
+                            
+                        rows.forEach(discount=>{
+                            discount.selected = (discount.ID == selectedTicket.discount_id) ? "selected" : ""
                         })
-                        
-                        resultsNew.year = rows;
-                        
+
+                        resultsNew.discount = rows;
+                    
                         console.log("final object: ", resultsNew)
                         // Render page
                         res.render('edit-ticket-sale', resultsNew);
@@ -527,6 +561,7 @@ app.get('/tickets', function(req, res){
     db.pool.query(queries.selectTickets, function(error, rows, fields){
 
         // Render tickets page and tables
+        console.log("from tickets get:", rows)
         res.render('tickets', {ticket: rows});
     })
 });
@@ -550,10 +585,47 @@ app.get('/new-ticket', function(req, res){
     })
 });
 
+app.get('/edit-ticket', function(req, res){
+    let ticketID = req.query.id;
+    console.log("ticketID", ticketID);
+
+    db.pool.query(queries.selectTicket, [ticketID], function(err, results){
+        if (err){
+            console.error('Error fetching ticket: ', err);
+            res.status(500).send('Error fetching ticket');
+        } else {
+            let selectedTicket = results[0];
+
+            db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
+                rows.forEach(types =>{
+                    types.selected = (types.ID == selectedTicket.ticket_type_id) ? "selected" : "";
+                });
+
+                let resultsNew = {
+                    selectedTicket: selectedTicket,
+                    ticketType: rows
+                };
+
+                db.pool.query(queries.selectEventYears, function(error, rows, fields){
+                    rows.forEach(year => {
+                        year.selected = (year.ID == selectedTicket.even_year_id) ? "selected" : "";
+                    });
+
+                    resultsNew.year = rows;
+                    console.log("final object:", resultsNew);
+                    res.render('edit-ticket', resultsNew);
+                });
+            }); 
+        }
+    }); 
+});
+
+
 app.get('/ticket-types', function(req, res){
     // Run the select ticket types query
     db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
 
+        console.log("ticket type object:", rows)
         // Render ticket types page and tables
         res.render('ticket-types', {ticketType: rows});
     })
@@ -563,6 +635,21 @@ app.get('/new-ticket-type', function(req, res) {
     // Render edit page for ticket types
     res.render('new-ticket-type')
 })
+
+
+app.get('/edit-ticket-type', function(req, res){
+    
+    let typeID = req.query.id
+    console.log("typeID: ", typeID)
+    // Run the select ticket types query
+    db.pool.query(queries.selectType,[typeID], function(error, rows, fields){
+
+        console.log("final object:", rows)
+        // Render ticket types page and tables
+        res.render('edit-ticket-type', {ticketType: rows[0]});
+    })
+});
+
 
 // POSTs
 
@@ -927,7 +1014,7 @@ app.put('/edit-event-year-ajax', function(req, res){
 app.put('/edit-ticket-sale-ajax', function(req, res){
     let data = req.body
     console.log("data:", data)
-    let queryParams = [data.attendee, data.ticketType, data.total, data.year, data.id]
+    let queryParams = [data.attendee, data.ticketType, data.discount, data.id]
     //console.log(queryParams);
     db.pool.query(queries.updateTicketSales, queryParams, function(error, result) {
         if (error) {
@@ -939,8 +1026,7 @@ app.put('/edit-ticket-sale-ajax', function(req, res){
                 id: result.id,
                 ticketType: result.ticketType,
                 attendee: result.attendee,
-                total: result.total,
-                year: data.year
+                discount: result.discount,
             };
             res.status(200).json({ message: 'Event Year updated successfully', updatedTicketSale: updatedTicketSale });
         }
@@ -1012,7 +1098,29 @@ app.put('/edit-competitor-registration-ajax', function(req, res){
                 year: result.year,
 
             };
-            res.status(200).json({ message: 'dish updated successfully', updatedRed: updatedRed });
+            res.status(200).json({ message: 'competitor registration updated successfully', updatedRed: updatedRed });
+        }
+    });
+});
+
+app.put('/edit-discount-ajax', function(req, res){
+    let data = req.body
+    console.log("data:", data)
+    let queryParams = [data.name, data.percent, data.id]
+    console.log(queryParams);
+    db.pool.query(queries.updateDiscount, queryParams, function(error, result) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Assuming 'result.insertId' contains the ID of the newly inserted attendee
+            let updatedRed = {
+                id: result.id,
+                name: result.name,
+                percent: result.percent,
+           
+            };
+            res.status(200).json({ message: 'discount updated successfully', updatedRed: updatedRed });
         }
     });
 });
