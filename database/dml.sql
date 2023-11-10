@@ -145,6 +145,26 @@ SELECT *
 FROM Competitor_Registrations 
 WHERE competitor_registration_id = ?;
 
+-- Select Current Discount
+SELECT *
+FROM Discounts
+WHERE discount_id = ?;
+
+-- Select Current Ticket
+SELECT *
+FROM Tickets
+WHERE ticket_id = ?;
+
+-- Select Current Ticket_Type
+SELECT * 
+FROM Ticket_Types
+WHERE ticket_type_id = ?;
+
+-- Select Current Course
+SELECT * 
+FROM Courses
+WHERE course_id = ?;
+
 -- Insert Attendee
 INSERT INTO Attendees (attendee_name, attendee_email, attendee_phone)
 VALUES ( :name, :email, :phone);
