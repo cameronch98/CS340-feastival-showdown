@@ -50,7 +50,7 @@ let updateAttendee = 'UPDATE Attendees SET attendee_name = ?, attendee_email = ?
 let updateCompetitor = 'UPDATE Competitors SET competitor_name = ?, competitor_email = ?, competitor_phone = ? WHERE competitor_id = ?;'
 let updateTeam = 'UPDATE Teams SET team_name = ? WHERE team_id = ?;'
 let updateEventYear = 'UPDATE Event_Years SET year = ? WHERE event_year_id = ?;'
-let updateTicketSales = 'UPDATE Ticket_Sales SET attendee_id = ?, ticket_type_id = ?, discount_id = ? WHERE ticket_sale_id = ?;'
+let updateTicketSales = 'UPDATE Ticket_Sales SET attendee_id = ?, ticket_id = ?, discount_id = ? WHERE ticket_sale_id = ?;'
 let updateRating = 'UPDATE Ratings SET dish_id = ?, rating = ?, comments = ?, attendee_id = ? WHERE rating_id = ?;'
 let updateDish = 'UPDATE Dishes SET dish_name = ?, dish_image = ?, dish_description = ?, course_id = ?, team_id = ?, event_year_id = ? WHERE dish_id = ?;'
 let updateReg = 'UPDATE Competitor_Registrations SET competitor_id = ?, team_id = ?, event_year_id = ? WHERE competitor_registration_id = ?;'

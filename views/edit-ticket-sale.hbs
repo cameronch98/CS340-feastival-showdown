@@ -39,8 +39,8 @@
         </select><br><br>
 
         <!-- Dropdown for Ticket Type -->
-        <label for="ticket-type">Ticket Type:</label>
-        <select id="ticket-type" name="ticket-type">
+        <label for="ticket">Ticket:</label>
+        <select id="ticket" name="ticket">
             {{#each ticketType}}
             <option value="{{this.ID}}" {{this.selected}}>{{this.Ticket}} </option>
             {{/each}}
