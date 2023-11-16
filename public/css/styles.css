@@ -139,6 +139,7 @@ tbody a {
     transform: translateY(6px);
 }
 
+
 .modal {
     display: none;
     position: fixed;
@@ -158,3 +159,15 @@ tbody a {
     border: 1px solid #888;
     width: 50%;
 }
+
+
+.descriptions {
+    box-shadow: 0 0 10px #333333;
+    border-color: #333333;
+    background-color: #366373;
+    width: 42%;
+    color: whitesmoke;
+    border-radius: 12px;
+    padding: 20px;
+}
+

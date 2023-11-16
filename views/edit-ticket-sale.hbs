@@ -25,7 +25,7 @@
             <li><a href="/event-years">Event Years</a></li>
         </ul>
     </div>
-    <h3>Edit Ticket Sale</h3>
+    <h3>Edit Ticket Sale:</h3>
     <form id="edit-ticket-sale-form-ajax">
         <!--Hidden select for id-->
         <input type="hidden" name="id" id="id" value="{{selectedTicket.ticket_sale_id}}"> 
@@ -39,10 +39,10 @@
         </select><br><br>
 
         <!-- Dropdown for Ticket Type -->
-        <label for="ticket-type">Ticket Type:</label>
-        <select id="ticket-type" name="ticket-type">
-            {{#each ticketType}}
-            <option value="{{this.ID}}" {{this.selected}}>{{this.Ticket}} </option>
+        <label for="ticket">Ticket:</label>
+        <select id="ticket" name="ticket">
+            {{#each ticket}}
+            <option value="{{this.ID}}" {{this.selected}}>{{this.Ticket}} {{this.Year}}</option>
             {{/each}}
         </select><br><br>
 

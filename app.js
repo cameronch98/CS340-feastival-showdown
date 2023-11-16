@@ -528,13 +528,13 @@ app.get('/edit-ticket-sale', function(req, res) {
 
                 
                 // ticket types query
-                db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
+                db.pool.query(queries.selectTickets, function(error, rows, fields){
 
-                    rows.forEach(ticketType =>{
-                        ticketType.selected = (ticketType.ID == selectedTicket.ticket_type_id) ? "selected" : ""
+                    rows.forEach(ticket =>{
+                        ticket.selected = (ticket.ID == selectedTicket.ticket_id) ? "selected" : ""
                     })
     
-                    resultsNew.ticketType = rows;
+                    resultsNew.ticket = rows;
                     
                     // discount query
                     db.pool.query(queries.selectDiscounts, function(error, rows, fields){
@@ -1014,7 +1014,7 @@ app.put('/edit-event-year-ajax', function(req, res){
 app.put('/edit-ticket-sale-ajax', function(req, res){
     let data = req.body
     console.log("data:", data)
-    let queryParams = [data.attendee, data.ticketType, data.discount, data.id]
+    let queryParams = [data.attendee, data.ticket, data.discount, data.id]
     //console.log(queryParams);
     db.pool.query(queries.updateTicketSales, queryParams, function(error, result) {
         if (error) {
@@ -1024,7 +1024,7 @@ app.put('/edit-ticket-sale-ajax', function(req, res){
             // Assuming 'result.insertId' contains the ID of the newly inserted attendee
             let updatedTicketSale = {
                 id: result.id,
-                ticketType: result.ticketType,
+                ticket: result.ticket,
                 attendee: result.attendee,
                 discount: result.discount,
             };

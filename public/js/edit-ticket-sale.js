@@ -13,25 +13,23 @@ document.addEventListener("DOMContentLoaded", () => {
         // Get form fields we need to get data from
         let updateID = document.getElementById("id")
         let newAttendee = document.getElementById("attendee");
-        let newTicketType = document.getElementById("ticket-type");
-        let newTotal = document.getElementById("total");
-        let newYear = document.getElementById("year");
+        let newTicket = document.getElementById("ticket");
+        let newDiscount = document.getElementById("discount");
 
         // Get the values from the form fields
         let ticketID = updateID.value;
         let attendeeValue = newAttendee.value;
-        let ticketTypeValue = newTicketType.value;
-        let totalValue = newTotal.value;
-        let yearValue = newYear.value;
+        let ticketValue = newTicket.value;
+        let discountValue = newDiscount.value;
 
         // Put our data we want to send in a javascript object
         let data = {
             id: ticketID,
             attendee: attendeeValue,
-            ticketType: ticketTypeValue,
-            total: totalValue,
-            year: yearValue
+            ticket: ticketValue,
+            discount: discountValue
         }
+        
         console.log("this is data:", data)
         
         // Setup our AJAX request
