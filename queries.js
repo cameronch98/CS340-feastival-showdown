@@ -57,6 +57,23 @@ let updateReg = 'UPDATE Competitor_Registrations SET competitor_id = ?, team_id 
 let updateDiscount ='UPDATE Discounts SET discount_name = ?, discount_percent = ? WHERE discount_id = ?;'
 
 /**
+ * Define delete queries
+ */
+
+let deleteAttendee = 'DELETE FROM Attendees WHERE attendee_id = ?;'
+let deleteTicket = 'DELETE FROM Tickets WHERE ticket_id = ?;'
+let deleteTicketType = 'DELETE FROM Ticket_Types WHERE ticket_type_id = ?;'
+let deleteDiscount = 'DELETE FROM Discounts WHERE discount_id = ?;'
+let deleteSale = 'DELETE FROM Ticket_Sales WHERE ticket_sale_id = ?;'
+let deleteCompetitor = 'DELETE FROM Competitors WHERE competitor_id = ?;'
+let deleteTeam = 'DELETE FROM Teams WHERE team_id = ?;'
+let deleteRegistration = 'DELETE FROM Competitor_Registrations WHERE competitor_registration_id = ?;'
+let deleteDish = 'DELETE FROM Dishes WHERE dish_id = ?;'
+let deleteCourse = 'DELETE FROM Courses WHERE course_id = ?;'
+let deleteRating = 'DELETE FROM Ratings WHERE rating_id = ?;'
+let deleteYear = 'DELETE FROM Event_Years WHERE event_year_id = ?;'
+
+/**
  * Define export object
  */
 let queries = {
@@ -102,7 +119,19 @@ let queries = {
     'updateRating':updateRating,
     'updateDish':updateDish,
     'updateReg':updateReg,
-    'updateDiscount':updateDiscount
+    'updateDiscount':updateDiscount,
+    'deleteAttendee':deleteAttendee,
+    'deleteTicket':deleteTicket,
+    'deleteTicketType':deleteTicketType,
+    'deleteDiscount':deleteDiscount,
+    'deleteSale':deleteSale,
+    'deleteCompetitor':deleteCompetitor,
+    'deleteTeam':deleteTeam,
+    'deleteRegistration':deleteRegistration,
+    'deleteDish':deleteDish,
+    'deleteCourse':deleteCourse,
+    'deleteRating':deleteRating,
+    'deleteYear':deleteYear
 };
 
 exports.queries = queries;

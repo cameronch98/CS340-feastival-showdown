@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Feastival Showdown</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/confirm-delete.js"></script>
 </head>
 <body>
     <h1>Feastival Showdown DB</h1>
@@ -42,11 +44,19 @@
                     <td><a onclick="editDiscount({{this.ID}})" href="/edit-discount?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Discount}}</td>
                     <td>{{this.Percent}}</td>
-                    <td><button onclick="deleteDiscount({{this.ID}})">Delete</button></td>
+                    <td><button onclick="confirmAndDelete('{{this.Discount}}', {{this.ID}}, '/delete-discount-ajax')"  >Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
+    </div>
+    {{!-- Hidden modal used as a custom pop up display--}}
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <p id="confirmationMessage">Are you sure you want to delete this item?</p>
+            <button id="confirmButton">Confirm</button>
+            <button id="cancelButton">Cancel</button>
+        </div>
     </div>
 </body>
 </html>

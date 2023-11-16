@@ -271,3 +271,9 @@ DELETE FROM Ratings WHERE rating_id = :character_ID_selected_from_ratings_page;
 
 -- Delete Event Year
 DELETE FROM Event_Years WHERE event_year_id = :character_ID_selected_from_event_years_page;
+
+-- Delete Course 
+DELETE FROM Courses WHERE course_id = :course_id;
+
+-- Delete Ticket
+DELETE FROM Tickets WHERE ticket_id = :ticket_id;
