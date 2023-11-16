@@ -29,20 +29,13 @@ app.set('view engine', '.hbs');                 // Tell express to use the handl
 const { queries } = require('./queries.js');
 
 // ====================================================================================================
-// ROUTES:
-//     Get, post, put, delete routes for selecting, inserting, updating, and deleting entities.
+// GET ROUTES
 // ====================================================================================================
 
-/**
- * GET OPERATIONS
- */
-
-// Render home page
 app.get('/', function(req, res) {
     res.render('index');
 });
 
-// Render attendees browse page
 app.get('/attendees', function(req, res) {
 
     // Run the select attendees query
@@ -59,12 +52,10 @@ app.get('/attendees', function(req, res) {
     })
 });
 
-// Render page to add new attendee
 app.get('/new-attendee', function(req, res) {
     res.render('new-attendee')
 });
 
-// Render page to edit an attendee
 app.get('/edit-attendee', function(req, res) { 
 
     // Get attendee ID from query parameter
@@ -78,14 +69,13 @@ app.get('/edit-attendee', function(req, res) {
             console.error('Error fetching attendee: ', err);
             res.status(500).send('Error fetching attendee');
         } else {
-            // Render page with form prepopulated by the attendee
+            // Render page with form elements prepopulated
             console.log("results: ", results[0])
             res.render('edit-attendee', {attendee: results[0]});
         }
     })
 });
 
-// Render competitor registrations browse page
 app.get('/competitor-registrations', function(req, res) {  
 
     // Run the select competitor registrations query
@@ -102,7 +92,6 @@ app.get('/competitor-registrations', function(req, res) {
     })
 });
 
-// Renders page for adding new competitor registration
 app.get('/new-competitor-registration', function(req, res) {   
 
     // Run the competitors query to prepopulate drop down
@@ -117,14 +106,13 @@ app.get('/new-competitor-registration', function(req, res) {
             db.pool.query(queries.selectEventYears, function(error, rows, fields){
                 results.year = rows; // Add years to results
 
-                // Render page with form drop downs prepopulated
+                // Render page with form elements prepopulated
                 res.render('new-competitor-registration', results);
             })
         })
     })
 });
 
-// Renders page for editing a competitor registration
 app.get('/edit-competitor-registration', function(req, res) {
 
     // Get registration ID from query parameter 
@@ -176,7 +164,7 @@ app.get('/edit-competitor-registration', function(req, res) {
                         // Add min max years to results
                         resultsNew.year = rows;
 
-                        // Render page with form drop downs prepopulated
+                        // Render page with form elements prepopulated
                         console.log("final object: ", resultsNew)
                         res.render('edit-competitor-registration', resultsNew);
                     })
@@ -186,29 +174,26 @@ app.get('/edit-competitor-registration', function(req, res) {
     })
 });
 
-// Render competitors browse page
 app.get('/competitors', function(req, res) {   
     
     // Run the select competitors query
     db.pool.query(queries.selectCompetitors, function(error, rows, fields){
-        if (err){
+        if (error){
             // Send error status and message
-            console.error('Error fetching competitors: ', err);
+            console.error('Error fetching competitors: ', error);
             res.status(500).send('Error fetching competitors');
         } else {
-            // Render page with form prepopulated by the attendee
+            // Render page with form elements prepopulated
             console.log("results: ", rows)
             res.render('competitors', {competitor: rows});
         }
     })
 });
 
-// Render page to add new competitor
 app.get('/new-competitor', function(req, res) {
     res.render('new-competitor')
 });
 
-// Render page to edit a competitor
 app.get('/edit-competitor', function(req, res) {
     
     // Get competitor ID from query parameter
@@ -222,21 +207,20 @@ app.get('/edit-competitor', function(req, res) {
             console.error('Error fetching competitor: ', err);
             res.status(500).send('Error fetching competitor');
         } else {
-            // Render page with form drop downs prepopulated
+            // Render page with form elements prepopulated
             console.log("results: ", results[0])
             res.render('edit-competitor', {competitor: results[0]});
         }
     })
 });
 
-// Render dishes browse page
 app.get('/dishes', function(req, res) {   
     
     // Run the select dishes query
     db.pool.query(queries.selectDishes, function(error, rows, fields){
-        if (err){
+        if (error){
             // Send error status and message
-            console.error('Error fetching dishes: ', err);
+            console.error('Error fetching dishes: ', error);
             res.status(500).send('Error fetching dishes');
         } else {
             // Render dishes page and tables
@@ -246,7 +230,6 @@ app.get('/dishes', function(req, res) {
     })
 });
 
-// Render page to add new dish
 app.get('/new-dish', function(req, res) {
 
     // Run the courses query to prepopulate drop down
@@ -261,14 +244,13 @@ app.get('/new-dish', function(req, res) {
             db.pool.query(queries.selectEventYears, function(error, rows, fields){
                 results.year = rows; // Add years to results
 
-                // Render page with form drop downs prepopulated
+                // Render page with form elements prepopulated
                 res.render('new-dish', results);
             })
         })
     })
 });
 
-// Render page to edit a dish
 app.get('/edit-dish', function(req, res) {  
     
     // Get dish ID from query parameter
@@ -320,7 +302,7 @@ app.get('/edit-dish', function(req, res) {
                         // Add min max years to results
                         resultsNew.year = rows;
 
-                        // Render page with form drop downs prepopulated
+                        // Render page with form elements prepopulated
                         console.log('final object: ', resultsNew)
                         res.render('edit-dish', resultsNew);
                     })
@@ -330,14 +312,13 @@ app.get('/edit-dish', function(req, res) {
     })
 });
 
-// Render discounts browse page
 app.get('/discounts', function(req, res) {
 
     // Run discounts query
     db.pool.query(queries.selectDiscounts, function(error, rows, fields){
-        if (err){
+        if (error){
             // Send error status and message
-            console.error('Error fetching discounts: ', err);
+            console.error('Error fetching discounts: ', error);
             res.status(500).send('Error fetching discounts');
         } else {
             // Render discounts page and tables
@@ -347,21 +328,24 @@ app.get('/discounts', function(req, res) {
     })
 });
 
-// Render page to add a new discount
 app.get('/new-discount', function(req, res) {
-    // Render edit page for discounts
     res.render('new-discount')
 })
 
-// Render page to edit a discount
 app.get('/edit-discount', function(req, res) {
+
+    // Get discount ID from query parameter
     const discountID = req.query.id
     console.log("discountID:", discountID)
-    db.pool.query(queries.selectDiscount, [discountID], function(err, results){
+
+    // Query for discount with given ID
+    db.pool.query(queries.selectEditDiscount, [discountID], function(err, results){
         if (err){
+            // Send error status and message
             console.error('Error fetching event year: ', err);
             res.status(500).send('Error fetching event year');
         } else {
+            // Render page with form elements prepopulated
             console.log("results: ", results[0])
             res.render('edit-discount', {discount: results[0]});
         }
@@ -369,27 +353,34 @@ app.get('/edit-discount', function(req, res) {
 });
 
 app.get('/courses', function(req, res) {
+
     // Run courses query
     db.pool.query(queries.selectCourses, function(error, rows, fields){
-
-        // Render course page and table
-        res.render('courses', {course: rows});
+        if (error){
+            // Send error status and message
+            console.error('Error fetching courses: ', error);
+            res.status(500).send('Error fetching courses');
+        } else {
+            // Render courses page and tables
+            console.log("results: ", rows)
+            res.render('courses', {course: rows});
+        }
     })
 });
 
 app.get('/new-course', function(req, res) {
-    // Render edit page for courses
     res.render('new-course')
 })
 
 app.get('/edit-course', function(req, res) {
-    // Run courses query
+
+    // Get course ID from query parameter
     let courseID = req.query.id
 
-    db.pool.query(queries.selectCourse,[courseID], function(error, rows, fields){
-
-        console.log("final object:", rows[0])
+    // Query for course with given ID
+    db.pool.query(queries.selectEditCourse,[courseID], function(error, rows, fields){
         // Render course page and table
+        console.log("final object:", rows[0])
         res.render('edit-course', {selectedCourse: rows[0]});
     })
 });
@@ -397,9 +388,15 @@ app.get('/edit-course', function(req, res) {
 app.get('/event-years', function(req, res) {   
     // Run the select event years query
     db.pool.query(queries.selectEventYears, function(error, rows, fields){
-
-        // Render event years page and tables
-        res.render('event-years', {eventYear: rows});
+        if (error){
+            // Send error status and message
+            console.error('Error fetching years: ', error);
+            res.status(500).send('Error fetching years');
+        } else {
+            // Render event years page and tables
+            console.log("results: ", rows)
+            res.render('event-years', {eventYear: rows});
+        }
     })
 });
 
@@ -408,54 +405,65 @@ app.get('/new-event-year', function(req, res) {
 });
 
 app.get('/edit-event-year', function(req, res) {   
+
+    // Get event year ID from query parameter
     const eventYearID = req.query.id
     console.log("eventYearID:", eventYearID)
+
+    // Query for year with given ID
     db.pool.query(queries.selectEditEventYear, [eventYearID], function(err, results){
         if (err){
+            // Send error status and message
             console.error('Error fetching event year: ', err);
             res.status(500).send('Error fetching event year');
         } else {
+            // Render page with form elements prepopulated
             console.log("results: ", results[0])
             res.render('edit-event-year', {eventYear: results[0]});
         }
     })
 });
 
-
 app.get('/ratings', function(req, res) { 
+
     // Run the select ratings query
     db.pool.query(queries.selectRatings, function(error, rows, fields){
-
-        // Render ratings page and tables
-        res.render('ratings', {rating: rows});
+        if (error){
+            // Send error status and message
+            console.error('Error fetching ratings: ', error);
+            res.status(500).send('Error fetching ratings');
+        } else {
+            // Render ratings page and tables
+            console.log("results: ", rows)
+            res.render('ratings', {rating: rows});
+        }
     })
 });
 
-app.get('/new-rating', function(req, res) {   
+app.get('/new-rating', function(req, res) {  
+
     // Run the dishes query to prepopulate drop down
     db.pool.query(queries.selectDishes, function(error, rows, fields){
-
-        // Add competitors to results
-        let results = {dish:rows};
+        let results = {dish:rows}; // Add competitors to results
 
         // Run the attendees query to prepopulate drop down
         db.pool.query(queries.selectAttendees, function(error, rows, fields){
+            results.attendee = rows; // Add teams to results
 
-            // Add teams to results
-            results.attendee = rows;
-
-            // Render page
+            // Render page with form elements prepopulated
             res.render('new-rating', results);
         })
     })
 });
 
 app.get('/edit-rating', function(req, res) {   
+
+    // Get rating ID from query parameter
     const ratingID = req.query.id;
     console.log("ratingID from Get: ", ratingID)
 
-    // retrieve the current rating
-    db.pool.query('SELECT * from Ratings WHERE rating_id = ?;', [ratingID], function(err, results){
+    // Query for rating with given ID
+    db.pool.query(queries.selectEditRating, [ratingID], function(err, results){
         if (err){
             console.error('Error fetching rating:', err);
             res.status(500).send('Error fetching rating');
@@ -466,10 +474,12 @@ app.get('/edit-rating', function(req, res) {
             // Run the dishes query to prepopulate drop down
             db.pool.query(queries.selectDishes, function(error, rows, fields){
 
+                // Set preselected option to correct dish
                 rows.forEach(dish=>{
                     dish.selected = (dish.ID == selectedRating.rating_id) ? "selected" : ""
                 })
 
+                // Add dishes to rows
                 let resultsNew = {
                     selectedRating: selectedRating,
                     dish:rows
@@ -478,6 +488,7 @@ app.get('/edit-rating', function(req, res) {
                 // Run the attendees query to prepopulate drop down
                 db.pool.query(queries.selectAttendees, function(error, rows, fields){
                     
+                    // Set preselected option to correct attendee
                     rows.forEach(attendee=>{
                         attendee.selected = (attendee.ID == selectedRating.attendee_id) ? "selected" : ""
                     })
@@ -485,8 +496,8 @@ app.get('/edit-rating', function(req, res) {
                     // Add attendee to results
                     resultsNew.attendee = rows;
                     
+                    // Render page with form elements prepopulated
                     console.log("final object: ", resultsNew)
-                    // Render page
                     res.render('edit-rating', resultsNew);
                 })
             })
@@ -495,12 +506,19 @@ app.get('/edit-rating', function(req, res) {
     })
 });
 
-app.get('/teams', function(req, res) {   
+app.get('/teams', function(req, res) {  
+ 
     // Run the select teams query
     db.pool.query(queries.selectTeams, function(error, rows, fields){
-
-        // Render teams page and tables
-        res.render('teams', {team: rows});
+        if (error){
+            // Send error status and message
+            console.error('Error fetching teams: ', error);
+            res.status(500).send('Error fetching teams');
+        } else {
+            // Render teams page and tables
+            console.log("results: ", rows)
+            res.render('teams', {team: rows});
+        }
     })
 });
 
@@ -509,60 +527,61 @@ app.get('/new-team', function(req, res) {
 });
 
 app.get('/edit-team', function(req, res) {   
+
+    // Get team ID from query parameter
     const teamID = req.query.id
     console.log("teamID:", teamID)
+
+    // Query for team with given ID
     db.pool.query(queries.selectEditTeam, [teamID], function(err, results){
         if (err){
+            // Send error status and message
             console.error('Error fetching attendee: ', err);
             res.status(500).send('Error fetching attendee');
         } else {
+            // Render page with form elements prepopulated
             console.log("results: ", results[0])
             res.render('edit-team', {team: results[0]});
         }
     })
 });
 
-
 app.get('/ticket-sales', function(req, res) {
+
     // Run the select ticket sales query
     db.pool.query(queries.selectTicketSales, function(error, rows, fields){
-
-        // Render results on page
-        console.log("ticket-sales object:", rows)
-        res.render('ticket-sales', {ticketSale: rows});
+        if (error){
+            // Send error status and message
+            console.error('Error fetching ticket sales: ', error);
+            res.status(500).send('Error fetching ticket sales');
+        } else {
+            // Render ratings page and tables
+            console.log("results: ", rows)
+            res.render('ticket-sales', {ticketSale: rows});
+        }
     })
 });
 
 app.get('/new-ticket-sale', function(req, res) {
     // Run the attendees query to prepopulate drop down
     db.pool.query(queries.selectAttendees, function(error, rows, fields){
-
-        // Add competitors to results
-        let results = {attendee:rows};
+        let results = {attendee:rows}; // Add competitors to results
 
         // Run the tickets query to prepopulate drop down
         db.pool.query(queries.selectTickets, function(error, rows, fields){
-
-            // Add teams to results
-            results.ticket = rows;
+            results.ticket = rows; // Add teams to results
 
             // Run the discounts query to prepopulate drop down
             db.pool.query(queries.selectDiscounts, function(error, rows, fields){
-
-                // Add discount to results
-                results.discount = rows;
+                results.discount = rows; // Add discounts to results
 
                 // Run the event year query to prepopulate drop down
                 db.pool.query(queries.selectEventYears, function(error, rows, fields){
-
-                    // Add event year to results
-                    results.year = rows;
+                    results.year = rows; // Add event years to results
                     
-                    // Render page
+                    // Render page with form elements prepopulated
                     res.render('new-ticket-sale', results);
-
                 })
-                
             })
         })
     })
@@ -570,51 +589,58 @@ app.get('/new-ticket-sale', function(req, res) {
 
 app.get('/edit-ticket-sale', function(req, res) {
 
+    // Get ticket sale ID from query parameter
     const ticketSaleID = req.query.id
     console.log("ticketSaleID:", ticketSaleID)
 
-    // retrieve the current ticket id object
-    db.pool.query('SELECT * from Ticket_Sales WHERE ticket_sale_id = ?;',[ticketSaleID], function(err, results){
+    // Query for ticket sale with given ID
+    db.pool.query(queries.selectEditTicketSale,[ticketSaleID], function(err, results){
         if (err){
+            // Send error status and message
             console.error('Error fetching ticket_sale: ', err);
             res.status(500).send('Error fetching ticket_sale');
         } else {
             // use it as a base
             let selectedTicket = results[0];
             
+            // Run the attendees query to prepopulate drop down
             db.pool.query(queries.selectAttendees, function(error, rows, fields){
 
-                // add a new "selected" key to identify it
+                // Set preselected option to correct attendee
                 rows.forEach(attendee =>{
                     attendee.selected = (attendee.ID == selectedTicket.attendee_id) ? "selected" : ""
                 })
-                // create results object to send 
+
+                // Add attendees to results 
                 let resultsNew = {
                     selectedTicket: selectedTicket,
                     attendee:rows
                 }
 
-                
-                // ticket types query
+                // Run tickets query to prepopulate drop down
                 db.pool.query(queries.selectTickets, function(error, rows, fields){
 
+                    // Set preselected option to correct ticket
                     rows.forEach(ticket =>{
                         ticket.selected = (ticket.ID == selectedTicket.ticket_id) ? "selected" : ""
                     })
-    
+                    
+                    // Add tickets to results
                     resultsNew.ticket = rows;
                     
-                    // discount query
+                    // Run discounts query to prepopulate drop down
                     db.pool.query(queries.selectDiscounts, function(error, rows, fields){
-                            
+                        
+                        // Set preselected option to correct discount
                         rows.forEach(discount=>{
                             discount.selected = (discount.ID == selectedTicket.discount_id) ? "selected" : ""
                         })
 
+                        // Add discounts to results
                         resultsNew.discount = rows;
                     
+                        // Render page with form elements prepopulated
                         console.log("final object: ", resultsNew)
-                        // Render page
                         res.render('edit-ticket-sale', resultsNew);
                     })
                 })
@@ -637,49 +663,59 @@ app.get('/tickets', function(req, res){
 app.get('/new-ticket', function(req, res){
     // Run the ticket types query to prepopulate drop down
     db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
-
-        // Add ticket types to results
-        let results = {ticketType: rows};
+        let results = {ticketType: rows}; // Add ticket types to results
 
         // Run the years query to prepopulate drop down
         db.pool.query(queries.selectEventYears, function(error, rows, fields){
+            results.year = rows; // Add event years to results
 
-            // Add event years to results
-            results.year = rows;
-
-            // Render new ticket page
+            // Render page with form elements prepopulated
             res.render('new-ticket', results);
         })
     })
 });
 
 app.get('/edit-ticket', function(req, res){
+
+    // Get ticket ID from query parameter
     let ticketID = req.query.id;
     console.log("ticketID", ticketID);
 
-    db.pool.query(queries.selectTicket, [ticketID], function(err, results){
+    // Query for ticket with given ID
+    db.pool.query(queries.selectEditTicket, [ticketID], function(err, results){
         if (err){
+            // Send error status and message
             console.error('Error fetching ticket: ', err);
             res.status(500).send('Error fetching ticket');
         } else {
             let selectedTicket = results[0];
 
+            // Run ticket types query to prepopulate drop down
             db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
+
+                // Set preselected option to correct ticket type
                 rows.forEach(types =>{
                     types.selected = (types.ID == selectedTicket.ticket_type_id) ? "selected" : "";
                 });
 
+                // Add ticket types to results
                 let resultsNew = {
                     selectedTicket: selectedTicket,
                     ticketType: rows
                 };
 
+                // Run event years query to prepopulate drop down
                 db.pool.query(queries.selectEventYears, function(error, rows, fields){
+
+                    // Set preselected option to correct year
                     rows.forEach(year => {
                         year.selected = (year.ID == selectedTicket.even_year_id) ? "selected" : "";
                     });
 
+                    // Add years to results
                     resultsNew.year = rows;
+
+                    // Render page with form elements prepopulated
                     console.log("final object:", resultsNew);
                     res.render('edit-ticket', resultsNew);
                 });
@@ -688,13 +724,12 @@ app.get('/edit-ticket', function(req, res){
     }); 
 });
 
-
 app.get('/ticket-types', function(req, res){
     // Run the select ticket types query
     db.pool.query(queries.selectTicketTypes, function(error, rows, fields){
 
-        console.log("ticket type object:", rows)
         // Render ticket types page and tables
+        console.log("ticket type object:", rows)
         res.render('ticket-types', {ticketType: rows});
     })
 });
@@ -704,30 +739,33 @@ app.get('/new-ticket-type', function(req, res) {
     res.render('new-ticket-type')
 })
 
-
 app.get('/edit-ticket-type', function(req, res){
     
+    // Get the ticket type ID from query parameter
     let typeID = req.query.id
     console.log("typeID: ", typeID)
+
     // Run the select ticket types query
     db.pool.query(queries.selectType,[typeID], function(error, rows, fields){
 
+        // Render page with form elements prepopulated
         console.log("final object:", rows)
-        // Render ticket types page and tables
         res.render('edit-ticket-type', {ticketType: rows[0]});
     })
 });
 
 
 // ====================================================================================================
-// POST OPERATIONS
+// POST ROUTES
 // ====================================================================================================
 
 app.post('/add-attendee-ajax', function(req, res) {
+    // Get data from form submission
     let data = req.body;
     let queryParams = [data.name, data.email, data.phone];
     console.log(queryParams);
 
+    // Run query to insert attendee with the form data
     db.pool.query(queries.insertAttendee, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -746,10 +784,12 @@ app.post('/add-attendee-ajax', function(req, res) {
 });
 
 app.post('/add-competitor-registration-ajax', function(req, res) {
+    // Get data from form submission
     let data = req.body;
     let queryParams = [data.competitor, data.team, data.year];
     console.log(queryParams);
 
+    // Run query to insert competitor registration with form data
     db.pool.query(queries.insertCompetitorReg, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -768,10 +808,12 @@ app.post('/add-competitor-registration-ajax', function(req, res) {
 });
 
 app.post('/add-competitor-ajax', function(req, res) {
+    // Get data from form submission
     let data = req.body;
     let queryParams = [data.name, data.email, data.phone];
     console.log(queryParams);
 
+    // Run query to insert competitor with form data
     db.pool.query(queries.insertCompetitor, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -790,6 +832,7 @@ app.post('/add-competitor-ajax', function(req, res) {
 });
 
 app.post('/add-dish-ajax', function(req, res) {
+    // Get data from form submission
     let data = req.body;
     let queryParams = [
         data.dishName,
@@ -801,6 +844,7 @@ app.post('/add-dish-ajax', function(req, res) {
     ];
     console.log(queryParams);
 
+    // Run query to insert dish with form data
     db.pool.query(queries.insertDish, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -822,10 +866,12 @@ app.post('/add-dish-ajax', function(req, res) {
 });
 
 app.post('/add-discount-ajax', function(req, res) {
+    // Get data from form submission
     let data = req.body;
     let queryParams = [data.discount, data.percent];
     console.log(queryParams);
 
+    // Run query to insert discount with form data
     db.pool.query(queries.insertDiscount, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -843,10 +889,12 @@ app.post('/add-discount-ajax', function(req, res) {
 });
 
 app.post('/add-course-ajax', function(req, res) {
+    // Get data from form submission
     let data = req.body;
     let queryParams = [data.course];
     console.log(queryParams);
 
+    // Run query to insert course with form data
     db.pool.query(queries.insertCourse, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -863,10 +911,12 @@ app.post('/add-course-ajax', function(req, res) {
 });
 
 app.post('/add-event-year-ajax', function(req, res) {
+    // Get data from form submission
     let data = req.body;
     let queryParams = [data.year];
     console.log(queryParams);
 
+    // Run query to insert event year with form data
     db.pool.query(queries.insertEventYear, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -883,10 +933,12 @@ app.post('/add-event-year-ajax', function(req, res) {
 });
 
 app.post('/add-rating-ajax', function(req, res) {
+    // Get data from form submission
     let data = req.body;
     let queryParams = [data.dish, data.rating, data.comments, data.attendee];
     console.log(queryParams);
 
+    // Run query to insert rating with form data
     db.pool.query(queries.insertRating, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -995,7 +1047,7 @@ app.post('/add-ticket-type-ajax', function(req, res) {
 });
 
 // ====================================================================================================
-// PUT OPERATIONS
+// PUT ROUTES
 // ====================================================================================================
 
 app.put('/edit-attendee-ajax', function(req, res){
@@ -1198,12 +1250,15 @@ app.put('/edit-discount-ajax', function(req, res){
 });
 
 // ====================================================================================================
-// DELETE OPERATIONS
+// DELETE ROUTES
 // ====================================================================================================
 
 app.delete('/delete-attendee-ajax', function(req, res) {
+    // Get attendee ID captured by onclick function/handlebars
     const attendeeID = req.body.id;
     console.log('Deleting: ', attendeeID)
+
+    // Run query to delete attendee with the given ID
     db.pool.query(queries.deleteAttendee, [attendeeID], function(err, results) {
         if (err) {
             console.error('Error deleting attendee: ', err);
@@ -1216,8 +1271,11 @@ app.delete('/delete-attendee-ajax', function(req, res) {
 });
 
 app.delete('/delete-ticket-ajax', function(req, res) {
+    // Get ticket ID captured by onclick function/handlebars
     const ticketID = req.body.id;
     console.log('Deleting: ', ticketID)
+
+    // Run query to delete ticket with given ID
     db.pool.query(queries.deleteTicket, [ticketID], function(err, results) {
         if (err) {
             console.error('Error deleting attendee: ', err);
@@ -1230,8 +1288,11 @@ app.delete('/delete-ticket-ajax', function(req, res) {
 });
 
 app.delete('/delete-ticket-type-ajax', function(req, res) {
+    // Get ticket type ID captured by onclick function/handlebars
     const ticketID = req.body.id;
     console.log('Deleting: ', ticketID)
+
+    // Run query to delete ticket type with the given ID
     db.pool.query(queries.deleteTicketType, [ticketID], function(err, results) {
         if (err) {
             console.error('Error deleting attendee: ', err);
@@ -1244,8 +1305,11 @@ app.delete('/delete-ticket-type-ajax', function(req, res) {
 });
 
 app.delete('/delete-discount-ajax', function(req, res) {
+    // Get discount ID captured by onclick function/handlebars
     const discountID = req.body.id;
     console.log('Deleting: ', discountID)
+
+    // Run query to delete discount with the given ID
     db.pool.query(queries.deleteDiscount, [discountID], function(err, results) {
         if (err) {
             console.error('Error deleting discount: ', err);
@@ -1258,8 +1322,11 @@ app.delete('/delete-discount-ajax', function(req, res) {
 });
 
 app.delete('/delete-ticket-sale-ajax', function(req, res) {
+    // Get ticket sale ID captured by onclick function/handlebars
     const saleID = req.body.id;
     console.log('Deleting: ', saleID)
+
+    // Run query to delete ticket sale with given ID
     db.pool.query(queries.deleteSale, [saleID], function(err, results) {
         if (err) {
             console.error('Error deleting ticket sale: ', err);
@@ -1272,8 +1339,11 @@ app.delete('/delete-ticket-sale-ajax', function(req, res) {
 });
 
 app.delete('/delete-competitor-ajax', function(req, res) {
+    // Get competitor ID captured by onclick function/handlebars
     const competitorID = req.body.id;
     console.log('Deleting: ', competitorID)
+
+    // Run query to delete competitor with given ID
     db.pool.query(queries.deleteCompetitor, [competitorID], function(err, results) {
         if (err) {
             console.error('Error deleting competitor: ', err);
@@ -1287,8 +1357,11 @@ app.delete('/delete-competitor-ajax', function(req, res) {
 
 
 app.delete('/delete-team-ajax', function(req, res) {
+    // Get team ID captured by onclick function/handlebars
     const teamID = req.body.id;
     console.log('Deleting: ', teamID)
+
+    // Run query to delete team with given ID
     db.pool.query(queries.deleteTeam, [teamID], function(err, results) {
         if (err) {
             console.error('Error deleting team: ', err);
@@ -1301,8 +1374,11 @@ app.delete('/delete-team-ajax', function(req, res) {
 });
 
 app.delete('/delete-competitor-registration-ajax', function(req, res) {
+    // Get competitor registration ID captured by onclick function/handlebars
     const registrationID = req.body.id;
     console.log('Deleting: ', registrationID)
+
+    // Run query to delete competitor registration with given ID
     db.pool.query(queries.deleteRegistration, [registrationID], function(err, results) {
         if (err) {
             console.error('Error deleting competitor registration: ', err);
@@ -1315,8 +1391,11 @@ app.delete('/delete-competitor-registration-ajax', function(req, res) {
 });
 
 app.delete('/delete-dish-ajax', function(req, res) {
+    // Get dish ID captured by onclick function/handlebars
     const dishID = req.body.id;
     console.log('Deleting: ', dishID)
+
+    // Run query to delete dish with given ID
     db.pool.query(queries.deleteDish, [dishID], function(err, results) {
         if (err) {
             console.error('Error deleting dish: ', err);
@@ -1329,8 +1408,11 @@ app.delete('/delete-dish-ajax', function(req, res) {
 });
 
 app.delete('/delete-course-ajax', function(req, res) {
+    // Get course ID captured by onclick function/handlebars
     const courseID = req.body.id;
     console.log('Deleting: ', courseID)
+
+    // Run query to delete course with given ID
     db.pool.query(queries.deleteCourse, [courseID], function(err, results) {
         if (err) {
             console.error('Error deleting course: ', err);
@@ -1343,8 +1425,11 @@ app.delete('/delete-course-ajax', function(req, res) {
 });
 
 app.delete('/delete-rating-ajax', function(req, res) {
+    // Get rating ID captured by onclick function/handlebars
     const ratingID = req.body.id;
     console.log('Deleting: ', ratingID)
+
+    // Run query to delete rating with given ID
     db.pool.query(queries.deleteRating, [ratingID], function(err, results) {
         if (err) {
             console.error('Error deleting rating: ', err);
@@ -1357,8 +1442,11 @@ app.delete('/delete-rating-ajax', function(req, res) {
 });
 
 app.delete('/delete-event-year-ajax', function(req, res) {
+    // Get year ID captured by onclick function/handlebars
     const yearID = req.body.id;
     console.log('Deleting: ', yearID)
+
+    // Run query to delete year with given ID
     db.pool.query(queries.deleteYear, [yearID], function(err, results) {
         if (err) {
             console.error('Error deleting year: ', err);
@@ -1369,7 +1457,6 @@ app.delete('/delete-event-year-ajax', function(req, res) {
         }
     });
 });
-
 
 /*
     LISTENER

@@ -23,10 +23,12 @@ let selectEditTeam = 'SELECT * FROM Teams WHERE team_id= ?;'
 let selectEditEventYear = 'SELECT * FROM Event_Years WHERE event_year_id= ?;'
 let selectEditDish = 'SELECT * FROM Dishes WHERE dish_id = ?;'
 let selectEditReg = 'SELECT * FROM Competitor_Registrations WHERE competitor_registration_id = ?;'
-let selectDiscount = 'SELECT * FROM Discounts WHERE discount_id = ?;'
-let selectTicket = 'SELECT * FROM Tickets WHERE ticket_id = ?;'
-let selectType = 'SELECT * from Ticket_Types WHERE ticket_type_id = ?;'
-let selectCourse = 'SELECT * from Courses WHERE course_id = ?;'
+let selectEditRating = 'SELECT * from Ratings WHERE rating_id = ?;'
+let selectEditDiscount = 'SELECT * FROM Discounts WHERE discount_id = ?;'
+let selectEditTicket = 'SELECT * FROM Tickets WHERE ticket_id = ?;'
+let selectEditTicketSale = 'SELECT * from Ticket_Sales WHERE ticket_sale_id = ?;'
+let selectEditType = 'SELECT * from Ticket_Types WHERE ticket_type_id = ?;'
+let selectEditCourse = 'SELECT * from Courses WHERE course_id = ?;'
 
 /**
  * Define insert queries
@@ -96,10 +98,12 @@ let queries = {
     'selectEditEventYear':selectEditEventYear,
     'selectEditDish':selectEditDish,
     'selectEditReg':selectEditReg,
-    'selectDiscount':selectDiscount,
-    'selectTicket':selectTicket,
-    'selectType':selectType,
-    'selectCourse':selectCourse,
+    'selectEditRating': selectEditRating,
+    'selectEditDiscount':selectEditDiscount,
+    'selectEditTicket':selectEditTicket,
+    'selectEditTicketSale': selectEditTicketSale,
+    'selectEditType':selectEditType,
+    'selectEditCourse':selectEditCourse,
     'insertAttendee': insertAttendee,
     'insertCompetitorReg': insertCompetitorReg,
     'insertCompetitor': insertCompetitor,
