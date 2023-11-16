@@ -1125,6 +1125,176 @@ app.put('/edit-discount-ajax', function(req, res){
     });
 });
 
+app.delete('/delete-attendee-ajax', function(req, res) {
+    const attendeeID = req.body.id;
+    console.log('Deleting: ', attendeeID)
+    db.pool.query(queries.deleteAttendee, [attendeeID], function(err, results) {
+        if (err) {
+            console.error('Error deleting attendee: ', err);
+            res.status(500).send('Error deleting attendee');
+        } else {
+            console.log("Attendee deleted successfully");
+            res.status(200).send('Attendee deleted successfully');
+        }
+    });
+});
+
+app.delete('/delete-ticket-ajax', function(req, res) {
+    const ticketID = req.body.id;
+    console.log('Deleting: ', ticketID)
+    db.pool.query(queries.deleteTicket, [ticketID], function(err, results) {
+        if (err) {
+            console.error('Error deleting attendee: ', err);
+            res.status(500).send('Error deleting ticket');
+        } else {
+            console.log("Ticket deleted successfully");
+            res.status(200).send('Ticket deleted successfully');
+        }
+    });
+});
+
+app.delete('/delete-ticket-type-ajax', function(req, res) {
+    const ticketID = req.body.id;
+    console.log('Deleting: ', ticketID)
+    db.pool.query(queries.deleteTicketType, [ticketID], function(err, results) {
+        if (err) {
+            console.error('Error deleting attendee: ', err);
+            res.status(500).send('Error deleting ticket type');
+        } else {
+            console.log("Ticket deleted successfully");
+            res.status(200).send('Ticket deleted successfully');
+        }
+    });
+});
+
+app.delete('/delete-discount-ajax', function(req, res) {
+    const discountID = req.body.id;
+    console.log('Deleting: ', discountID)
+    db.pool.query(queries.deleteDiscount, [discountID], function(err, results) {
+        if (err) {
+            console.error('Error deleting discount: ', err);
+            res.status(500).send('Error deleting discount');
+        } else {
+            console.log("Discount deleted successfully");
+            res.status(200).send('Discount deleted successfully');
+        }
+    });
+});
+
+app.delete('/delete-ticket-sale-ajax', function(req, res) {
+    const saleID = req.body.id;
+    console.log('Deleting: ', saleID)
+    db.pool.query(queries.deleteSale, [saleID], function(err, results) {
+        if (err) {
+            console.error('Error deleting ticket sale: ', err);
+            res.status(500).send('Error deleting ticket sale');
+        } else {
+            console.log("Ticket Sale deleted successfully");
+            res.status(200).send('Ticket Sale deleted successfully');
+        }
+    });
+});
+
+app.delete('/delete-competitor-ajax', function(req, res) {
+    const competitorID = req.body.id;
+    console.log('Deleting: ', competitorID)
+    db.pool.query(queries.deleteCompetitor, [competitorID], function(err, results) {
+        if (err) {
+            console.error('Error deleting competitor: ', err);
+            res.status(500).send('Error deleting competitor');
+        } else {
+            console.log("competitor deleted successfully");
+            res.status(200).send('competitor deleted successfully');
+        }
+    });
+});
+
+
+app.delete('/delete-team-ajax', function(req, res) {
+    const teamID = req.body.id;
+    console.log('Deleting: ', teamID)
+    db.pool.query(queries.deleteTeam, [teamID], function(err, results) {
+        if (err) {
+            console.error('Error deleting team: ', err);
+            res.status(500).send('Error deleting team');
+        } else {
+            console.log("Team deleted successfully");
+            res.status(200).send('Team deleted successfully');
+        }
+    });
+});
+
+app.delete('/delete-competitor-registration-ajax', function(req, res) {
+    const registrationID = req.body.id;
+    console.log('Deleting: ', registrationID)
+    db.pool.query(queries.deleteRegistration, [registrationID], function(err, results) {
+        if (err) {
+            console.error('Error deleting competitor registration: ', err);
+            res.status(500).send('Error deleting competitor registration');
+        } else {
+            console.log("competitor registration deleted successfully");
+            res.status(200).send('competitor registration deleted successfully');
+        }
+    });
+});
+
+app.delete('/delete-dish-ajax', function(req, res) {
+    const dishID = req.body.id;
+    console.log('Deleting: ', dishID)
+    db.pool.query(queries.deleteDish, [dishID], function(err, results) {
+        if (err) {
+            console.error('Error deleting dish: ', err);
+            res.status(500).send('Error deleting dish');
+        } else {
+            console.log("Dish deleted successfully");
+            res.status(200).send('Dish deleted successfully');
+        }
+    });
+});
+
+app.delete('/delete-course-ajax', function(req, res) {
+    const courseID = req.body.id;
+    console.log('Deleting: ', courseID)
+    db.pool.query(queries.deleteCourse, [courseID], function(err, results) {
+        if (err) {
+            console.error('Error deleting course: ', err);
+            res.status(500).send('Error deleting course');
+        } else {
+            console.log("Course deleted successfully");
+            res.status(200).send('Course deleted successfully');
+        }
+    });
+});
+
+app.delete('/delete-rating-ajax', function(req, res) {
+    const ratingID = req.body.id;
+    console.log('Deleting: ', ratingID)
+    db.pool.query(queries.deleteRating, [ratingID], function(err, results) {
+        if (err) {
+            console.error('Error deleting rating: ', err);
+            res.status(500).send('Error deleting rating');
+        } else {
+            console.log("Rating deleted successfully");
+            res.status(200).send('Rating deleted successfully');
+        }
+    });
+});
+
+app.delete('/delete-event-year-ajax', function(req, res) {
+    const yearID = req.body.id;
+    console.log('Deleting: ', yearID)
+    db.pool.query(queries.deleteYear, [yearID], function(err, results) {
+        if (err) {
+            console.error('Error deleting year: ', err);
+            res.status(500).send('Error deleting year');
+        } else {
+            console.log("Year deleted successfully");
+            res.status(200).send('Year deleted successfully');
+        }
+    });
+});
+
+
 /*
     LISTENER
 */
