@@ -28,82 +28,113 @@ app.set('view engine', '.hbs');                 // Tell express to use the handl
 // Queries
 const { queries } = require('./queries.js');
 
-/*
-    ROUTES
-*/
+// ====================================================================================================
+// ROUTES:
+//     Get, post, put, delete routes for selecting, inserting, updating, and deleting entities.
+// ====================================================================================================
 
-// GETs
+/**
+ * GET OPERATIONS
+ */
 
+// Render home page
 app.get('/', function(req, res) {
     res.render('index');
 });
 
-app.get('/attendees', function(req, res) {   
+// Render attendees browse page
+app.get('/attendees', function(req, res) {
+
     // Run the select attendees query
     db.pool.query(queries.selectAttendees, function(error, rows, fields){
-
-        // Render attendee page and tables
-        res.render('attendees', {attendee: rows});
+        if (error){
+            // Send error status and message
+            console.error('Error selecting attendees: ', error);
+            res.status(500).send('Error selecting attendees');
+        } else {
+            // Render attendees page and table
+            console.log("results: ", rows);
+            res.render('attendees', {attendee: rows});
+        }
     })
 });
 
-app.get('/new-attendee', function(req, res) {   // link to add new attendee
+// Render page to add new attendee
+app.get('/new-attendee', function(req, res) {
     res.render('new-attendee')
 });
 
-app.get('/edit-attendee', function(req, res) {   
+// Render page to edit an attendee
+app.get('/edit-attendee', function(req, res) { 
+
+    // Get attendee ID from query parameter
     const attendeeID = req.query.id
     console.log("attendeID:", attendeeID)
+
+    // Query for the attendee with the given ID
     db.pool.query(queries.selectEditAttendee, [attendeeID], function(err, results){
         if (err){
+            // Send error status and message
             console.error('Error fetching attendee: ', err);
             res.status(500).send('Error fetching attendee');
         } else {
+            // Render page with form prepopulated by the attendee
             console.log("results: ", results[0])
             res.render('edit-attendee', {attendee: results[0]});
         }
     })
 });
 
-app.get('/competitor-registrations', function(req, res) {   // Run the select competitor registrations query
-    db.pool.query(queries.selectCompetitorRegs, function(error, rows, fields){
+// Render competitor registrations browse page
+app.get('/competitor-registrations', function(req, res) {  
 
-        // Render competitor registrations page and tables
-        res.render('competitor-registrations', {competitorReg: rows});
+    // Run the select competitor registrations query
+    db.pool.query(queries.selectCompetitorRegs, function(error, rows, fields){
+        if (error){
+            // Send error status and message
+            console.error('Error selecting competitor registrations: ', error);
+            res.status(500).send('Error selecting competitor registrations');
+        } else {
+            // Render competitor registrations page and table
+            console.log("results: ", rows);
+            res.render('competitor-registrations', {competitorReg: rows});
+        }
     })
 });
 
+// Renders page for adding new competitor registration
 app.get('/new-competitor-registration', function(req, res) {   
+
     // Run the competitors query to prepopulate drop down
     db.pool.query(queries.selectCompetitors, function(error, rows, fields){
-
-        // Add competitors to results
-        let results = {competitor:rows};
+        let results = {competitor:rows}; // Add competitors to results
 
         // Run the teams query to prepopulate drop down
         db.pool.query(queries.selectTeams, function(error, rows, fields){
-
-            // Add teams to results
-            results.team = rows;
+            results.team = rows; // Add teams to results
 
             // Run the event years query to prepopulate drop down
             db.pool.query(queries.selectEventYears, function(error, rows, fields){
+                results.year = rows; // Add years to results
 
-                // Add min max years to results
-                results.year = rows;
-
-                // Render page
+                // Render page with form drop downs prepopulated
                 res.render('new-competitor-registration', results);
             })
         })
     })
 });
 
-app.get('/edit-competitor-registration', function(req, res) {   
+// Renders page for editing a competitor registration
+app.get('/edit-competitor-registration', function(req, res) {
+
+    // Get registration ID from query parameter 
     let regID = req.query.id
     console.log("regID", regID)
+
+    // Query for the registration with the given ID
     db.pool.query(queries.selectEditReg,[regID], function(err, results){
         if (err){
+            // Send error status and message
             console.error('Error fetching competitor registration', err);
             res.status(500).send('Error fetching competitor registration')
         } else {
@@ -112,6 +143,7 @@ app.get('/edit-competitor-registration', function(req, res) {
             // Run the competitors query to prepopulate drop down
             db.pool.query(queries.selectCompetitors, function(error, rows, fields){
 
+                // Set preselected option to correct competitor
                 rows.forEach(competitor=>{
                     competitor.selected = (competitor.ID == selectedReg.competitor_id) ? "selected" : "";
                 })
@@ -125,125 +157,151 @@ app.get('/edit-competitor-registration', function(req, res) {
                 // Run the teams query to prepopulate drop down
                 db.pool.query(queries.selectTeams, function(error, rows, fields){
 
+                    // Set preselected option to correct team
                     rows.forEach(team=>{
                         team.selected = (team.ID == selectedReg.team_id) ? "selected" : "";
                     })
+
                     // Add teams to results
                     resultsNew.team = rows;
 
                     // Run the event years query to prepopulate drop down
                     db.pool.query(queries.selectEventYears, function(error, rows, fields){
                         
+                        // Set preselected option to correct year
                         rows.forEach(year=>{
                             year.selected = (year.ID == selectedReg.even_year_id) ? "selected" : "";
                         })
+
                         // Add min max years to results
                         resultsNew.year = rows;
 
+                        // Render page with form drop downs prepopulated
                         console.log("final object: ", resultsNew)
-                        // Render page
                         res.render('edit-competitor-registration', resultsNew);
+                    })
+                })
             })
-        })
-    })
-
-
         }
     })
-
-
 });
 
-app.get('/competitors', function(req, res) {   // Run the select competitors query
+// Render competitors browse page
+app.get('/competitors', function(req, res) {   
+    
+    // Run the select competitors query
     db.pool.query(queries.selectCompetitors, function(error, rows, fields){
-
-        // Render competitors page and tables
-        res.render('competitors', {competitor: rows});
+        if (err){
+            // Send error status and message
+            console.error('Error fetching competitors: ', err);
+            res.status(500).send('Error fetching competitors');
+        } else {
+            // Render page with form prepopulated by the attendee
+            console.log("results: ", rows)
+            res.render('competitors', {competitor: rows});
+        }
     })
 });
 
+// Render page to add new competitor
 app.get('/new-competitor', function(req, res) {
     res.render('new-competitor')
 });
 
-app.get('/edit-competitor', function(req, res) {   
+// Render page to edit a competitor
+app.get('/edit-competitor', function(req, res) {
+    
+    // Get competitor ID from query parameter
     const competitorID = req.query.id
     console.log("competitorID:", competitorID)
+
+    // Query for the competitor with the given ID
     db.pool.query(queries.selectEditCompetitor, [competitorID], function(err, results){
         if (err){
-            console.error('Error fetching attendee: ', err);
-            res.status(500).send('Error fetching attendee');
+            // Send error status and message
+            console.error('Error fetching competitor: ', err);
+            res.status(500).send('Error fetching competitor');
         } else {
+            // Render page with form drop downs prepopulated
             console.log("results: ", results[0])
             res.render('edit-competitor', {competitor: results[0]});
         }
     })
 });
 
-app.get('/dishes', function(req, res) {   // Run the select dishes query
+// Render dishes browse page
+app.get('/dishes', function(req, res) {   
+    
+    // Run the select dishes query
     db.pool.query(queries.selectDishes, function(error, rows, fields){
-
-        // Render dishes page and dishes/courses tables
-        res.render('dishes', {dish:rows});
+        if (err){
+            // Send error status and message
+            console.error('Error fetching dishes: ', err);
+            res.status(500).send('Error fetching dishes');
+        } else {
+            // Render dishes page and tables
+            console.log("results: ", rows)
+            res.render('dishes', {dish: rows});
+        }
     })
 });
 
-app.get('/new-dish', function(req, res) {   
+// Render page to add new dish
+app.get('/new-dish', function(req, res) {
+
     // Run the courses query to prepopulate drop down
     db.pool.query(queries.selectCourses, function(error, rows, fields){
-
-        // Add competitors to results
-        let results = {course:rows};
+        let results = {course:rows}; // Add courses to results
 
         // Run the teams query to prepopulate drop down
         db.pool.query(queries.selectTeams, function(error, rows, fields){
-
-            // Add teams to results
-            results.team = rows;
+            results.team = rows; // Add teams to results
 
             // Run the event years query to prepopulate drop down
             db.pool.query(queries.selectEventYears, function(error, rows, fields){
+                results.year = rows; // Add years to results
 
-                // Add min max years to results
-                results.year = rows;
-
-                // Render page
+                // Render page with form drop downs prepopulated
                 res.render('new-dish', results);
             })
         })
     })
 });
 
-app.get('/edit-dish', function(req, res) {   
+// Render page to edit a dish
+app.get('/edit-dish', function(req, res) {  
+    
+    // Get dish ID from query parameter
     const dishID = req.query.id;
     console.log("dishID: ", dishID);
+
+    // Query for dish with given ID
     db.pool.query(queries.selectEditDish, [dishID], function(err, results){
-        
         if(err){
-        
+            // Send error status and message
             console.error('Error fetching dish', err);
             res.status(500).send('Error fetchig dish');
-        
         } else {
-
             let selectedDish = results[0];
+
             // Run the courses query to prepopulate drop down
             db.pool.query(queries.selectCourses, function(error, rows, fields){
                 
+                // Set preselected option to correct course
                 rows.forEach(course=>{
                     course.selected = (course.ID == selectedDish.course_id) ? "selected" : "";
                 })
 
-                // Add competitors to results
+                // Add courses to results
                 let resultsNew = {
                     selectedDish: selectedDish,
-                    course: rows,
-                
+                    course: rows
                 };
 
                 // Run the teams query to prepopulate drop down
                 db.pool.query(queries.selectTeams, function(error, rows, fields){
 
+                    // Set preselected option to correct team
                     rows.forEach(team=>{
                         team.selected = (team.ID == selectedDish.team_id) ? "selected" : "";
                     })
@@ -254,38 +312,48 @@ app.get('/edit-dish', function(req, res) {
                     // Run the event years query to prepopulate drop down
                      db.pool.query(queries.selectEventYears, function(error, rows, fields){
 
+                        // Set preselected option to correct year
                         rows.forEach(eventYear=>{
                             eventYear.selected = (eventYear.ID == selectedDish.event_year_id) ? "selected" : "";
                         })
+
                         // Add min max years to results
                         resultsNew.year = rows;
 
+                        // Render page with form drop downs prepopulated
                         console.log('final object: ', resultsNew)
-                        // Render page
                         res.render('edit-dish', resultsNew);
+                    })
+                })
             })
-        })
-    })
-
         }
     })
-    
 });
 
+// Render discounts browse page
 app.get('/discounts', function(req, res) {
+
     // Run discounts query
     db.pool.query(queries.selectDiscounts, function(error, rows, fields){
-
-        // Render discounts page and table
-        res.render('discounts', {discount: rows});
+        if (err){
+            // Send error status and message
+            console.error('Error fetching discounts: ', err);
+            res.status(500).send('Error fetching discounts');
+        } else {
+            // Render discounts page and tables
+            console.log("results: ", rows)
+            res.render('discounts', {discount: rows});
+        }
     })
 });
 
+// Render page to add a new discount
 app.get('/new-discount', function(req, res) {
     // Render edit page for discounts
     res.render('new-discount')
 })
 
+// Render page to edit a discount
 app.get('/edit-discount', function(req, res) {
     const discountID = req.query.id
     console.log("discountID:", discountID)
@@ -651,7 +719,9 @@ app.get('/edit-ticket-type', function(req, res){
 });
 
 
-// POSTs
+// ====================================================================================================
+// POST OPERATIONS
+// ====================================================================================================
 
 app.post('/add-attendee-ajax', function(req, res) {
     let data = req.body;
@@ -924,7 +994,9 @@ app.post('/add-ticket-type-ajax', function(req, res) {
     });
 });
 
-// PUTs
+// ====================================================================================================
+// PUT OPERATIONS
+// ====================================================================================================
 
 app.put('/edit-attendee-ajax', function(req, res){
     let data = req.body
@@ -1124,6 +1196,10 @@ app.put('/edit-discount-ajax', function(req, res){
         }
     });
 });
+
+// ====================================================================================================
+// DELETE OPERATIONS
+// ====================================================================================================
 
 app.delete('/delete-attendee-ajax', function(req, res) {
     const attendeeID = req.body.id;
