@@ -49,12 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
 
                 // Clear the input fields for another transaction
-                // newDishName.value = '';
-                // newDishImage.value = '';
-                // newDescription.value = '';
-                // newCourse.value = '';
-                // newTeam.value = '';
-                // newYear.value = '';
+                newDishName.value = '';
+                newDishImage.value = '';
+                newDescription.value = '';
+                newCourse.value = '';
+                newTeam.value = '';
+                newYear.value = '';
 
                 // Redirect to the dishes page
                 window.location.href ='/dishes';  

@@ -746,7 +746,7 @@ app.get('/edit-ticket-type', function(req, res){
     console.log("typeID: ", typeID)
 
     // Run the select ticket types query
-    db.pool.query(queries.selectType,[typeID], function(error, rows, fields){
+    db.pool.query(queries.selectEditType,[typeID], function(error, rows, fields){
 
         // Render page with form elements prepopulated
         console.log("final object:", rows)
@@ -1201,7 +1201,7 @@ app.put('/edit-dish-ajax', function(req, res){
     // Get data from form submission
     let data = req.body
     console.log("data:", data)
-    let queryParams = [data.dishName, data.dishImage, data.description, data.course, data.team, data.year, data.dishId]
+    let queryParams = [data.dishName, data.dishImage, data.description, data.course, data.team, data.year, data.dishID]
     console.log(queryParams);
 
     // Run query to update dish with new form data
