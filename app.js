@@ -1201,7 +1201,7 @@ app.put('/edit-dish-ajax', function(req, res){
     // Get data from form submission
     let data = req.body
     console.log("data:", data)
-    let queryParams = [data.dishName, data.dishImage, data.description, data.course, data.team, data.year, data.dishID]
+    let queryParams = [data.dishName, data.dishImage, data.description, data.course, data.team, data.year, data.id]
     console.log(queryParams);
 
     // Run query to update dish with new form data
