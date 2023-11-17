@@ -1051,9 +1051,12 @@ app.post('/add-ticket-type-ajax', function(req, res) {
 // ====================================================================================================
 
 app.put('/edit-attendee-ajax', function(req, res){
+    // Get data from form submission
     let data = req.body
     let queryParams = [data.name, data.email, data.phone, data.id]
     console.log(queryParams);
+
+    // Run query to update attendee with new form data
     db.pool.query(queries.updateAttendee, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -1072,11 +1075,13 @@ app.put('/edit-attendee-ajax', function(req, res){
     });
 });
 
-
 app.put('/edit-competitor-ajax', function(req, res){
+    // Get data from form submission
     let data = req.body
     let queryParams = [data.name, data.email, data.phone, data.id]
     console.log(queryParams);
+
+    // Run query to update competitor with new form data
     db.pool.query(queries.updateCompetitor, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -1096,9 +1101,12 @@ app.put('/edit-competitor-ajax', function(req, res){
 });
 
 app.put('/edit-team-ajax', function(req, res){
+    // Get data from form submission
     let data = req.body
     let queryParams = [data.name, data.id]
     console.log(queryParams);
+
+    // Run query to update team with new form data
     db.pool.query(queries.updateTeam, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -1116,9 +1124,12 @@ app.put('/edit-team-ajax', function(req, res){
 });
 
 app.put('/edit-event-year-ajax', function(req, res){
+    // Get data from form
     let data = req.body
     let queryParams = [data.year, data.id]
     console.log(queryParams);
+
+    // Run query to update event year with new form data
     db.pool.query(queries.updateEventYear, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -1136,10 +1147,13 @@ app.put('/edit-event-year-ajax', function(req, res){
 });
 
 app.put('/edit-ticket-sale-ajax', function(req, res){
+    // Get data from form submission
     let data = req.body
-    console.log("data:", data)
+    console.log("data:", data);
     let queryParams = [data.attendee, data.ticket, data.discount, data.id]
-    //console.log(queryParams);
+    console.log(queryParams);
+
+    // Run query to update ticket sale with new form data
     db.pool.query(queries.updateTicketSales, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -1158,10 +1172,13 @@ app.put('/edit-ticket-sale-ajax', function(req, res){
 });
 
 app.put('/edit-rating-ajax', function(req, res){
+    // Get data from form submission
     let data = req.body
     console.log("data:", data)
     let queryParams = [data.dish, data.rating, data.comments, data.attendee, data.id]
     console.log(queryParams);
+
+    // Run query to update rating with new form data
     db.pool.query(queries.updateRating, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -1181,10 +1198,13 @@ app.put('/edit-rating-ajax', function(req, res){
 });
 
 app.put('/edit-dish-ajax', function(req, res){
+    // Get data from form submission
     let data = req.body
     console.log("data:", data)
     let queryParams = [data.dishName, data.dishImage, data.description, data.course, data.team, data.year, data.dishId]
     console.log(queryParams);
+
+    // Run query to update dish with new form data
     db.pool.query(queries.updateDish, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -1205,10 +1225,13 @@ app.put('/edit-dish-ajax', function(req, res){
 });
 
 app.put('/edit-competitor-registration-ajax', function(req, res){
+    // Get data from form submission
     let data = req.body
     console.log("data:", data)
     let queryParams = [data.competitor, data.team, data.year, data.id]
     console.log(queryParams);
+
+    // Run query to update competitor registration with new form data
     db.pool.query(queries.updateReg, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -1228,10 +1251,13 @@ app.put('/edit-competitor-registration-ajax', function(req, res){
 });
 
 app.put('/edit-discount-ajax', function(req, res){
+    // Get data from form submission
     let data = req.body
     console.log("data:", data)
     let queryParams = [data.name, data.percent, data.id]
     console.log(queryParams);
+
+    // Run query to update discount with new form data
     db.pool.query(queries.updateDiscount, queryParams, function(error, result) {
         if (error) {
             console.log(error);
@@ -1354,7 +1380,6 @@ app.delete('/delete-competitor-ajax', function(req, res) {
         }
     });
 });
-
 
 app.delete('/delete-team-ajax', function(req, res) {
     // Get team ID captured by onclick function/handlebars
