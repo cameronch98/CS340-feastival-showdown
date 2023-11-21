@@ -5,28 +5,23 @@
 */
 
 // Express
-var express = require('express');
-var app     = express();
-PORT        = 9024;
+import express from "express";
+var app = express();
+PORT = 9024;
 
 // Path
-var path = require('path');
-
+import path from "path";
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '/public')));
 
 // Database
-var db = require('./database/db-connector');
+import db from './database/db-connector.js';
 
 // Handlebars
-const { engine } = require('express-handlebars');
-var exphbs = require('express-handlebars');     // Import express-handlebars
+import { engine } from 'express-handlebars';     // Import express-handlebars
 app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs');                 // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
-
-// Queries
-const { queries } = require('./queries.js');
 
 /*
     ROUTES

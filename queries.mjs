@@ -16,16 +16,18 @@ let selectEventYears = "SELECT event_year_id AS ID, year AS Year FROM Event_Year
 /**
  * Define Special Select Queries for Edit
  */
-let selectEditAttendee = 'SELECT * FROM Attendees WHERE attendee_id= ?;'
-let selectEditCompetitor = 'SELECT * FROM Competitors WHERE competitor_id= ?;'
-let selectEditTeam = 'SELECT * FROM Teams WHERE team_id= ?;'
-let selectEditEventYear = 'SELECT * FROM Event_Years WHERE event_year_id= ?;'
-let selectEditDish = 'SELECT * FROM Dishes WHERE dish_id = ?;'
-let selectEditReg = 'SELECT * FROM Competitor_Registrations WHERE competitor_registration_id = ?;'
-let selectDiscount = 'SELECT * FROM Discounts WHERE discount_id = ?;'
-let selectTicket = 'SELECT * FROM Tickets WHERE ticket_id = ?;'
-let selectType = 'SELECT * from Ticket_Types WHERE ticket_type_id = ?;'
-let selectCourse = 'SELECT * from Courses WHERE course_id = ?;'
+let selectAttendeeById = 'SELECT * FROM Attendees WHERE attendee_id= ?;'
+let selectCompetitorById = 'SELECT * FROM Competitors WHERE competitor_id= ?;'
+let selectTeamById = 'SELECT * FROM Teams WHERE team_id= ?;'
+let selectEventYearById = 'SELECT * FROM Event_Years WHERE event_year_id= ?;'
+let selectDishById = 'SELECT * FROM Dishes WHERE dish_id = ?;'
+let selectCompetitorRegById = 'SELECT * FROM Competitor_Registrations WHERE competitor_registration_id = ?;'
+let selectDiscountById = 'SELECT * FROM Discounts WHERE discount_id = ?;'
+let selectTicketById = 'SELECT * FROM Tickets WHERE ticket_id = ?;'
+let selectTicketTypeById = 'SELECT * FROM Ticket_Types WHERE ticket_type_id = ?;'
+let selectCourseById = 'SELECT * FROM Courses WHERE course_id = ?;'
+let selectRatingById = 'SELECT * FROM Ratings WHERE rating_id = ?;'
+let selectTicketSaleById = 'SELECT * FROM Ticket_Sales WHERE ticket_sale_id = ?;'
 
 /**
  * Define insert queries
@@ -50,11 +52,15 @@ let updateAttendee = 'UPDATE Attendees SET attendee_name = ?, attendee_email = ?
 let updateCompetitor = 'UPDATE Competitors SET competitor_name = ?, competitor_email = ?, competitor_phone = ? WHERE competitor_id = ?;'
 let updateTeam = 'UPDATE Teams SET team_name = ? WHERE team_id = ?;'
 let updateEventYear = 'UPDATE Event_Years SET year = ? WHERE event_year_id = ?;'
-let updateTicketSales = 'UPDATE Ticket_Sales SET attendee_id = ?, ticket_id = ?, discount_id = ? WHERE ticket_sale_id = ?;'
+let updateTicketSale = 'UPDATE Ticket_Sales SET attendee_id = ?, ticket_id = ?, discount_id = ? WHERE ticket_sale_id = ?;'
 let updateRating = 'UPDATE Ratings SET dish_id = ?, rating = ?, comments = ?, attendee_id = ? WHERE rating_id = ?;'
 let updateDish = 'UPDATE Dishes SET dish_name = ?, dish_image = ?, dish_description = ?, course_id = ?, team_id = ?, event_year_id = ? WHERE dish_id = ?;'
-let updateReg = 'UPDATE Competitor_Registrations SET competitor_id = ?, team_id = ?, event_year_id = ? WHERE competitor_registration_id = ?;'
+let updateCompetitorReg = 'UPDATE Competitor_Registrations SET competitor_id = ?, team_id = ?, event_year_id = ? WHERE competitor_registration_id = ?;'
 let updateDiscount ='UPDATE Discounts SET discount_name = ?, discount_percent = ? WHERE discount_id = ?;'
+let updateCourse = 'UPDATE Courses SET course_name = ? WHERE course_id = ?;'
+let updateTicket = 'UPDATE Tickets SET list_price = ?, ticket_type_id = ?, event_year_id = ? WHERE ticket_id = ?;'
+let updateTicketType = 'UPDATE Ticket_Types SET ticket_type = ? WHERE ticket_type_id = ?;'
+
 
 /**
  * Define delete queries
@@ -64,14 +70,14 @@ let deleteAttendee = 'DELETE FROM Attendees WHERE attendee_id = ?;'
 let deleteTicket = 'DELETE FROM Tickets WHERE ticket_id = ?;'
 let deleteTicketType = 'DELETE FROM Ticket_Types WHERE ticket_type_id = ?;'
 let deleteDiscount = 'DELETE FROM Discounts WHERE discount_id = ?;'
-let deleteSale = 'DELETE FROM Ticket_Sales WHERE ticket_sale_id = ?;'
+let deleteTicketSale = 'DELETE FROM Ticket_Sales WHERE ticket_sale_id = ?;'
 let deleteCompetitor = 'DELETE FROM Competitors WHERE competitor_id = ?;'
 let deleteTeam = 'DELETE FROM Teams WHERE team_id = ?;'
-let deleteRegistration = 'DELETE FROM Competitor_Registrations WHERE competitor_registration_id = ?;'
+let deleteCompetitorReg = 'DELETE FROM Competitor_Registrations WHERE competitor_registration_id = ?;'
 let deleteDish = 'DELETE FROM Dishes WHERE dish_id = ?;'
 let deleteCourse = 'DELETE FROM Courses WHERE course_id = ?;'
 let deleteRating = 'DELETE FROM Ratings WHERE rating_id = ?;'
-let deleteYear = 'DELETE FROM Event_Years WHERE event_year_id = ?;'
+let deleteEventYear = 'DELETE FROM Event_Years WHERE event_year_id = ?;'
 
 /**
  * Define export object
@@ -89,16 +95,18 @@ let queries = {
     'selectCourses': selectCourses,
     'selectRatings': selectRatings,
     'selectEventYears': selectEventYears,
-    'selectEditAttendee':selectEditAttendee,
-    'selectEditCompetitor':selectEditCompetitor,
-    'selectEditTeam':selectEditTeam,
-    'selectEditEventYear':selectEditEventYear,
-    'selectEditDish':selectEditDish,
-    'selectEditReg':selectEditReg,
-    'selectDiscount':selectDiscount,
-    'selectTicket':selectTicket,
-    'selectType':selectType,
-    'selectCourse':selectCourse,
+    'selectAttendeeById':selectAttendeeById,
+    'selectCompetitorById':selectCompetitorById,
+    'selectTeamById':selectTeamById,
+    'selectEventYearById':selectEventYearById,
+    'selectDishById':selectDishById,
+    'selectCompetitorRegById':selectCompetitorRegById,
+    'selectDiscountById':selectDiscountById,
+    'selectTicketById':selectTicketById,
+    'selectTicketTypeById':selectTicketTypeById,
+    'selectCourseById':selectCourseById,
+    'selectRatingById': selectRatingById,
+    'selectTicketSaleById': selectTicketSaleById,
     'insertAttendee': insertAttendee,
     'insertCompetitorReg': insertCompetitorReg,
     'insertCompetitor': insertCompetitor,
@@ -115,23 +123,25 @@ let queries = {
     'updateCompetitor':updateCompetitor,
     'updateTeam':updateTeam,
     'updateEventYear':updateEventYear,
-    'updateTicketSales':updateTicketSales,
+    'updateTicketSale':updateTicketSale,
     'updateRating':updateRating,
     'updateDish':updateDish,
-    'updateReg':updateReg,
+    'updateCompetitorReg':updateCompetitorReg,
     'updateDiscount':updateDiscount,
+    'updateCourse': updateCourse,
+    'updateTicket': updateTicket,
     'deleteAttendee':deleteAttendee,
     'deleteTicket':deleteTicket,
     'deleteTicketType':deleteTicketType,
     'deleteDiscount':deleteDiscount,
-    'deleteSale':deleteSale,
+    'deleteTicketSale':deleteTicketSale,
     'deleteCompetitor':deleteCompetitor,
     'deleteTeam':deleteTeam,
-    'deleteRegistration':deleteRegistration,
+    'deleteCompetitorReg':deleteCompetitorReg,
     'deleteDish':deleteDish,
     'deleteCourse':deleteCourse,
     'deleteRating':deleteRating,
-    'deleteYear':deleteYear
+    'deleteEventYear':deleteEventYear
 };
 
 exports.queries = queries;

@@ -165,6 +165,16 @@ SELECT *
 FROM Courses
 WHERE course_id = ?;
 
+-- Select Current Rating
+SELECT * 
+FROM Ratings 
+WHERE rating_id = ?;
+
+-- Select Current Ticket Sale
+SELECT * 
+FROM Ticket_Sales 
+WHERE ticket_sale_id = ?;
+
 -- Insert Attendee
 INSERT INTO Attendees (attendee_name, attendee_email, attendee_phone)
 VALUES ( :name, :email, :phone);
@@ -241,6 +251,15 @@ UPDATE Ratings SET dish_id = :dish, rating = :rating, comments = :comments, atte
 
 -- Update Event Year
 UPDATE Event_Years SET year = :year WHERE event_year_id = :id;
+
+-- Update Course
+UPDATE Courses SET course_name = :course WHERE course_id = :id;
+
+-- Update Ticket
+UPDATE Tickets SET list_price = :price, ticket_type_id = :ticketTypeId, event_year_id = :eventYearId WHERE ticket_id = :id;
+
+-- Update Ticket Type
+UPDATE Ticket_Types SET ticket_type = ? WHERE ticket_type_id = ?;
 
 -- Delete Attendee
 DELETE FROM Attendees WHERE attendee_id = :character_ID_selected_from_attendees_page;
