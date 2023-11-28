@@ -1,13 +1,11 @@
-// Database
-var db = require('./database/db-connector');
-
-// Queries
-const { queries } = require('../queries.mjs');
+// Import db and queries
+import { pool } from '../database/db-connector.mjs';
+import * as queries from '../queries.mjs';
 
 // Select all event years
-getAllEventYears = () => {
+export const getAllEventYears = () => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectEventYears, (error, rows) => {
+        pool.query(queries.selectEventYears, (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -18,9 +16,9 @@ getAllEventYears = () => {
 };
 
 // Select an event year by ID
-getEventYearById = (id) => {
+export const getEventYearById = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectEventYearById, [id], (error, rows) => {
+        pool.query(queries.selectEventYearById, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -31,9 +29,9 @@ getEventYearById = (id) => {
 };
 
 // Add a new event year
-addEventYear = (year) => {
+export const addEventYear = ({year}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.insertEventYear, [year], (error, rows) => {
+        pool.query(queries.insertEventYear, [year], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -44,9 +42,9 @@ addEventYear = (year) => {
 };
 
 // Update an event year
-updateEventYear = (year, id) => {
+export const updateEventYear = ({year, id}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.updateEventYear, [year, id], (error, rows) => {
+        pool.query(queries.updateEventYear, [year, id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -57,9 +55,9 @@ updateEventYear = (year, id) => {
 };
 
 // Delete an event year
-deleteEventYear = (id) => {
+export const deleteEventYear = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.deleteEventYear, [id], (error, rows) => {
+        pool.query(queries.deleteEventYear, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {

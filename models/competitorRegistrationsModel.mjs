@@ -1,13 +1,11 @@
-// Database
-var db = require('./database/db-connector');
-
-// Queries
-const { queries } = require('../queries.mjs');
+// Import db and queries
+import { pool } from './database/db-connector';
+import * as queries from '../queries.mjs';
 
 // Select all competitor registrations
-getAllCompetitorRegs = () => {
+export const getAllCompetitorRegs = () => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectCompetitorRegs, (error, rows) => {
+        pool.query(queries.selectCompetitorRegs, (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -18,9 +16,9 @@ getAllCompetitorRegs = () => {
 };
 
 // Select a competitor registration by ID
-getCompetitorRegById = (id) => {
+export const getCompetitorRegById = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectCompetitorRegById, [id], (error, rows) => {
+        pool.query(queries.selectCompetitorRegById, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -31,9 +29,9 @@ getCompetitorRegById = (id) => {
 };
 
 // Add a new competitor registration
-addCompetitorReg = (competitorId, teamId, yearId) => {
+export const addCompetitorReg = ({competitorId, teamId, yearId}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.insertCompetitorReg, [competitorId, teamId, yearId], (error, rows) => {
+        pool.query(queries.insertCompetitorReg, [competitorId, teamId, yearId], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -44,9 +42,9 @@ addCompetitorReg = (competitorId, teamId, yearId) => {
 };
 
 // Update a competitor registration
-updateCompetitorReg = (competitorId, teamId, yearId, id) => {
+export const updateCompetitorReg = ({competitorId, teamId, yearId, id}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.updateCompetitorReg, [competitorId, teamId, yearId, id], (error, rows) => {
+        pool.query(queries.updateCompetitorReg, [competitorId, teamId, yearId, id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -57,9 +55,9 @@ updateCompetitorReg = (competitorId, teamId, yearId, id) => {
 };
 
 // Delete a competitor registration
-deleteAttendee = (id) => {
+export const deleteCompetitorReg = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.deleteCompetitorReg, [id], (error, rows) => {
+        pool.query(queries.deleteCompetitorReg, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -68,13 +66,3 @@ deleteAttendee = (id) => {
         })
     })
 };
-
-let competitorRegsController = {
-    'getAllCompetitorRegs': getAllCompetitorRegs,
-    'getCompetitorRegById': getCompetitorRegById,
-    'addCompetitorReg': addCompetitorReg,
-    'updateCompetitorReg': updateCompetitorReg,
-    'deleteCompetitorReg': deleteCompetitorReg
-}
-
-exports.competitorRegsController = competitorRegsController;

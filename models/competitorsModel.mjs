@@ -1,13 +1,11 @@
-// Database
-var db = require('./database/db-connector');
+// Import db and queries
+import { pool } from '../database/db-connector.mjs';
+import * as queries from '../queries.mjs';
 
-// Queries
-const { queries } = require('../queries.mjs');
-
-// Select all ticket types
-getAllTicketTypes = () => {
+// Select all competitors
+export const getAllCompetitors = () => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectTicketTypes, (error, rows) => {
+        pool.query(queries.selectCompetitors, (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -17,10 +15,10 @@ getAllTicketTypes = () => {
     })
 };
 
-// Select a ticket type by ID
-getTicketTypeById = (id) => {
+// Select a competitor by ID
+export const getCompetitorById = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectTicketTypeById, [id], (error, rows) => {
+        pool.query(queries.selectCompetitorById, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -30,10 +28,10 @@ getTicketTypeById = (id) => {
     })
 };
 
-// Add a new ticket type
-addTicketType = (ticketType) => {
+// Add a new competitor
+export const addCompetitor = ({name, email, phone}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.insertTicketType, [ticketType], (error, rows) => {
+        pool.query(queries.insertCompetitor, [name, email, phone], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -43,10 +41,10 @@ addTicketType = (ticketType) => {
     })
 };
 
-// Update a ticket type
-updateTicketType = (ticketType, id) => {
+// Update a competitor
+export const updateCompetitor = ({name, email, phone, id}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.updateTicketType, [ticketType, id], (error, rows) => {
+        pool.query(queries.updateCompetitor, [name, email, phone, id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -56,10 +54,10 @@ updateTicketType = (ticketType, id) => {
     })
 };
 
-// Delete a ticket type
-deleteTicketType = (id) => {
+// Delete a competitor
+export const deleteCompetitor = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.deleteTicketType, [id], (error, rows) => {
+        pool.query(queries.deleteCompetitor, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {

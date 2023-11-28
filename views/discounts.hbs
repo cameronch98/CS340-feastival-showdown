@@ -32,7 +32,7 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href ="/new-discount" class="floating-button">New</a></th>
+                    <th><a href ="/discounts/new-discount" class="floating-button">New</a></th>
                     <th>Discount</th>
                     <th>Percent</th>
                     <th></th>
@@ -41,10 +41,10 @@
             <tbody>
                 {{#each discount}}
                 <tr>
-                    <td><a onclick="editDiscount({{this.ID}})" href="/edit-discount?id={{this.ID}}">Edit</a></td>
+                    <td><a onclick="editDiscount({{this.ID}})" href="/discounts/edit-discount?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Discount}}</td>
                     <td>{{this.Percent}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Discount}}', {{this.ID}}, '/delete-discount-ajax')"  >Delete</button></td>
+                    <td><button onclick="confirmAndDelete('{{this.Discount}}', {{this.ID}}, '/discounts/delete-discount-ajax')"  >Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>

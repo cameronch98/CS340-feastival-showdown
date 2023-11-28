@@ -18,7 +18,6 @@ function confirmAndDelete(entityName, entityId, deleteUrl) {
             if (response.ok) {
                 // Handle successful deletion
                 console.log("Item deleted successfully");
-                // refresh page to update table
                 window.location.reload();
             } else {
                 // Handle errors

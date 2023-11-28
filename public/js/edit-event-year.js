@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Setup our AJAX request
         var xhttp = new XMLHttpRequest();
-        xhttp.open("PUT", "/edit-event-year-ajax", true);
+        xhttp.open("PUT", "/event-years/edit-event-year-ajax", true);
         xhttp.setRequestHeader("Content-type", "application/json");
 
         // Tell our AJAX request how to resolve

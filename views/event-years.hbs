@@ -32,7 +32,7 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href="/new-event-year" class="floating-button">New</a></th>
+                    <th><a href="/event-years/new-event-year" class="floating-button">New</a></th>
                     <th>Year</th>
                     <th></th>
                 </tr>
@@ -40,9 +40,9 @@
             <tbody>
                 {{#each eventYear}}
                 <tr>
-                    <td><a onclick="editYear({{this.ID}})" href="/edit-event-year?id={{this.ID}}">Edit</a></td>
+                    <td><a onclick="editYear({{this.ID}})" href="/event-years/edit-event-year?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Year}}</td>
-                    <td><button onclick="confirmAndDelete('rating for {{this.Year}}', {{this.ID}}, '/delete-event-year-ajax')" >Delete</button></td>
+                    <td><button onclick="confirmAndDelete('rating for {{this.Year}}', {{this.ID}}, '/event-years/delete-event-year-ajax')" >Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>

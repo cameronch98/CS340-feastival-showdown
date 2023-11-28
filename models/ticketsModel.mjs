@@ -1,13 +1,11 @@
-// Database
-var db = require('./database/db-connector');
+// Import db and queries
+import { pool } from '../database/db-connector.mjs';
+import * as queries from '../queries.mjs';
 
-// Queries
-const { queries } = require('../queries.mjs');
-
-// Select all ratings
-getAllRatings = () => {
+// Select all tickets
+export const getAllTickets = () => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectRatings, (error, rows) => {
+        pool.query(queries.selectTickets, (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -17,10 +15,10 @@ getAllRatings = () => {
     })
 };
 
-// Select a rating by ID
-getRatingById = (id) => {
+// Select a ticket by ID
+export const getTicketById = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectRatingById, [id], (error, rows) => {
+        pool.query(queries.selectTicketById, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -30,10 +28,10 @@ getRatingById = (id) => {
     })
 };
 
-// Add a new rating
-addRating = (dishId, rating, comments, attendeeId) => {
+// Add a new ticket
+export const addTicket = ({price, ticketTypeId, eventYearId}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.insertRating, [dishId, rating, comments, attendeeId], (error, rows) => {
+        pool.query(queries.insertTicket, [price, ticketTypeId, eventYearId], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -43,10 +41,10 @@ addRating = (dishId, rating, comments, attendeeId) => {
     })
 };
 
-// Update a rating
-updateRating = (dishId, rating, comments, attendeeId, id) => {
+// Update a ticket
+export const updateTicket = ({price, ticketTypeId, eventYearId, id}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.updateRating, [dishId, rating, comments, attendeeId, id], (error, rows) => {
+        pool.query(queries.updateTicket, [price, ticketTypeId, eventYearId, id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -56,10 +54,10 @@ updateRating = (dishId, rating, comments, attendeeId, id) => {
     })
 };
 
-// Delete a rating
-deleteAttendee = (id) => {
+// Delete a ticket
+export const deleteTicket = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.deleteRating, [id], (error, rows) => {
+        pool.query(queries.deleteTicket, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {

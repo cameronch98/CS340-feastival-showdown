@@ -1,13 +1,11 @@
-// Database
-var db = require('./database/db-connector');
+// Import db and queries
+import { pool } from '../database/db-connector.mjs';
+import * as queries from '../queries.mjs';
 
-// Queries
-const { queries } = require('../queries.mjs');
-
-// Select all courses
-getAllCourses = () => {
+// Select all discounts
+export const getAllDiscounts = () => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectCourses, (error, rows) => {
+        pool.query(queries.selectDiscounts, (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -17,10 +15,10 @@ getAllCourses = () => {
     })
 };
 
-// Select a course by ID
-getCourseById = (id) => {
+// Select a discount by ID
+export const getDiscountById = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectCourseById, [id], (error, rows) => {
+        pool.query(queries.selectDiscountById, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -30,10 +28,10 @@ getCourseById = (id) => {
     })
 };
 
-// Add a new course
-addCourse = (course) => {
+// Add a new discount
+export const addDiscount = ({discount, percent}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.insertCourse, [course], (error, rows) => {
+        pool.query(queries.insertDiscount, [discount, percent], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -43,10 +41,10 @@ addCourse = (course) => {
     })
 };
 
-// Update a course
-updateAttendee = (course, id) => {
+// Update a discount
+export const updateDiscount = ({discount, percent, id}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.updateCourse, [course, id], (error, rows) => {
+        pool.query(queries.updateDiscount, [discount, percent, id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -56,10 +54,10 @@ updateAttendee = (course, id) => {
     })
 };
 
-// Delete a course
-deleteAttendee = (id) => {
+// Delete a discount
+export const deleteDiscount = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.deleteCourse, [id], (error, rows) => {
+        pool.query(queries.deleteDiscount, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {

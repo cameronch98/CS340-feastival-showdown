@@ -1,13 +1,11 @@
-// Database
-var db = require('./database/db-connector');
+// Import db and queries
+import { pool } from '../database/db-connector.mjs';
+import * as queries from '../queries.mjs';
 
-// Queries
-const { queries } = require('../queries.mjs');
-
-// Select all discounts
-getAllDiscounts = () => {
+// Select all dishes
+export const getAllDishes = () => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectDiscounts, (error, rows) => {
+        pool.query(queries.selectDishes, (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -17,10 +15,10 @@ getAllDiscounts = () => {
     })
 };
 
-// Select a discount by ID
-getDiscountById = (id) => {
+// Select a dish by ID
+export const getDishById = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectDiscountById, [id], (error, rows) => {
+        pool.query(queries.selectDishById, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -30,10 +28,10 @@ getDiscountById = (id) => {
     })
 };
 
-// Add a new discount
-addDiscount = (discount, percent) => {
+// Add a new dish
+export const addDish = ({dishName, dishImage, dishDescription, courseId, teamId, eventYearId}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.insertDiscount, [discount, percent], (error, rows) => {
+        pool.query(queries.insertDish, [dishName, dishImage, dishDescription, courseId, teamId, eventYearId], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -43,10 +41,10 @@ addDiscount = (discount, percent) => {
     })
 };
 
-// Update a discount
-updateDiscount = (discount, percent, id) => {
+// Update a dish
+export const updateDish = ({dishName, dishImage, dishDescription, courseId, teamId, eventYearId, id}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.updateDiscount, [discount, percent, id], (error, rows) => {
+        pool.query(queries.updateDish, [dishName, dishImage, dishDescription, courseId, teamId, eventYearId, id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -56,10 +54,10 @@ updateDiscount = (discount, percent, id) => {
     })
 };
 
-// Delete a discount
-deleteDiscount = (id) => {
+// Delete a dish
+export const deleteDish = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.deleteDiscount, [id], (error, rows) => {
+        pool.query(queries.deleteDish, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {

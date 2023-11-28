@@ -1,13 +1,11 @@
-// Database
-var db = require('./database/db-connector');
+// Import db and queries
+import { pool } from '../database/db-connector.mjs';
+import * as queries from '../queries.mjs';
 
-// Queries
-const { queries } = require('../queries.mjs');
-
-// Select all ticket sales
-getAllTicketSales = () => {
+// Select all courses
+export const getAllCourses = () => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectTicketSales, (error, rows) => {
+        pool.query(queries.selectCourses, (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -17,10 +15,10 @@ getAllTicketSales = () => {
     })
 };
 
-// Select a ticket sale by ID
-getTicketSaleById = (id) => {
+// Select a course by ID
+export const getCourseById = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectTicketSaleById, [id], (error, rows) => {
+        pool.query(queries.selectCourseById, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -30,10 +28,10 @@ getTicketSaleById = (id) => {
     })
 };
 
-// Add a new ticket sale
-addTicketSale = (attendeeId, ticketId, discountId) => {
+// Add a new course
+export const addCourse = ({course}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.insertTicketSale, [attendeeId, ticketId, discountId], (error, rows) => {
+        pool.query(queries.insertCourse, [course], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -43,23 +41,24 @@ addTicketSale = (attendeeId, ticketId, discountId) => {
     })
 };
 
-// Update a competitor registration
-updateTicketSale = (attendeeId, ticketId, discountId, id) => {
+// Update a course
+export const updateCourse = ({course, id}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.updateTicketSale, [attendeeId, ticketId, discountId, id], (error, rows) => {
+        pool.query(queries.updateCourse, [course, id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
+                console.log(rows)
                 return resolve(rows);
             }
         })
     })
 };
 
-// Delete a competitor registration
-deleteTicketSale = (id) => {
+// Delete a course
+export const deleteCourse = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.deleteTicketSale, [id], (error, rows) => {
+        pool.query(queries.deleteCourse, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {

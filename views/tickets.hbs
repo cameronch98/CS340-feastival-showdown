@@ -34,7 +34,7 @@
             {{!-- Header section --}}
             <thead>
                 <tr>
-                    <th><a href="/new-ticket" class="floating-button">New</a></th>
+                    <th><a href="/tickets/new-ticket" class="floating-button">New</a></th>
                     <th>Ticket</th>
                     <th>Price</th>
                     <th>Year</th>
@@ -48,11 +48,11 @@
                 {{!-- For each row, print the Name, Email, Phone in order --}}
                 {{#each ticket}}
                 <tr>
-                    <td><a onclick="editTicket({{this.ID}})" href="/edit-ticket?id={{this.ID}}">Edit</a></td>
+                    <td><a onclick="editTicket({{this.ID}})" href="/tickets/edit-ticket?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Ticket}}</td>
                     <td>{{this.Price}}</td>
                     <td>{{this.Year}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Ticket}}', {{this.ID}}, '/delete-ticket-ajax')"  >Delete</button></td>
+                    <td><button onclick="confirmAndDelete('{{this.Ticket}}', {{this.ID}}, '/tickets/delete-ticket-ajax')"  >Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>

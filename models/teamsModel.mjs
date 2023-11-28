@@ -1,13 +1,11 @@
-// Database
-var db = require('./database/db-connector');
-
-// Queries
-const { queries } = require('../queries.mjs');
+// Import db and queries
+import { pool } from '../database/db-connector.mjs';
+import * as queries from '../queries.mjs';
 
 // Select all teams
-getAllTeams = () => {
+export const getAllTeams = () => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectTeams, (error, rows) => {
+        pool.query(queries.selectTeams, (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -18,9 +16,9 @@ getAllTeams = () => {
 };
 
 // Select a team by ID
-getTeamsById = (id) => {
+export const getTeamById = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectTeamById, [id], (error, rows) => {
+        pool.query(queries.selectTeamById, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -31,9 +29,9 @@ getTeamsById = (id) => {
 };
 
 // Add a new team
-addTeam = (name) => {
+export const addTeam = ({name}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.insertTeam, [name], (error, rows) => {
+        pool.query(queries.insertTeam, [name], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -44,9 +42,9 @@ addTeam = (name) => {
 };
 
 // Update a team
-updateTeam = (team, id) => {
+export const updateTeam = ({name, id}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.updateTeam, [team, id], (error, rows) => {
+        pool.query(queries.updateTeam, [name, id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -57,9 +55,9 @@ updateTeam = (team, id) => {
 };
 
 // Delete a team
-deleteTeam = (id) => {
+export const deleteTeam = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.deleteTeam, [id], (error, rows) => {
+        pool.query(queries.deleteTeam, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {

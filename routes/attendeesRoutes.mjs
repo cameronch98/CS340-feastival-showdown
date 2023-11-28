@@ -1,5 +1,5 @@
-var express = require('express');
-var {attendeesController} = require('../controllers/attendeesController');
+import express from 'express';
+import * as attendeesController from '../controllers/attendeesController.mjs';
 
 // Initialize attendees router
 const attendeesRoutes = express.Router();
@@ -7,10 +7,10 @@ const attendeesRoutes = express.Router();
 // Define attendees routes
 attendeesRoutes
     .get('/', attendeesController.getAttendeesTable)
-    .get('/add-attendee', attendeesController.getNewAttendeeForm)
+    .get('/new-attendee', attendeesController.getNewAttendeeForm)
     .get('/edit-attendee', attendeesController.getEditAttendeeForm)
-    .post('/add-attendee-ajax', attendeesController.addAttendee)
+    .post('/new-attendee-ajax', attendeesController.addAttendee)
     .put('/edit-attendee-ajax', attendeesController.updateAttendee)
     .delete('/delete-attendee-ajax', attendeesController.deleteAttendee)
 
-exports.attendeesRoutes = attendeesRoutes;
+export { attendeesRoutes };

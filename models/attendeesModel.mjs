@@ -1,13 +1,11 @@
-// Database
-var db = require('./database/db-connector');
-
-// Queries
-const { queries } = require('../queries.mjs');
+// Import db and queries
+import { pool } from '../database/db-connector.mjs';
+import * as queries from '../queries.mjs';
 
 // Select all attendees
-getAllAttendees = () => {
+export const getAllAttendees = () => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectAttendees, (error, rows) => {
+        pool.query(queries.selectAttendees, (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -18,9 +16,9 @@ getAllAttendees = () => {
 };
 
 // Select an attendee by ID
-getAttendeeById = (id) => {
+export const getAttendeeById = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.selectAttendeeById, [id], (error, rows) => {
+        pool.query(queries.selectAttendeeById, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -31,9 +29,10 @@ getAttendeeById = (id) => {
 };
 
 // Add a new attendee
-addAttendee = (name, email, phone) => {
+export const addAttendee = ({name, email, phone}) => {
+    
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.insertAttendee, [name, email, phone], (error, rows) => {
+        pool.query(queries.insertAttendee, [name, email, phone], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -44,9 +43,9 @@ addAttendee = (name, email, phone) => {
 };
 
 // Update an attendee
-updateAttendee = (name, email, phone, id) => {
+export const updateAttendee = ({name, email, phone, id}) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.updateAttendee, [name, email, phone, id], (error, rows) => {
+        pool.query(queries.updateAttendee, [name, email, phone, id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -57,9 +56,9 @@ updateAttendee = (name, email, phone, id) => {
 };
 
 // Delete an attendee
-deleteAttendee = (id) => {
+export const deleteAttendee = (id) => {
     return new Promise((resolve, reject) => {
-        db.pool.query(queries.deleteAttendee, [id], (error, rows) => {
+        pool.query(queries.deleteAttendee, [id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -68,13 +67,3 @@ deleteAttendee = (id) => {
         })
     })
 };
-
-let attendeesController = {
-    'getAllAttendees': getAllAttendees,
-    'getAttendeeById': getAttendeeById,
-    'addAttendee': addAttendee,
-    'updateAttendee': updateAttendee,
-    'deleteAttendee': deleteAttendee
-}
-
-exports.attendeesController = attendeesController;
