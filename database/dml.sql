@@ -22,7 +22,7 @@ Discounts.discount_name AS Discount,
 IFNULL(Tickets.list_price - (Tickets.list_price * Discounts.discount_percent / 100), Tickets.list_price) AS Total,
 Event_Years.year AS Year
 FROM Ticket_Sales
-JOIN Attendees ON Ticket_Sales.attendee_id = Attendees.attendee_id
+LEFT JOIN Attendees ON Ticket_Sales.attendee_id = Attendees.attendee_id
 JOIN Tickets ON Ticket_Sales.ticket_id = Tickets.ticket_id
 LEFT JOIN Discounts ON Ticket_Sales.discount_id = Discounts.discount_id
 JOIN Ticket_Types ON Tickets.ticket_type_id = Ticket_Types.ticket_type_id
@@ -104,7 +104,7 @@ Attendees.attendee_name AS Attendee,
 Event_Years.year AS Year
 FROM Ratings
 JOIN Dishes ON Ratings.dish_id = Dishes.dish_id
-JOIN Attendees ON Ratings.attendee_id = Attendees.attendee_id
+LEFT JOIN Attendees ON Ratings.attendee_id = Attendees.attendee_id
 JOIN Event_Years ON Dishes.event_year_id = Event_Years.event_year_id
 ORDER BY Year, Dish, Attendee ASC;
 
