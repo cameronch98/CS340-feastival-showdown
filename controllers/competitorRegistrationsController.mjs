@@ -55,22 +55,15 @@ export const getEditCompetitorReg = async(req, res) => {
         };
 
         // Set preselected options to the correct choices
-        let resultsKeys = Object.keys(results)
-        for (const key of resultsKeys) {
-            if (key === 'competitor') {
-                results.competitor.forEach(competitor => {
-                    competitor.selected = (competitor.ID === results.competitorReg.competitor_id) ? "selected" : "";
-                });
-            } else if (key === 'team') {
-                results.team.forEach(team => {
-                    team.selected = (team.ID === results.competitorReg.team_id) ? "selected" : "";
-                });
-            } else if (key === 'eventYear') {
-                results.eventYear.forEach(eventYear => {
-                    eventYear.selected = (eventYear.ID === results.competitorReg.event_year_id) ? "selected" : "";
-                });
-            }
-        };
+        results.competitor.forEach(competitor => {
+            competitor.selected = (competitor.ID === results.competitorReg.competitor_id) ? "selected" : "";
+        });
+        results.team.forEach(team => {
+            team.selected = (team.ID === results.competitorReg.team_id) ? "selected" : "";
+        });
+        results.eventYear.forEach(eventYear => {
+            eventYear.selected = (eventYear.ID === results.competitorReg.event_year_id) ? "selected" : "";
+        });
 
         // Render page with form elements prepopulated
         res.render('edit-competitor-registration', results);

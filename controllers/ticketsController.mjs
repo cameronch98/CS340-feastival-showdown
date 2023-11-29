@@ -51,18 +51,12 @@ export const getEditTicketForm = async(req, res) => {
         };
 
         // Set preselected options to the correct choices
-        let resultsKeys = Object.keys(results)
-        for (const key of resultsKeys) {
-            if (key === 'ticketType') {
-                results.ticketType.forEach(ticketType => {
-                    ticketType.selected = (ticketType.ID === results.ticket.ticket_type_id) ? "selected" : "";
-                });
-            } else if (key === 'eventYear') {
-                results.eventYear.forEach(eventYear => {
-                    eventYear.selected = (eventYear.ID === results.ticket.event_year_id) ? "selected" : "";
-                });
-            }
-        };
+        results.ticketType.forEach(ticketType => {
+            ticketType.selected = (ticketType.ID === results.ticket.ticket_type_id) ? "selected" : "";
+        });
+        results.eventYear.forEach(eventYear => {
+            eventYear.selected = (eventYear.ID === results.ticket.event_year_id) ? "selected" : "";
+        });
 
         // Render page with form elements prepopulated
         res.render('edit-ticket', results);

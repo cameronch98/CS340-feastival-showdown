@@ -55,22 +55,15 @@ export const getEditTicketSaleForm = async(req, res) => {
         };
 
         // Set preselected options to the correct choices
-        let resultsKeys = Object.keys(results)
-        for (const key of resultsKeys) {
-            if (key === 'attendee') {
-                results.attendee.forEach(attendee => {
-                    attendee.selected = (attendee.ID === results.ticketSale.attendee_id) ? "selected" : "";
-                });
-            } else if (key === 'ticket') {
-                results.ticket.forEach(ticket => {
-                    ticket.selected = (ticket.ID === results.ticketSale.ticket_id) ? "selected" : "";
-                });
-            } else if (key === 'discount') {
-                results.discount.forEach(discount => {
-                    discount.selected = (discount.ID === results.ticketSale.discount_id) ? "selected" : "";
-                });
-            }
-        };
+        results.attendee.forEach(attendee => {
+            attendee.selected = (attendee.ID === results.ticketSale.attendee_id) ? "selected" : "";
+        });
+        results.ticket.forEach(ticket => {
+            ticket.selected = (ticket.ID === results.ticketSale.ticket_id) ? "selected" : "";
+        });
+        results.discount.forEach(discount => {
+            discount.selected = (discount.ID === results.ticketSale.discount_id) ? "selected" : "";
+        });
 
         // Render page with form elements prepopulated
         res.render('edit-ticket-sale', results);
