@@ -11,26 +11,26 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
 
         // Get form fields we need to get data from
-        let newAttendee = document.getElementById("attendee");
-        let newTicket = document.getElementById("ticket");
-        let newDiscount = document.getElementById("discount");
+        let newAttendeeId = document.getElementById("attendee");
+        let newTicketId = document.getElementById("ticket");
+        let newDiscountId = document.getElementById("discount");
 
         // Get the values from the form fields
-        let attendeeValue = newAttendee.value;
-        let ticketValue = newTicket.value;
-        let discountValue = newDiscount.value;
+        let attendeeIdValue = newAttendeeId.value;
+        let ticketIdValue = newTicketId.value;
+        let discountIdValue = newDiscountId.value;
 
         // Put our data we want to send in a javascript object
         let data = {
-            attendee: attendeeValue,
-            ticket: ticketValue,
-            discount: discountValue
+            attendeeId: attendeeIdValue,
+            ticketId: ticketIdValue,
+            discountId: discountIdValue
         }
         console.log("this is data:", data)
         
         // Setup our AJAX request
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/new-ticket-sale-ajax", true);
+        xhttp.open("POST", "/ticket-sales/new-ticket-sale-ajax", true);
         xhttp.setRequestHeader("Content-type", "application/json");
 
         // Tell our AJAX request how to resolve
@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
 
                 // Clear the input fields for another transaction
-                newAttendee.value = '';
-                newTicket.value = '';
-                newDiscount.value = '';
+                newAttendeeId.value = '';
+                newTicketId.value = '';
+                newDiscountId.value = '';
 
                 // Redirect to the ticket sales page
                 window.location.href ='/ticket-sales';  

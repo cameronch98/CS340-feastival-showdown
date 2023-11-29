@@ -28,7 +28,7 @@
     <h3>Edit Ticket Sale:</h3>
     <form id="edit-ticket-sale-form-ajax">
         <!--Hidden select for id-->
-        <input type="hidden" name="id" id="id" value="{{selectedTicket.ticket_sale_id}}"> 
+        <input type="hidden" name="id" id="id" value="{{ticketSale.ticket_sale_id}}"> 
 
         <!-- Dropdown for Attendee -->
         <label for="attendee">Attendee:</label>
@@ -49,6 +49,7 @@
         <!-- Input for Discount-->
         <lable for="discount">Discount:</lable>
         <select id="discount" name="discount">
+            <option value="">None</option>
             {{#each discount}}
             <option value="{{this.ID}}" {{this.selected}}>{{this.Discount}}</option>
             {{/each}}

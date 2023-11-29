@@ -32,7 +32,7 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href="/new-ticket-sale" class="floating-button">New</a></th>
+                    <th><a href="/ticket-sales/new-ticket-sale" class="floating-button">New</a></th>
                     <th>Attendee</th>
                     <th>Ticket</th>
                     <th>Discount</th>
@@ -46,13 +46,13 @@
                 {{!-- For each row, print the Name, Email, Phone in order --}}
                 {{#each ticketSale}}
                 <tr>
-                    <td><a onclick="editTicketSale({{this.ID}})" href="/edit-ticket-sale?id={{this.ID}}">Edit</a></td>
+                    <td><a onclick="editTicketSale({{this.ID}})" href="/ticket-sales/edit-ticket-sale?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Attendee}}</td>
                     <td>{{this.Ticket}}</td>
                     <td>{{this.Discount}}</td>
                     <td>{{this.Total}}</td>
                     <td>{{this.Year}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Attendee}}', {{this.ID}}, '/delete-ticket-sale-ajax')"  >Delete</button></td>
+                    <td><button onclick="confirmAndDelete('{{this.Attendee}}', {{this.ID}}, '/ticket-sales/delete-ticket-sale-ajax')"  >Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>

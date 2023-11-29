@@ -32,7 +32,7 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href="/new-competitor-registration" class="floating-button">New</a></th>
+                    <th><a href="/competitor-registrations/new-competitor-registration" class="floating-button">New</a></th>
                     <th>Competitor</th>
                     <th>Team</th>
                     <th>Year</th>
@@ -45,11 +45,11 @@
                 {{!-- For each row, print the Name, Email, Phone in order --}}
                 {{#each competitorReg}}
                 <tr>
-                    <td><a onclick="editCompetitorReg({{this.ID}})" href="/edit-competitor-registration?id={{this.ID}}">Edit</a></td>
+                    <td><a onclick="editCompetitorReg({{this.ID}})" href="/competitor-registrations/edit-competitor-registration?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Competitor}}</td>
                     <td>{{this.Team}}</td>
                     <td>{{this.Year}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Competitor}}', {{this.ID}}, '/delete-competitor-registration-ajax')" >Delete</button></td>
+                    <td><button onclick="confirmAndDelete('{{this.Competitor}}', {{this.ID}}, '/competitor-registrations/delete-competitor-registration-ajax')" >Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>

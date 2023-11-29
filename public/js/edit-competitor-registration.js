@@ -12,28 +12,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Get form fields we need to get data from
         let updateID = document.getElementById('id');
-        let newCompetitor = document.getElementById("competitor");
-        let newTeam = document.getElementById("team");
-        let newYear = document.getElementById("year");
+        let newCompetitorId = document.getElementById("competitor");
+        let newTeamId = document.getElementById("team");
+        let newEventYearId = document.getElementById("year");
 
         // Get the values from the form fields
         let regID = updateID.value
-        let competitorValue = newCompetitor.value;
-        let teamValue = newTeam.value;
-        let yearValue = newYear.value;
+        let competitorIdValue = newCompetitorId.value;
+        let teamIdValue = newTeamId.value;
+        let eventYearIdValue = newEventYearId.value;
 
         // Put our data we want to send in a javascript object
         let data = {
             id: regID,
-            competitor: competitorValue,
-            team: teamValue,
-            year: yearValue
+            competitorId: competitorIdValue,
+            teamId: teamIdValue,
+            eventYearId: eventYearIdValue
         }
         console.log("this is data:", data)
         
         // Setup our AJAX request
         var xhttp = new XMLHttpRequest();
-        xhttp.open("PUT", "/edit-competitor-registration-ajax", true);
+        xhttp.open("PUT", "/competitor-registrations/edit-competitor-registration-ajax", true);
         xhttp.setRequestHeader("Content-type", "application/json");
 
         // Tell our AJAX request how to resolve

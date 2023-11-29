@@ -1,4 +1,4 @@
-// Import tickets model
+// Import models
 import * as ticketsModel from '../models/ticketsModel.mjs';
 import * as ticketTypesModel from '../models/ticketTypesModel.mjs';
 import * as eventYearsModel from '../models/eventYearsModel.mjs';

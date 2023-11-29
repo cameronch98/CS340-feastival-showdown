@@ -1,5 +1,5 @@
 // Import db and queries
-import { pool } from './database/db-connector';
+import { pool } from '../database/db-connector.mjs';
 import * as queries from '../queries.mjs';
 
 // Select all competitor registrations
@@ -29,9 +29,9 @@ export const getCompetitorRegById = (id) => {
 };
 
 // Add a new competitor registration
-export const addCompetitorReg = ({competitorId, teamId, yearId}) => {
+export const addCompetitorReg = ({competitorId, teamId, eventYearId}) => {
     return new Promise((resolve, reject) => {
-        pool.query(queries.insertCompetitorReg, [competitorId, teamId, yearId], (error, rows) => {
+        pool.query(queries.insertCompetitorReg, [competitorId, teamId, eventYearId], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -42,9 +42,9 @@ export const addCompetitorReg = ({competitorId, teamId, yearId}) => {
 };
 
 // Update a competitor registration
-export const updateCompetitorReg = ({competitorId, teamId, yearId, id}) => {
+export const updateCompetitorReg = ({competitorId, teamId, eventYearId, id}) => {
     return new Promise((resolve, reject) => {
-        pool.query(queries.updateCompetitorReg, [competitorId, teamId, yearId, id], (error, rows) => {
+        pool.query(queries.updateCompetitorReg, [competitorId, teamId, eventYearId, id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {

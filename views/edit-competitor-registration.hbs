@@ -28,7 +28,7 @@
     <h3>Edit Competitor Registration:</h3>
     <form id="edit-competitor-registration-form-ajax">
         <!-- Hidden input to hold the ID -->
-        <input type="hidden" name="id" id="id" value="{{selectedReg.competitor_registration_id}}"> 
+        <input type="hidden" name="id" id="id" value="{{competitorReg.competitor_registration_id}}"> 
 
         <!-- Prepopulated with valid competitors to reduce errors -->
         <label for="competitor">Competitor:</label>
@@ -49,7 +49,7 @@
         <!-- Prepopulated with valid years to reduce errors -->
         <label for="year">Year:</label>
         <select id="year" name="year">
-            {{#each year}}
+            {{#each eventYear}}
             <option value="{{this.ID}}"{{this.selected}}>{{this.Year}}</option>
             {{/each}}
         </select><br><br>
