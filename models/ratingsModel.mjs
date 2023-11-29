@@ -7,6 +7,7 @@ export const getAllRatings = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.selectRatings, (error, rows) => {
             if(error) {
+                console.error("Query error for selecting all ratings: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -20,6 +21,7 @@ export const getRatingById = (id) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.selectRatingById, [id], (error, rows) => {
             if(error) {
+                console.error("Query error for selecting rating by id: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -33,6 +35,7 @@ export const addRating = ({dishId, rating, comments, attendeeId}) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.insertRating, [dishId, rating, comments, attendeeId], (error, rows) => {
             if(error) {
+                console.error("Query error for inserting rating: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -46,6 +49,7 @@ export const updateRating = ({dishId, rating, comments, attendeeId, id}) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.updateRating, [dishId, rating, comments, attendeeId, id], (error, rows) => {
             if(error) {
+                console.error("Query error for updating rating: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -59,6 +63,7 @@ export const deleteRating = (id) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.deleteRating, [id], (error, rows) => {
             if(error) {
+                console.error("Query error for deleting rating: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);

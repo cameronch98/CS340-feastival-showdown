@@ -1,5 +1,4 @@
 // Import ticket types model
-import { query } from 'express';
 import * as ticketTypesModel from '../models/ticketTypesModel.mjs';
 
 // Render main ticket types page and table

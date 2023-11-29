@@ -7,6 +7,7 @@ export const getAllCourses = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.selectCourses, (error, rows) => {
             if(error) {
+                console.error("Query error for selecting all courses: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -20,6 +21,7 @@ export const getCourseById = (id) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.selectCourseById, [id], (error, rows) => {
             if(error) {
+                console.error("Query error for selecting course by id: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -33,6 +35,7 @@ export const addCourse = ({course}) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.insertCourse, [course], (error, rows) => {
             if(error) {
+                console.error("Query error for inserting course: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -46,6 +49,7 @@ export const updateCourse = ({course, id}) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.updateCourse, [course, id], (error, rows) => {
             if(error) {
+                console.error("Query error for updating course: ", error);
                 return reject(error);
             } else {
                 console.log(rows)
@@ -60,6 +64,7 @@ export const deleteCourse = (id) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.deleteCourse, [id], (error, rows) => {
             if(error) {
+                console.error("Query error for deleting course: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);

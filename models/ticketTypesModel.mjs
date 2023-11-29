@@ -7,6 +7,7 @@ export const getAllTicketTypes = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.selectTicketTypes, (error, rows) => {
             if(error) {
+                console.error("Query error for selecting all ticket types: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -20,6 +21,7 @@ export const getTicketTypeById = (id) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.selectTicketTypeById, [id], (error, rows) => {
             if(error) {
+                console.error("Query error for selecting ticket type by id: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -33,6 +35,7 @@ export const addTicketType = ({ticketType}) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.insertTicketType, [ticketType], (error, rows) => {
             if(error) {
+                console.error("Query error for inserting ticket type: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -46,6 +49,7 @@ export const updateTicketType = ({ticketType, id}) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.updateTicketType, [ticketType, id], (error, rows) => {
             if(error) {
+                console.error("Query error for updating ticket type: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -59,6 +63,7 @@ export const deleteTicketType = (id) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.deleteTicketType, [id], (error, rows) => {
             if(error) {
+                console.error("Query error for deleting ticket type: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);

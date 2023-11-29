@@ -7,6 +7,7 @@ export const getAllTeams = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.selectTeams, (error, rows) => {
             if(error) {
+                console.error("Query error for selecting all teams: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -20,6 +21,7 @@ export const getTeamById = (id) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.selectTeamById, [id], (error, rows) => {
             if(error) {
+                console.error("Query error for selecting team by id: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -33,6 +35,7 @@ export const addTeam = ({name}) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.insertTeam, [name], (error, rows) => {
             if(error) {
+                console.error("Query error for inserting team: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -46,6 +49,7 @@ export const updateTeam = ({name, id}) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.updateTeam, [name, id], (error, rows) => {
             if(error) {
+                console.error("Query error for updating team: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -59,6 +63,7 @@ export const deleteTeam = (id) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.deleteTeam, [id], (error, rows) => {
             if(error) {
+                console.error("Query error for deleting team: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);

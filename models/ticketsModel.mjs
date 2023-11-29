@@ -7,6 +7,7 @@ export const getAllTickets = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.selectTickets, (error, rows) => {
             if(error) {
+                console.error("Query error for selecting all tickets: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -20,6 +21,7 @@ export const getTicketById = (id) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.selectTicketById, [id], (error, rows) => {
             if(error) {
+                console.error("Query error for selecting ticket by id: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -33,6 +35,7 @@ export const addTicket = ({price, ticketTypeId, eventYearId}) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.insertTicket, [price, ticketTypeId, eventYearId], (error, rows) => {
             if(error) {
+                console.error("Query error for inserting ticket: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -46,6 +49,7 @@ export const updateTicket = ({price, ticketTypeId, eventYearId, id}) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.updateTicket, [price, ticketTypeId, eventYearId, id], (error, rows) => {
             if(error) {
+                console.error("Query error for updating ticket: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -59,6 +63,7 @@ export const deleteTicket = (id) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.deleteTicket, [id], (error, rows) => {
             if(error) {
+                console.error("Query error for deleting ticket: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);

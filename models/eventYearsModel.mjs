@@ -7,6 +7,7 @@ export const getAllEventYears = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.selectEventYears, (error, rows) => {
             if(error) {
+                console.error("Query error for selecting all event years: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -20,6 +21,7 @@ export const getEventYearById = (id) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.selectEventYearById, [id], (error, rows) => {
             if(error) {
+                console.error("Query error for selecting event year by id: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -33,6 +35,7 @@ export const addEventYear = ({year}) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.insertEventYear, [year], (error, rows) => {
             if(error) {
+                console.error("Query error for inserting event year: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -46,6 +49,7 @@ export const updateEventYear = ({year, id}) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.updateEventYear, [year, id], (error, rows) => {
             if(error) {
+                console.error("Query error for updating event year: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
@@ -59,6 +63,7 @@ export const deleteEventYear = (id) => {
     return new Promise((resolve, reject) => {
         pool.query(queries.deleteEventYear, [id], (error, rows) => {
             if(error) {
+                console.error("Query error for deleting event year: ", error);
                 return reject(error);
             } else {
                 return resolve(rows);
