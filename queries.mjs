@@ -66,7 +66,6 @@ export let updateTicketType = 'UPDATE Ticket_Types SET ticket_type = ? WHERE tic
 /**
  * Define delete queries
  */
-
 export let deleteAttendee = 'DELETE FROM Attendees WHERE attendee_id = ?;'
 export let deleteTicket = 'DELETE FROM Tickets WHERE ticket_id = ?;'
 export let deleteTicketType = 'DELETE FROM Ticket_Types WHERE ticket_type_id = ?;'
@@ -79,3 +78,8 @@ export let deleteDish = 'DELETE FROM Dishes WHERE dish_id = ?;'
 export let deleteCourse = 'DELETE FROM Courses WHERE course_id = ?;'
 export let deleteRating = 'DELETE FROM Ratings WHERE rating_id = ?;'
 export let deleteEventYear = 'DELETE FROM Event_Years WHERE event_year_id = ?;'
+
+/**
+ * Define reload queries
+ */
+export let reloadAttendees = "SET FOREIGN_KEY_CHECKS=0; SET AUTOCOMMIT = 0; TRUNCATE TABLE Attendees; INSERT INTO Attendees (attendee_name, attendee_email, attendee_phone) VALUES('Carla Downey', 'CarlaHDowney@gmail.com', '973-770-8215'), ('Matthew Walters', 'MatthewNWalters@gmail.com', '818-761-5490'), ('Allen Ruiz', 'AllenTRuiz@yahoo.com', '209-230-4361'), ('John Green', 'JohnGGreen@gmail.com', '321-720-2155'), ('Eleanor Toro', 'EleanorMToro@icloud.com', '603-516-3781'), ('John Shugart', 'JohnKShugart@outlook.com', '636-696-6776'), ('Charles Schiffer', 'solon1971@gmail.com', '917-675-9886'), ('Immanuel Rober', 'immanuel.rober@yahoo.com', '916-361-4436'), ('Erna Stanto', 'erna_stanto6@yahoo.com', '610-207-9000'), ('Joseph Beavers', 'flavie1986@gmail.com', '213-366-5774');";

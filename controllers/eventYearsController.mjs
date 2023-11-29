@@ -1,5 +1,4 @@
 // Import event years model
-import { query } from 'express';
 import * as eventYearsModel from '../models/eventYearsModel.mjs';
 
 // Render main event years page and table
