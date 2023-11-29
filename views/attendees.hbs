@@ -29,30 +29,24 @@
     <br>
     <h3>Browse Attendees</h3>
     <div>
-        {{!-- Create a table --}}
         <table id="attendee-table">
-            {{!-- Header section --}}
             <thead>
                 <tr>
-                    <th><a href="/new-attendee" class="floating-button">New</a></th>
+                    <th><a href="/attendees/new-attendee" class="floating-button">New</a></th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th></th>
                 </tr>
             </thead>
-
-            {{!-- Body section --}}
             <tbody>
-
-                {{!-- For each row, print the Name, Email, Phone in order --}}
                 {{#each attendee}}
                 <tr>
-                    <td><a onclick="editAttendee({{this.ID}})" href="/edit-attendee?id={{this.ID}}">Edit</a></td>
+                    <td><a onclick="editAttendee({{this.ID}})" href="/attendees/edit-attendee?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Name}}</td>
                     <td>{{this.Email}}</td>
                     <td>{{this.Phone}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Name}}', {{this.ID}}, '/delete-attendee-ajax')"   >Delete</button></td>
+                    <td><button onclick="confirmAndDelete('{{this.Name}}', {{this.ID}}, '/attendees/delete-attendee-ajax')"   >Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>

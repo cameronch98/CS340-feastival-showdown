@@ -12,31 +12,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Get form fields we need to get data from
         let updateID = document.getElementById("id")
-        let newDish = document.getElementById("dish");
+        let newDishId = document.getElementById("dish");
         let newRating = document.getElementById("rating");
         let newComments = document.getElementById("comments");
-        let newAttendee = document.getElementById("attendee");
+        let newAttendeeId = document.getElementById("attendee");
 
         // Get the values from the form fields
         let ratingID = updateID.value;
-        let dishValue = newDish.value;
+        let dishIdValue = newDishId.value;
         let ratingValue = newRating.value;
         let commentsValue = newComments.value;
-        let attendeeValue = newAttendee.value;
+        let attendeeIdValue = newAttendeeId.value;
 
         // Put our data we want to send in a javascript object
         let data = {
             id: ratingID,
-            dish: dishValue,
+            dishId: dishIdValue,
             rating: ratingValue,
             comments: commentsValue,
-            attendee: attendeeValue
+            attendeeId: attendeeIdValue
         }
         console.log("this is data:", data)
         
         // Setup our AJAX request
         var xhttp = new XMLHttpRequest();
-        xhttp.open("PUT", "/edit-rating-ajax", true);
+        xhttp.open("PUT", "/ratings/edit-rating-ajax", true);
         xhttp.setRequestHeader("Content-type", "application/json");
 
         // Tell our AJAX request how to resolve

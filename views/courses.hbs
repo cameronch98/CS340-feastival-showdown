@@ -32,7 +32,7 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href="/new-course" class="floating-button">New</a></th>
+                    <th><a href="/courses/new-course" class="floating-button">New</a></th>
                     <th>Name</th>
                     <th></th>
                 </tr>
@@ -40,9 +40,9 @@
             <tbody>
                 {{#each course}}
                 <tr>
-                    <td><a onclick="editCourse({{this.ID}})" href="/edit-course?id={{this.ID}}">Edit</a></td>
+                    <td><a onclick="editCourse({{this.ID}})" href="/courses/edit-course?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Course}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Course}}', {{this.ID}}, '/delete-course-ajax')" >Delete</button></td>
+                    <td><button onclick="confirmAndDelete('{{this.Course}}', {{this.ID}}, '/courses/delete-course-ajax')" >Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>
