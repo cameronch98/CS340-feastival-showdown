@@ -30,6 +30,8 @@ import { ticketTypesRoutes } from "./routes/ticketTypesRoutes.mjs";
 import { ticketsRoutes } from "./routes/ticketsRoutes.mjs";
 import { ticketSalesRoutes } from "./routes/ticketSalesRoutes.mjs";
 import { competitorRegistrationsRoutes } from "./routes/competitorRegistrationsRoutes.mjs";
+import { dishesRoutes } from "./routes/dishesRoutes.mjs";
+import { ratingsRoutes } from "./routes/ratingsRoutes.mjs";
 
 // Handlebars
 import { engine } from 'express-handlebars';     // Import express-handlebars
@@ -50,6 +52,8 @@ app.use('/ticket-types', ticketTypesRoutes);
 app.use('/tickets', ticketsRoutes);
 app.use('/ticket-sales', ticketSalesRoutes);
 app.use('/competitor-registrations', competitorRegistrationsRoutes);
+app.use('/dishes', dishesRoutes);
+app.use('/ratings', ratingsRoutes);
 
 /*
     LISTENER

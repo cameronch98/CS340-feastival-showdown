@@ -1,5 +1,5 @@
 // Import db and queries
-import { pool } from './database/db-connector';
+import { pool } from '../database/db-connector.mjs';
 import * as queries from '../queries.mjs';
 
 // Select all ratings

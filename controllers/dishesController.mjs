@@ -55,22 +55,15 @@ export const getEditDishForm = async(req, res) => {
         };
 
         // Set preselected options to the correct choices
-        let resultsKeys = Object.keys(results)
-        for (const key of resultsKeys) {
-            if (key === 'course') {
-                results.course.forEach(course => {
-                    course.selected = (course.ID === results.dish.course_id) ? "selected" : "";
-                });
-            } else if (key === 'team') {
-                results.team.forEach(team => {
-                    team.selected = (team.ID === results.dish.team_id) ? "selected" : "";
-                });
-            } else if (key === 'eventYear') {
-                results.eventYear.forEach(eventYear => {
-                    eventYear.selected = (eventYear.ID === results.dish.event_year_id) ? "selected" : "";
-                });
-            }
-        };
+        results.course.forEach(course => {
+            course.selected = (course.ID === results.dish.course_id) ? "selected" : "";
+        });
+        results.team.forEach(team => {
+            team.selected = (team.ID === results.dish.team_id) ? "selected" : "";
+        });
+        results.eventYear.forEach(eventYear => {
+            eventYear.selected = (eventYear.ID === results.dish.event_year_id) ? "selected" : "";
+        });
 
         // Render page with form elements prepopulated
         res.render('edit-dish', results);
@@ -93,6 +86,8 @@ export const addDish = async(req, res) => {
         'teamId': req.body.teamId,
         'eventYearId': req.body.eventYearId
     };
+
+    console.log(queryParams);
 
     try {
         // Run query to insert a new dish with given data

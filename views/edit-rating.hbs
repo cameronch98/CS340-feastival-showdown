@@ -28,7 +28,7 @@
     <h3>Edit Rating:</h3>
     <form id="edit-rating-form-ajax">
         <!--Hidden select for id-->
-        <input type="hidden" name="id" id="id" value="{{selectedRating.rating_id}}"> 
+        <input type="hidden" name="id" id="id" value="{{rating.rating_id}}"> 
 
         <!-- Prepopulated with dishes to reduce errors -->
         <label for="dish">Dish:</label>
@@ -39,10 +39,10 @@
         </select><br><br>
 
         <label for="rating">Rating:</label>
-        <input type="number" id="rating" name="rating" min="1" max="10" value="{{selectedRating.rating}}" required><br><br>
+        <input type="number" id="rating" name="rating" min="1" max="10" value="{{rating.rating}}" required><br><br>
 
         <label for="comments">Comments:</label>
-        <textarea id="comments" name="comments" maxlength="255" >{{selectedRating.comments}}</textarea><br><br>
+        <textarea id="comments" name="comments" maxlength="255" >{{rating.comments}}</textarea><br><br>
 
         <!-- Prepopulated with valid attendees to reduce errors -->
         <label for="attendee">Attendee:</label>

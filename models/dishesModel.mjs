@@ -29,9 +29,9 @@ export const getDishById = (id) => {
 };
 
 // Add a new dish
-export const addDish = ({dishName, dishImage, dishDescription, courseId, teamId, eventYearId}) => {
+export const addDish = ({dishName, dishImage, description, courseId, teamId, eventYearId}) => {
     return new Promise((resolve, reject) => {
-        pool.query(queries.insertDish, [dishName, dishImage, dishDescription, courseId, teamId, eventYearId], (error, rows) => {
+        pool.query(queries.insertDish, [dishName, dishImage, description, courseId, teamId, eventYearId], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {
@@ -42,9 +42,9 @@ export const addDish = ({dishName, dishImage, dishDescription, courseId, teamId,
 };
 
 // Update a dish
-export const updateDish = ({dishName, dishImage, dishDescription, courseId, teamId, eventYearId, id}) => {
+export const updateDish = ({dishName, dishImage, description, courseId, teamId, eventYearId, id}) => {
     return new Promise((resolve, reject) => {
-        pool.query(queries.updateDish, [dishName, dishImage, dishDescription, courseId, teamId, eventYearId, id], (error, rows) => {
+        pool.query(queries.updateDish, [dishName, dishImage, description, courseId, teamId, eventYearId, id], (error, rows) => {
             if(error) {
                 return reject(error);
             } else {

@@ -32,7 +32,7 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href="/new-rating" class="floating-button">New</a></th>
+                    <th><a href="/ratings/new-rating" class="floating-button">New</a></th>
                     <th>Dish</th>
                     <th>Rating</th>
                     <th>Comments</th>
@@ -46,13 +46,13 @@
                 {{!-- For each row, print the Name, Email, Phone in order --}}
                 {{#each rating}}
                 <tr>
-                    <td><a onclick="editRating({{this.ID}})" href="/edit-rating?id={{this.ID}}">Edit</a></td>
+                    <td><a onclick="editRating({{this.ID}})" href="/ratings/edit-rating?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Dish}}</td>
                     <td>{{this.Rating}}</td>
                     <td>{{this.Comments}}</td>
                     <td>{{this.Attendee}}</td>
                     <td>{{this.Year}}</td>
-                    <td><button onclick="confirmAndDelete('rating for {{this.Dish}}', {{this.ID}}, '/delete-rating-ajax')" >Delete</button></td>
+                    <td><button onclick="confirmAndDelete('rating for {{this.Dish}}', {{this.ID}}, '/ratings/delete-rating-ajax')" >Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>
