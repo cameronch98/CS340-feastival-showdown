@@ -42,10 +42,7 @@
                     <th></th>
                 </tr>
             </thead>
-{{!-- Body section --}}
             <tbody>
-
-                {{!-- For each row, print the Name, Email, Phone in order --}}
                 {{#each dish}}
                 <tr>
                     <td><a onclick="editDish({{this.ID}})" href="/dishes/edit-dish?id={{this.ID}}">Edit</a></td>

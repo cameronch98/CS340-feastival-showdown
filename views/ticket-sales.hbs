@@ -42,8 +42,6 @@
                 </tr>
             </thead>
             <tbody>
-
-                {{!-- For each row, print the Name, Email, Phone in order --}}
                 {{#each ticketSale}}
                 <tr>
                     <td><a onclick="editTicketSale({{this.ID}})" href="/ticket-sales/edit-ticket-sale?id={{this.ID}}">Edit</a></td>

@@ -43,20 +43,19 @@ export const getEditRatingForm = async(req, res) => {
         let dish = await dishesModel.getAllDishes();
         let attendee = await attendeesModel.getAllAttendees();
 
+        // Get rating to edit
+        rating = rating[0]
+
         // Initialize results object
         let results = {
-            'rating': rating[0],
+            'rating': rating,
             'dish': dish,
             'attendee': attendee,
         };
 
         // Set preselected options to the correct choices
-        results.dish.forEach(dish => {
-            dish.selected = (dish.ID === results.rating.dish_id) ? "selected" : "";
-        });
-        results.attendee.forEach(attendee => {
-            attendee.selected = (attendee.ID === results.rating.attendee_id) ? "selected" : "";
-        });
+        dish.forEach(dish => dish.selected = (dish.ID === rating.dish_id) ? "selected" : "");
+        attendee.forEach(attendee => attendee.selected = (attendee.ID === rating.attendee_id) ? "selected" : "");
 
         // Render page with form elements prepopulated
         res.render('edit-rating', results);

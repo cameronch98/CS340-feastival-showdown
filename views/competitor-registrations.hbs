@@ -39,10 +39,7 @@
                     <th></th>
                 </tr>
             </thead>
-            {{!-- Body section --}}
             <tbody>
-
-                {{!-- For each row, print the Name, Email, Phone in order --}}
                 {{#each competitorReg}}
                 <tr>
                     <td><a onclick="editCompetitorReg({{this.ID}})" href="/competitor-registrations/edit-competitor-registration?id={{this.ID}}">Edit</a></td>

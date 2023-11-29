@@ -43,20 +43,19 @@ export const getEditTicketForm = async(req, res) => {
         let ticketType = await ticketTypesModel.getAllTicketTypes();
         let eventYear = await eventYearsModel.getAllEventYears();
 
+        // Get ticket to edit
+        ticket = ticket[0]
+
         // Initialize results object
         let results = {
-            'ticket': ticket[0],
+            'ticket': ticket,
             'ticketType': ticketType,
             'eventYear': eventYear
         };
 
         // Set preselected options to the correct choices
-        results.ticketType.forEach(ticketType => {
-            ticketType.selected = (ticketType.ID === results.ticket.ticket_type_id) ? "selected" : "";
-        });
-        results.eventYear.forEach(eventYear => {
-            eventYear.selected = (eventYear.ID === results.ticket.event_year_id) ? "selected" : "";
-        });
+        ticketType.forEach(ticketType => ticketType.selected = (ticketType.ID === ticket.ticket_type_id) ? "selected" : "");
+        eventYear.forEach(eventYear => eventYear.selected = (eventYear.ID === ticket.event_year_id) ? "selected" : "");
 
         // Render page with form elements prepopulated
         res.render('edit-ticket', results);

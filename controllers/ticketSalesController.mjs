@@ -46,24 +46,21 @@ export const getEditTicketSaleForm = async(req, res) => {
         let ticket = await ticketsModel.getAllTickets();
         let discount = await discountsModel.getAllDiscounts();
 
+        // Get ticket sale to edit
+        ticketSale = ticketSale[0]
+
         // Initialize results object
         let results = {
-            'ticketSale': ticketSale[0],
+            'ticketSale': ticketSale,
             'attendee': attendee,
             'ticket': ticket,
             'discount': discount
         };
 
         // Set preselected options to the correct choices
-        results.attendee.forEach(attendee => {
-            attendee.selected = (attendee.ID === results.ticketSale.attendee_id) ? "selected" : "";
-        });
-        results.ticket.forEach(ticket => {
-            ticket.selected = (ticket.ID === results.ticketSale.ticket_id) ? "selected" : "";
-        });
-        results.discount.forEach(discount => {
-            discount.selected = (discount.ID === results.ticketSale.discount_id) ? "selected" : "";
-        });
+        attendee.forEach(attendee => attendee.selected = (attendee.ID === ticketSale.attendee_id) ? "selected" : "");
+        ticket.forEach(ticket => ticket.selected = (ticket.ID === ticketSale.ticket_id) ? "selected" : "");
+        discount.forEach(discount => discount.selected = (discount.ID === ticketSale.discount_id) ? "selected" : "");
 
         // Render page with form elements prepopulated
         res.render('edit-ticket-sale', results);

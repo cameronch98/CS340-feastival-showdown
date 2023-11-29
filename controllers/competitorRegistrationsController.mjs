@@ -46,24 +46,21 @@ export const getEditCompetitorReg = async(req, res) => {
         let team = await teamsModel.getAllTeams();
         let eventYear = await eventYearsModel.getAllEventYears();
 
+        // Get competitor reg to edit
+        competitorReg = competitorReg[0]
+
         // Initialize results object
         let results = {
-            'competitorReg': competitorReg[0],
+            'competitorReg': competitorReg,
             'competitor': competitor,
             'team': team,
             'eventYear': eventYear
         };
 
         // Set preselected options to the correct choices
-        results.competitor.forEach(competitor => {
-            competitor.selected = (competitor.ID === results.competitorReg.competitor_id) ? "selected" : "";
-        });
-        results.team.forEach(team => {
-            team.selected = (team.ID === results.competitorReg.team_id) ? "selected" : "";
-        });
-        results.eventYear.forEach(eventYear => {
-            eventYear.selected = (eventYear.ID === results.competitorReg.event_year_id) ? "selected" : "";
-        });
+        competitor.forEach(competitor => competitor.selected = (competitor.ID === competitorReg.competitor_id) ? "selected" : "");
+        team.forEach(team => team.selected = (team.ID === competitorReg.team_id) ? "selected" : "");
+        eventYear.forEach(eventYear => eventYear.selected = (eventYear.ID === competitorReg.event_year_id) ? "selected" : "");
 
         // Render page with form elements prepopulated
         res.render('edit-competitor-registration', results);

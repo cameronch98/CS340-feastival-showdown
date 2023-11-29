@@ -46,24 +46,23 @@ export const getEditDishForm = async(req, res) => {
         let team = await teamsModel.getAllTeams();
         let eventYear = await eventYearsModel.getAllEventYears();
 
+        // Get the dish to edit
+        dish = dish[0]
+
         // Initialize results object
         let results = {
-            'dish': dish[0],
+            'dish': dish,
             'course': course,
             'team': team,
             'eventYear': eventYear
         };
 
+        console.log(results);
+
         // Set preselected options to the correct choices
-        results.course.forEach(course => {
-            course.selected = (course.ID === results.dish.course_id) ? "selected" : "";
-        });
-        results.team.forEach(team => {
-            team.selected = (team.ID === results.dish.team_id) ? "selected" : "";
-        });
-        results.eventYear.forEach(eventYear => {
-            eventYear.selected = (eventYear.ID === results.dish.event_year_id) ? "selected" : "";
-        });
+        course.forEach(course => course.selected = (course.ID === dish.course_id) ? "selected" : "");
+        team.forEach(team => team.selected = (team.ID === dish.team_id) ? "selected" : "");
+        eventYear.forEach(eventYear => eventYear.selected = (eventYear.ID === dish.event_year_id) ? "selected" : "");
 
         // Render page with form elements prepopulated
         res.render('edit-dish', results);
