@@ -7,5 +7,6 @@ const homeRoutes = express.Router();
 // Define home routes
 homeRoutes
     .get('/', homeController.getHomePage)
+    .get('/reload-db', homeController.reloadDatabase)
 
 export { homeRoutes };

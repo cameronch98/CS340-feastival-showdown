@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Feastival Showdown</title>
-    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <h1>Feastival Showdown DB</h1>
     <div class="navbar">
         <ul>
+            <li class="reload"><a href="/db/reload-db"><i class="fa-solid fa-repeat"></i></a></li>
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/attendees">Attendees</a></li>
             <li><a href="/tickets">Tickets</a></li>
@@ -25,23 +25,201 @@
         </ul>
     </div>
     <br>
-    <div class="overview">
-        <p></p>
-    </div>
-    <div class="descriptions">
-        <h2>Page Descriptions and Operations</h2>
-        <p><b>ATTENDEES - </b>Operations on attendees for the festival: <b>browse</b>, <b>insert</b>, <b>edit</b>, <b>delete</b>.</p>
-        <p><b>TICKETS - </b>Operations on the tickets available for purchase: <b>browse</b>, <b>insert</b>, <b>edit</b>, <b>delete</b>.</p>
-        <p><b>TICKET TYPES - </b>Operations on the types of tickets for the event: <b>browse</b>, <b>insert</b>, <b>edit</b>, <b>delete</b>.</p>
-        <p><b>DISCOUNTS - </b>Operations on discounts available for use in ticket sales: <b>browse</b>, <b>insert</b>, <b>edit</b>, <b>delete</b>.</p>
-        <p><b>TICKET SALES - </b>Operations on ticket sale events: <b>browse</b>, <b>insert</b>, <b>edit</b>, <b>delete</b>.</p>
-        <p><b>COMPETITORS - </b>Operations on people competing in the festival: <b>browse</b>, <b>insert</b>, <b>edit</b>, <b>delete</b>.</p>
-        <p><b>TEAMS - </b>Operations on teams participating in the festival: <b>browse</b>, <b>insert</b>, <b>edit</b>, <b>delete</b>.</p>
-        <p><b>COMPETITOR REGISTRATIONS - </b>Operations on competitor registration events: <b>browse</b>, <b>insert</b>, <b>edit</b>, <b>delete</b>.</p>
-        <p><b>DISHES - </b>Operations on dishes prepared for the festival: <b>browse</b>, <b>insert</b>, <b>edit</b>, <b>delete</b>.</p>
-        <p><b>COURSES - </b>Operations on courses dishes will be prepared for: <b>browse</b>, <b>insert</b>, <b>edit</b>, <b>delete</b>.</p>
-        <p><b>RATINGS - </b>Operations on dish rating events by attendees: <b>browse</b>, <b>insert</b>, <b>edit</b>, <b>delete</b>.</p>
-        <p><b>EVENT YEARS - </b>Operations for years the festival has been held: <b>browse</b>, <b>insert</b>, <b>edit</b>, <b>delete</b>.</p>
+    <div class="db-overview">
+        <h1>About the Database:</h1>
+        <p>Set against the vibrant backdrop of Gourmetville is a culinary crown jewel – the annual “Feastival Showdown”. This three-day event invites the city’s top home chefs, often accompanied by their families and friends, to create mouth-watering masterpieces. The competition's design is one of unity and collaboration, with teams consisting of 4 or 5 members, be it solo chefs, pairs, trios, or larger groups. The event days correspond to the courses each team will be creating: appetizers light up the first day, entrées take center stage on the second, and desserts sweeten the conclusion on the third. Attendees have the honor of optionally rating each dish on a scale of 1-10, with the aggregate point tally crowning the next Feastival Champion. In an effort to elevate the festival's experience, the organizational team has hired us to design a database capable of allowing it to scale and maintain historical data by tracking its yearly popularity through ticket sales, attendee counts, team makeup and competitors, and food entries. It will currently track 20 eclectic teams, and a combined talent of 80 to 100 chefs, participating to win top prize. The event is expected to draw crowds of 2,000 attendees or more, with our system monitoring ticket sales which will be segmented based on single-day, two-day, and three-day tickets.</p>
+        <p>Maintaining a comprehensive record of each year's events allows organizers to analyze the data to discern trends and patterns. We aim to facilitate several key goals:</p>
+        <ul>
+            <li>Marketing Analysis: Allow marketing teams to access data anytime to analyze trends and set promotional campaigns or establish partnerships with sponsors by showcasing growth.</li>
+            <li>Real-time Dashboard: Event organizers will have a real-time dashboard showing ticket sales, attendee registrations and ratings given.</li>
+            <li>Integration Capabilities: The database can integrate with email marketing platforms to send promotional offers to previous attendees, including cached image URLs of all entries for use in these campaigns.</li>
+            <li>Expansion: With an estimated 10% annual growth in attendees and a 5% increase in competing teams over the next five years, the database will be built to efficiently manage and analyze this growth.</li>
+            <li>Smart Ticketing: The database will be capable of tracking previous attendees, offering potential early bird discounts or priority entry.</li>
+            <li>Personalized Recommendations: Based on past dish ratings, attendees can receive suggestions on which stalls or dishes they might like during the next event.</li>
+        </ul>
+        <p>This new database system will revolutionize the Feastival Showdown experience. For the organizers, it offers a consolidated platform to manage teams, track sales, and gather attendee feedback seamlessly. Participants benefit from an organized platform that recognizes their contributions year after year, enhancing their loyalty to the event. Attendees, on the other hand, will enjoy a more streamlined experience, from purchasing tickets to rating dishes. As the event scales, our robust database will ensure that the quality of the experience remains consistently top-notch.</p>
+        <h1>Reload the Database:</h1>
+        <p>Feel free to reload the database back to its original sample data before and/or after using it! Or, alternatively, use the handy button on the left side of the navbar. It currently takes you back to the home page no matter where you are (sad), but we are working on it.</p>
+        <a href="/db/reload-db" class="floating-button">Reload Database</a>
+        <h1>Database Outline:</h1>
+        <p><b>Attendees:</b> tracks the guests that will be present at the event to taste test the dishes</p>
+        <ul>
+            <li>attendee_id: int, auto_increment, PK</li>
+            <li>attendee_name: varchar(100), not NULL</li>
+            <li>attendee_email: varchar(255), unique, not NULL</li>
+            <li>attendee_phone: varchar(15), unique, not NULL</li>
+            <li>Relationships:</li>
+            <ul>
+                <li>1:M with Ratings, as each attendee will optionally be rating multiple dishes. The FK in Ratings is attendee_id.</li>
+                <li>M:N with Dishes, as each attendee may rate multiple dishes and each dish may be rated by multiple attendees. Ratings is the intersection table for this M:N, but acts as an entity itself.</li>
+                <li>1:M with Ticket_Sales, as each attendee may buy tickets to the event during multiple years. The FK in Ticket_Sales is attendee_id.</li>
+                <li>M:N with Tickets, as each attendee may buy multiple tickets from one year to the next, and each ticket may be purchased by many attendees. Ticket_Sales is the intersection table for this M:N, but acts as an entity itself.</li>
+                <li>Optional M:N with Discounts, as many discounts may be available for a given attendee to use for ticket purchase and a given discount may be used by many attendees on their ticket purchase.</li>
+            </ul>
+        </ul>
+        <p><b>Competitors:</b> tracks the individual competing chefs for the event</p>
+        <ul>
+            <li>competitor_id: int, auto_increment, PK</li>
+            <li>competitor_name: varchar(100), not NULL</li>
+            <li>competitor_email: varchar(255), unique, not NULL</li>
+            <li>competitor_phone: varchar(15), unique, not NULL</li>
+            <li>Relationships:</li>
+            <ul>
+                <li>1:M with Competitor_Registrations, since a given competitor may register for the event multiple years.</li>
+                <li>M:N with Teams, as each competitor may participate on many teams if they participate multiple years, and each team may have many competitors.</li>
+                <li>M:N with Event_Years, as a given competitor may compete in the event multiple years and there will be many competitors competing in the event each year.</li>
+            </ul>
+        </ul>
+        <p><b>Teams:</b> tracks the teams participating at the event</p>
+        <ul>
+            <li>team_id: int, auto_increment, PK</li>
+            <li>team_name: varchar(100), unique, not NULL</li>
+            <li>Relationships:</li>
+            <ul>
+                <li>1:M with Competitor_Registrations, as there may be multiple registrations for a team in a given year and over the years of the event being held.</li>
+                <li>M:N with Competitors, as each team may have many competitors, and each competitor may participate on many teams if they participate multiple years.</li>
+                <li>M:N with Event_Years, as a given team may compete in the event multiple years and there will be many teams competing in the event each year.</li>
+                <li>1:M with Dishes, as each team will be creating three dishes for the given festival. The FK in Dishes is team_id.</li>
+                <li>M:N with Courses, as each team will create a dish for all three courses, and many teams will create a dish for a given course. Dishes is the intersection table for this M:N, but acts as an entity itself.</li>
+            </ul>
+        </ul>
+        <p><b>Competitor_Registrations:</b> tracks registration of competitors to teams</p>
+        <ul>
+            <li>competitor_registration_id: int, auto_increment, PK</li>
+            <li>competitor_id: int, not NULL, FK</li>
+            <li>team_id: int, not NULL, FK</li>
+            <li>event_year_id: int, not NULL, FK</li>
+            <li>Relationships:</li>
+            <ul>
+                <li>M:1 with Competitors, as a given competitor may register to participate in the event multiple years.</li>
+                <li>M:1 with Teams, as many registrations may occur for a given team. Multiple competitors may register for the same team in a given year, and a competitor can register for the same team in different years.</li>
+                <li>M:1 with Event_Years, as many registrations to teams will occur for a given year of the event.</li>
+            </ul>
+        </ul>
+        <p><b>Ratings:</b> tracks the ratings attendees give to dishes</p>
+        <ul>
+            <li>rating_id: int, auto_increment, PK</li>
+            <li>rating: int, not NULL, limited 1-10, non-fractional, optional</li>
+            <li>comments: text</li>
+            <li>attendee_id: int, not NULL, FK</li>
+            <li>dish_id: int, not NULL, FK</li>
+            <li>Relationships:</li>
+            <ul>
+                <li>M:1 with Attendees, as there may be multiple ratings given by a single attendee.</li>
+                <li>M:1 with Dishes, as there may be multiple ratings given to a particular dish.</li>
+            </ul>
+        </ul>
+        <p><b>Ticket_Sales:</b> tracks the sale of tickets to attendees</p>
+        <ul>
+            <li>ticket_sale_id: int, auto_increment, PK</li>
+            <li>attendee_id: int, not NULL, FK</li>
+            <li>ticket_id: int, not NULL, FK</li>
+            <li>discount_id: int, FK</li>
+            <li>Relationships:</li>
+            <ul>
+                <li>M:1 with Tickets, as there may be multiple sales of a given ticket.</li>
+                <li>M:1 with Attendees, as there may be multiple purchases of tickets from a given attendee (if they attend the event multiple times).</li>
+                <li>Optional M:1 with Discounts, as there may be multiple ticket sales that utilize a given discount. Using a discount is optional though, and if a discount is not applied, the discount_id FK will be null.</li>
+            </ul>
+        </ul>
+        <p><b>Tickets:</b> tracks tickets available for purchase by attendees</p>
+        <ul>
+            <li>ticket_id: int, auto_increment, PK</li>
+            <li>list_price: decimal(5, 2), not NULL</li>
+            <li>ticket_type_id: int, not NULL, FK</li>
+            <li>event_year_id: int, not NULL, FK</li>
+            <li>Relationships:</li>
+            <ul>
+                <li>1:M with Ticket_Sales, as a given ticket may be purchased multiple times. The FK in Ticket_Sales is ticket_id.</li>
+                <li>1:M with Ticket_Sales, as a given ticket may be purchased multiple times. The FK in Ticket_Sales is ticket_id.</li>
+                <li>1:M with Ticket_Sales, as a given ticket may be purchased multiple times. The FK in Ticket_Sales is ticket_id.</li>
+                <li>Optional M:N with Discounts, as there are multiple discounts that can be applied to a given ticket, and each discount may be applied to many tickets. Ticket_Sales is the intersection table for this M:N.</li>
+                <li>Optional M:N with Discounts, as there are multiple discounts that can be applied to a given ticket, and each discount may be applied to many tickets. Ticket_Sales is the intersection table for this M:N.</li>
+            </ul>
+        </ul>
+        <p><b>Ticket_Types:</b> tracks different types of tickets/event passes</p>
+        <ul>
+            <li>ticket_type_id: int, auto_increment, PK</li>
+            <li>ticket_type: varchar(50), unique</li>
+            <li>Relationships:</li>
+            <ul>
+                <li>1:M with Tickets, as a given ticket type will be used for many tickets. The FK in Tickets is ticket_type_id.</li>
+                <li>M:N with Event_Years, as a given ticket type will be sold for the event every year and there will be multiple types of tickets on sale each year.</li>
+            </ul>
+        </ul>
+        <p><b>Discounts:</b> tracks available discounts for use in ticket purchases</p>
+        <ul>
+            <li>discount_id int, auto_increment, PK</li>
+            <li>discount_name: varchar(50), not NULL, unique</li>
+            <li>discount_percent: decimal(5,2), not NULL</li>
+            <li>Relationships:</li>
+            <ul>
+                <li>Optional 1:M with Ticket_Sales, as each discount may optionally be applied to many ticket sales. This is optional since there may be a discount that doesn’t get applied to any ticket sales. The FK in Ticket_Sales is discount_id.</li>
+                <li>Optional 1:M with Ticket_Sales, as each discount may optionally be applied to many ticket sales. This is optional since there may be a discount that doesn’t get applied to any ticket sales. The FK in Ticket_Sales is discount_id.</li>
+                <li>Optional M:N with Attendees, as a given discount may be used by many attendees on their ticket purchase, and many discounts may be available for a given attendee to use for ticket purchase.</li>
+            </ul>
+        </ul>
+        <p><b>Dishes:</b> tracks dishes created by teams of competitors</p>
+        <ul>
+            <li>dish_id: int, auto_increment, PK</li>
+            <li>dish_name: varchar(100), not NULL, unique</li>
+            <li>dish_image: varchar(255), not NULL</li>
+            <li>dish_description: varchar(255), not NULL</li>
+            <li>team_id: int, not NULL, FK</li>
+            <li>course_id: int, not NULL, FK</li>
+            <li>event_year_id: int, FK</li>
+            <li>Relationships:</li>
+            <ul>
+                <li>1:M with Ratings, as each dish will be rated by many attendees. The FK in Ratings is dish_id.</li>
+                <li>M:N with Attendees, as each attendee will rate many dishes and each dish will be rated by many attendees. Ratings is the intersection table for this M:N, but acts as an entity itself.</li>
+                <li>M:1 with Teams, as multiple dishes will be created by a given team.</li>
+                <li>M:1 with Courses, as multiple dishes will be created for a given course.</li>
+                <li>M:1 with Event_Years, as multiple dishes will be created for a given year of the event.</li>
+            </ul>
+        </ul>
+        <p><b>Courses:</b> tracks the course categories for dishes created at the event</p>
+        <ul>
+            <li>course_id: int, auto_increment, PK</li>
+            <li>course_name: varchar(50), not NULL, unique</li>
+            <li>Relationships:</li>
+            <ul>
+                <li>1:M with Dishes, as many dishes will be created by teams of competitors for each course category. The FK in Dishes is course_id.</li>
+                <li>M:N with Teams, as many teams will create a dish for a given course and each team will create a dish for all three courses. Dishes is the intersection table for this M:N, but acts as an entity itself.</li>
+                <li>M:N with Event_Years, as dishes for a given course will be prepared every year and there will be dishes prepared for three different courses each year.</li>
+            </ul>
+        </ul>
+        <p><b>Event_Years:</b> tracks the course categories for dishes created at the event</p>
+        <ul>
+            <li>event_year_id: int, auto_increment, PK</li>
+            <li>year: year, not NULL, unique</li>
+            <li>Relationships:</li>
+            <ul>
+                <li>1:M with Tickets, as each year of the event will have multiple tickets sold. The FK in Tickets is event_year_id.</li>
+                <li>1:M with Competitor_Registrations, as each year of the event will see many competitors register to teams. The FK in Competitor_Registrations is event_year_id.</li>
+                <li>1:M with Dishes, as each year of the event will see many dishes created by different teams. The FK in Dishes is event_year_id.</li>
+                <li>M:N with Competitors, as there will be many competitors competing in the event each year and a given competitor may compete in the event multiple years.</li>
+                <li>M:N with Teams, as there will be many teams competing in the event each year and a given team may compete in the event multiple years.</li>
+                <li>M:N with Ticket_Types, as there will be multiple types of tickets on sale each year and a given ticket type will be sold for the event every year.</li>
+                <li>M:N with Courses, as there will be dishes prepared for three different courses each year and dishes for a given course will be prepared every year.</li>
+            </ul>
+        </ul>
+        <h1>Entity-Relationship Diagram:</h1>
+        <img src="/images/erd.png" alt="ERD for database">
+        <h1>Schema:</h1>
+        <img src="/images/schema.png" alt="Schema for database">
+        <h1>Operations</h1>
+        <p><b>Attendees Operations:</b> create, read, update, delete.</p>
+        <p><b>Competitors Operations:</b> create, read, update, delete.</p>
+        <p><b>Teams Operations:</b> create, read, update, delete.</p>
+        <p><b>Competitor Registrations Operations:</b> create, read, update, delete.</p>
+        <p><b>Ratings Operations:</b> create, read, update, delete.</p>
+        <p><b>Ticket Sales Operations:</b> create, read, update, delete.</p>
+        <p><b>Tickets Operations:</b> create, read, update, delete.</p>
+        <p><b>Ticket Types Operations:</b> create, read, update, delete.</p>
+        <p><b>Discounts Operations:</b> create, read, update, delete.</p>
+        <p><b>Dishes Operations:</b> create, read, update, delete.</p>
+        <p><b>Courses Operations:</b> create, read, update, delete.</p>
+        <p><b>Event Years Operations:</b> create, read, update, delete.</p>
     </div>
 </body>
 </html>
