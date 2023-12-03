@@ -52,9 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 newDishName.value = '';
                 newDishImage.value = '';
                 newDescription.value = '';
-                newCourse.value = '';
-                newTeam.value = '';
-                newYear.value = '';
+                newCourseId.value = '';
+                newTeamId.value = '';
+                newEventYearId.value = '';
 
                 // Redirect to the dishes page
                 window.location.href ='/dishes';  

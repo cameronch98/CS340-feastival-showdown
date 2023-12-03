@@ -54,6 +54,7 @@ app.use('/ticket-sales', ticketSalesRoutes);
 app.use('/competitor-registrations', competitorRegistrationsRoutes);
 app.use('/dishes', dishesRoutes);
 app.use('/ratings', ratingsRoutes);
+app.use('/db', homeRoutes);
 
 /*
     LISTENER
