@@ -56,7 +56,7 @@ export const addAttendee = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error adding new attendee', err);
-        res.status(500).send('Error adding new attendee');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 

@@ -29,6 +29,15 @@ h1 {
     /*font-family: 'Satisfy', sans-serif;*/
     font-family: 'Kaushan Script', cursive;
     font-size: 30px;
+    color: white;
+}
+
+.home-page h1{
+    padding: 0;
+    margin: 0;
+    /*font-family: 'Satisfy', sans-serif;*/
+    font-family: 'Kaushan Script', cursive;
+    font-size: 30px;
     color: black;
 }
 
@@ -51,7 +60,7 @@ h1 {
     color: white;
 }
 .navbar:hover .inner-logo {
-    color: #c67e79;
+    color: #003142;
 }
 
 .main-content {
@@ -106,7 +115,7 @@ div.navbar {
     border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
     transition: width 0.3s ease;
-    background-color: #c67e79;
+    background-color: #003142;
     overflow: hidden;
 }
 
@@ -383,13 +392,13 @@ td a:hover {
 li:hover .material-symbols-outlined {
     transition: all ease .5s;
     transform: rotate(360deg);
-    color: #FAD6A5;
+    color: #003142;
 }
 
 li:hover .nav-text{
     transition: all ease .5s;
     text-decoration: underline;
-    color: #AE654A;
+    color: #003142;
     
 }
 
