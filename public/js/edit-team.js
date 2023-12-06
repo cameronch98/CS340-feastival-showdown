@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("editTeamForm",editTeamForm);
 
     // Modify the objects we need
-    editTeamForm.addEventListener("submit", function (e) {
+    editTeamForm.addEventListener("submit", async function (e) {
         console.log("submit was pressed")
         
         // Prevent the form from submitting
@@ -25,24 +25,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         console.log("this is data:", data)
         
-        // Setup our AJAX request
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("PUT", "/teams/edit-team-ajax", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
+        // Fetch response from put request
+        const response = await fetch('/teams/edit-team-ajax', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+        if (response.ok) {
+            // Handle successful deletion
+            alert("Team edited successfully!");
+            window.location.href = '/teams';
+        } else {
+            // Handle errors
+            const error = await response.json();
 
-        // Tell our AJAX request how to resolve
-        xhttp.onreadystatechange = () => {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
+            // Handle specific errors
+            if (error.sqlError == 1062) {
+                // Insert form logic to make warning appear (update this)
+                alert(`${data.name} is already registered as a team!`)
+            };
 
-                window.location.href ='/teams';  
-            }
-            else if (xhttp.readyState == 4 && xhttp.status != 200) {
-                console.log("There was an error with the input.")
-            }
+            // Send generic error message
+            console.error("Error editing team");
         }
-
-        // Send the request and wait for the response
-        xhttp.send(JSON.stringify(data));
-
     })
 });

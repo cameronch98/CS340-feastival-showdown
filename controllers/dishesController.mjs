@@ -57,8 +57,6 @@ export const getEditDishForm = async(req, res) => {
             'eventYear': eventYear
         };
 
-        console.log(results);
-
         // Set preselected options to the correct choices
         course.forEach(course => course.selected = (course.ID === dish.course_id) ? "selected" : "");
         team.forEach(team => team.selected = (team.ID === dish.team_id) ? "selected" : "");

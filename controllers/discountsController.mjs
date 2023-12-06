@@ -56,7 +56,7 @@ export const addDiscount = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error adding new discount', err);
-        res.status(500).send('Error adding new discount');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 
@@ -77,7 +77,7 @@ export const updateDiscount = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error editing discount', err);
-        res.status(500).send('Error editing discount');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 

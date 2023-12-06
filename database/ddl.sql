@@ -9,7 +9,7 @@ CREATE OR REPLACE TABLE Event_Years (
 );
 
 -- Create the Courses table
-CREATE OR REPLACE TABLE Courses(
+CREATE OR REPLACE TABLE Courses (
     course_id int AUTO_INCREMENT PRIMARY KEY,
     course_name varchar(50) NOT NULL UNIQUE
 );

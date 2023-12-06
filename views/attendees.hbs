@@ -42,21 +42,19 @@
         <table id="attendee-table">
             <thead>
                 <tr>
-                    <th><a href="/attendees/new-attendee" class="floating-button">New</a></th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th></th>
+                    <th><a href="/attendees/new-attendee" class="floating-button">New</a></th>
                 </tr>
             </thead>
             <tbody>
                 {{#each attendee}}
                 <tr>
-                    <td><a onclick="editAttendee({{this.ID}})" href="/attendees/edit-attendee?id={{this.ID}}"><span class="material-symbols-outlined">edit</span></a></td>
                     <td>{{this.Name}}</td>
                     <td>{{this.Email}}</td>
                     <td>{{this.Phone}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Name}}', {{this.ID}}, '/attendees/delete-attendee-ajax')"   ><span class="material-symbols-outlined">delete</span></button></td>
+                    <td><span><a class="floating-button" onclick="editAttendee({{this.ID}})" href="/attendees/edit-attendee?id={{this.ID}}"><span class="material-symbols-outlined">edit</span></a><a class="floating-button" onclick="confirmAndDelete('{{this.Name}}', {{this.ID}}, '/attendees/delete-attendee-ajax')"   ><span class="material-symbols-outlined">delete</span></a></span></td>
                 </tr>
                 {{/each}}
             </tbody>

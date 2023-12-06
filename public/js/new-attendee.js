@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         console.log("this is data:", data)
         
-        // Add your fetch/delete logic here
+        // Fetch response from post request
         const response = await fetch('/attendees/new-attendee-ajax', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -41,11 +41,24 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             // Handle errors
             const error = await response.json();
-            if (error.sqlError == 1062) {
 
+            // Init regex object
+            let regex = {
+                'email': /Duplicate entry .* for key 'attendee_email'/,
+                'phone': /Duplicate entry .* for key 'attendee_phone'/
+            }
+
+            // Handle specific errors
+            if (error.sqlError == 1062) {
                 // Insert form logic to make warning appear (update this)
-                alert('This phone number or email has already been used to sign up an attendee')
+                if (regex.email.test(error.sqlMessage)) {
+                    alert(`The email ${data.email} has already been used to register!`)
+                } else if (regex.phone.test(error.sqlMessage)) {
+                    alert(`The phone number ${data.phone} has already been used to register!`)
+                }
             };
+
+            // Send generic error message
             console.error("Error adding attendee");
         }
     });

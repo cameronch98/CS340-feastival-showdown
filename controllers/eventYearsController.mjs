@@ -54,7 +54,7 @@ export const addEventYear = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error adding new event year', err);
-        res.status(500).send('Error adding new event year');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 
@@ -74,7 +74,7 @@ export const updateEventYear = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error editing event year', err);
-        res.status(500).send('Error editing event year');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 

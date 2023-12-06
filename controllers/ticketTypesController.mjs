@@ -54,7 +54,7 @@ export const addTicketType = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error adding new ticket type', err);
-        res.status(500).send('Error adding new ticket type');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 
@@ -74,7 +74,7 @@ export const updateTicketType = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error editing ticket type', err);
-        res.status(500).send('Error editing ticket type');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 

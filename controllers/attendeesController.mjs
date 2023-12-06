@@ -56,7 +56,7 @@ export const addAttendee = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error adding new attendee', err);
-        res.status(500).json({sqlError: err.errno});
+        res.status(500).json({sqlError: err.errno, sqlMessage: err.sqlMessage});
     }
 };
 
@@ -78,7 +78,7 @@ export const updateAttendee = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error editing attendee', err);
-        res.status(500).send('Error editing attendee');
+        res.status(500).json({sqlError: err.errno, sqlMessage: err.sqlMessage});
     }
 };
 

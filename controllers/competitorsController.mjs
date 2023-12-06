@@ -56,7 +56,7 @@ export const addCompetitor = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error adding new competitor', err);
-        res.status(500).send('Error adding new competitor');
+        res.status(500).json({sqlError: err.errno, sqlMessage: err.sqlMessage});
     }
 };
 
@@ -78,7 +78,7 @@ export const updateCompetitor = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error editing competitor', err);
-        res.status(500).send('Error editing competitor');
+        res.status(500).json({sqlError: err.errno, sqlMessage: err.sqlMessage});
     }
 };
 

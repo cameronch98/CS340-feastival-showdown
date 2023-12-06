@@ -55,7 +55,7 @@ export const addTeam = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error adding new team', err);
-        res.status(500).send('Error adding new team');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 
@@ -75,7 +75,7 @@ export const updateTeam = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error editing team', err);
-        res.status(500).send('Error editing team');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 

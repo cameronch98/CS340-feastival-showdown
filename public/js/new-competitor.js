@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(addCompetitorForm);
 
     // Modify the objects we need
-    addCompetitorForm.addEventListener("submit", function (e) {
+    addCompetitorForm.addEventListener("submit", async function (e) {
         console.log("submit was pressed")
         
         // Prevent the form from submitting
@@ -28,31 +28,38 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         console.log("this is data:", data)
         
-        // Setup our AJAX request
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/competitors/new-competitor-ajax", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
+        // Fetch response from post request
+        const response = await fetch('/competitors/new-competitor-ajax', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+        if (response.ok) {
+            // Handle successful deletion
+            alert("Competitor added successfully!");
+            window.location.href = '/competitors';
+        } else {
+            // Handle errors
+            const error = await response.json();
 
-        // Tell our AJAX request how to resolve
-        xhttp.onreadystatechange = () => {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
-
-                // Clear the input fields for another transaction
-                newName.value = '';
-                newEmail.value = '';
-                newPhone.value = '';
-                
-                // Redirect to the competitor page
-                window.location.href ='/competitors';  
-
+            // Init regex object
+            let regex = {
+                'email': /Duplicate entry .* for key 'competitor_email'/,
+                'phone': /Duplicate entry .* for key 'competitor_phone'/
             }
-            else if (xhttp.readyState == 4 && xhttp.status != 200) {
-                console.log("There was an error with the input.")
-            }
+
+            // Handle specific errors
+            if (error.sqlError == 1062) {
+                // Insert form logic to make warning appear (update this)
+                if (regex.email.test(error.sqlMessage)) {
+                    alert(`The email ${data.email} has already been used to register!`)
+                } else if (regex.phone.test(error.sqlMessage)) {
+                    alert(`The phone number ${data.phone} has already been used to register!`)
+                }
+            };
+
+            // Send generic error message
+            console.error("Error adding competitor");
         }
-
-        // Send the request and wait for the response
-        xhttp.send(JSON.stringify(data));
-
     })
 });

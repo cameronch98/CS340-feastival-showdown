@@ -55,7 +55,7 @@ export const addCourse = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error adding new course', err);
-        res.status(500).send('Error adding new course');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 
@@ -75,7 +75,7 @@ export const updateCourse = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error editing course', err);
-        res.status(500).send('Error editing course');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 
