@@ -134,3 +134,16 @@ export const deleteDish = async(req, res) => {
         res.status(500).send('Error deleting dish');
     }
 };
+
+// Get foreign key values of a dish by its id
+export const getDishFKValuesById = async(req, res) => {
+    try {
+        //Run query to get dish fk values with given id
+        let results = await dishesModel.getDishFKValuesById(req.body.id);
+        res.status(200).json(results[0])
+    } catch(err) {
+        // Send error status and message
+        console.error('Error selecting dish', err);
+        res.status(500).send('Error selecting dish');
+    }
+};

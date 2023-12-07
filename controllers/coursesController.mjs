@@ -91,3 +91,16 @@ export const deleteCourse = async(req, res) => {
         res.status(500).send('Error deleting course');
     }
 };
+
+// Get one course by id
+export const getOneCourse = async(req, res) => {
+    try {
+        //Run query to get course with given id
+        let results = await coursesModel.getCourseById(req.body.id);
+        res.status(200).json({course: results[0]})
+    } catch(err) {
+        // Send error status and message
+        console.error('Error selecting course', err);
+        res.status(500).send('Error selecting course');
+    }
+};

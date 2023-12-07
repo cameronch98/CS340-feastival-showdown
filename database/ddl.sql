@@ -100,6 +100,7 @@ CREATE OR REPLACE TABLE Dishes(
     team_id int NOT NULL, 
     course_id int NOT NULL,
     event_year_id int NOT NULL,
+    CONSTRAINT team_course_year UNIQUE(team_id, course_id, event_year_id),
     FOREIGN KEY(team_id) REFERENCES Teams (team_id)
     ON DELETE CASCADE,
     FOREIGN KEY(course_id) REFERENCES Courses (course_id)

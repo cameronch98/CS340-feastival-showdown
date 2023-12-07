@@ -1,6 +1,6 @@
 // Get the objects we need to modify
 document.addEventListener("DOMContentLoaded", () => {
-    let addTicketSale = document.getElementById('new-ticket-sale-form-ajax');
+    let addTicketSale = document.getElementById('new-ticket-sale-form');
     console.log(addTicketSale);
 
     // Modify the objects we need

@@ -31,7 +31,7 @@ export const getEditAttendeeForm = async(req, res) => {
     try {
         // Run query to get attendee with given id and prepopulate form
         let results = await attendeesModel.getAttendeeById(req.query.id);
-        res.render('edit-attendee', {attendee: results[0]});
+        res.status(200).render('edit-attendee', {attendee: results[0]});
     } catch(err) {
         // Send error status and message
         console.error('Error rendering edit attendee page/form: ', err);
@@ -92,5 +92,18 @@ export const deleteAttendee = async(req, res) => {
         // Send error status and message
         console.error('Error deleting attendee', err);
         res.status(500).send('Error deleting attendee');
+    }
+};
+
+// Get one attendee by id
+export const getOneAttendee = async(req, res) => {
+    try {
+        //Run query to get attendee with given id
+        let results = await attendeesModel.getAttendeeById(req.body.id);
+        res.status(200).json({attendee: results[0]})
+    } catch(err) {
+        // Send error status and message
+        console.error('Error selecting attendee', err);
+        res.status(500).send('Error selecting attendee');
     }
 };

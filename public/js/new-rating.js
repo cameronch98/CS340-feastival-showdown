@@ -1,6 +1,6 @@
 // Get the objects we need to modify
 document.addEventListener("DOMContentLoaded", () => {
-    let addRatingForm = document.getElementById('new-rating-form-ajax');
+    let addRatingForm = document.getElementById('new-rating-form');
     console.log(addRatingForm);
 
     // Modify the objects we need

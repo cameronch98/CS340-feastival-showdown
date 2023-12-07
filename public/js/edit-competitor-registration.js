@@ -1,6 +1,6 @@
 // Get the objects we need to modify
 document.addEventListener("DOMContentLoaded", () => {
-    let editCompetitorRegForm = document.getElementById('edit-competitor-registration-form-ajax');
+    let editCompetitorRegForm = document.getElementById('edit-competitor-registration-form');
     console.log(editCompetitorRegForm);
 
     // Modify the objects we need
@@ -12,25 +12,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Get form fields we need to get data from
         let updateID = document.getElementById('id');
-        let competitorInfo = document.getElementById("competitor");
-        let teamInfo = document.getElementById("team");
-        let eventYearInfo = document.getElementById("year");
-
-        // Get info arrays with names/year and ids
-        let competitorInfoArr = competitorInfo.value.split("|");
-        let teamInfoArr = teamInfo.value.split("|");
-        let eventYearInfoArr = eventYearInfo.value.split("|");
+        let newCompetitorId = document.getElementById("competitor");
+        let newTeamId = document.getElementById("team");
+        let newEventYearId = document.getElementById("year");
 
         // Get id values from the info arrays
         let regID = updateID.value;
-        let competitorIdValue = competitorInfoArr[0];
-        let teamIdValue = teamInfoArr[0];
-        let eventYearIdValue = eventYearInfoArr[0];
-
-        // Get names/years from the info arrays
-        let competitorName = competitorInfoArr[1];
-        let teamName = teamInfoArr[1];
-        let eventYear = eventYearInfoArr[1];
+        let competitorIdValue = newCompetitorId.value;
+        let teamIdValue = newTeamId.value;
+        let eventYearIdValue = newEventYearId.value;
 
         // Put our data we want to send in a javascript object
         let data = {
@@ -58,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Handle specific errors
             if (error.sqlError == 1062) {
                 // Insert form logic to make warning appear (update this)
-                alert(`${competitorName} is already registered to ${teamName} for ${eventYear}!`);
+                alert(`This competitor is already registered to a team for the given year!`);
             };
 
             // Send generic error message

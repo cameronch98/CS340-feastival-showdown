@@ -1,6 +1,6 @@
 // Get the objects we need to modify
 document.addEventListener("DOMContentLoaded", () => {
-    let addDiscountForm = document.getElementById('new-discount-form-ajax');
+    let addDiscountForm = document.getElementById('new-discount-form');
     console.log(addDiscountForm);
 
     // Modify the objects we need

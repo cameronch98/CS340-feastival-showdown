@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let editDishForm = document.getElementById('edit-dish-form-ajax');
+    let editDishForm = document.getElementById('edit-dish-form');
     console.log(editDishForm);
 
     // Modify the objects we need

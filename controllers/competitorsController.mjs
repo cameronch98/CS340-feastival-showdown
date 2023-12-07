@@ -94,3 +94,16 @@ export const deleteCompetitor = async(req, res) => {
         res.status(500).send('Error deleting competitor');
     }
 };
+
+// Get one competitor by id
+export const getOneCompetitor = async(req, res) => {
+    try {
+        //Run query to get competitor with given id
+        let results = await competitorsModel.getCompetitorById(req.body.id);
+        res.status(200).json({competitor: results[0]})
+    } catch(err) {
+        // Send error status and message
+        console.error('Error selecting competitor', err);
+        res.status(500).send('Error selecting competitor');
+    }
+};

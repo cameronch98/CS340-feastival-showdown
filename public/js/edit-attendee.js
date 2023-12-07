@@ -1,6 +1,6 @@
 // Get the objects we need to modify
 document.addEventListener("DOMContentLoaded", () => {
-    let editAttendeeForm = document.getElementById('edit-attendee-form-ajax');
+    let editAttendeeForm = document.getElementById('edit-attendee-form');
     console.log(editAttendeeForm);
 
     // Modify the objects we need

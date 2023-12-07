@@ -71,3 +71,17 @@ export const deleteTicket = (id) => {
         })
     })
 };
+
+// Get the foreign key values for a ticket by id
+export const getTicketFKValuesById = (id) => {
+    return new Promise((resolve, reject) => {
+        pool.query(queries.joinFKByTicketId, [id], (error, rows) => {
+            if(error) {
+                console.error("Query error for selecting ticket: ", error);
+                return reject(error);
+            } else {
+                return resolve(rows);
+            }
+        })
+    })
+};

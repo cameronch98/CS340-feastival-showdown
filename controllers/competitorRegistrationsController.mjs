@@ -88,7 +88,7 @@ export const addCompetitorReg = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error adding new competitor registration', err);
-        res.status(500).send('Error adding new competitor registration');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 
@@ -112,7 +112,7 @@ export const updateCompetitorReg = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error editing competitor registration', err);
-        res.status(500).send('Error editing competitor registration');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 
@@ -126,5 +126,18 @@ export const deleteCompetitorReg = async(req, res) => {
         // Send error status and message
         console.error('Error deleting competitor registration', err);
         res.status(500).send('Error deleting competitor registration');
+    }
+};
+
+// Get foreign key values of a competitor reg by its id
+export const getCompetitorRegFKValuesById = async(req, res) => {
+    try {
+        //Run query to get competitor reg fk values with given id
+        let results = await competitorRegistrationsModel.getCompetitorRegFKValuesById(req.body.id);
+        res.status(200).json(results[0])
+    } catch(err) {
+        // Send error status and message
+        console.error('Error selecting competitor registration', err);
+        res.status(500).send('Error selecting competitor registration');
     }
 };

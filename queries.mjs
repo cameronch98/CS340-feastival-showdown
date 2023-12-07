@@ -31,6 +31,14 @@ export let selectRatingById = 'SELECT * FROM Ratings WHERE rating_id = ?;'
 export let selectTicketSaleById = 'SELECT * FROM Ticket_Sales WHERE ticket_sale_id = ?;'
 
 /**
+ * Define Special Select Queries for Exception Handling
+ */
+export let joinFKByCompetitorRegId = "SELECT Competitors.competitor_name AS competitor, Teams.team_name AS team, Event_Years.year AS year FROM Competitor_Registrations JOIN Competitors ON Competitor_Registrations.competitor_id = Competitors.competitor_id JOIN Teams ON Competitor_Registrations.team_id = Teams.team_id JOIN Event_Years ON Competitor_Registrations.event_year_id = Event_Years.event_year_id WHERE competitor_registration_id = ?;";
+export let joinFKByTicketId = "SELECT Ticket_Types.ticket_type AS ticketType, Event_Years.year AS year FROM Tickets JOIN Ticket_Types ON Tickets.ticket_type_id = Ticket_Types.ticket_type_id JOIN Event_Years ON Tickets.event_year_id = Event_Years.event_year_id WHERE ticket_id = ?;";
+export let joinFKByDishId = "SELECT Courses.course_name AS course, Teams.team_name AS team, Event_Years.year AS year FROM Dishes JOIN Courses on Dishes.course_id = Courses.course_id JOIN Teams on Dishes.team_id = Teams.team_id JOIN Event_Years on Dishes.event_year_id = Event_Years.event_year_id WHERE dish_id = ?;";
+export let joinFKByRatingId = "SELECT Attendees.attendee_name AS attendee, Dishes.dish_name AS dish FROM Ratings JOIN Dishes ON Ratings.dish_id = Dishes.dish_id JOIN Attendees ON Ratings.attendee_id = Attendees.attendee_id WHERE rating_id = ?;";
+
+/**
  * Define insert queries
  */
 export let insertAttendee = "INSERT INTO Attendees (attendee_name, attendee_email, attendee_phone) VALUES (?, ?, ?);";

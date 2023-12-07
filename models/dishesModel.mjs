@@ -71,3 +71,17 @@ export const deleteDish = (id) => {
         })
     })
 };
+
+// Get the foreign key values for a dish by id
+export const getDishFKValuesById = (id) => {
+    return new Promise((resolve, reject) => {
+        pool.query(queries.joinFKByDishId, [id], (error, rows) => {
+            if(error) {
+                console.error("Query error for selecting dish: ", error);
+                return reject(error);
+            } else {
+                return resolve(rows);
+            }
+        })
+    })
+};

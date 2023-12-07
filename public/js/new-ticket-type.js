@@ -1,6 +1,6 @@
 // Get the objects we need to modify
 document.addEventListener("DOMContentLoaded", () => {
-    let addTicketTypeForm = document.getElementById('new-ticket-type-form-ajax');
+    let addTicketTypeForm = document.getElementById('new-ticket-type-form');
     console.log(addTicketTypeForm);
 
     // Modify the objects we need
