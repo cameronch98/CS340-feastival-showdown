@@ -98,9 +98,9 @@ export const deleteAttendee = async(req, res) => {
 // Get one attendee by id
 export const getOneAttendee = async(req, res) => {
     try {
-        //Run query to get attendee with given id
-        let results = await attendeesModel.getAttendeeById(req.body.id);
-        res.status(200).json({attendee: results[0]})
+        //Run query to select attendee with the given id
+        let results = await attendeesModel.getAttendeeById(req.query.id);
+        res.status(200).json(results[0])
     } catch(err) {
         // Send error status and message
         console.error('Error selecting attendee', err);

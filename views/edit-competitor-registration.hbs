@@ -45,7 +45,7 @@
         <label for="competitor">Competitor:</label>
         <select id="competitor" name="competitor">
             {{#each competitor}}
-            <option value="{{this.ID}}|{{this.Name}}"{{this.selected}}>{{this.Name}}</option>
+            <option value="{{this.ID}}"{{this.selected}}>{{this.Name}}</option>
             {{/each}}
         </select><br><br>
 
@@ -53,7 +53,7 @@
         <label for="team">Team:</label>
         <select id="team" name="team">
             {{#each team}}
-            <option value="{{this.ID}}|{{this.Team}}"{{this.selected}}>{{this.Team}}</option>
+            <option value="{{this.ID}}"{{this.selected}}>{{this.Team}}</option>
             {{/each}}
         </select><br><br>
 
@@ -61,7 +61,7 @@
         <label for="year">Year:</label>
         <select id="year" name="year">
             {{#each eventYear}}
-            <option value="{{this.ID}}|{{this.Year}}"{{this.selected}}>{{this.Year}}</option>
+            <option value="{{this.ID}}"{{this.selected}}>{{this.Year}}</option>
             {{/each}}
         </select><br><br>
 

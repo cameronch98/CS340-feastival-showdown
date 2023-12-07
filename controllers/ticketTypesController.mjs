@@ -90,3 +90,16 @@ export const deleteTicketType = async(req, res) => {
         res.status(500).send('Error deleting ticket type');
     }
 };
+
+// Get one ticket type by id
+export const getOneTicketType = async(req, res) => {
+    try {
+        //Run query to select ticket type with the given id
+        let results = await ticketTypesModel.getTicketTypeById(req.query.id);
+        res.status(200).json(results[0])
+    } catch(err) {
+        // Send error status and message
+        console.error('Error selecting ticket type', err);
+        res.status(500).send('Error selecting ticket type');
+    }
+};

@@ -128,16 +128,3 @@ export const deleteCompetitorReg = async(req, res) => {
         res.status(500).send('Error deleting competitor registration');
     }
 };
-
-// Get foreign key values of a competitor reg by its id
-export const getCompetitorRegFKValuesById = async(req, res) => {
-    try {
-        //Run query to get competitor reg fk values with given id
-        let results = await competitorRegistrationsModel.getCompetitorRegFKValuesById(req.body.id);
-        res.status(200).json(results[0])
-    } catch(err) {
-        // Send error status and message
-        console.error('Error selecting competitor registration', err);
-        res.status(500).send('Error selecting competitor registration');
-    }
-};

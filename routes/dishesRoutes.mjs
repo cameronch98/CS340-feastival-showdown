@@ -7,6 +7,7 @@ const dishesRoutes = express.Router();
 // Define dishes routes
 dishesRoutes
     .get('/', dishesController.getDishesTable)
+    .get('/get-dish', dishesController.getOneDish)
     .get('/new-dish', dishesController.getNewDishForm)
     .get('/edit-dish', dishesController.getEditDishForm)
     .post('/new-dish/fetch', dishesController.addDish)

@@ -7,6 +7,7 @@ const teamsRoutes = express.Router();
 // Define teams routes
 teamsRoutes
     .get('/', teamsController.getTeamsTable)
+    .get('/get-team', teamsController.getOneTeam)
     .get('/new-team', teamsController.getNewTeamForm)
     .get('/edit-team', teamsController.getEditTeamForm)
     .post('/new-team/fetch', teamsController.addTeam)

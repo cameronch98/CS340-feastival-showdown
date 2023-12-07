@@ -90,3 +90,16 @@ export const deleteEventYear = async(req, res) => {
         res.status(500).send('Error deleting event year');
     }
 };
+
+// Get one event year by id
+export const getOneEventYear = async(req, res) => {
+    try {
+        //Run query to select event year with the given id
+        let results = await eventYearsModel.getEventYearById(req.query.id);
+        res.status(200).json(results[0])
+    } catch(err) {
+        // Send error status and message
+        console.error('Error selecting event year', err);
+        res.status(500).send('Error selecting event year');
+    }
+};

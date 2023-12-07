@@ -7,6 +7,7 @@ const coursesRoutes = express.Router();
 // Define courses routes
 coursesRoutes
     .get('/', coursesController.getCoursesTable)
+    .get('/get-course', coursesController.getOneCourse)
     .get('/new-course', coursesController.getNewCourseForm)
     .get('/edit-course', coursesController.getEditCourseForm)
     .post('/new-course/fetch', coursesController.addCourse)

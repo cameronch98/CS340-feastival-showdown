@@ -7,6 +7,7 @@ const ticketTypesRoutes = express.Router();
 // Define ticket types routes
 ticketTypesRoutes
     .get('/', ticketTypesController.getTicketTypesTable)
+    .get('/get-ticket-type', ticketTypesController.getOneTicketType)
     .get('/new-ticket-type', ticketTypesController.getNewTicketTypeForm)
     .get('/edit-ticket-type', ticketTypesController.getEditTicketTypeForm)
     .post('/new-ticket-type/fetch', ticketTypesController.addTicketType)

@@ -93,7 +93,7 @@ export const addDish = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error adding new dish', err);
-        res.status(500).send('Error adding new dish');
+        res.status(500).json({sqlError: err.errno, sqlMessage: err.sqlMessage});
     }
 };
 
@@ -118,7 +118,7 @@ export const updateDish = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error editing dish', err);
-        res.status(500).send('Error editing dish');
+        res.status(500).json({sqlError: err.errno, sqlMessage: err.sqlMessage});
     }
 };
 
@@ -135,11 +135,11 @@ export const deleteDish = async(req, res) => {
     }
 };
 
-// Get foreign key values of a dish by its id
-export const getDishFKValuesById = async(req, res) => {
+// Get one dish by id
+export const getOneDish = async(req, res) => {
     try {
-        //Run query to get dish fk values with given id
-        let results = await dishesModel.getDishFKValuesById(req.body.id);
+        //Run query to select dish with the given id
+        let results = await dishesModel.getDishById(req.query.id);
         res.status(200).json(results[0])
     } catch(err) {
         // Send error status and message

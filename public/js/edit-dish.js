@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(editDishForm);
 
     // Modify the objects we need
-    editDishForm.addEventListener("submit", function (e) {
+    editDishForm.addEventListener("submit", async function (e) {
         console.log("submit was pressed")
         
         // Prevent the form from submitting
@@ -39,34 +39,48 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         console.log("this is data:", data)
         
-        // Setup our AJAX request
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("PUT", "/dishes/edit-dish/fetch", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
+        // Fetch response from put request
+        const response = await fetch('/dishes/edit-dish/fetch', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+        if (response.ok) {
+            // Handle successful edit
+            alert("Dish edited successfully!");
+            window.location.href = '/dishes';
+        } else {
+            // Handle errors
+            const error = await response.json();
 
-        // Tell our AJAX request how to resolve
-        xhttp.onreadystatechange = () => {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
+            // Fetch team name, course, and event year
+            const teamResponse = await fetch(`/teams/get-team?id=${data.teamId}`);
+            const courseResponse = await fetch(`/courses/get-course?id=${data.courseId}`);
+            const eventYearResponse = await fetch(`/event-years/get-event-year?=${data.eventYearId}`);
 
-                // Clear the input fields for another transaction
-                newDishName.value = '';
-                newDishImage.value = '';
-                newDescription.value = '';
-                newCourseId.value = '';
-                newTeamId.value = '';
-                newEventYearId.value = '';
+            // Get JSON from response
+            const team = await teamResponse.json();
+            const course = await courseResponse.json();
+            const eventYear = await eventYearResponse.json();
 
-                // Redirect to the dishes page
-                window.location.href ='/dishes';  
-
+            // Init regex object
+            let regex = {
+                'dishName': /Duplicate entry .* for key 'dish_name'/,
+                'teamCourseYear': /Duplicate entry .* for key 'team_course_year'/
             }
-            else if (xhttp.readyState == 4 && xhttp.status != 200) {
-                console.log("There was an error with the input.")
-            }
+
+            // Handle specific errors
+            if (error.sqlError == 1062) {
+                // Insert form logic to make warning appear (update this)
+                if (regex.teamCourseYear.test(error.sqlMessage)) {
+                    alert(`${team.team_name} already have a ${course.course_name.toLowerCase()} dish for ${eventYear.year}!`);
+                } else if (regex.dishName.test(error.sqlMessage)) {
+                    alert(`${data.dishName} has already been made at feastival showdown!`);
+                }
+            };
+
+            // Send generic error message
+            console.error("Error editing dish");
         }
-
-        // Send the request and wait for the response
-        xhttp.send(JSON.stringify(data));
-
     })
 });

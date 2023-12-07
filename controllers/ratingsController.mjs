@@ -123,16 +123,3 @@ export const deleteRating = async(req, res) => {
         res.status(500).send('Error deleting rating');
     }
 };
-
-// Get foreign key values of a rating by its id
-export const getRatingFKValuesById = async(req, res) => {
-    try {
-        //Run query to get rating fk values with given id
-        let results = await ratingsModel.getRatingFKValuesById(req.body.id);
-        res.status(200).json(results[0])
-    } catch(err) {
-        // Send error status and message
-        console.error('Error selecting rating', err);
-        res.status(500).send('Error selecting rating');
-    }
-};

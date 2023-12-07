@@ -45,14 +45,22 @@ document.addEventListener("DOMContentLoaded", () => {
             // Handle errors
             const error = await response.json();
 
+            // Fetch competitor name and event year
+            const competitorResponse = await fetch(`/competitors/get-competitor?id=${data.competitorId}`);
+            const eventYearResponse = await fetch(`/event-years/get-event-year?id=${data.eventYearId}`);
+
+            // Get JSON from response
+            const competitor = await competitorResponse.json();
+            const eventYear = await eventYearResponse.json();
+
             // Handle specific errors
             if (error.sqlError == 1062) {
                 // Insert form logic to make warning appear (update this)
-                alert(`This competitor is already registered to a team for the given year!`);
+                alert(`${competitor.competitor_name} is already registered to a team for ${eventYear.year}!`);
             };
 
             // Send generic error message
-            console.error("Error editing course");
+            console.error("Error editing competitor registration");
         }
     })
 });

@@ -91,3 +91,16 @@ export const deleteTeam = async(req, res) => {
         res.status(500).send('Error deleting team');
     }
 };
+
+// Get one team by id
+export const getOneTeam = async(req, res) => {
+    try {
+        //Run query to select team with the given id
+        let results = await teamsModel.getTeamById(req.query.id);
+        res.status(200).json(results[0])
+    } catch(err) {
+        // Send error status and message
+        console.error('Error selecting team', err);
+        res.status(500).send('Error selecting team');
+    }
+};

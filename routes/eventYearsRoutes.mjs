@@ -7,6 +7,7 @@ const eventYearsRoutes = express.Router();
 // Define event years routes
 eventYearsRoutes
     .get('/', eventYearsController.getEventYearsTable)
+    .get('/get-event-year', eventYearsController.getOneEventYear)
     .get('/new-event-year', eventYearsController.getNewEventYearForm)
     .get('/edit-event-year', eventYearsController.getEditEventYearForm)
     .post('/new-event-year/fetch', eventYearsController.addEventYear)

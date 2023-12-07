@@ -7,6 +7,7 @@ const attendeesRoutes = express.Router();
 // Define attendees routes
 attendeesRoutes
     .get('/', attendeesController.getAttendeesTable)
+    .get('/get-attendee', attendeesController.getOneAttendee)
     .get('/new-attendee', attendeesController.getNewAttendeeForm)
     .get('/edit-attendee', attendeesController.getEditAttendeeForm)
     .post('/new-attendee/fetch', attendeesController.addAttendee)

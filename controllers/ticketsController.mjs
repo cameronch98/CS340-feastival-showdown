@@ -123,16 +123,3 @@ export const deleteTicket = async(req, res) => {
         res.status(500).send('Error deleting ticket');
     }
 };
-
-// Get foreign key values of a ticket by its id
-export const getTicketFKValuesById = async(req, res) => {
-    try {
-        //Run query to get ticket fk values with given id
-        let results = await ticketsModel.getTicketFKValuesById(req.body.id);
-        res.status(200).json(results[0])
-    } catch(err) {
-        // Send error status and message
-        console.error('Error selecting ticket', err);
-        res.status(500).send('Error selecting ticket');
-    }
-};

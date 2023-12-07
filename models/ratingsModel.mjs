@@ -71,17 +71,3 @@ export const deleteRating = (id) => {
         })
     })
 };
-
-// Get the foreign key values for a rating by id
-export const getRatingFKValuesById = (id) => {
-    return new Promise((resolve, reject) => {
-        pool.query(queries.joinFKByRatingId, [id], (error, rows) => {
-            if(error) {
-                console.error("Query error for selecting rating: ", error);
-                return reject(error);
-            } else {
-                return resolve(rows);
-            }
-        })
-    })
-};
