@@ -9,8 +9,8 @@ competitorRegistrationsRoutes
     .get('/', competitorRegistrationsController.getCompetitorRegsTable)
     .get('/new-competitor-registration', competitorRegistrationsController.getNewCompetitorRegForm)
     .get('/edit-competitor-registration', competitorRegistrationsController.getEditCompetitorReg)
-    .post('/new-competitor-registration-ajax', competitorRegistrationsController.addCompetitorReg)
-    .put('/edit-competitor-registration-ajax', competitorRegistrationsController.updateCompetitorReg)
+    .post('/new-competitor-registration/fetch', competitorRegistrationsController.addCompetitorReg)
+    .put('/edit-competitor-registration/fetch', competitorRegistrationsController.updateCompetitorReg)
     .delete('/delete-competitor-registration-ajax', competitorRegistrationsController.deleteCompetitorReg)
 
 export { competitorRegistrationsRoutes };

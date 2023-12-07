@@ -9,8 +9,8 @@ ticketsRoutes
     .get('/', ticketsController.getTicketsTable)
     .get('/new-ticket', ticketsController.getNewTicketForm)
     .get('/edit-ticket', ticketsController.getEditTicketForm)
-    .post('/new-ticket-ajax', ticketsController.addTicket)
-    .put('/edit-ticket-ajax', ticketsController.updateTicket)
+    .post('/new-ticket/fetch', ticketsController.addTicket)
+    .put('/edit-ticket/fetch', ticketsController.updateTicket)
     .delete('/delete-ticket-ajax', ticketsController.deleteTicket)
 
 export { ticketsRoutes };

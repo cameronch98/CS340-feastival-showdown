@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("this is data:", data)
         
         // Fetch response from post request
-        const response = await fetch('/ticket-types/new-ticket-type-ajax', {
+        const response = await fetch('/ticket-types/new-ticket-type/fetch', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)

@@ -9,8 +9,8 @@ coursesRoutes
     .get('/', coursesController.getCoursesTable)
     .get('/new-course', coursesController.getNewCourseForm)
     .get('/edit-course', coursesController.getEditCourseForm)
-    .post('/new-course-ajax', coursesController.addCourse)
-    .put('/edit-course-ajax', coursesController.updateCourse)
+    .post('/new-course/fetch', coursesController.addCourse)
+    .put('/edit-course/fetch', coursesController.updateCourse)
     .delete('/delete-course-ajax', coursesController.deleteCourse)
 
 export { coursesRoutes };

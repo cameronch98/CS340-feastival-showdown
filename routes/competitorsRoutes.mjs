@@ -9,8 +9,8 @@ competitorsRoutes
     .get('/', competitorsController.getCompetitorsTable)
     .get('/new-competitor', competitorsController.getNewCompetitorForm)
     .get('/edit-competitor', competitorsController.getEditCompetitorForm)
-    .post('/new-competitor-ajax', competitorsController.addCompetitor)
-    .put('/edit-competitor-ajax', competitorsController.updateCompetitor)
+    .post('/new-competitor/fetch', competitorsController.addCompetitor)
+    .put('/edit-competitor/fetch', competitorsController.updateCompetitor)
     .delete('/delete-competitor-ajax', competitorsController.deleteCompetitor)
 
 export { competitorsRoutes };

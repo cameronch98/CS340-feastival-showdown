@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(editCompetitorRegForm);
 
     // Modify the objects we need
-    editCompetitorRegForm.addEventListener("submit", function (e) {
+    editCompetitorRegForm.addEventListener("submit", async function (e) {
         console.log("submit was pressed")
         
         // Prevent the form from submitting
@@ -12,15 +12,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Get form fields we need to get data from
         let updateID = document.getElementById('id');
-        let newCompetitorId = document.getElementById("competitor");
-        let newTeamId = document.getElementById("team");
-        let newEventYearId = document.getElementById("year");
+        let competitorInfo = document.getElementById("competitor");
+        let teamInfo = document.getElementById("team");
+        let eventYearInfo = document.getElementById("year");
 
-        // Get the values from the form fields
-        let regID = updateID.value
-        let competitorIdValue = newCompetitorId.value;
-        let teamIdValue = newTeamId.value;
-        let eventYearIdValue = newEventYearId.value;
+        // Get info arrays with names/year and ids
+        let competitorInfoArr = competitorInfo.value.split("|");
+        let teamInfoArr = teamInfo.value.split("|");
+        let eventYearInfoArr = eventYearInfo.value.split("|");
+
+        // Get id values from the info arrays
+        let regID = updateID.value;
+        let competitorIdValue = competitorInfoArr[0];
+        let teamIdValue = teamInfoArr[0];
+        let eventYearIdValue = eventYearInfoArr[0];
+
+        // Get names/years from the info arrays
+        let competitorName = competitorInfoArr[1];
+        let teamName = teamInfoArr[1];
+        let eventYear = eventYearInfoArr[1];
 
         // Put our data we want to send in a javascript object
         let data = {
@@ -30,32 +40,29 @@ document.addEventListener("DOMContentLoaded", () => {
             eventYearId: eventYearIdValue
         }
         console.log("this is data:", data)
-        
-        // Setup our AJAX request
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("PUT", "/competitor-registrations/edit-competitor-registration-ajax", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
 
-        // Tell our AJAX request how to resolve
-        xhttp.onreadystatechange = () => {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
+        // Fetch response from put request
+        const response = await fetch('/competitor-registrations/edit-competitor-registration/fetch', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+        if (response.ok) {
+            // Handle successful edit
+            alert("Competitor registration edited successfully!");
+            window.location.href = '/competitor-registrations';
+        } else {
+            // Handle errors
+            const error = await response.json();
 
-                // Clear the input fields for another transaction
-                // newCompetitor.value = '';
-                // newTeam.value = '';
-                // newYear.value = '';
+            // Handle specific errors
+            if (error.sqlError == 1062) {
+                // Insert form logic to make warning appear (update this)
+                alert(`${competitorName} is already registered to ${teamName} for ${eventYear}!`);
+            };
 
-                // Redirect to the competitor-registration page
-                window.location.href ='/competitor-registrations';  
-
-            }
-            else if (xhttp.readyState == 4 && xhttp.status != 200) {
-                console.log("There was an error with the input.")
-            }
+            // Send generic error message
+            console.error("Error editing course");
         }
-
-        // Send the request and wait for the response
-        xhttp.send(JSON.stringify(data));
-
     })
 });

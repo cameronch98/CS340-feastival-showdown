@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("this is data:", data)
         
         // Fetch response from put request
-        const response = await fetch('/competitors/edit-competitor-ajax', {
+        const response = await fetch('/competitors/edit-competitor/fetch', {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)

@@ -9,8 +9,8 @@ discountsRoutes
     .get('/', discountsController.getDiscountsTable)
     .get('/new-discount', discountsController.getNewDiscountForm)
     .get('/edit-discount', discountsController.getEditDiscountForm)
-    .post('/new-discount-ajax', discountsController.addDiscount)
-    .put('/edit-discount-ajax', discountsController.updateDiscount)
+    .post('/new-discount/fetch', discountsController.addDiscount)
+    .put('/edit-discount/fetch', discountsController.updateDiscount)
     .delete('/delete-discount-ajax', discountsController.deleteDiscount)
 
 export { discountsRoutes };

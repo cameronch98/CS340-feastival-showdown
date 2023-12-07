@@ -9,8 +9,8 @@ ratingsRoutes
     .get('/', ratingsController.getRatingsTable)
     .get('/new-rating', ratingsController.getNewRatingForm)
     .get('/edit-rating', ratingsController.getEditRatingForm)
-    .post('/new-rating-ajax', ratingsController.addRating)
-    .put('/edit-rating-ajax', ratingsController.updateRating)
+    .post('/new-rating/fetch', ratingsController.addRating)
+    .put('/edit-rating/fetch', ratingsController.updateRating)
     .delete('/delete-rating-ajax', ratingsController.deleteRating)
 
 export { ratingsRoutes };

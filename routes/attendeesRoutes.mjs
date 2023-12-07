@@ -9,8 +9,8 @@ attendeesRoutes
     .get('/', attendeesController.getAttendeesTable)
     .get('/new-attendee', attendeesController.getNewAttendeeForm)
     .get('/edit-attendee', attendeesController.getEditAttendeeForm)
-    .post('/new-attendee-ajax', attendeesController.addAttendee)
-    .put('/edit-attendee-ajax', attendeesController.updateAttendee)
+    .post('/new-attendee/fetch', attendeesController.addAttendee)
+    .put('/edit-attendee/fetch', attendeesController.updateAttendee)
     .delete('/delete-attendee-ajax', attendeesController.deleteAttendee)
 
 export { attendeesRoutes };

@@ -81,7 +81,8 @@ CREATE OR REPLACE TABLE Competitor_Registrations(
     competitor_registration_id int AUTO_INCREMENT PRIMARY KEY,
     competitor_id int NOT NULL,
     team_id int NOT NULL,
-    event_year_id int NOT NULL, 
+    event_year_id int NOT NULL,
+    CONSTRAINT competitor_year UNIQUE(competitor_id, event_year_id), 
     FOREIGN KEY(competitor_id) REFERENCES Competitors(competitor_id)
     ON DELETE CASCADE,
     FOREIGN KEY(team_id) REFERENCES Teams (team_id)

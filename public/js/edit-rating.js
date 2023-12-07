@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Setup our AJAX request
         var xhttp = new XMLHttpRequest();
-        xhttp.open("PUT", "/ratings/edit-rating-ajax", true);
+        xhttp.open("PUT", "/ratings/edit-rating/fetch", true);
         xhttp.setRequestHeader("Content-type", "application/json");
 
         // Tell our AJAX request how to resolve

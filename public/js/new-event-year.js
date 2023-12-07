@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("this is data:", data)
         
         // Fetch response from post request
-        const response = await fetch('/event-years/new-event-year-ajax', {
+        const response = await fetch('/event-years/new-event-year/fetch', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)

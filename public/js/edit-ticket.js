@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Setup our AJAX request
         var xhttp = new XMLHttpRequest();
-        xhttp.open("PUT", "/tickets/edit-ticket-ajax", true);
+        xhttp.open("PUT", "/tickets/edit-ticket/fetch", true);
         xhttp.setRequestHeader("Content-type", "application/json");
 
         // Tell our AJAX request how to resolve

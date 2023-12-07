@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Setup our AJAX request
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/dishes/new-dish-ajax", true);
+        xhttp.open("POST", "/dishes/new-dish/fetch", true);
         xhttp.setRequestHeader("Content-type", "application/json");
 
         // Tell our AJAX request how to resolve

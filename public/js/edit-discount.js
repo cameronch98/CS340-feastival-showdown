@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("this is data:", data)
         
         // Fetch response from put request
-        const response = await fetch('/discounts/edit-discount-ajax', {
+        const response = await fetch('/discounts/edit-discount/fetch', {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)

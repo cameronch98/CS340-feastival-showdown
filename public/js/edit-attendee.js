@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let newPhone = document.getElementById("phone");
 
         // Get the values from the form fields
-        let updatedId = attendeeId.value
+        let updatedId = attendeeId.value;
         let nameValue = newName.value;
         let emailValue = newEmail.value;
         let phoneValue = newPhone.value;
@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         console.log("this is data:", data)
         
-         // Fetch response from put request
-         const response = await fetch('/attendees/edit-attendee-ajax', {
+        // Fetch response from put request
+        const response = await fetch('/attendees/edit-attendee/fetch', {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (response.ok) {
             // Handle successful deletion
             alert("Attendee edited successfully!");
-            window.location.href = '/attendees';
+            window.location = '/attendees';
         } else {
             // Handle errors
             const error = await response.json();

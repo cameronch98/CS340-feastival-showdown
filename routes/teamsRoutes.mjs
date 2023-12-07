@@ -9,8 +9,8 @@ teamsRoutes
     .get('/', teamsController.getTeamsTable)
     .get('/new-team', teamsController.getNewTeamForm)
     .get('/edit-team', teamsController.getEditTeamForm)
-    .post('/new-team-ajax', teamsController.addTeam)
-    .put('/edit-team-ajax', teamsController.updateTeam)
+    .post('/new-team/fetch', teamsController.addTeam)
+    .put('/edit-team/fetch', teamsController.updateTeam)
     .delete('/delete-team-ajax', teamsController.deleteTeam)
 
 export { teamsRoutes };
