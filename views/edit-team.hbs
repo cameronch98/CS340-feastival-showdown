@@ -16,7 +16,7 @@
         <span class="inner-logo">FS</span>
         <ul>
 
-            <li class="reload"><a href="#"><span class="material-symbols-outlined">cached</span><span class="nav-text">Reload Database</span></i></a></li>
+            <li class="reload"><a href="/reload/reload-db"><span class="material-symbols-outlined">cached</span><span class="nav-text">Reload Database</span></i></a></li>
             <li><a href="/"><span class="material-symbols-outlined">home</span><span class="nav-text">Home</span></a></li>
             <li><a href="/attendees"><span class="material-symbols-outlined">groups</span><span class="nav-text">Attendees</span></a></li>
             <li><a href="/tickets"><span class="material-symbols-outlined">confirmation_number</span><span class="nav-text">Tickets</span></a></li>
@@ -40,10 +40,7 @@
     <form id="edit-team-form">
         <!-- Hidden input to hold the ID -->
         <input type="hidden" name="id" id="id" value="{{team.team_id}}"> 
-
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="{{team.team_name}}" maxlength="100" required><br><br>
-
+        <input type="text" id="name" name="name" value="{{team.team_name}}" placeholder="Team Name" pattern="*" maxlength="100" required><span></span><br>
         <button type="submit">Update Team</button>
     </form>
     </div>

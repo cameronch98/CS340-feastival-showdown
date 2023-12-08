@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(editTicketForm);
 
     // Modify the objects we need
-    editTicketForm.addEventListener("submit", function (e) {
+    editTicketForm.addEventListener("submit", async function (e) {
         console.log("submit was pressed")
         
         // Prevent the form from submitting
@@ -31,31 +31,36 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         console.log("this is data:", data)
         
-        // Setup our AJAX request
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("PUT", "/tickets/edit-ticket/fetch", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
+        // Fetch response from put request
+        const response = await fetch('/tickets/edit-ticket/fetch', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+        if (response.ok) {
+            // Handle successful edit
+            alert("Ticket edited successfully!");
+            window.location.href = '/tickets';
+        } else {
+            // Handle errors
+            const error = await response.json();
 
-        // Tell our AJAX request how to resolve
-        xhttp.onreadystatechange = () => {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
+            // Fetch ticket type and event year
+            const ticketTypeResponse = await fetch(`/ticket-types/get-ticket-type?id=${data.ticketTypeId}`);
+            const eventYearResponse = await fetch(`/event-years/get-event-year?id=${data.eventYearId}`);
 
-                // Clear the input fields for another transaction
-                // newPrice.value = '';
-                // newTicketType.value = '';
-                // newYear.value = '';
+            // Get JSON from response
+            const ticketType = await ticketTypeResponse.json();
+            const eventYear = await eventYearResponse.json();
 
-                // Redirect to the tickets page
-                window.location.href ='/tickets';  
+            // Handle specific errors
+            if (error.sqlError == 1062) {
+                // Insert form logic to make warning appear (update this)
+                alert(`A ${ticketType.ticket_type.toLowerCase()} ticket is already on sale for ${eventYear.year}!`);
+            };
 
-            }
-            else if (xhttp.readyState == 4 && xhttp.status != 200) {
-                console.log("There was an error with the input.")
-            }
+            // Send generic error message
+            console.error("Error editing ticket");
         }
-
-        // Send the request and wait for the response
-        xhttp.send(JSON.stringify(data));
-
     })
 });

@@ -12,6 +12,6 @@ competitorsRoutes
     .get('/edit-competitor', competitorsController.getEditCompetitorForm)
     .post('/new-competitor/fetch', competitorsController.addCompetitor)
     .put('/edit-competitor/fetch', competitorsController.updateCompetitor)
-    .delete('/delete-competitor-ajax', competitorsController.deleteCompetitor)
+    .delete('/delete-competitor/fetch', competitorsController.deleteCompetitor)
 
 export { competitorsRoutes };

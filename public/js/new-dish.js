@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(data)
         });
         if (response.ok) {
-            // Handle successful edit
+            // Handle successful insertion
             alert("Dish added successfully!");
             window.location.href = '/dishes';
         } else {

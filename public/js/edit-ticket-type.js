@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(data)
         });
         if (response.ok) {
-            // Handle successful deletion
+            // Handle successful edit
             alert("Ticket type edited successfully!");
             window.location.href = '/ticket-types';
         } else {

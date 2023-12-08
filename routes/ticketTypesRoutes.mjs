@@ -12,6 +12,6 @@ ticketTypesRoutes
     .get('/edit-ticket-type', ticketTypesController.getEditTicketTypeForm)
     .post('/new-ticket-type/fetch', ticketTypesController.addTicketType)
     .put('/edit-ticket-type/fetch', ticketTypesController.updateTicketType)
-    .delete('/delete-ticket-type-ajax', ticketTypesController.deleteTicketType)
+    .delete('/delete-ticket-type/fetch', ticketTypesController.deleteTicketType)
 
 export { ticketTypesRoutes };

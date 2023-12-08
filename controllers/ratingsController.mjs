@@ -84,7 +84,7 @@ export const addRating = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error adding new rating', err);
-        res.status(500).send('Error adding new rating');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 
@@ -107,7 +107,7 @@ export const updateRating = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error editing rating', err);
-        res.status(500).send('Error editing rating');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 

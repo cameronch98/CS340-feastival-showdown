@@ -12,6 +12,6 @@ coursesRoutes
     .get('/edit-course', coursesController.getEditCourseForm)
     .post('/new-course/fetch', coursesController.addCourse)
     .put('/edit-course/fetch', coursesController.updateCourse)
-    .delete('/delete-course-ajax', coursesController.deleteCourse)
+    .delete('/delete-course/fetch', coursesController.deleteCourse)
 
 export { coursesRoutes };

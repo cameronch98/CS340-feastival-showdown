@@ -12,6 +12,6 @@ attendeesRoutes
     .get('/edit-attendee', attendeesController.getEditAttendeeForm)
     .post('/new-attendee/fetch', attendeesController.addAttendee)
     .put('/edit-attendee/fetch', attendeesController.updateAttendee)
-    .delete('/delete-attendee-ajax', attendeesController.deleteAttendee)
+    .delete('/delete-attendee/fetch', attendeesController.deleteAttendee)
 
 export { attendeesRoutes };

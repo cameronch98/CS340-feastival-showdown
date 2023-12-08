@@ -17,7 +17,7 @@
         <span class="inner-logo">FS</span>
         <ul>
 
-            <li class="reload"><a href="#"><span class="material-symbols-outlined">cached</span><span class="nav-text">Reload Database</span></i></a></li>
+            <li class="reload"><a href="/reload/reload-db"><span class="material-symbols-outlined">cached</span><span class="nav-text">Reload Database</span></i></a></li>
             <li><a href="/"><span class="material-symbols-outlined">home</span><span class="nav-text">Home</span></a></li>
             <li><a href="/attendees"><span class="material-symbols-outlined">groups</span><span class="nav-text">Attendees</span></a></li>
             <li><a href="/tickets"><span class="material-symbols-outlined">confirmation_number</span><span class="nav-text">Tickets</span></a></li>
@@ -54,7 +54,7 @@
                     <td><a onclick="editDiscount({{this.ID}})" href="/discounts/edit-discount?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Discount}}</td>
                     <td>{{this.Percent}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Discount}}', {{this.ID}}, '/discounts/delete-discount-ajax')"  >Delete</button></td>
+                    <td><button onclick="confirmAndDelete('{{this.Discount}}', {{this.ID}}, '/discounts/delete-discount/fetch')"  >Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>

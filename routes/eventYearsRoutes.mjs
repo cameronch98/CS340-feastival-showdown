@@ -12,6 +12,6 @@ eventYearsRoutes
     .get('/edit-event-year', eventYearsController.getEditEventYearForm)
     .post('/new-event-year/fetch', eventYearsController.addEventYear)
     .put('/edit-event-year/fetch', eventYearsController.updateEventYear)
-    .delete('/delete-event-year-ajax', eventYearsController.deleteEventYear)
+    .delete('/delete-event-year/fetch', eventYearsController.deleteEventYear)
 
 export { eventYearsRoutes };

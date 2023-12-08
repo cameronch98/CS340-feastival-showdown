@@ -83,7 +83,7 @@ export const addTicket = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error adding new ticket', err);
-        res.status(500).send('Error adding new ticket');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 
@@ -107,7 +107,7 @@ export const updateTicket = async(req, res) => {
     } catch(err) {
         // Send error status and message
         console.error('Error editing ticket', err);
-        res.status(500).send('Error editing ticket');
+        res.status(500).json({sqlError: err.errno});
     }
 };
 

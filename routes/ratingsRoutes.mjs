@@ -11,6 +11,6 @@ ratingsRoutes
     .get('/edit-rating', ratingsController.getEditRatingForm)
     .post('/new-rating/fetch', ratingsController.addRating)
     .put('/edit-rating/fetch', ratingsController.updateRating)
-    .delete('/delete-rating-ajax', ratingsController.deleteRating)
+    .delete('/delete-rating/fetch', ratingsController.deleteRating)
 
 export { ratingsRoutes };

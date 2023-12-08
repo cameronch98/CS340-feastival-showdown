@@ -11,6 +11,6 @@ discountsRoutes
     .get('/edit-discount', discountsController.getEditDiscountForm)
     .post('/new-discount/fetch', discountsController.addDiscount)
     .put('/edit-discount/fetch', discountsController.updateDiscount)
-    .delete('/delete-discount-ajax', discountsController.deleteDiscount)
+    .delete('/delete-discount/fetch', discountsController.deleteDiscount)
 
 export { discountsRoutes };

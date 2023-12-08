@@ -21,7 +21,6 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    
 }
 
 h1 {
@@ -249,13 +248,12 @@ input, select {
 
 form {
     box-shadow: 0 0 10px #333333;
-    border-color: #333333;
     background-color: #333333;
-    width: 600px;
+    width: 350px;
     color: #f5f5f5;
     border-radius: 12px;
     padding: 20px;
-    margin-top: 100px;
+    margin-top: 10px;
 }
 
 td a .material-symbols-outlined:hover {
@@ -263,9 +261,16 @@ td a .material-symbols-outlined:hover {
 }
 
 form button {
-    background-color: #f5f5f5;
-    color: #333333;
-    border-radius: 12px;
+    background-color: #437c90;
+    color: #f5f5f5;
+    border: #003142;
+    border-radius: 20px;
+    width: 95%;
+    padding: 10px;
+}
+
+form button:hover {
+    background-color: #79b1c6;
 }
 
 table button {
@@ -284,11 +289,6 @@ table button .material-symbols-outlined {
 table button:hover{
     animation: bellRing 0.5s ease-in-out infinite;
     
-}
-
-form button:hover {
-    color: #f5f5f5;
-    background-color: #437C90;
 }
 
 thead tr {
@@ -456,6 +456,97 @@ div.navbar:hover .nav-text {
 .db-overview li {
     margin-bottom: 10px; /* Adds some space between list items */
 }
+
+input {
+    border: #003142;
+}
+
+input[type=text] {
+    padding: 10px;
+    box-shadow: 0 0 15px 4px;
+    border-radius: 20px;
+}
+
+input[type=email] {
+    padding: 10px;
+    box-shadow: 0 0 15px 4px;
+    border-radius: 20px;
+}
+
+input[type=tel] {
+    padding: 10px;
+    box-shadow: 0 0 15px 4px;
+    border-radius: 20px;
+}
+
+/* From mozilla web decs */
+input + span {
+    position: relative;
+}
+  
+input + span::before {
+position: relative;
+right: -20px;
+top: 5px;
+}
+
+form#edit-attendee-form input[type=text]:invalid + span::before {
+    content: "✖ First Last";
+    color: lightcoral;
+}
+
+form#edit-competitor-form input[type=text]:invalid + span::before {
+    content: "✖ First Last";
+    color: lightcoral;
+}
+
+form#new-attendee-form input[type=text]:invalid + span::before {
+    content: "✖ First Last";
+    color: lightcoral;
+}
+
+form#new-competitor-form input[type=text]:invalid + span::before {
+    content: "✖ First Last";
+    color: lightcoral;
+}
+
+form#new-ticket-type-form input[type=text]:invalid + span::before {
+    content: "✖ Field Empty";
+    color: lightcoral;
+}
+
+form#edit-ticket-type-form input[type=text]:invalid + span::before {
+    content: "✖ Field Empty";
+    color: lightcoral;
+}
+
+form#new-team-form input[type=text]:invalid + span::before {
+    content: "✖ Field Empty";
+    color: lightcoral;
+}
+
+form#edit-team-form input[type=text]:invalid + span::before {
+    content: "✖ Field Empty";
+    color: lightcoral;
+}
+
+input[type=tel]:invalid + span::before {
+    content: "✖ ___-___-____";
+    color: lightcoral;
+}
+
+input[type=email]:invalid + span::before {
+    content: "✖ user@email.com";
+    color: lightcoral;
+}
+
+
+
+input:valid + span::before {
+content: "✓";
+color: lightgreen;
+}
+  
 
 
 

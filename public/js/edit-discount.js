@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(data)
         });
         if (response.ok) {
-            // Handle successful deletion
+            // Handle successful edit
             alert("Discount edited successfully!");
             window.location.href = '/discounts';
         } else {

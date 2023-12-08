@@ -16,7 +16,7 @@
         <span class="inner-logo">FS</span>
         <ul>
 
-            <li class="reload"><a href="#"><span class="material-symbols-outlined">cached</span><span class="nav-text">Reload Database</span></i></a></li>
+            <li class="reload"><a href="/reload/reload-db"><span class="material-symbols-outlined">cached</span><span class="nav-text">Reload Database</span></i></a></li>
             <li><a href="/"><span class="material-symbols-outlined">home</span><span class="nav-text">Home</span></a></li>
             <li><a href="/attendees"><span class="material-symbols-outlined">groups</span><span class="nav-text">Attendees</span></a></li>
             <li><a href="/tickets"><span class="material-symbols-outlined">confirmation_number</span><span class="nav-text">Tickets</span></a></li>
@@ -38,9 +38,7 @@
     <div class="main-content">
     <h3>Add Team:</h3>
     <form id="new-team-form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" maxlength="100" required><br><br>
-
+        <input type="text" id="name" name="name" placeholder="Team Name" pattern="*" maxlength="100" required><span></span><br>
         <button type="submit">Add Team</button>
     </form>
     </div>

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(addTicketSale);
 
     // Modify the objects we need
-    addTicketSale.addEventListener("submit", function (e) {
+    addTicketSale.addEventListener("submit", async function (e) {
         console.log("submit was pressed")
         
         // Prevent the form from submitting
@@ -28,31 +28,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         console.log("this is data:", data)
         
-        // Setup our AJAX request
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/ticket-sales/new-ticket-sale/fetch", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
-
-        // Tell our AJAX request how to resolve
-        xhttp.onreadystatechange = () => {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
-
-                // Clear the input fields for another transaction
-                newAttendeeId.value = '';
-                newTicketId.value = '';
-                newDiscountId.value = '';
-
-                // Redirect to the ticket sales page
-                window.location.href ='/ticket-sales';  
-
-            }
-            else if (xhttp.readyState == 4 && xhttp.status != 200) {
-                console.log("There was an error with the input.")
-            }
+        // Fetch response from post request
+        const response = await fetch('/ticket-sales/new-ticket-sale/fetch', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+        if (response.ok) {
+            // Handle successful insertion
+            alert("Ticket sale added successfully!");
+            window.location.href = '/ticket-sales';
+        } else {
+            // Send generic error message
+            console.error("Error adding ticket sale");
         }
-
-        // Send the request and wait for the response
-        xhttp.send(JSON.stringify(data));
-
     })
 });

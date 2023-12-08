@@ -17,7 +17,7 @@
         <span class="inner-logo">FS</span>
         <ul>
 
-            <li class="reload"><a href="#"><span class="material-symbols-outlined">cached</span><span class="nav-text">Reload Database</span></i></a></li>
+            <li class="reload"><a href="/reload/reload-db"><span class="material-symbols-outlined">cached</span><span class="nav-text">Reload Database</span></i></a></li>
             <li><a href="/"><span class="material-symbols-outlined">home</span><span class="nav-text">Home</span></a></li>
             <li><a href="/attendees"><span class="material-symbols-outlined">groups</span><span class="nav-text">Attendees</span></a></li>
             <li><a href="/tickets"><span class="material-symbols-outlined">confirmation_number</span><span class="nav-text">Tickets</span></a></li>
@@ -52,7 +52,7 @@
                 <tr>
                     <td><a onclick="editYear({{this.ID}})" href="/event-years/edit-event-year?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Year}}</td>
-                    <td><button onclick="confirmAndDelete('rating for {{this.Year}}', {{this.ID}}, '/event-years/delete-event-year-ajax')" >Delete</button></td>
+                    <td><button onclick="confirmAndDelete('rating for {{this.Year}}', {{this.ID}}, '/event-years/delete-event-year/fetch')" >Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>

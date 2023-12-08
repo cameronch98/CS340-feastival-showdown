@@ -12,6 +12,6 @@ teamsRoutes
     .get('/edit-team', teamsController.getEditTeamForm)
     .post('/new-team/fetch', teamsController.addTeam)
     .put('/edit-team/fetch', teamsController.updateTeam)
-    .delete('/delete-team-ajax', teamsController.deleteTeam)
+    .delete('/delete-team/fetch', teamsController.deleteTeam)
 
 export { teamsRoutes };

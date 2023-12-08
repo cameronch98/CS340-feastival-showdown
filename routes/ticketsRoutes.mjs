@@ -11,6 +11,6 @@ ticketsRoutes
     .get('/edit-ticket', ticketsController.getEditTicketForm)
     .post('/new-ticket/fetch', ticketsController.addTicket)
     .put('/edit-ticket/fetch', ticketsController.updateTicket)
-    .delete('/delete-ticket-ajax', ticketsController.deleteTicket)
+    .delete('/delete-ticket/fetch', ticketsController.deleteTicket)
 
 export { ticketsRoutes };

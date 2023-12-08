@@ -11,6 +11,6 @@ competitorRegistrationsRoutes
     .get('/edit-competitor-registration', competitorRegistrationsController.getEditCompetitorReg)
     .post('/new-competitor-registration/fetch', competitorRegistrationsController.addCompetitorReg)
     .put('/edit-competitor-registration/fetch', competitorRegistrationsController.updateCompetitorReg)
-    .delete('/delete-competitor-registration-ajax', competitorRegistrationsController.deleteCompetitorReg)
+    .delete('/delete-competitor-registration/fetch', competitorRegistrationsController.deleteCompetitorReg)
 
 export { competitorRegistrationsRoutes };

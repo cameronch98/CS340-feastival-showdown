@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(data)
         });
         if (response.ok) {
-            // Handle successful deletion
+            // Handle successful insertion
             alert("Team added successfully!");
             window.location.href = '/teams';
         } else {
