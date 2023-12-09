@@ -37,12 +37,24 @@
         </div>
     </div>
 
-    <div class="main-content">
+    <div class="form-container">
     <h3>Add Ticket Type:</h3>
     <form id="new-ticket-type-form">
         <input type="text" id="ticket-type" placeholder="Ticket Type" name="ticket-type" maxlength="50" pattern="*" required><span></span><br>
         <button type="submit">Add Ticket Type</button>
     </form>
+    </div>
+
+    <!-- Adapted from https://www.youtube.com/watch?v=AF6vGYIyV8M -->
+    <div class="popup" id="success-popup">
+        <h3 id="success-header">Success ✓</h3>
+        <p>Ticket type successfully added!</p>
+        <button type="button" id="success-button">OK</button>
+    </div>
+    <div class="popup" id="failure-popup">
+        <h3 id="failure-header">Failure ✖</h3>
+        <p id="error-msg"></p>
+        <button type="button" id="failure-button">OK</button>
     </div>
 </body>
 </html>

@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
             name: nameValue,
             email: emailValue,
             phone: phoneValue
-        }
-        console.log("this is data:", data)
+        };
+        console.log("this is data:", data);
         
         // Fetch response from put request
         const response = await fetch('/attendees/edit-attendee/fetch', {
@@ -38,9 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(data)
         });
         if (response.ok) {
-            // Handle successful edit
-            alert("Attendee edited successfully!");
-            window.location = '/attendees';
+            // Handle successful edit with success popup
+            let popup = document.getElementById("success-popup");
+            openPopup(popup);
+
+            // Trigger modal close and redirect on OK click
+            let button = document.getElementById("success-button");
+            button.addEventListener('click', () => {
+                closePopup(popup);
+                window.location.href = '/attendees';
+            });
         } else {
             // Handle errors
             const error = await response.json();
@@ -52,17 +59,36 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             // Handle specific errors
+            let errorMsg = document.getElementById("error-msg");
             if (error.sqlError == 1062) {
                 // Insert form logic to make warning appear (update this)
                 if (regex.email.test(error.sqlMessage)) {
-                    alert(`The email ${data.email} has already been used to register!`)
+                    errorMsg.textContent = `The email ${data.email} has already been used to register!`;
                 } else if (regex.phone.test(error.sqlMessage)) {
-                    alert(`The phone number ${data.phone} has already been used to register!`)
+                    errorMsg.textContent = `The phone number ${data.phone} has already been used to register!`;
                 }
             };
+
+            // Open failure popup with correct error message
+            let popup = document.getElementById("failure-popup");
+            openPopup(popup);
+
+            // Trigger modal close on OK click
+            let button = document.getElementById("failure-button");
+            button.addEventListener('click', () => {
+                closePopup(popup);
+            });
 
             // Send generic error message
             console.error("Error editing attendee");
         }
     })
 });
+
+function openPopup(popup) {
+    popup.classList.add("open-popup");
+};
+
+function closePopup(popup) {
+    popup.classList.remove("open-popup");
+};

@@ -35,14 +35,24 @@
         </div>
     </div>
 
-    <div class="main-content">
+    <div class="form-container">
     <h3>Add Event Year:</h3>
     <form id="new-event-year-form">
-        <label for="year">Year:</label>
-        <input type="number" id="year" name="year" min="1900" max="2099" value="2023" required ><br><br>
-
+        <input type="number" id="year" name="year" min="1900" max="2099" placeholder="Year" pattern="[1900-2099]" required ><span></span><br>
         <button type="submit">Add Event Year</button>
     </form>
+    </div>
+
+    <!-- Adapted from https://www.youtube.com/watch?v=AF6vGYIyV8M -->
+    <div class="popup" id="success-popup">
+        <h3 id="success-header">Success ✓</h3>
+        <p>Event year successfully added!</p>
+        <button type="button" id="success-button">OK</button>
+    </div>
+    <div class="popup" id="failure-popup">
+        <h3 id="failure-header">Failure ✖</h3>
+        <p id="error-msg"></p>
+        <button type="button" id="failure-button">OK</button>
     </div>
 </body>
 </html>

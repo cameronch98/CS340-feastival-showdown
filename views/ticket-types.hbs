@@ -43,17 +43,20 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href="/ticket-types/new-ticket-type" class="floating-button">New</a></th>
                     <th>Ticket Type</th>
-                    <th></th>
+                    <th class="center-cell"><a href="/ticket-types/new-ticket-type" class="floating-button"><span class="material-symbols-outlined">add</span></a></th>                
                 </tr>
             </thead>
             <tbody>
                 {{#each ticketType}}
                 <tr>
-                    <td><a onclick="editTicketType({{this.ID}})" href="/ticket-types/edit-ticket-type?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Ticket}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Ticket}}', {{this.ID}}, '/ticket-types/delete-ticket-type/fetch')" >Delete</button></td>
+                    <td class="center-cell">
+                        <span>
+                            <a onclick="editTicketType({{this.ID}})" href="/ticket-types/edit-ticket-type?id={{this.ID}}"><span class="material-symbols-outlined">edit</span></a>
+                            <a onclick="confirmAndDelete('{{this.Ticket}}', {{this.ID}}, '/ticket-types/delete-ticket-type/fetch')"><span class="material-symbols-outlined">delete</span></a>
+                        </span>
+                    </td>
                 </tr>
                 {{/each}}
             </tbody>

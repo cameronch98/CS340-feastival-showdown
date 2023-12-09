@@ -32,21 +32,47 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(data)
         });
         if (response.ok) {
-            // Handle successful insertion
-            alert("Discount added successfully!");
-            window.location.href = '/discounts';
+            // Handle successful insertion with success popup
+            let popup = document.getElementById("success-popup");
+            openPopup(popup);
+
+            // Trigger modal close and redirect on OK click
+            let button = document.getElementById("success-button");
+            button.addEventListener('click', () => {
+                closePopup(popup);
+                window.location.href = '/discounts';
+            });
         } else {
             // Handle errors
             const error = await response.json();
 
             // Handle specific errors
+            let errorMsg = document.getElementById("error-msg");
             if (error.sqlError == 1062) {
                 // Insert form logic to make warning appear (update this)
-                alert(`The ${data.discount.toLowerCase()} discount is already active!`);
+                errorMsg.textContent = `The ${data.discount.toLowerCase()} discount is already active!`;
             };
+
+            // Open failure popup with correct error message
+            let popup = document.getElementById("failure-popup");
+            openPopup(popup);
+
+            // Trigger modal close on OK click
+            let button = document.getElementById("failure-button");
+            button.addEventListener('click', () => {
+                closePopup(popup);
+            });
 
             // Send generic error message
             console.error("Error adding discount");
         }
     })
 });
+
+function openPopup(popup) {
+    popup.classList.add("open-popup");
+};
+
+function closePopup(popup) {
+    popup.classList.remove("open-popup");
+};

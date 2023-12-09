@@ -35,44 +35,53 @@
         </div>
     </div>
 
-    <div class="main-content">
+    <div class="form-container">
     <h3>Add Dish:</h3>
     <form id="new-dish-form">
-        <label for="dishName">Name:</label>
-        <input type="text" id="dishName" name="dishName" maxlength="100" required><br><br>
-
-        <label for="dishImage">Image:</label>
-        <input type="file" id="dishImage" name="dishImage"><br><br>
-
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" maxlength="255" required></textarea><br><br>
+        <input type="text" id="dishName" name="dishName" maxlength="100" placeholder="Dish Name" pattern="*" required><span></span><br>
+        <textarea id="description" name="description" maxlength="255" placeholder="Description of dish..." required></textarea><span></span><br>
 
         <!-- Prepopulated with courses -->
-        <label for="course">Course:</label>
-        <select id="course" name="course">
+        <select id="course" name="course" required>
+            <!-- Taken from https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
+            <option value="" disabled selected hidden>Course</option>
             {{#each course}}
             <option value="{{this.ID}}">{{this.Course}}</option>
             {{/each}}
-        </select><br><br>
+        </select><span></span><br>
 
         <!-- Prepopulated with valid teams to reduce errors -->
-        <label for="team">Team:</label>
-        <select id="team" name="team">
+        <select id="team" name="team" required>
+            <!-- Taken from https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
+            <option value="" disabled selected hidden>Team</option>
             {{#each team}}
             <option value="{{this.ID}}">{{this.Team}}</option>
             {{/each}}
-        </select><br><br>
+        </select><span></span><br>
 
         <!-- Prepopulated with valid years to reduce errors -->
-        <label for="year">Year:</label>
-        <select id="year" name="year">
+        <select id="year" name="year" required>
+            <!-- Taken from https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
+            <option value="" disabled selected hidden>Year</option>
             {{#each eventYear}}
             <option value="{{this.ID}}">{{this.Year}}</option>
             {{/each}}
-        </select><br><br>
+        </select><span></span><br>
 
         <button type="submit">Add Dish</button>
     </form>
+    </div>
+
+    <!-- Adapted from https://www.youtube.com/watch?v=AF6vGYIyV8M -->
+    <div class="popup" id="success-popup">
+        <h3 id="success-header">Success ✓</h3>
+        <p>Dish successfully added!</p>
+        <button type="button" id="success-button">OK</button>
+    </div>
+    <div class="popup" id="failure-popup">
+        <h3 id="failure-header">Failure ✖</h3>
+        <p id="error-msg"></p>
+        <button type="button" id="failure-button">OK</button>
     </div>
 </body>
 </html>

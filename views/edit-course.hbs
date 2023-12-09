@@ -35,17 +35,26 @@
         </div>
     </div>
 
-    <div class="main-content">
+    <div class="form-container">
     <h3>Edit Course:</h3>
     <form id="edit-course-form">
         <!-- Hidden input to hold the ID -->
         <input type="hidden" name="id" id="id" value="{{course.course_id}}"> 
-
-        <label for="course">Course:</label>
-        <input type="text" id="course" name="course" maxlength="50" value="{{course.course_name}}" required><br><br>
-
+        <input type="text" id="course" name="course" maxlength="50" placeholder="Course Name" pattern="*" value="{{course.course_name}}" required><span></span><br>
         <button type="submit">Update Course</button>
     </form>
+    </div>
+
+    <!-- Adapted from https://www.youtube.com/watch?v=AF6vGYIyV8M -->
+    <div class="popup" id="success-popup">
+        <h3 id="success-header">Success ✓</h3>
+        <p>Course successfully edited!</p>
+        <button type="button" id="success-button">OK</button>
+    </div>
+    <div class="popup" id="failure-popup">
+        <h3 id="failure-header">Failure ✖</h3>
+        <p id="error-msg"></p>
+        <button type="button" id="failure-button">OK</button>
     </div>
 </body>
 </html>

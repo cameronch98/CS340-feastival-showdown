@@ -45,7 +45,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th><a href="/attendees/new-attendee" class="floating-button">New</a></th>
+                    <th class="center-cell"><a href="/attendees/new-attendee" class="floating-button"><span class="material-symbols-outlined">add</span></a></th>
                 </tr>
             </thead>
             <tbody>
@@ -54,7 +54,12 @@
                     <td>{{this.Name}}</td>
                     <td>{{this.Email}}</td>
                     <td>{{this.Phone}}</td>
-                    <td><span><a class="floating-button" onclick="editAttendee({{this.ID}})" href="/attendees/edit-attendee?id={{this.ID}}"><span class="material-symbols-outlined">edit</span></a><a class="floating-button" onclick="confirmAndDelete('{{this.Name}}', {{this.ID}}, '/attendees/delete-attendee/fetch')"   ><span class="material-symbols-outlined">delete</span></a></span></td>
+                    <td class="center-cell">
+                        <span>
+                            <a onclick="editAttendee({{this.ID}})" href="/attendees/edit-attendee?id={{this.ID}}"><span class="material-symbols-outlined">edit</span></a>
+                            <a onclick="confirmAndDelete('{{this.Name}}', {{this.ID}}, '/attendees/delete-attendee/fetch')"><span class="material-symbols-outlined">delete</span></a>
+                        </span>
+                    </td>
                 </tr>
                 {{/each}}
             </tbody>

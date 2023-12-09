@@ -77,7 +77,6 @@ ORDER BY Year, Team ASC;
 SELECT
 dish_id AS ID,
 dish_name AS Name,
-dish_image AS Image,
 dish_description AS Description,
 Courses.course_name AS Course,
 Teams.team_name AS Team,
@@ -211,8 +210,8 @@ INSERT INTO Competitor_Registrations (competitor_id, team_id, event_year_id)
 VALUES (:competitor, :team, :year);
 
 -- Insert Dish
-INSERT INTO Dishes (dish_name, dish_image, dish_description, course_id, team_id, event_year_id)
-VALUES (:dishName, :dishImage, :description, :course, :team, :year);
+INSERT INTO Dishes (dish_name, dish_description, course_id, team_id, event_year_id)
+VALUES (:dishName, :description, :course, :team, :year);
 
 -- Insert Rating
 INSERT INTO Ratings (dish_id, rating, comments, attendee_id)
@@ -244,7 +243,7 @@ UPDATE Teams SET team_name: = :name WHERE team_id = :id;
 UPDATE Competitor_Registrations SET competitor_id = :competitor, team_id = :team, event_year_id = :year WHERE competitor_registration_id = :id;
 
 -- Update Dish
-UPDATE Dishes SET dish_name = :dishName, dish_image = :dishImage, dish_description = :description, course_id = :course, team_id = :team, event_year_id = :year WHERE dish_id = :id;
+UPDATE Dishes SET dish_name = :dishName, dish_description = :description, course_id = :course, team_id = :team, event_year_id = :year WHERE dish_id = :id;
 
 -- Update Rating
 UPDATE Ratings SET dish_id = :dish, rating = :rating, comments = :comments, attendee_id = :attendee WHERE rating_id = :id;

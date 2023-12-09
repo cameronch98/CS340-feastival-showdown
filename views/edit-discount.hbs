@@ -35,20 +35,27 @@
         </div>
     </div>
 
-    <div class="main-content">
+    <div class="form-container">
     <h3>Edit Discount:</h3>
     <form id="edit-discount-form">
-        
-        <input type="hidden" name="id" id="id" value='{{discount.discount_id}}'> <!-- Hidden input to hold the ID -->
-        
-        <label for="discount">Discount:</label>
-        <input type="text" id="discount" name="discount" maxlength="50" value="{{discount.discount_name}}" required><br><br>
-
-        <label for="percent">Percent:</label>
-        <input type="number" id="percent" name="percent" min="0" max="100" value="{{discount.discount_percent}}" required ><br><br>
-
+        <!-- Hidden input to hold the ID -->
+        <input type="hidden" name="id" id="id" value='{{discount.discount_id}}'>
+        <input type="text" id="discount" name="discount" placeholder="Discount Name" maxlength="50" pattern="*" value="{{discount.discount_name}}" required><span></span><br>
+        <input type="number" id="percent" name="percent" min="0" max="100" placeholder="Percent" pattern="[0-100]" value="{{discount.discount_percent}}" required ><span></span><br>
         <button type="submit">Update Discount</button>
     </form>
+    </div>
+
+    <!-- Adapted from https://www.youtube.com/watch?v=AF6vGYIyV8M -->
+    <div class="popup" id="success-popup">
+        <h3 id="success-header">Success ✓</h3>
+        <p>Discount successfully edited!</p>
+        <button type="button" id="success-button">OK</button>
+    </div>
+    <div class="popup" id="failure-popup">
+        <h3 id="failure-header">Failure ✖</h3>
+        <p id="error-msg"></p>
+        <button type="button" id="failure-button">OK</button>
     </div>
 </body>
 </html>

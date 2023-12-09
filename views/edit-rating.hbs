@@ -35,36 +35,47 @@
         </div>
     </div>
 
-    <div class="main-content">
+    <div class="form-container">
     <h3>Edit Rating:</h3>
     <form id="edit-rating-form">
         <!--Hidden select for id-->
         <input type="hidden" name="id" id="id" value="{{rating.rating_id}}"> 
 
         <!-- Prepopulated with dishes to reduce errors -->
-        <label for="dish">Dish:</label>
-        <select id="dish" name="dish">
+        <select id="dish" name="dish" required>
+            <!-- Taken from https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
+            <option value="" disabled selected hidden>Dish</option>
             {{#each dish}}
             <option value="{{this.ID}}" {{this.selected}}>{{this.Name}}</option>
             {{/each}}
-        </select><br><br>
+        </select><span></span><br>
 
-        <label for="rating">Rating:</label>
-        <input type="number" id="rating" name="rating" min="1" max="10" value="{{rating.rating}}" required><br><br>
-
-        <label for="comments">Comments:</label>
-        <textarea id="comments" name="comments" maxlength="255" >{{rating.comments}}</textarea><br><br>
+        <input type="number" id="rating" name="rating" min="1" max="10" value="{{rating.rating}}" placeholder="Rating" pattern="[1-10]" required><span></span><br>
+        <textarea id="comments" name="comments" maxlength="255" placeholder="Comments on the dish...">{{rating.comments}}</textarea><span></span><br>
 
         <!-- Prepopulated with valid attendees to reduce errors -->
-        <label for="attendee">Attendee:</label>
-        <select id="attendee" name="attendee">
+        <select id="attendee" name="attendee" required>
+            <!-- Taken from https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
+            <option value="" disabled selected hidden>Attendee</option>
             {{#each attendee}}
             <option value="{{this.ID}}" {{this.selected}}>{{this.Name}}</option>
             {{/each}}
-        </select><br><br>
+        </select><span></span><br>
 
         <button type="submit">Update Rating</button>
     </form>
+    </div>
+
+    <!-- Adapted from https://www.youtube.com/watch?v=AF6vGYIyV8M -->
+    <div class="popup" id="success-popup">
+        <h3 id="success-header">Success ✓</h3>
+        <p>Rating successfully edited!</p>
+        <button type="button" id="success-button">OK</button>
+    </div>
+    <div class="popup" id="failure-popup">
+        <h3 id="failure-header">Failure ✖</h3>
+        <p id="error-msg"></p>
+        <button type="button" id="failure-button">OK</button>
     </div>
 </body>
 </html>

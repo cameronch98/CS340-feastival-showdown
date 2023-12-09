@@ -246,18 +246,32 @@ input, select {
     border-radius: 4px;
 }
 
+.form-container {
+    left      : 50%;
+    top       : 50%;
+    position  : absolute;
+    transform : translate(-50%, -50%);
+    padding: 20px;
+    line-height: 50px;
+}
+
+.form-container h3{
+    text-align: center;
+    padding: 10px;
+}
+
 form {
     box-shadow: 0 0 10px #333333;
     background-color: #333333;
-    width: 350px;
+    width: 400px;
     color: #f5f5f5;
     border-radius: 12px;
     padding: 20px;
-    margin-top: 10px;
 }
 
 td a .material-symbols-outlined:hover {
     animation: bellRing 0.5s ease-in-out infinite;
+    cursor: pointer;
 }
 
 form button {
@@ -265,31 +279,14 @@ form button {
     color: #f5f5f5;
     border: #003142;
     cursor: pointer;
-    border-radius: 20px;
-    width: 95%;
+    border-radius: 4px;
+    width: 100%;
     padding: 10px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 form button:hover {
     background-color: #79b1c6;
-}
-
-table button {
-    background-color: #333333;
-    color: #f5f5f5;
-    border-radius: 25px;
-    padding: 5px 2px 5px 5px;
-}
-
-table button .material-symbols-outlined {
-    vertical-align: middle;
-    text-align: center;
-    padding-left: 5px;
-}
-
-table button:hover{
-    animation: bellRing 0.5s ease-in-out infinite;
-    
 }
 
 thead tr {
@@ -300,7 +297,6 @@ thead tr {
 
 th, td {
     padding: 12px 15px;
-    
 }
 
 tbody tr {
@@ -335,9 +331,14 @@ tbody a {
     color: #333333;
 }
 
+.center-cell{
+    text-align: center;
+}
+
 .floating-button {
     display: inline-block;
-    padding: 0 20px;
+    width: 80%;
+    text-decoration: none;
     background-color: #437C90; 
     color: white;
     cursor: pointer;
@@ -362,7 +363,6 @@ tbody a {
 td a:hover {
     transform: scale(1.5);
 }
-
 
 .modal {
     display: none;
@@ -459,34 +459,31 @@ div.navbar:hover .nav-text {
     margin-bottom: 10px; /* Adds some space between list items */
 }
 
-input {
+input, textarea {
     border: #003142;
-}
-
-input[type=text] {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
     padding: 10px;
-    box-shadow: 0 0 15px 4px;
-    border-radius: 20px;
+    width: 55%;
+    border-radius: 4px;
 }
 
-input[type=email] {
+select {
+    border: #003142;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
     padding: 10px;
-    box-shadow: 0 0 15px 4px;
-    border-radius: 20px;
+    width: 60%;
+    border-radius: 4px;
 }
 
-input[type=tel] {
-    padding: 10px;
-    box-shadow: 0 0 15px 4px;
-    border-radius: 20px;
+textarea {
+    vertical-align: bottom;
 }
-
 /* From mozilla web decs */
-input + span {
+input + span, select + span, textarea + span{
     position: relative;
 }
   
-input + span::before {
+input + span::before , select + span::before, textarea + span::before{
 position: relative;
 right: -20px;
 top: 5px;
@@ -532,6 +529,76 @@ form#edit-team-form input[type=text]:invalid + span::before {
     color: lightcoral;
 }
 
+form#new-discount-form input[type=text]:invalid + span::before {
+    content: "✖ Field Empty";
+    color: lightcoral;
+}
+
+form#edit-discount-form input[type=text]:invalid + span::before {
+    content: "✖ Field Empty";
+    color: lightcoral;
+}
+
+form#new-discount-form input[type=number]:invalid + span::before {
+    content: "✖ Select Percent";
+    color: lightcoral;
+}
+
+form#edit-discount-form input[type=number]:invalid + span::before {
+    content: "✖ Select Percent";
+    color: lightcoral;
+}
+
+form#new-course-form input[type=text]:invalid + span::before {
+    content: "✖ Field Empty";
+    color: lightcoral;
+}
+
+form#edit-course-form input[type=text]:invalid + span::before {
+    content: "✖ Field Empty";
+    color: lightcoral;
+}
+
+form#new-event-year-form input[type=number]:invalid + span::before {
+    content: "✖ 1900 - 2099";
+    color: lightcoral;
+}
+
+form#edit-event-year-form input[type=number]:invalid + span::before {
+    content: "✖ 1900 - 2099";
+    color: lightcoral;
+}
+
+form#new-rating-form select#dish:invalid + span::before {
+    content: "✖ Select a Dish";
+    color: lightcoral;
+}
+
+form#edit-rating-form select#dish:invalid + span::before {
+    content: "✖ Select a Dish";
+    color: lightcoral;
+}
+
+form#new-rating-form select#attendee:invalid + span::before {
+    content: "✖ Select an Attendee";
+    color: lightcoral;
+}
+
+form#edit-rating-form select#attendee:invalid + span::before {
+    content: "✖ Select an Attendee";
+    color: lightcoral;
+}
+
+form#new-rating-form input[type=number]:invalid + span::before {
+    content: "✖ 1 - 10";
+    color: lightcoral;
+}
+
+form#edit-rating-form input[type=number]:invalid + span::before {
+    content: "✖ 1 - 10";
+    color: lightcoral;
+}
+
 input[type=tel]:invalid + span::before {
     content: "✖ ___-___-____";
     color: lightcoral;
@@ -542,12 +609,72 @@ input[type=email]:invalid + span::before {
     color: lightcoral;
 }
 
-
-
 input:valid + span::before {
 content: "✓";
 color: lightgreen;
 }
+
+select:valid + span::before {
+    content: "✓";
+    color: lightgreen;
+}
+
+textarea:valid + span::before {
+    content: "✓";
+    color: lightgreen;
+}
+
+/* Adapted from https://www.youtube.com/watch?v=AF6vGYIyV8M */
+.popup {
+    width: 300px;
+    background-color: #333333;
+    border-radius: 12px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #f5f5f5;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup{
+    visibility: visible;
+    top: 15%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup h3#success-header{
+    font-family: sans-serif;
+    font-weight: 500;
+    margin: 30px 0 10px;
+    color: lightgreen;
+}
+
+.popup h3#failure-header{
+    font-family: sans-serif;
+    font-weight: 500;
+    margin: 30px 0 10px;
+    color: lightcoral;
+}
+
+.popup button{
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    cursor: pointer;
+    color: #f5f5f5;
+    background-color: #437c90;
+    border: #003142;
+    font-size: 18px;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+
   
 
 

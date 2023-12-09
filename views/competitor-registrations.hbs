@@ -42,21 +42,24 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href="/competitor-registrations/new-competitor-registration" class="floating-button">New</a></th>
                     <th>Competitor</th>
                     <th>Team</th>
                     <th>Year</th>
-                    <th></th>
+                    <th class="center-cell"><a href="/competitor-registrations/new-competitor-registration" class="floating-button"><span class="material-symbols-outlined">add</span></a></th>
                 </tr>
             </thead>
             <tbody>
                 {{#each competitorReg}}
                 <tr>
-                    <td><a onclick="editCompetitorReg({{this.ID}})" href="/competitor-registrations/edit-competitor-registration?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Competitor}}</td>
                     <td>{{this.Team}}</td>
                     <td>{{this.Year}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Competitor}}', {{this.ID}}, '/competitor-registrations/delete-competitor-registration/fetch')" >Delete</button></td>
+                    <td class="center-cell">
+                        <span>
+                            <a onclick="editCompetitorReg({{this.ID}})" href="/competitor-registrations/edit-competitor-registration?id={{this.ID}}"><span class="material-symbols-outlined">edit</span></a>
+                            <a onclick="confirmAndDelete('{{this.Competitor}}', {{this.ID}}, '/competitor-registrations/delete-competitor-registration/fetch')" ><span class="material-symbols-outlined">delete</span></a>
+                        </span>
+                    </td>
                 </tr>
                 {{/each}}
             </tbody>

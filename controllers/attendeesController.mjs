@@ -74,7 +74,7 @@ export const updateAttendee = async(req, res) => {
     try {
         // Run query to update given attendee with new data
         let results = await attendeesModel.updateAttendee(queryParams);
-        res.status(200).redirect('/attendees');
+        res.status(200).render('attendees');
     } catch(err) {
         // Send error status and message
         console.error('Error editing attendee', err);

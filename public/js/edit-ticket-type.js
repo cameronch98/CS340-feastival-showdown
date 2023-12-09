@@ -32,21 +32,46 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(data)
         });
         if (response.ok) {
-            // Handle successful edit
-            alert("Ticket type edited successfully!");
-            window.location.href = '/ticket-types';
+            // Handle successful edit with success popup
+            let popup = document.getElementById("success-popup");
+            openPopup(popup);
+
+            // Trigger modal close and redirect on OK click
+            let button = document.getElementById("success-button");
+            button.addEventListener('click', () => {
+                closePopup(popup);
+                window.location.href = '/ticket-types';
+            });
         } else {
             // Handle errors
             const error = await response.json();
 
             // Handle specific errors
+            let errorMsg = document.getElementById("error-msg");
             if (error.sqlError == 1062) {
-                // Insert form logic to make warning appear (update this)
-                alert(`${data.ticketType} tickets are already available!`);
+                errorMsg.textContent = `${data.ticketType} tickets are already available!`;
             };
+
+            // Open failure popup with correct error message
+            let popup = document.getElementById("failure-popup");
+            openPopup(popup);
+
+            // Trigger modal close on OK click
+            let button = document.getElementById("failure-button");
+            button.addEventListener('click', () => {
+                closePopup(popup);
+            });
 
             // Send generic error message
             console.error("Error editing ticket type");
         }
     })
 });
+
+function openPopup(popup) {
+    popup.classList.add("open-popup");
+};
+
+function closePopup(popup) {
+    popup.classList.remove("open-popup");
+};

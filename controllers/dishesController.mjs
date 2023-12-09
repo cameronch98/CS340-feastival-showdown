@@ -77,7 +77,6 @@ export const addDish = async(req, res) => {
     // Get query parameters
     let queryParams = {
         'dishName': req.body.dishName,
-        'dishImage': req.body.dishImage,
         'description': req.body.description,
         'courseId': req.body.courseId,
         'teamId': req.body.teamId,
@@ -103,7 +102,6 @@ export const updateDish = async(req, res) => {
     // Get query parameters
     let queryParams = {
         'dishName': req.body.dishName,
-        'dishImage': req.body.dishImage,
         'description': req.body.description,
         'courseId': req.body.courseId,
         'teamId': req.body.teamId,

@@ -38,15 +38,26 @@
         </div>
     </div>
     
-    <div class="main-content">
+    <div class="form-container">
     <h3>Add Attendee:</h3>
     <form action="demo" id="new-attendee-form">
         <input type="text" id="name" name="name" placeholder="Name" pattern="[A-Z][a-z]* [A-Z][a-z]*" maxlength="100" required><span></span><br>
         <input type="email" id="email" name="email" placeholder="Email" pattern=".+@+.+\.com" maxlength="255" required><span></span><br>
         <input type="tel" id="phone" name="phone" placeholder="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><span></span><br>
-
         <button type="submit">Add Attendee</button>
     </form>
+    </div>
+
+    <!-- Adapted from https://www.youtube.com/watch?v=AF6vGYIyV8M -->
+    <div class="popup" id="success-popup">
+        <h3 id="success-header">Success ✓</h3>
+        <p>Attendee successfully added to the database!</p>
+        <button type="button" id="success-button">OK</button>
+    </div>
+    <div class="popup" id="failure-popup">
+        <h3 id="failure-header">Failure ✖</h3>
+        <p id="error-msg"></p>
+        <button type="button" id="failure-button">OK</button>
     </div>
 </body>
 </html>

@@ -35,14 +35,24 @@
         </div>
     </div>
 
-    <div class="main-content">
+    <div class="form-container">
     <h3>Add Course:</h3>
     <form id="new-course-form">
-        <label for="course">Course:</label>
-        <input type="text" id="course" name="course" maxlength="50" required><br><br>
-
+        <input type="text" id="course" name="course" placeholder="Course Name" pattern="*" maxlength="50" required><span></span><br>
         <button type="submit">Add Course</button>
     </form>
+    </div>
+
+    <!-- Adapted from https://www.youtube.com/watch?v=AF6vGYIyV8M -->
+    <div class="popup" id="success-popup">
+        <h3 id="success-header">Success ✓</h3>
+        <p>Course successfully added!</p>
+        <button type="button" id="success-button">OK</button>
+    </div>
+    <div class="popup" id="failure-popup">
+        <h3 id="failure-header">Failure ✖</h3>
+        <p id="error-msg"></p>
+        <button type="button" id="failure-button">OK</button>
     </div>
 </body>
 </html>

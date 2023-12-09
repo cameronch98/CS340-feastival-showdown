@@ -31,9 +31,9 @@ export const getDishById = (id) => {
 };
 
 // Add a new dish
-export const addDish = ({dishName, dishImage, description, courseId, teamId, eventYearId}) => {
+export const addDish = ({dishName, description, courseId, teamId, eventYearId}) => {
     return new Promise((resolve, reject) => {
-        pool.query(queries.insertDish, [dishName, dishImage, description, courseId, teamId, eventYearId], (error, rows) => {
+        pool.query(queries.insertDish, [dishName, description, courseId, teamId, eventYearId], (error, rows) => {
             if(error) {
                 console.error("Query error for inserting dish: ", error);
                 return reject(error);
@@ -45,9 +45,9 @@ export const addDish = ({dishName, dishImage, description, courseId, teamId, eve
 };
 
 // Update a dish
-export const updateDish = ({dishName, dishImage, description, courseId, teamId, eventYearId, id}) => {
+export const updateDish = ({dishName, description, courseId, teamId, eventYearId, id}) => {
     return new Promise((resolve, reject) => {
-        pool.query(queries.updateDish, [dishName, dishImage, description, courseId, teamId, eventYearId, id], (error, rows) => {
+        pool.query(queries.updateDish, [dishName, description, courseId, teamId, eventYearId, id], (error, rows) => {
             if(error) {
                 console.error("Query error for updating dish: ", error);
                 return reject(error);

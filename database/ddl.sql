@@ -95,7 +95,6 @@ CREATE OR REPLACE TABLE Competitor_Registrations(
 CREATE OR REPLACE TABLE Dishes(
     dish_id int AUTO_INCREMENT PRIMARY KEY, 
     dish_name varchar(100) UNIQUE NOT NULL,
-    dish_image varchar(255) NOT NULL, 
     dish_description varchar(255) NOT NULL,
     team_id int NOT NULL, 
     course_id int NOT NULL,
@@ -509,7 +508,6 @@ VALUES
 -- Insert sample data into Dishes
 INSERT INTO Dishes (
     dish_name,
-    dish_image,
     dish_description,
     event_year_id,
     team_id,
@@ -518,7 +516,6 @@ INSERT INTO Dishes (
 VALUES
 (
     'Crispy Calamari Rings',
-    'link',
     'Lightly battered squid rings, deep-fried until golden, served with a tangy lemon aioli.',
     1,
     1,
@@ -526,7 +523,6 @@ VALUES
 ),
 (
     'Honey-Glazed Salmon Fillet',
-    'link',
     'Fresh salmon glazed with a blend of honey, garlic, and soy, grilled to perfection, accompanied by asparagus spears.',
     1,
     2,
@@ -534,7 +530,6 @@ VALUES
 ),
 (
     'Triple Chocolate Mousse',
-    'link',
     'Velvety layers of dark, milk, and white chocolate mousse, topped with a dusting of cocoa powder.',
     1,
     3,
@@ -542,7 +537,6 @@ VALUES
 ),
 (
     'Stuffed Portobello Caps',
-    'link',
     'Meaty mushrooms filled with herbed goat cheese, spinach, and roasted red peppers, drizzled with balsamic glaze.',
     1,
     2,
@@ -550,7 +544,6 @@ VALUES
 ),
 (
     'Thyme-Infused Lamb Chops',
-    'link',
     'Juicy lamb chops seasoned with fresh thyme and rosemary, seared to desired doneness, paired with roasted root vegetables.',
     1,
     3,
@@ -558,7 +551,6 @@ VALUES
 ),
 (
     'Roasted Beetroot Salad',
-    'link',
     'Freshly roasted beetroots combined with feta cheese, walnuts, and a honey dressing.',
     2,
     1,
@@ -566,7 +558,6 @@ VALUES
 ),
 (
     'Mango Sorbet',
-    'link', 
     'A refreshing mango sorbet made from ripe mangoes and a hint of lime.',
     2, 
     1, 
@@ -574,23 +565,20 @@ VALUES
 ),
 (
     'Ginger Chicken Stir-Fry', 
-    'link', 
     'Aromatic ginger-infused chicken stir-fried with crisp vegetables in a light soy sauce.', 
     2, 
     3, 
     2
 ),
 (
-    'Spinach and Feta Tart', 
-    'link', 
+    'Spinach and Feta Tart',
     'A flaky tart filled with sautéed spinach and creamy feta cheese.', 
     2, 
     2, 
     1
 ),
 (
-    'Mocha Cheesecake', 
-    'link', 
+    'Mocha Cheesecake',
     'Creamy cheesecake with a hint of coffee and chocolate.', 
     2, 
     2, 

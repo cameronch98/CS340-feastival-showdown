@@ -42,17 +42,20 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href="/teams/new-team" class="floating-button">New</a></th>
                     <th>Name</th>
-                    <th></th>
+                    <th class="center-cell"><a href="/teams/new-team" class="floating-button"><span class="material-symbols-outlined">add</span></a></th>
                 </tr>
             </thead>
             <tbody>
                 {{#each team}}
                 <tr>
-                    <td><a onclick="editTeam({{this.ID}})" href="/teams/edit-team?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Team}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Team}}', {{this.ID}}, '/teams/delete-team/fetch')" >Delete</button></td>
+                    <td class="center-cell">
+                        <span>
+                            <a onclick="editTeam({{this.ID}})" href="/teams/edit-team?id={{this.ID}}"><span class="material-symbols-outlined">edit</span></a>
+                            <a onclick="confirmAndDelete('{{this.Team}}', {{this.ID}}, '/teams/delete-team/fetch')" ><span class="material-symbols-outlined">delete</span></a>
+                        </span>
+                    </td>
                 </tr>
                 {{/each}}
             </tbody>

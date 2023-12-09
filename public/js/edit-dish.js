@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Get form fields we need to get data from
         let updateDishID = document.getElementById('dishId')
         let newDishName = document.getElementById("dishName");
-        let newDishImage = document.getElementById("dishImage");
         let newDescription = document.getElementById("description");
         let newCourseId = document.getElementById("course");
         let newTeamId = document.getElementById("team");
@@ -21,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Get the values from the form fields
         let dishID = updateDishID.value;
         let dishNameValue = newDishName.value;
-        let dishImageValue = newDishImage.value;
         let descriptionValue = newDescription.value;
         let courseIdValue = newCourseId.value;
         let teamIdValue = newTeamId.value;
@@ -31,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let data = {
             id: dishID,
             dishName: dishNameValue,
-            dishImage: dishImageValue,
             description: descriptionValue,
             courseId: courseIdValue,
             teamId: teamIdValue,

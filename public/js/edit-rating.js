@@ -41,9 +41,16 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(data)
         });
         if (response.ok) {
-            // Handle successful edit
-            alert("Rating edited successfully!");
-            window.location.href = '/ratings';
+            // Handle successful edit with success popup
+            let popup = document.getElementById("success-popup");
+            openPopup(popup);
+
+            // Trigger modal close and redirect on OK click
+            let button = document.getElementById("success-button");
+            button.addEventListener('click', () => {
+                closePopup(popup);
+                window.location.href = '/ratings';
+            });
         } else {
             // Handle errors
             const error = await response.json();
@@ -57,13 +64,31 @@ document.addEventListener("DOMContentLoaded", () => {
             const dish = await dishResponse.json();
 
             // Handle specific errors
+            let errorMsg = document.getElementById("error-msg");
             if (error.sqlError == 1062) {
-                // Insert form logic to make warning appear (update this)
-                alert(`${attendee.attendee_name} has already rated ${dish.dish_name.toLowerCase()}!`);
+                errorMsg.textContent = `${attendee.attendee_name} has already rated ${dish.dish_name.toLowerCase()}!`;
             };
+
+            // Open failure popup with correct error message
+            let popup = document.getElementById("failure-popup");
+            openPopup(popup);
+
+            // Trigger modal close on OK click
+            let button = document.getElementById("failure-button");
+            button.addEventListener('click', () => {
+                closePopup(popup);
+            });
 
             // Send generic error message
             console.error("Error editing rating");
         }
     })
 });
+
+function openPopup(popup) {
+    popup.classList.add("open-popup");
+};
+
+function closePopup(popup) {
+    popup.classList.remove("open-popup");
+};
