@@ -312,68 +312,94 @@ INSERT INTO Ticket_Sales (
 )
 VALUES
 (
-    4,
-    2,
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "JohnGGreen@gmail.com"),
+    (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Two-Day') AND event_year_id = 
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022)),
     NULL
 ),
 (
-    3,
-    3,
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "AllenTRuiz@yahoo.com"),
+    (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Three-Day') AND event_year_id = 
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022)),
     (SELECT discount_id FROM Discounts WHERE discount = "Flash Sale")
 ),
 (
-    6,
-    3,
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "JohnKShugart@outlook.com"),
+    (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Three-Day') AND event_year_id = 
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022)),
     NULL
 ),
 (
     (SELECT attendee_id FROM Attendees WHERE attendee_email = "CarlaHDowney@gmail.com"),
-    3,
+    (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Three-Day') AND event_year_id = 
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022)),
     (SELECT discount_id FROM Discounts WHERE discount = "Student")
 ),
 (
-    2,
-    1,
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "MatthewNWalters@gmail.com"),
+    (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='One-Day') AND event_year_id = 
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022)),
     NULL
 ),
 (
-    5,
-    2,
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "EleanorMToro@icloud.com"),
+    (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Two-Day') AND event_year_id = 
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022)),
     (SELECT discount_id FROM Discounts WHERE discount = "Early Bird")
 ),
 (
-    4,
-    6,
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "JohnGGreen@gmail.com"),
+    (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Three-Day') AND event_year_id = 
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023)),
     NULL
 ),
 (
-    10,
-    6,
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "flavie1986@gmail.com"),
+    (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Three-Day') AND event_year_id = 
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023)),
     NULL
 ),
 (
-    7,
-    5,
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "solon1971@gmail.com"),
+    (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Two-Day') AND event_year_id = 
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023)),
     (SELECT discount_id FROM Discounts WHERE discount = "Flash Sale")
 ),
 (
-    8,
-    5,
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "immanuel.rober@yahoo.com"),
+    (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Two-Day') AND event_year_id = 
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023)),
     NULL
 ),
 (
-    5,
-    6,
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "EleanorMToro@icloud.com"),
+    (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Three-Day') AND event_year_id = 
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023)),
     (SELECT discount_id FROM Discounts WHERE discount = "Early Bird")
 ),
 (
-    9,
-    4,
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "erna_stanto6@yahoo.com"),
+    (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='One-Day') AND event_year_id = 
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023)),
     (SELECT discount_id FROM Discounts WHERE discount = "Early Bird")
 ),
 (
-    2,
-    4,
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "MatthewNWalters@gmail.com"),
+    (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='One-Day') AND event_year_id = 
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023)),
     (SELECT discount_id FROM Discounts WHERE discount = "Early Bird")
 );
 
@@ -443,74 +469,74 @@ INSERT INTO Competitor_Registrations (
 )
 VALUES
 (
-    1,
-    2,
-    2
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "VincentTSmith@icloud.com"),
+    (SELECT team_id FROM Teams WHERE team_name = "Culinary Connoisseurs")
 ),
 (   
-    1,
-    3,
-    1
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "RonaldJFillmore@gmail.com"),
+    (SELECT team_id FROM Teams WHERE team_name = "Flavor Fusion")
 ),
 (
-    1,
-    6,
-    2
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "RonnieBKay@yahoo.com"),
+    (SELECT team_id FROM Teams WHERE team_name = "Culinary Connoisseurs")
 ),
 (   
-    1,
-    5,
-    1
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "HuiLTaylor@icloud.com"),
+    (SELECT team_id FROM Teams WHERE team_name = "Flavor Fusion")
 ),
 (
-    1,
-    4,
-    3
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "BobANelson@gmail.com"),
+    (SELECT team_id FROM Teams WHERE team_name = "Bread Heads")
 ),
 (
-    1,
-    1,
-    3
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "ThomasHMiller@outlook.com"),
+    (SELECT team_id FROM Teams WHERE team_name = "Bread Heads")
 ),
 (
-    2,
-    1,
-    4
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "ThomasHMiller@outlook.com"),
+    (SELECT team_id FROM Teams WHERE team_name = "Tasty Titans")
 ),
 (
-    2,
-    4,
-    3
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "BobANelson@gmail.com"),
+    (SELECT team_id FROM Teams WHERE team_name = "Bread Heads")
 ),
 (
-    2,
-    10,
-    4
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "y.ahmad@elegantkindle.io"),
+    (SELECT team_id FROM Teams WHERE team_name = "Tasty Titans")
 ),
 (
-    2,
-    6,
-    2
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "RonnieBKay@yahoo.com"),
+    (SELECT team_id FROM Teams WHERE team_name = "Culinary Connoisseurs")
 ),
 (
-    2,
-    9,
-    2
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "i.wang@evolveavatar.com"),
+    (SELECT team_id FROM Teams WHERE team_name = "Culinary Connoisseurs")
 ),
 (
-    2,
-    8,
-    1
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "c.cevallos@accountvictory.net"),
+    (SELECT team_id FROM Teams WHERE team_name = "Flavor Fusion")
 ),
 (
-    2,
-    7,
-    3
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "a.salcedo@imaginejourney.org"),
+    (SELECT team_id FROM Teams WHERE team_name = "Bread Heads")
 ),
 (
-    2,
-    5,
-    1
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023),
+    (SELECT competitor_id FROM Competitors WHERE competitor_email = "HuiLTaylor@icloud.com"),
+    (SELECT team_id FROM Teams WHERE team_name = "Flavor Fusion")
 );
 
 -- Insert sample data into Dishes
@@ -525,72 +551,72 @@ VALUES
 (
     'Crispy Calamari Rings',
     'Lightly battered squid rings, deep-fried until golden, served with a tangy lemon aioli.',
-    1,
-    1,
-    1
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022),
+    (SELECT team_id FROM Teams WHERE team_name = "Flavor Fusion"),
+    (SELECT course_id FROM Courses WHERE course_name = "Appetizer")
 ),
 (
     'Honey-Glazed Salmon Fillet',
     'Fresh salmon glazed with a blend of honey, garlic, and soy, grilled to perfection, accompanied by asparagus spears.',
-    1,
-    2,
-    2
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022),
+    (SELECT team_id FROM Teams WHERE team_name = "Culinary Connoisseurs"),
+    (SELECT course_id FROM Courses WHERE course_name = "Entree")
 ),
 (
     'Triple Chocolate Mousse',
     'Velvety layers of dark, milk, and white chocolate mousse, topped with a dusting of cocoa powder.',
-    1,
-    3,
-    3
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022),
+    (SELECT team_id FROM Teams WHERE team_name = "Bread Heads"),
+    (SELECT course_id FROM Courses WHERE course_name = "Dessert")
 ),
 (
     'Stuffed Portobello Caps',
     'Meaty mushrooms filled with herbed goat cheese, spinach, and roasted red peppers, drizzled with balsamic glaze.',
-    1,
-    2,
-    1
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022),
+    (SELECT team_id FROM Teams WHERE team_name = "Culinary Connoisseurs"),
+    (SELECT course_id FROM Courses WHERE course_name = "Appetizer")
 ),
 (
     'Thyme-Infused Lamb Chops',
     'Juicy lamb chops seasoned with fresh thyme and rosemary, seared to desired doneness, paired with roasted root vegetables.',
-    1,
-    3,
-    2
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022),
+    (SELECT team_id FROM Teams WHERE team_name = "Bread Heads"),
+    (SELECT course_id FROM Courses WHERE course_name = "Entree")
 ),
 (
     'Roasted Beetroot Salad',
     'Freshly roasted beetroots combined with feta cheese, walnuts, and a honey dressing.',
-    2,
-    1,
-    1
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023),
+    (SELECT team_id FROM Teams WHERE team_name = "Flavor Fusion"),
+    (SELECT course_id FROM Courses WHERE course_name = "Appetizer")
 ),
 (
     'Mango Sorbet',
     'A refreshing mango sorbet made from ripe mangoes and a hint of lime.',
-    2, 
-    1, 
-    3
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023), 
+    (SELECT team_id FROM Teams WHERE team_name = "Flavor Fusion"), 
+    (SELECT course_id FROM Courses WHERE course_name = "Dessert")
 ),
 (
     'Ginger Chicken Stir-Fry', 
     'Aromatic ginger-infused chicken stir-fried with crisp vegetables in a light soy sauce.', 
-    2, 
-    3, 
-    2
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023), 
+    (SELECT team_id FROM Teams WHERE team_name = "Bread Heads"), 
+    (SELECT course_id FROM Courses WHERE course_name = "Entree")
 ),
 (
     'Spinach and Feta Tart',
     'A flaky tart filled with sautéed spinach and creamy feta cheese.', 
-    2, 
-    2, 
-    1
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023), 
+    (SELECT team_id FROM Teams WHERE team_name = "Culinary Connoisseurs"), 
+    (SELECT course_id FROM Courses WHERE course_name = "Appetizer")
 ),
 (
     'Mocha Cheesecake',
     'Creamy cheesecake with a hint of coffee and chocolate.', 
-    2, 
-    2, 
-    3
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023), 
+    (SELECT team_id FROM Teams WHERE team_name = "Culinary Connoisseurs"), 
+    (SELECT course_id FROM Courses WHERE course_name = "Dessert")
 );
 
 -- Insert sample data into Ratings
@@ -604,62 +630,62 @@ VALUES
 (
     9,
     'Give these to me any day of the week',
-    1,
-    1
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "CarlaHDowney@gmail.com"),
+    (SELECT dish_id FROM Dishes WHERE dish_name = "Crispy Calamari Rings")
 ),
 (
     10,
     'BEST. SALMON. EVER.',
-    2,
-    2
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "MatthewNWalters@gmail.com"),
+    (SELECT dish_id FROM Dishes WHERE dish_name = "Honey-Glazed Salmon Fillet")
 ),
 (
     7,
     'Maybe too sweet for me?',
-    1,
-    3
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "CarlaHDowney@gmail.com"),
+    (SELECT dish_id FROM Dishes WHERE dish_name = "Triple Chocolate Mousse")
 ),
 (
     5,
     'Not a fan of calamari, and still not!',
-    3,
-    1
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "AllenTRuiz@yahoo.com"),
+    (SELECT dish_id FROM Dishes WHERE dish_name = "Crispy Calamari Rings")
 ),
 (
     9,
     'Thyme-anything is heaven on a plate!',
-    4,
-    5
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "JohnGGreen@gmail.com"),
+    (SELECT dish_id FROM Dishes WHERE dish_name = "Thyme-Infused Lamb Chops")
 ),
 (
     8, 
     'Loved the combination of flavors!', 
-    8, 
-    6
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "immanuel.rober@yahoo.com"), 
+    (SELECT dish_id FROM Dishes WHERE dish_name = "Roasted Beetroot Salad")
 ),
 (
     9, 
     'A delightful dessert!', 
-    7, 
-    7
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "solon1971@gmail.com"), 
+    (SELECT dish_id FROM Dishes WHERE dish_name = "Mango Sorbet")
 ),
 (
     7, 
     'Good but could use more ginger', 
-    10, 
-    8
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "flavie1986@gmail.com"), 
+    (SELECT dish_id FROM Dishes WHERE dish_name = "Ginger Chicken Stir-Fry")
 ),
 (
     10, 
     'The tart was outstanding!', 
-    9, 
-    9
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "erna_stanto6@yahoo.com"), 
+    (SELECT dish_id FROM Dishes WHERE dish_name = "Spinach and Feta Tart")
 ),
 (
     8, 
     'Perfect balance of coffee and chocolate', 
-    5, 
-    10
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "EleanorMToro@icloud.com"), 
+    (SELECT dish_id FROM Dishes WHERE dish_name = "Mocha Cheesecake")
 );
 
 -- Overview of DB
