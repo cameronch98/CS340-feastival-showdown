@@ -37,6 +37,11 @@ h2, h3 {
     font-size: 40px;
 }
 
+h4 {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 30px;
+}
+
 .home-page h1{
     padding: 0;
     margin: 0;
@@ -255,7 +260,7 @@ input, select {
     line-height: 50px;
 }
 
-.form-container h3{
+.form-container h3, .form-container h4{
     text-align: center;
     padding: 10px;
 }
@@ -586,6 +591,146 @@ form#new-rating-form select#attendee:invalid + span::before {
 
 form#edit-rating-form select#attendee:invalid + span::before {
     content: "✖ Select an Attendee";
+    color: lightcoral;
+}
+
+form#new-ticket-form select#ticket-type:invalid + span::before {
+    content: "✖ Select a Type";
+    color: lightcoral;
+}
+
+form#edit-ticket-form select#ticket-type:invalid + span::before {
+    content: "✖ Select a Type";
+    color: lightcoral;
+}
+
+form#new-ticket-form select#year:invalid + span::before {
+    content: "✖ Select a Year";
+    color: lightcoral;
+}
+
+form#edit-ticket-form select#year:invalid + span::before {
+    content: "✖ Select a Year";
+    color: lightcoral;
+}
+
+form#new-ticket-form input[type=number]:invalid + span::before {
+    content: "✖ Choose a Price";
+    color: lightcoral;
+}
+
+form#edit-ticket-form input[type=number]:invalid + span::before {
+    content: "✖ Choose a Price";
+    color: lightcoral;
+}
+
+form#new-ticket-sale-form select#attendee:invalid + span::before {
+    content: "✖ Select an Attendee";
+    color: lightcoral;
+}
+
+form#edit-ticket-sale-form select#attendee:invalid + span::before {
+    content: "✖ Select an Attendee";
+    color: lightcoral;
+}
+
+form#new-ticket-sale-form select#ticket:invalid + span::before {
+    content: "✖ Select a Ticket";
+    color: lightcoral;
+}
+
+form#edit-ticket-sale-form select#ticket:invalid + span::before {
+    content: "✖ Select a Ticket";
+    color: lightcoral;
+}
+
+form#new-ticket-sale-form select#discount:invalid + span::before {
+    content: "✖ Select a Discount";
+    color: lightcoral;
+}
+
+form#edit-ticket-sale-form select#discount:invalid + span::before {
+    content: "✖ Select a Discount";
+    color: lightcoral;
+}
+
+form#new-competitor-registration-form select#competitor:invalid + span::before {
+    content: "✖ Select Competitor";
+    color: lightcoral;
+}
+
+form#edit-competitor-registration-form select#competitor:invalid + span::before {
+    content: "✖ Select Competitor";
+    color: lightcoral;
+}
+
+form#new-competitor-registration-form select#team:invalid + span::before {
+    content: "✖ Select Team";
+    color: lightcoral;
+}
+
+form#edit-competitor-registration-form select#team:invalid + span::before {
+    content: "✖ Select Team";
+    color: lightcoral;
+}
+
+form#new-competitor-registration-form select#year:invalid + span::before {
+    content: "✖ Select Year";
+    color: lightcoral;
+}
+
+form#edit-competitor-registration-form select#year:invalid + span::before {
+    content: "✖ Select Year";
+    color: lightcoral;
+}
+
+form#new-dish-form input[type=text]:invalid + span::before {
+    content: "✖ Field Empty";
+    color: lightcoral;
+}
+
+form#edit-dish-form input[type=text]:invalid + span::before {
+    content: "✖ Field Empty";
+    color: lightcoral;
+}
+
+form#new-dish-form textarea:invalid + span::before {
+    content: "✖ Field Empty";
+    color: lightcoral;
+}
+
+form#edit-dish-form textarea:invalid + span::before {
+    content: "✖ Field Empty";
+    color: lightcoral;
+}
+
+form#new-dish-form select#course:invalid + span::before {
+    content: "✖ Select Competitor";
+    color: lightcoral;
+}
+
+form#edit-dish-form select#course:invalid + span::before {
+    content: "✖ Select Competitor";
+    color: lightcoral;
+}
+
+form#new-dish-form select#team:invalid + span::before {
+    content: "✖ Select Team";
+    color: lightcoral;
+}
+
+form#edit-dish-form select#team:invalid + span::before {
+    content: "✖ Select Team";
+    color: lightcoral;
+}
+
+form#new-dish-form select#year:invalid + span::before {
+    content: "✖ Select Year";
+    color: lightcoral;
+}
+
+form#edit-dish-form select#year:invalid + span::before {
+    content: "✖ Select Year";
     color: lightcoral;
 }
 

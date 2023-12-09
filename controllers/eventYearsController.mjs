@@ -96,6 +96,7 @@ export const getOneEventYear = async(req, res) => {
     try {
         //Run query to select event year with the given id
         let results = await eventYearsModel.getEventYearById(req.query.id);
+        console.log(results[0]);
         res.status(200).json(results[0])
     } catch(err) {
         // Send error status and message

@@ -37,31 +37,44 @@
         </div>
     </div>
 
-    <div class="main-content">
+    <div class="form-container">
     <h3>Add Ticket:</h3>
     <form id="new-ticket-form">
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price" min="0" step="0.01" placeholder="0.00" required><br><br>
+        <input type="number" id="price" name="price" min="0" step="0.01" placeholder="Price" pattern="*" required><span></span><br>
 
 
         <!-- Prepopulated with valid ticket types to reduce errors -->
-        <label for="ticket-type">Ticket Type:</label>
-        <select id="ticket-type" name="ticket-type">
+        <select id="ticket-type" name="ticket-type" required>
+            <!-- Taken from https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
+            <option value="" disabled selected hidden>Ticket Type</option>
             {{#each ticketType}}
             <option value="{{this.ID}}">{{this.Ticket}}</option>
             {{/each}}
-        </select><br><br>
+        </select><span></span><br>
 
         <!-- Prepopulated with valid years to reduce errors -->
-        <label for="year">Year:</label>
-        <select id="year" name="year">
+        <select id="year" name="year" required>
+            <!-- Taken from https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
+            <option value="" disabled selected hidden>Year</option>
             {{#each eventYear}}
             <option value="{{this.ID}}">{{this.Year}}</option>
             {{/each}}
-        </select><br><br>
+        </select><span></span><br>
 
         <button type="submit">Add Ticket</button>
     </form>
+    </div>
+
+    <!-- Adapted from https://www.youtube.com/watch?v=AF6vGYIyV8M -->
+    <div class="popup" id="success-popup">
+        <h3 id="success-header">Success ✓</h3>
+        <p>Ticket successfully added!</p>
+        <button type="button" id="success-button">OK</button>
+    </div>
+    <div class="popup" id="failure-popup">
+        <h3 id="failure-header">Failure ✖</h3>
+        <p id="error-msg"></p>
+        <button type="button" id="failure-button">OK</button>
     </div>
 </body>
 </html>

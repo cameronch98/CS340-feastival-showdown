@@ -44,21 +44,22 @@
         <table id="ticket-table">
             <thead>
                 <tr>
-                    <th><a href="/tickets/new-ticket" class="floating-button">New</a></th>
                     <th>Ticket</th>
                     <th>Price</th>
                     <th>Year</th>
-                    <th></th>
+                    <th class="center-cell"><a href="/tickets/new-ticket" class="floating-button"><span class="material-symbols-outlined">add</span></a></th>
                 </tr>
             </thead>
             <tbody>
                 {{#each ticket}}
                 <tr>
-                    <td><a onclick="editTicket({{this.ID}})" href="/tickets/edit-ticket?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Ticket}}</td>
                     <td>{{this.Price}}</td>
                     <td>{{this.Year}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Ticket}}', {{this.ID}}, '/tickets/delete-ticket/fetch')"  >Delete</button></td>
+                    <td class="center-cell">
+                        <a onclick="editTicket({{this.ID}})" href="/tickets/edit-ticket?id={{this.ID}}"><span class="material-symbols-outlined">edit</span></a>
+                        <a onclick="confirmAndDelete('{{this.Ticket}}', {{this.ID}}, '/tickets/delete-ticket/fetch')"><span class="material-symbols-outlined">delete</span></a>
+                    </td>
                 </tr>
                 {{/each}}
             </tbody>

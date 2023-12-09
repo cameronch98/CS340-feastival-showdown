@@ -42,25 +42,28 @@
         <table class="dishes-table">
             <thead>
                 <tr>
-                    <th><a href="/dishes/new-dish" class="floating-button">New</a></th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Course</th>
                     <th>Team</th>
                     <th>Year</th>
-                    <th></th>
+                    <th class="center-cell"><a href="/dishes/new-dish" class="floating-button"><span class="material-symbols-outlined">add</span></a></th>
                 </tr>
             </thead>
             <tbody>
                 {{#each dish}}
                 <tr>
-                    <td><a onclick="editDish({{this.ID}})" href="/dishes/edit-dish?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Name}}</td>
                     <td>{{this.Description}}</td>
                     <td>{{this.Course}}</td>
                     <td>{{this.Team}}</td>
                     <td>{{this.Year}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Name}}', {{this.ID}}, '/dishes/delete-dish/fetch')" >Delete</button></td>
+                    <td class="center-cell">
+                        <span>
+                            <a onclick="editDish({{this.ID}})" href="/dishes/edit-dish?id={{this.ID}}"><span class="material-symbols-outlined">edit</span></a>
+                            <a onclick="confirmAndDelete('{{this.Name}}', {{this.ID}}, '/dishes/delete-dish/fetch')" ><span class="material-symbols-outlined">delete</span></button>
+                        </span>
+                    </td>
                 </tr>
                 {{/each}}
             </tbody>

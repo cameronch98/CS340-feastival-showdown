@@ -11,69 +11,52 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
 
         // Get data from form fields
-        const data = getFormFields()
-        
-        // Fetch response from post request
-        const response = await fetch('/ratings/new-rating/fetch', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
-        });
+        const data = getFormFields();
 
-        // Handle fetch response
-        handleResponse(response, data);
+        try {
+            // Fetch response from post request
+            const response = await fetch('/ratings/new-rating/fetch', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            });
+
+            // Check for http/sql errors
+            if (!response.ok) {
+                // Handle errors
+                const error = await response.json();
+
+                // Fetch attendee and dish
+                const attendeeResponse = await fetch(`/attendees/get-attendee?id=${data.attendeeId}`);
+                const dishResponse = await fetch(`/dishes/get-dish?id=${data.dishId}`);
+
+                // Get JSON from response
+                const attendee = await attendeeResponse.json();
+                const dish = await dishResponse.json();
+
+                // Handle specific errors
+                let errorMsg = document.getElementById("error-msg");
+                if (error.sqlError == 1062) {
+                    errorMsg.textContent = `${attendee.attendee_name} has already rated ${dish.dish_name.toLowerCase()}!`;
+                };
+
+                // Notify user of error with failure popup
+                failurePopup();
+            } else {
+                // Notify user of success with success popup
+                successPopup();
+            }
+        } catch(error) {
+            // Append fetch network error to DOM tree
+            let errorMsg = document.getElementById("error-msg");
+            errorMsg.textContent = error;
+            console.log(error);
+
+            // Notify user of error with failure popup
+            failurePopup();
+        }
     })
 });
-
-/**
- * Handles response with appropriate success/error notifications
- * @param {Promise} response response from insertion fetch
- * @param {Object} data data from form fields for use in error handling
- */
-async function handleResponse(response, data) {
-    if (response.ok) {
-        // Handle successful insertion with success popup
-        let popup = document.getElementById("success-popup");
-        openPopup(popup);
-
-        // Trigger modal close and redirect on OK click
-        let button = document.getElementById("success-button");
-        button.addEventListener('click', () => {
-            closePopup(popup);
-            window.location.href = '/ratings';
-        });
-    } else {
-        // Handle errors
-        const error = await response.json();
-
-        // Fetch attendee and dish
-        const attendeeResponse = await fetch(`/attendees/get-attendee?id=${data.attendeeId}`);
-        const dishResponse = await fetch(`/dishes/get-dish?id=${data.dishId}`);
-
-        // Get JSON from response
-        const attendee = await attendeeResponse.json();
-        const dish = await dishResponse.json();
-
-        // Handle specific errors
-        let errorMsg = document.getElementById("error-msg");
-        if (error.sqlError == 1062) {
-            errorMsg.textContent = `${attendee.attendee_name} has already rated ${dish.dish_name.toLowerCase()}!`;
-        };
-
-        // Open failure popup with correct error message
-        let popup = document.getElementById("failure-popup");
-        openPopup(popup);
-
-        // Trigger modal close on OK click
-        let button = document.getElementById("failure-button");
-        button.addEventListener('click', () => {
-            closePopup(popup);
-        });
-
-        // Send generic error message
-        console.error("Error adding rating");
-    }
-};
 
 /**
  * Gets html form fields and returns object containing all information
@@ -106,10 +89,27 @@ function getFormFields() {
     return data
 };
 
-function openPopup(popup) {
+function successPopup() {
+    // Get correct popup and open it
+    let popup = document.getElementById("success-popup");
     popup.classList.add("open-popup");
+
+    // Add event listener to OK button to close and redirect on click
+    let button = document.getElementById("success-button");
+    button.addEventListener('click', () => {
+        popup.classList.remove("open-popup");
+        window.location.href = '/ratings';
+    });
 };
 
-function closePopup(popup) {
-    popup.classList.remove("open-popup");
+function failurePopup() {
+    // Get correct popup and open it
+    let popup = document.getElementById("failure-popup");
+    popup.classList.add("open-popup");
+
+    // Add event listener to OK button to close on click
+    let button = document.getElementById("failure-button");
+    button.addEventListener('click', () => {
+        popup.classList.remove("open-popup");
+    });
 };

@@ -10,68 +10,92 @@ document.addEventListener("DOMContentLoaded", () => {
         // Prevent the form from submitting
         e.preventDefault();
 
-        // Get form fields we need to get data from
-        let teamId = document.getElementById('id')
-        let newName = document.getElementById('name');
+        // Get data from form fields
+        const data = getFormFields();
 
-        // Get the values from the form fields
-        let updatedId = teamId.value
-        let nameValue = newName.value;
-
-        // Put our data we want to send in a javascript object
-        let data = {
-            id: updatedId,
-            name: nameValue,
-        }
-        console.log("this is data:", data)
-        
-        // Fetch response from put request
-        const response = await fetch('/teams/edit-team/fetch', {
-            method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
-        });
-        if (response.ok) {
-            // Handle successful edit with success popup
-            let popup = document.getElementById("success-popup");
-            openPopup(popup);
-
-            // Trigger modal close and redirect on OK click
-            let button = document.getElementById("success-button");
-            button.addEventListener('click', () => {
-                closePopup(popup);
-                window.location.href = '/teams';
+        try {
+            // Fetch response from put request
+            const response = await fetch('/teams/edit-team/fetch', {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
             });
-        } else {
-            // Handle errors
-            const error = await response.json();
 
-            // Handle specific errors
+            // Check for http/sql errors
+            if (!response.ok) {
+                // Handle errors
+                const error = await response.json();
+
+                // Handle specific errors
+                let errorMsg = document.getElementById("error-msg");
+                if (error.sqlError == 1062) {
+                    errorMsg.textContent = `${data.name} is already registered as a team!`
+                };
+
+                // Notify user of error with failure popup
+                failurePopup();
+            } else {
+                // Notify user of success with success popup
+                successPopup();
+            }
+        } catch(error) {
+            // Append fetch network error to DOM tree
             let errorMsg = document.getElementById("error-msg");
-            if (error.sqlError == 1062) {
-                errorMsg.textContent = `${data.name} is already registered as a team!`
-            };
+            errorMsg.textContent = error;
+            console.log(error);
 
-            // Open failure popup with correct error message
-            let popup = document.getElementById("failure-popup");
-            openPopup(popup);
-
-            // Trigger modal close on OK click
-            let button = document.getElementById("failure-button");
-            button.addEventListener('click', () => {
-                closePopup(popup);
-            });
-
-            // Send generic error message
-            console.error("Error editing team");
+            // Notify user of error with failure popup
+            failurePopup();
         }
     })
 });
 
-function openPopup(popup) {
-    popup.classList.add("open-popup");
+/**
+ * Gets html form fields and returns object containing all information
+ * @returns JSON object with form fields
+ */
+function getFormFields() {
+
+    // Get form fields we need to get data from
+    let teamId = document.getElementById('id')
+    let newName = document.getElementById('name');
+
+    // Get the values from the form fields
+    let updatedId = teamId.value
+    let nameValue = newName.value;
+
+    // Put our data we want to send in a javascript object
+    let data = {
+        id: updatedId,
+        name: nameValue,
+    }
+
+    // Log and return data
+    console.log("this is data:", data)
+    return data
 };
 
-function closePopup(popup) {
-    popup.classList.remove("open-popup");
+function successPopup() {
+    // Get correct popup and open it
+    let popup = document.getElementById("success-popup");
+    popup.classList.add("open-popup");
+
+    // Add event listener to OK button to close and redirect on click
+    let button = document.getElementById("success-button");
+    button.addEventListener('click', () => {
+        popup.classList.remove("open-popup");
+        window.location.href = '/teams';
+    });
+};
+
+function failurePopup() {
+    // Get correct popup and open it
+    let popup = document.getElementById("failure-popup");
+    popup.classList.add("open-popup");
+
+    // Add event listener to OK button to close on click
+    let button = document.getElementById("failure-button");
+    button.addEventListener('click', () => {
+        popup.classList.remove("open-popup");
+    });
 };

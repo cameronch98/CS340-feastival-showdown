@@ -35,45 +35,51 @@
         </div>
     </div>
 
-    <div class="main-content">
+    <div class="form-container">
     <h3>Add Ticket Sale:</h3>
     <form id="new-ticket-sale-form">
         <!-- Prepopulated with valid attendees to reduce errors -->
-        <label for="attendee">Attendee:</label>
-        <select id="attendee" name="attendee">
+        <select id="attendee" name="attendee" required>
+            <!-- Taken from https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
+            <option value="" disabled selected hidden>Attendee</option>
             {{#each attendee}}
             <option value="{{this.ID}}">{{this.Name}}</option>
             {{/each}}
-        </select><br><br>
+        </select><span></span><br>
 
         <!-- Prepopulated with tickets -->
-        <label for="ticket">Ticket:</label>
-        <select id="ticket" name="ticket">
+        <select id="ticket" name="ticket" required>
+            <!-- Taken from https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
+            <option value="" disabled selected hidden>Ticket</option>
             {{#each ticket}}
             <option value="{{this.ID}}">{{this.Ticket}} {{this.Year}}</option>
             {{/each}}
-        </select><br><br>
+        </select><span></span><br>
 
         <!-- Prepopulated with discounts -->
-        <label for="discount">Discount:</label>
-        <select id="discount" name="discount">
-            <option value="" selected>None</option>
+        <select id="discount" name="discount" required>
+            <!-- Taken from https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
+            <option value="" disabled selected hidden>Discount</option>
+            <option value="">None</option>
             {{#each discount}}
             <option value="{{this.ID}}">{{this.Discount}}</option>
             {{/each}}
-        </select><br><br>
-
-        {{!-- <!-- Prepopulated with event years -->
-        <label for="year">Year:</label>
-        <select id="year" name="year">
-            <option value="" selected>None</option>
-            {{#each year}}
-            <option value="{{this.ID}}">{{this.Year}}</option>
-            {{/each}}
-        </select><br><br> --}}
+        </select><span></span><br>
 
         <button type="submit">Add Ticket Sale</button>
     </form>
+    </div>
+
+    <!-- Adapted from https://www.youtube.com/watch?v=AF6vGYIyV8M -->
+    <div class="popup" id="success-popup">
+        <h3 id="success-header">Success ✓</h3>
+        <p>Ticket sale successfully added!</p>
+        <button type="button" id="success-button">OK</button>
+    </div>
+    <div class="popup" id="failure-popup">
+        <h3 id="failure-header">Failure ✖</h3>
+        <p id="error-msg"></p>
+        <button type="button" id="failure-button">OK</button>
     </div>
 </body>
 </html>

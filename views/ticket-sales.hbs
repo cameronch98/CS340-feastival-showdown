@@ -42,25 +42,28 @@
         <table>
             <thead>
                 <tr>
-                    <th><a href="/ticket-sales/new-ticket-sale" class="floating-button">New</a></th>
                     <th>Attendee</th>
                     <th>Ticket</th>
                     <th>Discount</th>
                     <th>Total</th>
                     <th>Year</th>
-                    <th></th>
+                    <th class="center-cell"><a href="/ticket-sales/new-ticket-sale" class="floating-button"><span class="material-symbols-outlined">add</span></a></th>
                 </tr>
             </thead>
             <tbody>
                 {{#each ticketSale}}
                 <tr>
-                    <td><a onclick="editTicketSale({{this.ID}})" href="/ticket-sales/edit-ticket-sale?id={{this.ID}}">Edit</a></td>
                     <td>{{this.Attendee}}</td>
                     <td>{{this.Ticket}}</td>
                     <td>{{this.Discount}}</td>
                     <td>{{this.Total}}</td>
                     <td>{{this.Year}}</td>
-                    <td><button onclick="confirmAndDelete('{{this.Attendee}}', {{this.ID}}, '/ticket-sales/delete-ticket-sale/fetch')"  >Delete</button></td>
+                    <td class="center-cell">
+                        <span>
+                            <a onclick="editTicketSale({{this.ID}})" href="/ticket-sales/edit-ticket-sale?id={{this.ID}}"><span class="material-symbols-outlined">edit</span></a>
+                            <a onclick="confirmAndDelete('{{this.Attendee}}', {{this.ID}}, '/ticket-sales/delete-ticket-sale/fetch')"><span class="material-symbols-outlined">delete</span></a>
+                        </span>
+                    </td>
                 </tr>
                 {{/each}}
             </tbody>
