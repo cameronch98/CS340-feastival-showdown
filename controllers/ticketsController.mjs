@@ -8,6 +8,16 @@ export const getTicketsTable = async(req, res) => {
     try {
         // Run query to get all tickets and populate table
         let results = await ticketsModel.getAllTickets();
+
+        // Convert list prices to currency figures
+        results.forEach(ticket => {
+            ticket.Price = ticket.Price.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            })
+        });
+
+        // Render table/page with entries properly formatted
         res.status(200).render('tickets', {ticket: results});
     } catch(err) {
         // Send error status and message

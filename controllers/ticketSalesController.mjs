@@ -9,6 +9,16 @@ export const getTicketSalesTable = async(req, res) => {
     try {
         // Run query to get all ticket sales and populate table
         let results = await ticketSalesModel.getAllTicketSales();
+
+        // Convert totals to currency figures
+        results.forEach(ticketSale => {
+            ticketSale.Total = ticketSale.Total.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            })
+        });
+
+        // Render page with ticket sales properly formatted
         res.status(200).render('ticket-sales', {ticketSale: results});
     } catch(err) {
         // Send error status and message

@@ -207,7 +207,7 @@ VALUES
 (
     30,
     (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Three-Day'),
-    (SELECT event_year_id FROM Event_Years WHERE year = 2022)
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023)
 );
 
 INSERT INTO Discounts (
@@ -323,7 +323,7 @@ VALUES
     (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
     (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Three-Day') AND event_year_id = 
     (SELECT event_year_id FROM Event_Years WHERE year = 2022)),
-    (SELECT discount_id FROM Discounts WHERE discount = "Flash Sale")
+    (SELECT discount_id FROM Discounts WHERE discount_name = "Flash Sale")
 ),
 (
     (SELECT attendee_id FROM Attendees WHERE attendee_email = "JohnKShugart@outlook.com"),
@@ -337,7 +337,7 @@ VALUES
     (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
     (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Three-Day') AND event_year_id = 
     (SELECT event_year_id FROM Event_Years WHERE year = 2022)),
-    (SELECT discount_id FROM Discounts WHERE discount = "Student")
+    (SELECT discount_id FROM Discounts WHERE discount_name = "Student")
 ),
 (
     (SELECT attendee_id FROM Attendees WHERE attendee_email = "MatthewNWalters@gmail.com"),
@@ -351,7 +351,7 @@ VALUES
     (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
     (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Two-Day') AND event_year_id = 
     (SELECT event_year_id FROM Event_Years WHERE year = 2022)),
-    (SELECT discount_id FROM Discounts WHERE discount = "Early Bird")
+    (SELECT discount_id FROM Discounts WHERE discount_name = "Early Bird")
 ),
 (
     (SELECT attendee_id FROM Attendees WHERE attendee_email = "JohnGGreen@gmail.com"),
@@ -372,7 +372,7 @@ VALUES
     (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
     (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Two-Day') AND event_year_id = 
     (SELECT event_year_id FROM Event_Years WHERE year = 2023)),
-    (SELECT discount_id FROM Discounts WHERE discount = "Flash Sale")
+    (SELECT discount_id FROM Discounts WHERE discount_name = "Flash Sale")
 ),
 (
     (SELECT attendee_id FROM Attendees WHERE attendee_email = "immanuel.rober@yahoo.com"),
@@ -386,21 +386,21 @@ VALUES
     (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
     (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Three-Day') AND event_year_id = 
     (SELECT event_year_id FROM Event_Years WHERE year = 2023)),
-    (SELECT discount_id FROM Discounts WHERE discount = "Early Bird")
+    (SELECT discount_id FROM Discounts WHERE discount_name = "Early Bird")
 ),
 (
     (SELECT attendee_id FROM Attendees WHERE attendee_email = "erna_stanto6@yahoo.com"),
     (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
     (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='One-Day') AND event_year_id = 
     (SELECT event_year_id FROM Event_Years WHERE year = 2023)),
-    (SELECT discount_id FROM Discounts WHERE discount = "Early Bird")
+    (SELECT discount_id FROM Discounts WHERE discount_name = "Early Bird")
 ),
 (
     (SELECT attendee_id FROM Attendees WHERE attendee_email = "MatthewNWalters@gmail.com"),
     (SELECT ticket_id FROM Tickets WHERE ticket_type_id = 
     (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='One-Day') AND event_year_id = 
     (SELECT event_year_id FROM Event_Years WHERE year = 2023)),
-    (SELECT discount_id FROM Discounts WHERE discount = "Early Bird")
+    (SELECT discount_id FROM Discounts WHERE discount_name = "Early Bird")
 );
 
 -- Insert sample data into Competitors
