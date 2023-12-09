@@ -1,3 +1,11 @@
+----------------------------------------------------------------------
+-- DDL to define tables in database, and insert sample data into them
+-- using subqueries where foreign keys are inserted. The database
+-- consists of the following entities: Event_Years, Courses, Ticket-
+-- Types, Tickets, Discounts, Teams, Attendees, Competitors, Ticket-
+-- Sales, Competitor_Registrations, Dishes, and Ratings.
+----------------------------------------------------------------------
+
 -- Update config
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
@@ -173,33 +181,33 @@ INSERT INTO Tickets (
 VALUES
 (
     8,
-    1,
-    1
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='One-Day'),
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022)
 ),
 (
     16,
-    2,
-    1
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Two-Day'),
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022)
 ),
 (
     24,
-    3,
-    1
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Three-Day'),
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022)
 ),
 (
     10,
-    1,
-    2
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='One-Day'),
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023)
 ),
 (
     20,
-    2,
-    2
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Two-Day'),
+    (SELECT event_year_id FROM Event_Years WHERE year = 2023)
 ),
 (
     30,
-    3,
-    2
+    (SELECT ticket_type_id FROM Ticket_Types WHERE ticket_type='Three-Day'),
+    (SELECT event_year_id FROM Event_Years WHERE year = 2022)
 );
 
 INSERT INTO Discounts (
@@ -311,7 +319,7 @@ VALUES
 (
     3,
     3,
-    2
+    (SELECT discount_id FROM Discounts WHERE discount = "Flash Sale")
 ),
 (
     6,
@@ -319,9 +327,9 @@ VALUES
     NULL
 ),
 (
-    1,
+    (SELECT attendee_id FROM Attendees WHERE attendee_email = "CarlaHDowney@gmail.com"),
     3,
-    3
+    (SELECT discount_id FROM Discounts WHERE discount = "Student")
 ),
 (
     2,
@@ -331,7 +339,7 @@ VALUES
 (
     5,
     2,
-    1
+    (SELECT discount_id FROM Discounts WHERE discount = "Early Bird")
 ),
 (
     4,
@@ -346,7 +354,7 @@ VALUES
 (
     7,
     5,
-    2
+    (SELECT discount_id FROM Discounts WHERE discount = "Flash Sale")
 ),
 (
     8,
@@ -356,17 +364,17 @@ VALUES
 (
     5,
     6,
-    1
+    (SELECT discount_id FROM Discounts WHERE discount = "Early Bird")
 ),
 (
     9,
     4,
-    1
+    (SELECT discount_id FROM Discounts WHERE discount = "Early Bird")
 ),
 (
     2,
     4,
-    1
+    (SELECT discount_id FROM Discounts WHERE discount = "Early Bird")
 );
 
 -- Insert sample data into Competitors
