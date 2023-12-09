@@ -102,7 +102,7 @@ h4 {
     font-size: 30px;
     color: white;
 }
-.navbar:hover .inner-logo {
+.navbar-container:hover .inner-logo {
     color: #003142;
 }
 
@@ -163,7 +163,7 @@ div.navbar {
     overflow: hidden;
 }
 
-div.navbar:hover {
+div.navbar-container:hover .navbar {
     width: 350px; 
 }
 
@@ -372,7 +372,7 @@ tbody a {
 
 .floating-button {
     display: inline-block;
-    width: 80%;
+    width: 100px;
     text-decoration: none;
     background-color: #437C90; 
     color: white;
@@ -381,6 +381,11 @@ tbody a {
     border-radius: 5px;
     box-shadow: 0px 8px 15px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
+}
+
+.floating-button .material-symbols-outlined {
+    vertical-align: middle;
+    margin: auto;
 }
 
 .floating-button:hover {
