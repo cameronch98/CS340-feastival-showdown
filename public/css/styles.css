@@ -107,25 +107,22 @@ h4 {
 }
 
 .main-content {
-    padding: 10px 20px;
+    padding-bottom: 50px;
     line-height: 50px;
     height: 100%;
     display: flex;
     flex-direction:column;
     align-items: center;
+    justify-items: center;
     box-sizing: border-box;
     width: 100%;
-    
+    background-color: red;
 }
 
 .home-page {
     padding-left: 200px;
 }
 
-.dishes {
-    padding-left: 200px;
-    width: 1700px;
-}
 
 .ratings {
     width: 1500px;
@@ -261,25 +258,24 @@ div.navbar li:has(+ li + li:hover) {
 .navbar:hover li.active {
     width: 400px;
    
-
 }
 
 table {
+    padding-top: 20px;
     border-collapse: collapse;
-    margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    width: 1000px;
     box-shadow: 0 0 10px #333333;
 }
 
 .dishes-table {
-    width: 1200px;
+    width: 1000px;
 }
 
 input, select {
     border-radius: 4px;
 }
+
 
 .form-container {
     left      : 50%;
@@ -345,7 +341,7 @@ tbody tr:nth-of-type(even) {
 }
 
 tbody tr:last-of-type {
-    border-bottom: 2px solid #437C90;
+    border-bottom: 0px solid;
 }
 
 tbody tr:hover, tbody tr:hover a {
@@ -853,6 +849,8 @@ textarea:valid + span::before {
     border-radius: 4px;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
+
+
 
 
 
