@@ -1,6 +1,18 @@
+// Citation for model query promise logic
+// Date: 12/01/2023
+// Adapted from Darif Nemma on Medium
+// Learned how to use SQL queries with async await logic from this 
+// post and used that to clean up the code from having a lot of 
+// callback nesting. The main logic of returning a new promise from 
+// the results of the SQL query was the extent of what was utilized 
+// from this source.
+// Source URL: https://darifnemma.medium.com/how-to-interact-with-mysql-database-using-async-await-promises-in-node-js-9e6c81b683da
+
+// Import db and queries
 import { pool } from '../database/db-connector.mjs';
 import * as queries from '../queries.mjs';
 
+// Calls a truncation on every table
 export const emptyDB = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.emptyDB, (error, rows) => {
@@ -14,6 +26,7 @@ export const emptyDB = () => {
     })
 };
 
+// Executes DDL insert for attendees
 export const reloadAttendees = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.reloadAttendees, (error, rows) => {
@@ -27,6 +40,7 @@ export const reloadAttendees = () => {
     })
 };
 
+// Executes DDL insert for competitors
 export const reloadCompetitors = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.reloadCompetitors, (error, rows) => {
@@ -40,6 +54,7 @@ export const reloadCompetitors = () => {
     })
 };
 
+// Executes DDL insert for event years
 export const reloadEventYears = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.reloadEventYears, (error, rows) => {
@@ -53,6 +68,7 @@ export const reloadEventYears = () => {
     })
 };
 
+// Executes DDL insert for courses
 export const reloadCourses = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.reloadCourses, (error, rows) => {
@@ -66,6 +82,7 @@ export const reloadCourses = () => {
     })
 };
 
+// Executes DDL insert for ticket types
 export const reloadTicketTypes = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.reloadTicketTypes, (error, rows) => {
@@ -79,6 +96,7 @@ export const reloadTicketTypes = () => {
     })
 };
 
+// Executes DDL insert for tickets
 export const reloadTickets = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.reloadTickets, (error, rows) => {
@@ -92,6 +110,7 @@ export const reloadTickets = () => {
     })
 };
 
+// Executes DDL insert for discounts
 export const reloadDiscounts = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.reloadDiscounts, (error, rows) => {
@@ -105,6 +124,7 @@ export const reloadDiscounts = () => {
     })
 };
 
+// Executes DDL insert for teams
 export const reloadTeams = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.reloadTeams, (error, rows) => {
@@ -118,6 +138,7 @@ export const reloadTeams = () => {
     })
 };
 
+// Executes DDL insert for ticket sales
 export const reloadTicketSales = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.reloadTicketSales, (error, rows) => {
@@ -131,6 +152,7 @@ export const reloadTicketSales = () => {
     })
 };
 
+// Executes DDL insert for competitor regs
 export const reloadCompetitorRegs = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.reloadCompetitorRegs, (error, rows) => {
@@ -144,6 +166,7 @@ export const reloadCompetitorRegs = () => {
     })
 };
 
+// Executes DDL insert for dishes
 export const reloadDishes = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.reloadDishes, (error, rows) => {
@@ -157,6 +180,7 @@ export const reloadDishes = () => {
     })
 };
 
+// Executes DDL insert for ratings
 export const reloadRatings = () => {
     return new Promise((resolve, reject) => {
         pool.query(queries.reloadRatings, (error, rows) => {

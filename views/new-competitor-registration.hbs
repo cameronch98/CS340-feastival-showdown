@@ -1,3 +1,26 @@
+<!--
+    Citation for elements of the following class: 'popup'
+    Date: 12/08/2023
+    Adapted from youtube video
+    Main div logic from video incorporated. Div duplicated
+    to consider failure and success. Messages are custom and
+    specificity with ids and classes is modified to my own
+    liking for styling purposes. The dom tree is modified
+    to provide the message for the failure one, which is
+    unique to our project. Works alongside successPopup and
+    failurePopup functions in public js. Styling cited in 
+    style sheet.
+    Source URL: https://www.youtube.com/watch?v=AF6vGYIyV8M
+-->
+<!--
+    Citation for disabled selected hidden option elements:
+    Date: 12/08/2023
+    Copied from stackoverflow
+    One liner copied to allow me to have placeholder name for
+    select elements without being able to submit them.
+    Source URL: https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box
+--> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,13 +57,11 @@
         </ul>
         </div>
     </div>
-
     <div class="form-container">
     <h4>Add Competitor Registration:</h4>
     <form id="new-competitor-registration-form">
         <!-- Prepopulated with valid competitors to reduce errors -->
         <select id="competitor" name="competitor" required>
-            <!-- Taken from https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
             <option value="" disabled selected hidden>Competitor</option>
             {{#each competitor}}
             <option value="{{this.ID}}">{{this.Name}}</option>
@@ -49,7 +70,6 @@
 
         <!-- Prepopulated with valid teams to reduce errors -->
         <select id="team" name="team" required>
-            <!-- Taken from https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
             <option value="" disabled selected hidden>Team</option>
             {{#each team}}
             <option value="{{this.ID}}">{{this.Team}}</option>
@@ -58,7 +78,6 @@
 
         <!-- Prepopulated with valid years to reduce errors -->
         <select id="year" name="year" required>
-            <!-- Taken from https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
             <option value="" disabled selected hidden>Year</option>
             {{#each eventYear}}
             <option value="{{this.ID}}">{{this.Year}}</option>
@@ -68,8 +87,6 @@
         <button type="submit">Add Competitor Registration</button>
     </form>
     </div>
-
-    <!-- Adapted from https://www.youtube.com/watch?v=AF6vGYIyV8M -->
     <div class="popup" id="success-popup">
         <h3 id="success-header">Success ✓</h3>
         <p>Competitor registration successfully added!</p>

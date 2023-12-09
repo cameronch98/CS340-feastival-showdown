@@ -1,5 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+/*
+    Citation for elements of the following class: 'popup'
+    Date: 12/08/2023
+    Adapted from youtube video
+    A lot of the CSS from the video used and adapted to our
+    particular use case including colors, some changes to shape,
+    size and positioning, changes to the transformations.
+    Image not used, instead custom headers for success or failure
+    implemented. These are inspired by the next source.
+    Source URL: https://www.youtube.com/watch?v=AF6vGYIyV8M
+*/
+/*
+    Citation for elements following similar specificity declarations to
+    those in the website: (towards end of CSS)
+    Date: 12/08/2023
+    Adapted from MDN
+    The basis of the input validation CSS pseudoclasses was learned here
+    and the basic example utilizing the checks and x's was used and built
+    upon. There are many more specific declarations with custom strings
+    built for the forms in our project.
+    Source URL: https://developer.mozilla.org/en-US/docs/Web/CSS/:valid
+*/
+/*
+    Citation for table CSS
+    Date: 12/01/2023
+    Adapted from Dom(dcode) on dev.to
+    Utilized general table structure and bottom border. Header has been modified.
+    Hovers are implemented instead of 'active' rows, button has been implemented
+    for adding new entries. Delete/edit buttons were implemented in table rows. Color
+    scheme is different. Several properties like size and shadow modified to liking.
+    Padding and such has been modified at this point.
+    Source URL: https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l
+*/
 
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 
 * {
@@ -214,9 +247,6 @@ div.navbar li:has(+ li + li:hover) {
     box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.1), /* Inner shadow */
                0 5px 10px rgba(0, 0, 0, 0.2); /* Outer shadow */
 }
-
-
-
 
 .active {
 
@@ -483,7 +513,8 @@ select {
 textarea {
     vertical-align: bottom;
 }
-/* From mozilla web decs */
+
+/* From MDN https://developer.mozilla.org/en-US/docs/Web/CSS/:valid */
 input + span, select + span, textarea + span{
     position: relative;
 }

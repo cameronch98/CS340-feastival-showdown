@@ -26,25 +26,50 @@ Source URL: https://www.w3schools.com/howto/howto_js_topnav.asp
 Citation for table CSS
 Date: 12/01/2023
 Adapted from Dom(dcode) on dev.to
-Utilized general table structure and bottom border. Header has been modified.
-Hovers are implemented instead of 'active' rows, button has been implemented
-for adding new entries. Delete buttons were implemented in table rows. Color
-scheme is different. Several properties like size and shadow modified to liking.
+Utilized general table structure and bottom border. Header has been modified. Hovers are implemented instead of 'active' rows, button has been implemented for adding new entries. Delete/edit buttons were implemented in table rows. Color scheme is different. Several properties like size and shadow modified to liking. Padding and such has been modified at this point.
 Source URL: https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l
 
-Citation for all public AJAX JS (besides confirm delete)
+Citation for starter app code
 Date: 12/01/2023
 Adapted from the CS340 starter app tutorials
-This code has been slightly modified to include event handlers for
-DOMContentLoaded and has obviously been tweaked to work with our particular
-entities in the database.
+This code has been modified heavily at this point. We are using
+fetches now and lots of additional error handling logic. The main
+similarities are getting the form elements and using an event handler
+for form submission.
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 Citation for model query promise logic
 Date: 12/01/2023
 Adapted from Darif Nemma on Medium
-Learned how to use SQL queries with async await logic from this post and used
-that to clean up the code from having a lot of callback nesting. The main logic 
-of returning a new promise from the results of the SQL query was the extent of
-what was utilized from this source.
+Learned how to use SQL queries with async await logic from this post and used that to clean up the code from having a lot of callback nesting. The main logic of returning a new promise from the results of the SQL query was the extent of what was utilized from this source.
 Source URL: https://darifnemma.medium.com/how-to-interact-with-mysql-database-using-async-await-promises-in-node-js-9e6c81b683da
+
+Citation: successPopup, failurePopup, 'popup' classes in html/css
+Date: 12/08/2023
+Adapted from youtube video
+Learned the main logic of appending the class and removing it
+to apply different styles and make the popup appear/disappear.
+My popups are for success and failure though. Main div logic 
+from video incorporated. Div duplicated to consider failure and
+success. Messages are custom and specificity with ids and classes is modified to my own liking for styling purposes. The dom tree is 
+modified to provide the message for the failure one, which is 
+unique to our project. Works alongside successPopup and failurePopup functions in public js. A lot of the CSS from the video used and adapted to our particular use case including colors, some changes to shape, 
+size and positioning, changes to the transformations. Image not used, instead custom headers for success or failure implemented.
+Source URL: https://www.youtube.com/watch?v=AF6vGYIyV8M
+
+Citation for elements following similar specificity declarations to
+those in the website: (towards end of CSS)
+Date: 12/08/2023
+Adapted from MDN
+The basis of the input validation CSS pseudoclasses was learned here
+and the basic example utilizing the checks and x's was used and built
+upon. There are many more specific declarations with custom strings
+built for the forms in our project.
+Source URL: https://developer.mozilla.org/en-US/docs/Web/CSS/:valid
+
+Citation for disabled selected hidden option elements:
+Date: 12/08/2023
+Copied from stackoverflow
+One liner copied to allow me to have placeholder name for
+select elements without being able to submit them.
+Source URL: https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box

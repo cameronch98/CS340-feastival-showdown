@@ -1,3 +1,18 @@
+<!--
+    Citation for elements of the following class: 'popup'
+    Date: 12/08/2023
+    Adapted from youtube video
+    Main div logic from video incorporated. Div duplicated
+    to consider failure and success. Messages are custom and
+    specificity with ids and classes is modified to my own
+    liking for styling purposes. The dom tree is modified
+    to provide the message for the failure one, which is
+    unique to our project. Works alongside successPopup and
+    failurePopup functions in public js. Styling cited in 
+    style sheet.
+    Source URL: https://www.youtube.com/watch?v=AF6vGYIyV8M
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,8 +57,6 @@
         <button type="submit">Add Team</button>
     </form>
     </div>
-
-    <!-- Adapted from https://www.youtube.com/watch?v=AF6vGYIyV8M -->
     <div class="popup" id="success-popup">
         <h3 id="success-header">Success ✓</h3>
         <p>Team successfully added!</p>

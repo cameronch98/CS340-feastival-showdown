@@ -1,3 +1,21 @@
+// Citation for starter app code
+// Date: 12/01/2023
+// Adapted from the CS340 starter app tutorials
+// This code has been modified heavily at this point. We are using
+// fetches now and lots of additional error handling logic. The main
+// similarities are getting the form elements and using an event handler
+// for form submission.
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+// Citation for the following function: successPopup, failurePopup
+// Date: 12/08/2023
+// Adapted from youtube video
+// Learned the main logic of appending the class and removing it
+// to apply different styles and make the popup appear/disappear.
+// My popups are for success and failure though. More citations
+// and details on the CSS borrowed in the styles sheet and html.
+// Source URL: https://www.youtube.com/watch?v=AF6vGYIyV8M
+
 // Get the objects we need to modify
 document.addEventListener("DOMContentLoaded", () => {
     let editTicketForm = document.getElementById('edit-ticket-form');
