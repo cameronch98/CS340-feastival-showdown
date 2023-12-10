@@ -185,6 +185,7 @@ div.navbar-container {
     left: 0;
     width: 65px;
     height: 100%;    
+    z-index: 1000;
 }
 
 div.navbar {
@@ -205,10 +206,11 @@ div.navbar-container:hover .navbar {
 }
 
 .navbar-container:hover + .main-content,
-.navbar-container:hover + .home-page,  {
+.navbar-container:hover + .home-page, 
+.navbar-container:hover + .form-container,
+.navbar-container:hover + .db-overview  {
     filter: blur(4px);
-    translate: 360px;
-    transition: filter 0.2s ease; /* Smooth transition */
+    transition: filter 0.2s ease; 
 }
 
 
