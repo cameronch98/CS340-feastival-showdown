@@ -110,7 +110,20 @@ function getFormFields() {
     return data
 };
 
+// show and hide overlay for popups
+function showOverlay() {
+    let overlay = document.getElementById("overlay");
+    overlay.style.display = 'block';
+}
+
+function hideOverlay() {
+    let overlay = document.getElementById("overlay");
+    overlay.style.display = 'none';
+}
+
 function successPopup() {
+    //show overlay
+    showOverlay();
     // Get correct popup and open it
     let popup = document.getElementById("success-popup");
     popup.classList.add("open-popup");
@@ -119,6 +132,8 @@ function successPopup() {
     let button = document.getElementById("success-button");
     button.addEventListener('click', () => {
         popup.classList.remove("open-popup");
+            //hide overlay
+            hideOverlay();
         window.location.href = '/attendees';
     });
 };
@@ -132,5 +147,7 @@ function failurePopup() {
     let button = document.getElementById("failure-button");
     button.addEventListener('click', () => {
         popup.classList.remove("open-popup");
+        //hide overlay
+        hideOverlay();
     });
 };

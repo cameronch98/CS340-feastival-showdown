@@ -92,8 +92,19 @@ function getFormFields() {
     console.log("this is data:", data)
     return data
 };
+// show and hide overlay for popups
+function showOverlay() {
+    let overlay = document.getElementById("overlay");
+    overlay.style.display = 'block';
+}
+
+function hideOverlay() {
+    let overlay = document.getElementById("overlay");
+    overlay.style.display = 'none';
+}
 
 function successPopup() {
+    showOverlay();
     // Get correct popup and open it
     let popup = document.getElementById("success-popup");
     popup.classList.add("open-popup");
@@ -102,11 +113,13 @@ function successPopup() {
     let button = document.getElementById("success-button");
     button.addEventListener('click', () => {
         popup.classList.remove("open-popup");
+        hideOverlay();
         window.location.href = '/discounts';
     });
 };
 
 function failurePopup() {
+    showOverlay();
     // Get correct popup and open it
     let popup = document.getElementById("failure-popup");
     popup.classList.add("open-popup");
@@ -115,5 +128,6 @@ function failurePopup() {
     let button = document.getElementById("failure-button");
     button.addEventListener('click', () => {
         popup.classList.remove("open-popup");
+        hideOverlay();
     });
 };
