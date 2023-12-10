@@ -107,6 +107,7 @@ h4 {
 }
 
 .main-content {
+    margin-top: 100px;
     padding-bottom: 50px;
     line-height: 50px;
     height: 80%;
@@ -120,7 +121,9 @@ h4 {
 }
 
 .home-page {
+    padding-top: 50px;
     padding-left: 200px;
+    padding-bottom: 100px;
 }
 
 
@@ -164,9 +167,10 @@ div.navbar-container:hover .navbar {
     width: 350px; 
 }
 
-.navbar-container:hover + .main-content {
+.navbar-container:hover + .main-content,
+.navbar-container:hover + .home-page  {
     filter: blur(4px);
-    translate: 300px;
+    translate: 360px;
     transition: filter 0.2s ease; /* Smooth transition */
 }
 
@@ -261,15 +265,32 @@ div.navbar li:has(+ li + li:hover) {
 }
 
 table {
-    padding-top: 20px;
+    margin-top: 20px;
     border-collapse: collapse;
     font-size: 0.9em;
     font-family: sans-serif;
     box-shadow: 0 0 10px #333333;
+    border-radius: 14px;
+}
+
+table tr:last-child th:last-child {
+    border-top-right-radius: 14px;
+}
+
+table tr:last-child th:first-child {
+    border-top-left-radius: 14px;
+}
+
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 14px;
+}
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 14px;
 }
 
 .dishes-table {
-    width: 1000px;
+    width: 1300px;
+    margin-left: 70px;
 }
 
 input, select {
