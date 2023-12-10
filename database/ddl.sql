@@ -120,7 +120,7 @@ CREATE OR REPLACE TABLE Dishes(
 CREATE OR REPLACE TABLE Ratings (
     rating_id int AUTO_INCREMENT PRIMARY KEY,
     rating int NOT NULL,
-    comments text NOT NULL,
+    comments text,
     attendee_id int,
     dish_id int NOT NULL,
     CONSTRAINT attendee_dish UNIQUE (attendee_id, dish_id),
