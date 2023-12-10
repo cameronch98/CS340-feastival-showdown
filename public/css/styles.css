@@ -532,9 +532,10 @@ div.navbar:hover .nav-text {
 }
 
 .db-overview img {
-    height: 60%;
-    width: 60%;
+    height: 100%;
+    width: 100%;
     object-fit: contain;
+    padding-bottom: 10px;
 }
 
 #logo {
