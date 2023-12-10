@@ -139,6 +139,7 @@ function successPopup() {
 };
 
 function failurePopup() {
+    showOverlay();
     // Get correct popup and open it
     let popup = document.getElementById("failure-popup");
     popup.classList.add("open-popup");

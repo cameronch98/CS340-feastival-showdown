@@ -205,7 +205,7 @@ div.navbar-container:hover .navbar {
 }
 
 .navbar-container:hover + .main-content,
-.navbar-container:hover + .home-page  {
+.navbar-container:hover + .home-page,  {
     filter: blur(4px);
     translate: 360px;
     transition: filter 0.2s ease; /* Smooth transition */
