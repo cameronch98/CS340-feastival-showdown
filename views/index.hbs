@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
-<body>
+<body class="home-page">
     <div class="navbar-container">
         <div class="title-logo">
             <h1>Feastival Showdown DB</h1>
@@ -34,12 +34,11 @@
         </div>
     </div>
 
-    <div class="home-page">
     <div class="db-overview">
         <img src="images/feastival-showdown-db-high-resolution-logo-black-transparent.png">
         <h1>About the Database:</h1>
-        <p>Set against the vibrant backdrop of Gourmetville is a culinary crown jewel – the annual “Feastival Showdown”. This three-day event invites the city’s top home chefs, often accompanied by their families and friends, to create mouth-watering masterpieces. The competition's design is one of unity and collaboration, with teams consisting of 4 or 5 members, be it solo chefs, pairs, trios, or larger groups. The event days correspond to the courses each team will be creating: appetizers light up the first day, entrées take center stage on the second, and desserts sweeten the conclusion on the third. Attendees have the honor of optionally rating each dish on a scale of 1-10, with the aggregate point tally crowning the next Feastival Champion. In an effort to elevate the festival's experience, the organizational team has hired us to design a database capable of allowing it to scale and maintain historical data by tracking its yearly popularity through ticket sales, attendee counts, team makeup and competitors, and food entries. It will currently track 20 eclectic teams, and a combined talent of 80 to 100 chefs, participating to win top prize. The event is expected to draw crowds of 2,000 attendees or more, with our system monitoring ticket sales which will be segmented based on single-day, two-day, and three-day tickets.</p>
-        <p>Maintaining a comprehensive record of each year's events allows organizers to analyze the data to discern trends and patterns. We aim to facilitate several key goals:</p>
+        <p>Set against the vibrant backdrop of Gourmetville is a culinary crown jewel – the annual “Feastival Showdown”. This three-day event invites the city’s top home chefs, often accompanied by their families and friends, to create mouth-watering masterpieces. The competition's design is one of unity and collaboration, with teams consisting of 4 or 5 members, be it solo chefs, pairs, trios, or larger groups. The event days correspond to the courses each team will be creating: appetizers light up the first day, entrées take center stage on the second, and desserts sweeten the conclusion on the third. Attendees have the honor of optionally rating each dish on a scale of 1-10, with the aggregate point tally crowning the next Feastival Champion. In an effort to elevate the festival's experience, the organizational team has hired us to design a database capable of allowing it to scale and maintain historical data by tracking its yearly popularity through ticket sales, attendee counts, team makeup and competitors, and food entries. It will currently track 20 eclectic teams, and a combined talent of 80 to 100 chefs, participating to win top prize. The event is expected to draw crowds of 2,000 attendees or more, with our system monitoring ticket sales which will be segmented based on single-day, two-day, and three-day tickets.</p><br>
+        <p>Maintaining a comprehensive record of each year's events allows organizers to analyze the data to discern trends and patterns. We aim to facilitate several key goals:</p><br>
         <ul>
             <li>Marketing Analysis: Allow marketing teams to access data anytime to analyze trends and set promotional campaigns or establish partnerships with sponsors by showcasing growth.</li>
             <li>Real-time Dashboard: Event organizers will have a real-time dashboard showing ticket sales, attendee registrations and ratings given.</li>
@@ -47,7 +46,7 @@
             <li>Expansion: With an estimated 10% annual growth in attendees and a 5% increase in competing teams over the next five years, the database will be built to efficiently manage and analyze this growth.</li>
             <li>Smart Ticketing: The database will be capable of tracking previous attendees, offering potential early bird discounts or priority entry.</li>
             <li>Personalized Recommendations: Based on past dish ratings, attendees can receive suggestions on which stalls or dishes they might like during the next event.</li>
-        </ul>
+        </ul><br>
         <p>This new database system will revolutionize the Feastival Showdown experience. For the organizers, it offers a consolidated platform to manage teams, track sales, and gather attendee feedback seamlessly. Participants benefit from an organized platform that recognizes their contributions year after year, enhancing their loyalty to the event. Attendees, on the other hand, will enjoy a more streamlined experience, from purchasing tickets to rating dishes. As the event scales, our robust database will ensure that the quality of the experience remains consistently top-notch.</p>
         <h1>Database Outline:</h1>
         <p><b>Attendees:</b> tracks the guests that will be present at the event to taste test the dishes</p>
@@ -215,19 +214,103 @@
         <h1>Schema:</h1>
         <img src="/images/schema.png" alt="Schema for database">
         <h1>Operations</h1>
-        <p><b>Attendees Operations:</b> create, read, update, delete.</p>
-        <p><b>Competitors Operations:</b> create, read, update, delete.</p>
-        <p><b>Teams Operations:</b> create, read, update, delete.</p>
-        <p><b>Competitor Registrations Operations:</b> create, read, update, delete.</p>
-        <p><b>Ratings Operations:</b> create, read, update, delete.</p>
-        <p><b>Ticket Sales Operations:</b> create, read, update, delete.</p>
-        <p><b>Tickets Operations:</b> create, read, update, delete.</p>
-        <p><b>Ticket Types Operations:</b> create, read, update, delete.</p>
-        <p><b>Discounts Operations:</b> create, read, update, delete.</p>
-        <p><b>Dishes Operations:</b> create, read, update, delete.</p>
-        <p><b>Courses Operations:</b> create, read, update, delete.</p>
-        <p><b>Event Years Operations:</b> create, read, update, delete.</p>
-    </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Entity</th>
+                    <th>Create</th>
+                    <th>Read</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Attendees</td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                </tr>
+                <tr>
+                    <td>Tickets</td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                </tr>
+                <tr>
+                    <td>Ticket Types</td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                </tr>
+                <tr>
+                    <td>Discounts</td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                </tr>
+                <tr>
+                    <td>Ticket Sales</td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                </tr>
+                <tr>
+                    <td>Competitors</td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                </tr>
+                <tr>
+                    <td>Teams</td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                </tr>
+                <tr>
+                    <td>Competitor Registrations</td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                </tr>
+                <tr>
+                    <td>Dishes</td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                </tr>
+                <tr>
+                    <td>Courses</td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                </tr>
+                <tr>
+                    <td>Ratings</td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                </tr>
+                <tr>
+                    <td>Event Years</td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                    <td><span class="material-symbols-outlined">done</span></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
