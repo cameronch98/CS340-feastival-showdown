@@ -73,3 +73,27 @@ Copied from stackoverflow
 One liner copied to allow me to have placeholder name for
 select elements without being able to submit them.
 Source URL: https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box
+
+Citation for navbar CSS inspriation
+Date 12/01/2023
+Adapted from X (Twitter) post by @jh3yy
+The post talked about utilizing :has() as a means of selected an elements 
+previous child, and how a hover effect can be used to emulate the old Mac 
+OS X Dock UI. I adapted the previous/next child logic utilized here for our 
+own use in a vertical menu bar, with similar hovor effects added and instead 
+made to look like highlight-peaks
+Source URL: https://twitter.com/jh3yy/status/1684973205679742995
+
+Citation for edit/delete animation
+Date 12/01/2023
+Adapted from sample in w3schools.com
+The example iself was an explanation for how to make your own website loader, but 
+the keyframes example provided an idea for how to utilize it to create a partial 
+turn to use as a "bell" effect.
+Source URL: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader3 
+
+Citation for modal
+Date 12/01/2023
+Adapted from bootstrap documetation
+Modeled a simple modal controlled by CSS for use in delete confirmations.
+Source URL: https://getbootstrap.com/docs/4.0/components/modal/ 
